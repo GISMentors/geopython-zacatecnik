@@ -220,16 +220,17 @@ ten následně použít.
 
 Viz kapitola o :doc:`OWSLib <../../owslib/index>` a :ref:`OWSLibWFS`.
 
-.. todo:: Opravit - nefunkční
+..
+   .. todo:: Opravit - nefunkční
           
-.. code-block:: python
+   .. code-block:: python
 
     [...]
     >>> f = aopk.getfeatures(['UzemniOchrana_ChranUzemi:Zonace_velkoplošného_zvláště_chráněného_území'])
 
-Špinavý trik - načtení geoprvku pomocí `gdal.FileFromMemBuffer` objektu:
+    Špinavý trik - načtení geoprvku pomocí `gdal.FileFromMemBuffer` objektu:
 
-.. code-block:: python
+    .. code-block:: python
 
     >>> from osgeo import gdal
     >>> gdal.FileFromMemBuffer('/vsimem/temp', f.read())

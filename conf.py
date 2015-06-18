@@ -3,20 +3,23 @@
 import sys
 import os
 
+sys.path.append(os.path.join('..', 'sphinx-template'))
+from utils import get_month_year, get_year
+
 # -- General configuration ------------------------------------------------
 
 # General information about the project.
 project = u'Školení GeoPython'
-copyright = u'2014, Jáchym Čepický a Martin Landa (GISMentors.eu)'
+copyright = u'2014-%d, Jáchym Čepický a Martin Landa (GISMentors.eu)' % get_year()
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '0.1'
+version = '0.2beta'
 # The full version, including alpha/beta/rc tags.
-release = '%s alpha' % version
+release = '%s' % version
 
 # -- Options for HTML output ----------------------------------------------
 

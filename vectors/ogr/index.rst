@@ -56,6 +56,8 @@ Dokumentace: http://www.gdal.org/ogr_apitut.html
 
 API: http://gdal.org/python/
 
+Přednášky v češtině: http://geo.fsv.cvut.cz/~gin/yfsg/Free-Software-GIS-03-gdal-proj.pdf
+
 Obalová zóna
 ------------
 
