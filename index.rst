@@ -69,6 +69,8 @@ GeoPython
 * Shapely manual: http://toblerity.github.io/shapely/manual.html
 * "Python Geospatial Development" book, Erik Westra:
   http://www.packtpub.com/python-geospatial-development/book
+* Přednáška GDAL (ČVUT v Praze), http://geo.fsv.cvut.cz/~gin/yfsg/Free-Software-GIS-03-gdal-proj.pdf
+* Portál FreeGIS, http://freegis.fsv.cvut.cz/gwiki/GDAL#Uk.C3.A1zky_Python_skript.C5.AF
 
 Fóra, dokumentace
 -----------------
