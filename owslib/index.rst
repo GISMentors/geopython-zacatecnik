@@ -19,7 +19,7 @@ prostřednictvím souboru ve formátu XML. Požadavek může mít buď podobu
 speciálního URL, kdy jednotlivé paramery jsou od sebe odděleny znakem
 ``&``, například::
 
-    http://server/služba/request=GetCapabilies&service=WMS
+    http://server/sluzba/request=GetCapabilies&service=WMS
 
 V tomto případě posíláme 2 parametry: ``request`` má hodnotu
 ``GetCapabilities`` a parametr ``service`` má hodnotu ``WMS``.
@@ -133,8 +133,6 @@ ohraničující obdélník Prahy:
 
 Vlastnosti záznamu:
 
-.. todo:: Nefunguje...
-
 .. code-block:: python
 
 
@@ -245,7 +243,9 @@ Nejprve najdeme nějaké WFS v katalogové službě:
     53e47f1f-1bb8-405f-9254-514a0a02080a WFS Údaje o území
     53f3708e-9d1c-4da6-983c-086e0a02080a WFS Průchodnost krajiny pro velké savce
 
-Podíváme se, jaká data mají v `Agentůře ochrany přírody a krajiny <http://www.ochranaprirody.cz/>`_ (AOPK):
+
+Podíváme se, jaká data mají v `Agentůře ochrany přírody a krajiny
+<http://www.ochranaprirody.cz/>`_ (AOPK):
 
 .. code-block:: python
 
@@ -258,8 +258,6 @@ Podíváme se, jaká data mají v `Agentůře ochrany přírody a krajiny <http:
     WFSServer?service=WFS&request=GetCapabilities&version=1.1.0
 
 Načteme WFS AOPK:
-
-.. todo:: Nefunguje...
 
 .. code-block:: python
 

@@ -161,13 +161,10 @@ anebo si vybrat některý z geoprvků a dále s ním pracovat:
 Práce s daty
 ------------
 
-..
- S jednotlivými prvky a jejich vlastnostmi můžeme dále pracovat.
+Geometrie geoprvků a knihovna shapely
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Geometrie geoprpvků a knihovna shapely
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Knihovna `shapely <http://toblerity.org/shapely/>`_ (stejného autora)
+Knihovna `Shapely <http://toblerity.org/shapely/>`_ (stejného autora)
 nám umožňuje pracovat s geometrickou složkou popisu geoprvků opět ve
 stylu jazyka Python. Stejně jako Fiona, převádí shapely geometrické
 vlastnosti na objekty typu JSON.

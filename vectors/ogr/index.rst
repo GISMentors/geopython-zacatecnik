@@ -6,8 +6,8 @@ Knihovna OGR
 **OGR** (součást knihovny `GDAL <http://www.gdal.org>`_) je tradiční
 knihovna pro práci s vektorovými daty.  Knihovna OGR slouží především
 k převodům mezi vektorovými formáty (ale i další práci s vektorovými
-daty, jejich geometrií a atributy). V současné době knihovna podporuje
-více než 80.
+daty, jejich geometrií a atributy). V současné době knihovna
+`podporuje více než 80 <http://gdal.org/ogr_formats.html>`_.
 
 .. _ogr-model:
 
@@ -56,7 +56,7 @@ Dokumentace: http://www.gdal.org/ogr_apitut.html
 
 API: http://gdal.org/python/
 
-Přednášky v češtině: http://geo.fsv.cvut.cz/~gin/yfsg/Free-Software-GIS-03-gdal-proj.pdf
+Materiály v češtině: http://geo.fsv.cvut.cz/~gin/yfsg/Free-Software-GIS-03-gdal-proj.pdf
 
 Obalová zóna
 ------------
@@ -134,7 +134,7 @@ ohraničujícího obdélíku a centroidu polygonu):
 V následujícím příkladu si předvedeme, jak pracovat s vektorovými daty
 *od A do Z*, tedy jeho otevření, zjištění některých metadat, změna
 atributu vybraného geoprvku, uložení změn zpátky do souboru. To celé
-by šlo pravdepodobně vykonat pomocí výše zmíněné knihovny :ref:`Fiona <fiona>`
+by šlo pravděpodobně vykonat pomocí výše zmíněné knihovny :ref:`Fiona <fiona>`
 přibližně 3× jednoduššeji. OGR přistupuje k datům na nižší úrovi, což
 může být někdy výhodnější.
 

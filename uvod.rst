@@ -61,7 +61,7 @@ V tomto kurzu se zaměříme na úvod do práce s knihovnou :doc:`GDAL
 <rasters/rasterio>` a :doc:`Fiona <vectors/fiona/index>`. Vyzkoušíme si na
 práci s knihovnou pro webové služby OGC :doc:`OWSLib <owslib/index>` a
 nakonec se podíváme na serverové aplikace pomocí rozhraní
-:doc:`python-mapscript <mapscript/index>`.
+:doc:`mapscript/index`.
 
 Cílem kurzu není přirozeně kompletní pokrytí problematiky GIS a jazyka
 Python, nýbrž poskytnutí přehledu o nejčastěji používaných základních

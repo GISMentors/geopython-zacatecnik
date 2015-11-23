@@ -1,11 +1,11 @@
 GDAL
 ====
 
-Knihovna `GDAL <http://gdal.org>`_ je základním kamenem
-většiny dalších projektů (nejen) open source GIS. Tato knihovna (jejíž
+Knihovna `GDAL <http://gdal.org>`_ je základním kamenem většiny
+dalších projektů (nejen) open source GIS. Tato knihovna (jejíž
 součástí je i zmíněná knihovna :ref:`OGR <ogr>`) umožňuje práci s
-rastrovými daty. V současnosti podporuje více než 130 rastrových GIS
-formátů.
+rastrovými daty. V současnosti podporuje více než `130 rastrových GIS
+formátů <http://gdal.org/formats_list.html>`_.
 
 Koncept pro rastrová data je trochu podobný jako :ref:`pro vektorová <ogr-model>`:
 
