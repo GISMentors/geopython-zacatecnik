@@ -215,7 +215,7 @@ následujícími parametry:
 Tato funkce vektorová data zrasterizuje a zapíše je výstupního
 rastrového souboru.
 
-.. figure:: chko.png
+.. figure:: images/chko.png
    :class: middle
            
    Výsledek rasterizace
