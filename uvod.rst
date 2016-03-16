@@ -16,7 +16,7 @@ pouhým *odsazením* zdrojového textu.
 Ve světe geoinformačních technologií je Python velice oblíbený (a
 můžeme říci, že čím dál oblíbenější). Stojí rozkročen mezi jednoduchým
 skriptováním v shellu a pokročilým programováním na takřka systémové
-úrovni v~jazyce :wikipedia:`C <C (programovací jazyk)>`. Má v sobě
+úrovni v :wikipedia:`jazyce C <C (programovací jazyk)>`. Má v sobě
 něco i z přístupů jazyka :wikipedia:`Java <Java (programovací
 jazyk)>`. Většina existujících knihoven a programů má pro tento jazyk
 svoje rozhraní, jako příklad můžeme uvést `GDAL Python API
@@ -34,7 +34,7 @@ vybraných nástrojů a jejich napojení na jazyk Python:
     * *MapServer*: http://mapserver.org
     * *GeoServer*: http://geoserver.org
     * *TileCache*: http://tilecache.org
-    * *PyWPS*: http://pywps.wald.intevation.org
+    * *PyWPS*: http://pywps.org
     * *GeoDjango*: http://geodjango.org
 
 **Knihovny a nástroje**
@@ -57,10 +57,11 @@ vybraných nástrojů a jejich napojení na jazyk Python:
 Seznam samozřejmě není úplný či konečný.
 
 V tomto kurzu se zaměříme na úvod do práce s knihovnou :doc:`GDAL
-<rasters/gdal>` a jejími nadstavbami :doc:`Rasterio
-<rasters/rasterio>` a :doc:`Fiona <vectors/fiona/index>`. Vyzkoušíme si na
-práci s knihovnou pro webové služby OGC :doc:`OWSLib <owslib/index>` a
-nakonec se podíváme na serverové aplikace pomocí rozhraní
+<rastrova_data/gdal/index>` (dříve označovaná jako GDAL/OGR) a jejími
+nadstavbami :doc:`Rasterio <rastrova_data/rasterio/index>` a
+:doc:`Fiona <vektorova_data/fiona/index>`. Vyzkoušíme si na práci s
+knihovnou pro webové služby OGC :doc:`OWSLib <owslib/index>` a nakonec
+se podíváme na serverové aplikace pomocí rozhraní
 :doc:`mapscript/index`.
 
 Cílem kurzu není přirozeně kompletní pokrytí problematiky GIS a jazyka

@@ -4,11 +4,12 @@ Knihovna Fiona
 ==============
 
 Knihovna `Fiona <http://toblerity.org/fiona/>`_ jako nadstavba nad
-knihovnou OGR představuje modernější objektově orientovaný způsob
-práce s vektorovými daty. Načtená vektorových dat knihovna přemapovává
-do struktury :wikipedia-en:`GeoJSON` a stejné struktury zapisuje zpět do výstupních
-souborů. Uživatel se nemusí zabývat kurzory, vrstvami, geometrickými
-operacemi a dalšími *odbornými* termíny.
+knihovnou :doc:`OGR <../ogr/index>` představuje objektově orientovaný
+způsob práce s vektorovými daty. Načtená vektorová data knihovna
+přemapovává do datové struktury :wikipedia-en:`GeoJSON` a stejné
+struktury zapisuje zpět do výstupních souborů. Uživatel se nemusí
+zabývat kurzory, vrstvami, geometrickými operacemi a dalšími
+*odbornými* termíny.
 
 Fiona **není** nástroj vhodný na **všechny** operace - jednoduchost práce
 je vykoupena poněkud pomalejším během kódu a omezením velikosti
@@ -20,21 +21,22 @@ postupně všechny geoprvky ve vrstvě, měla by být rychlejší Fiona.
 
 .. note::
    
-   Fiona je vhodná na binární souborové formáty dat. Pro práci s daty ve
-   formátu (Geo)JSON, používejte balíček ``json``. Pro práci s daty v
-   databázích, používejte jejich vlastní knihovny.
+   Pro práci s daty ve formátu (Geo)JSON můžete použít knihovnu jazyka
+   Python ``json``. Pokud budete pracovat s daty uloženými v
+   databázích je vhodnější použít jejich vlastní knihovny.
 
-Nejprve je potřeba vytvořit tvz. *kolekci* geoprvků:
+Datovou vrstvu otevřeme pomocí funkce ``open()``, ta vytvoří objekt
+tvz. *kolekce* geoprvků:
 
 .. code-block:: python
 
     >>> import fiona
-    >>> chko = fiona.open('chko.shp', 'r') # collection
+    >>> chko = fiona.open('chko.shp', 'r')
     >>> chko
     <open Collection 'chko.shp:chko', mode 'r' at 0x7feea9595410>
 
 Následně můžeme zjišťovat vlastnosti této kolekce geoprvků, viz
-`dokumentace <http://toblerity.org/fiona/manual.html>`_.
+`dokumentace knihovny <http://toblerity.org/fiona/manual.html>`_.
 
 .. code-block:: python
 
@@ -114,9 +116,9 @@ Souřadnicové systémy
 
 Na pozadí Fiony se používají nástroje knihovny `GDAL
 <http://www.gdal.org>`_, proto ani práce se souřadnicovými systémy
-není o tolik zjednodušena, jak by možná bylo potřeba. Pokud obsahuje
-dataset definici souřadnicového systému pomocí kódu EPSG, je tento
-využit, v našem případě se jedná o :epsg:`4326`.
+není o tolik zjednodušena, jak by možná bylo potřeba. Pokud je
+souřadnicový systém datové vrstvy definován pomocí kódu EPSG, je tento
+kód dále využit, v našem případě se jedná o :epsg:`4326`.
 
 .. code-block:: python
 
@@ -143,14 +145,15 @@ systému a stará se o jejich převod do textového řetězce a z textových
 Procházení geoprvků
 -------------------
 
-Prvky v datovém souboru můžeme procházet postupně:
+Prvky v datovém souboru můžeme procházet postupně (sekvenčně):
 
 .. code-block:: python
 
     >>> for feature in chko:
     ...     print feature['geometry']['type']
 
-anebo si vybrat některý z geoprvků a dále s ním pracovat:
+anebo si vybrat některý z geoprvků (náhodný přístup) a dále s ním
+pracovat:
 
 .. code-block:: python
 
@@ -161,13 +164,13 @@ anebo si vybrat některý z geoprvků a dále s ním pracovat:
 Práce s daty
 ------------
 
-Geometrie geoprvků a knihovna shapely
+Geometrie geoprvků a knihovna Shapely
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Knihovna `Shapely <http://toblerity.org/shapely/>`_ (stejného autora)
-nám umožňuje pracovat s geometrickou složkou popisu geoprvků opět ve
-stylu jazyka Python. Stejně jako Fiona, převádí shapely geometrické
-vlastnosti na objekty typu JSON.
+Knihovna `Shapely <http://toblerity.org/shapely/>`_ (stejného autora
+jako Fiony) nám umožňuje pracovat s geometrickou složkou popisu
+geoprvků opět ve stylu jazyka Python. Stejně jako Fiona, převádí
+shapely geometrické vlastnosti na objekty typu JSON.
 
 .. code-block:: python
 
@@ -215,7 +218,8 @@ uložení do dočasného souboru na disk a následném načtení. Pokud jsme v s
 kdy tuto možnost nemáme, můžeme zkusit vyrobit virtuální objekt typu soubor a
 ten následně použít.
 
-Viz kapitola o :doc:`OWSLib <../../owslib/index>` a :ref:`OWSLibWFS`.
+Další informace v kapitole o knihovně :doc:`OWSLib
+<../../owslib/index>`.
 
 ..
    .. todo:: Opravit - nefunkční
