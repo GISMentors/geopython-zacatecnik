@@ -32,7 +32,7 @@ V následujícím příkladu otevřenem rastrový soubor ve formátu
     >>> src.res
     (10.0, 10.0)
 
-.. figure:: rgb.png
+.. figure:: images/rgb.png
 
    RGB kompozice
 
@@ -79,6 +79,6 @@ plovoucí desetinnou čárkou a negativní hodnoty). Výsledný soubor ve formá
     >>> with rasterio.open('ndvi.tif', 'w', **kwargs) as dst:
     ...    dst.write_band(1, ndvi.astype(rasterio.float64))
 
-.. figure:: ndvi.png
+.. figure:: images/ndvi.png
     
     Výsledný soubor s NDVI indexem
