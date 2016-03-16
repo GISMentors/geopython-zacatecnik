@@ -16,6 +16,9 @@
    Motivace
    ********
 
+.. figure:: images/python-logo.png
+   :class: small
+        
 * :wikipedia:`Python` baví
 * Python se neučí, Python se píše
 * Python je dnes asi nejvíce "geopozitivní" programovací jazyk
