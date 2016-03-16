@@ -19,8 +19,8 @@
 .. figure:: images/python-logo.png
    :class: small
         
-* :wikipedia:`Python` baví
-* Python se neučí, Python se píše
+* :wikipedia:`Python` "baví"
+* Python se "neučí", Python se "píše"
 * Python je dnes asi nejvíce "geopozitivní" programovací jazyk
 
   * s množstvím knihoven a nástrojů (`GDAL <http://gdal.org>`_, `PROJ4
@@ -33,7 +33,7 @@
     <http://geopython.github.io/OWSLib/>`_, `PyWPS
     <http://pywps.wald.intevation.org/>`_, `pycsw <http://pycsw.org/>`_,
     ...)
-  * a podpora v deskopech (GRASS GIS - `PyGRASS
+  * a širokou podpora v deskopech (GRASS GIS - `PyGRASS
     <http://grass.osgeo.org/grass71/manuals/libpython/pygrass_index.html>`_,
     Esri ArcGIS - `arcpy
     <http://resources.arcgis.com/en/help/main/10.1/index.html#//000v000000v7000000>`_,
@@ -41,8 +41,18 @@
     <http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins.html>`_,
     ...)
 
-.. note:: Geodata pro školení ke stažení `zde
-   <http://training.gismentors.eu/geodata/geopython/data.tgz>`_.
+.. index::
+   pair: datové sady; ke stažení
+
+.. notedata::
+
+   *Data ke školení* je stažitelná jako `zip archiv
+   <http://training.gismentors.eu/geodata/geopython/data.tgz>`_ (63
+   MB). Dále můžete výužít data ze školení :skoleni:`QGIS pro
+   začátečníky <qgis-zacatecnik>`  a to `vektorovová data
+   <http://training.gismentors.eu/geodata/qgis/data.zip>`_ (436 MB) a
+   rastrová data `DMT
+   <http://training.gismentors.eu/geodata/qgis/dmt.zip>`_ (97 MB).
 
 .. warning:: :red:`Toto je pracovní verze školení, která je aktuálně
              ve vývoji!`
