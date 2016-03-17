@@ -1,11 +1,11 @@
 PyProj
 ======
 
-Na záveř malá odbočka k souřadnicovým systémům a Python rozhraní pro
+Na závěr malá odbočka k souřadnicovým systémům a Python rozhraní pro
 knihovnu `Proj4 <http://trac.osgeo.org/proj>`_ - `PyProj
 <https://github.com/jswhit/pyproj>`_.
 
-V následijící ukázce si ukážeme převod ze systému S-JTSK
+V následujícím příkladu si ukážeme převod ze systému S-JTSK
 (:epsg:`5514`) do WGS-84 (:epsg:`4326`):
 
 .. code-block:: python

@@ -10,7 +10,7 @@ následujících tříd:
 * **Style**
 
   .. aafig::
-    :aspect: 60
+    :aspect: 70
     :scale: 100
 
                                 +-------+

@@ -12,7 +12,7 @@ služby* (OGC OWS), mezi které patří `Web Mapping Service (OGC WMS)
 <http://opengeospatial.org/standards/wcs>`_ a další.
 
 Standardy OGC OWS jsou postaveny na komunikaci mezi serverem a
-klientem (:wikipedia:`client-server protocol <Klient-server>`) kdy
+klientem (:wikipedia:`client-server protocol <Klient-server>`), kdy
 klient (váš počítač) posílá serveru (počítači, ze kterého chcete
 získat data či na něm spusit službu) požadavky. Server odpovídá
 prostřednictvím souboru ve formátu XML. Požadavek může mít buď podobu
@@ -39,14 +39,15 @@ zápisy se liší každou verzi standardů. Také proto vznikla knihovna *OWSLib
 
 OWSLib
 ======
-Knihovna `OWSLib <http://geopython.github.io/OWSLib/>`_ je rozhraní z jazyka
-Python pro otevřené webové služby *OGC OWS*. Knihovna umožňuje se připojit k
-různým službám a pracovat s nimi z pozice *klienta* a to bez ohledu
-na serverovou implementaci. Knihovna momentálně podporuje standardy WMS, WFS,
-WCS, CSW, WPS, SOS, WMC a další (seznam se stále rozšiřuje).
-V této části si ukážeme práci s některými *otevřenými webovými službami OGC*.
 
-**Dokumentace**: http://geopython.github.io/OWSLib/
+Knihovna `OWSLib <http://geopython.github.io/OWSLib/>`_ je Python
+rozhraní pro otevřené webové služby *OGC OWS*. Knihovna umožňuje se
+připojit k různým službám a pracovat s nimi z pozice *klienta* a to
+bez ohledu na serverovou implementaci. Knihovna momentálně podporuje
+standardy WMS, WFS, WCS, CSW, WPS, SOS, WMC a další (seznam se stále
+rozšiřuje). 
+
+Dokumentace: http://geopython.github.io/OWSLib/
 
 .. _OWSLibCSW:
 
@@ -58,17 +59,19 @@ OGC CSW
     single: OGC OWS
     single: Cenia
 
-Chceme-li nějakou OGC službu začít využívat, musíme především znát její adresu.
-Také pro tento účel vznikají *katalogové služby*, kdy specializované servery udržující
-metadatové záznamy webových služeb a datových souborů. Pro Českou republiku
-je organizací `Cenia <http://cenia.cz>`_ udržován `Národní geoportál INSPIRE
-<http://geoportal.gov.cz>`_, který udržuje všechy dostupné webové služby a datové
-soubory poskytované veřejnou správnou a umožňuje v nich vyhledávat
-pomocí stanardu `OGC CSW <http://opengeospatial.org/standards/csw>`_.
+Chceme-li nějakou OGC webovou službu začít využívat, musíme především
+znát její adresu.  Také pro tento účel vznikají *katalogové služby*,
+kdy specializované servery udržující metadatové záznamy webových
+služeb a datových souborů. Pro Českou republiku je organizací `Cenia
+<http://cenia.cz>`_ udržován `Národní geoportál INSPIRE
+<http://geoportal.gov.cz>`_, který obsahuje informace o všech
+dostupných webových službách a datových souborech poskytovaných
+veřejnou správnou. Umožňuje v nich vyhledávat pomocí stanardu `OGC CSW
+<http://opengeospatial.org/standards/csw>`_.
 
 Webové rozhraní k tomuto serveru najdete na adrese
 http://geoportal.gov.cz/web/guest/catalogue-client. Rozhraní pro webovou službu
-přímo nalezneme na adrese http://geoportal.gov.cz/php/micka/csw/index.php.
+je dostupné na adrese http://geoportal.gov.cz/php/micka/csw/index.php.
 
 .. code-block:: python
 
@@ -77,7 +80,7 @@ přímo nalezneme na adrese http://geoportal.gov.cz/php/micka/csw/index.php.
     >>> cenia.service
     'CSW'
 
-Vyhledávání záznamů, které jsou služba a obsahují klíčové slovo `WMS`:
+Vyhledávání záznamů:
 
 .. code-block:: python
 
@@ -165,6 +168,11 @@ OGC WMS
 `OGC Web Map Service <http://opengeospatial.org/standards/wms>`_ slouží ke
 stahování a sdílení mapových dat. Ke klientovi nejsou posílána vlastní data, ale
 pouze náhled (obrázek) těchto dat.
+
+.. note::
+
+   Více informací na :skoleni:`školení Úvod do GIS
+   <open-source-gis/standardy/ogc/wms.html>`.
 
 .. code-block:: python
 
@@ -301,6 +309,7 @@ Metadata
 Načteme ještě službu chráněných území
 
 .. code-block:: python
+    
     >>> chranena_uzemi = cenia.records['5473579f-fb08-48ab-893d-3d3e0a02080a']
     >>> chranena_uzemi.identifiers[1]['identifier']
     'https://gis.nature.cz/arcgis/services/UzemniOchrana/ChranUzemi/MapServer/WFSServer?SERVICE=WFS&request=GetCapabilities'
