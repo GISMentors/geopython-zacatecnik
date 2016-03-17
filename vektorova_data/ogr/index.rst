@@ -3,18 +3,19 @@
 Knihovna OGR
 ============
 
-**OGR** (součást knihovny `GDAL <http://www.gdal.org>`_) je tradiční
+**OGR** jako součást `GDAL <http://www.gdal.org>`_ je tradiční
 knihovna pro práci s vektorovými daty.  Knihovna OGR slouží především
 k převodům mezi vektorovými formáty (ale i další práci s vektorovými
-daty, jejich geometrií a atributy). V současné době knihovna
-`podporuje více než 80 <http://gdal.org/ogr_formats.html>`_.
+daty, jejich geometrií a atributy). V současné době knihovna podporuje
+`více než 80 formátů <http://gdal.org/ogr_formats.html>`_.
 
 .. _ogr-model:
 
-OGR pracuje s konceptem vrstev (*layer*) uložených v datových zdrojích
-(*data source*). OGR používá pro čtení a zápis dat do podporovaných
-datových formátů svůj vlastní *abstraktní model*, který se může jevit
-jako těžkopádný, nicméně spolehlivě funguje pro všechny případy:
+Knihovna OGR pracuje s konceptem vrstev (*layers*) uložených v datových
+zdrojích (*data source*). OGR používá pro čtení a zápis dat do
+podporovaných datových formátů svůj vlastní *abstraktní model*, který
+se může jevit jako těžkopádný, nicméně spolehlivě funguje pro všechny
+případy:
 
 * **Driver** - ovladač pro čtení a zápis dat
 * **Data Source** - datový zdroj (soubor, databáze, protokol, ...)
@@ -24,7 +25,7 @@ jako těžkopádný, nicméně spolehlivě funguje pro všechny případy:
     
 .. aafig::
     :aspect: 70
-    :scale: 65
+    :scale: 90
 
                                                +-------+          +---------+
                                                |       |          |         |
@@ -44,10 +45,10 @@ jako těžkopádný, nicméně spolehlivě funguje pro všechny případy:
                                                |       |          |         |
                                                +-------+          +---------+
                                        
-Informace abstraktnímu modelu pro rastrová data:
+Popis abstraktního modelu pro vektorová data:
 http://gdal.org/ogr_arch.html
 
-Rozhraní pro Python je pouze abstraktní :abbr:`API (rozhraní pro
+*Rozhraní pro Python* představuje pouze abstraktní :abbr:`API (rozhraní pro
 programování aplikací)` nad původními funkcemi a třídami z jazyka C++,
 ve kterém je GDAL naprogramovaný. Také z tohoto důvodu se mohou
 některé postupy jevit jako těžkopádné.
@@ -56,14 +57,14 @@ Dokumentace: http://www.gdal.org/ogr_apitut.html
 
 API: http://gdal.org/python/
 
-Materiály v češtině: http://geo.fsv.cvut.cz/~gin/yfsg/Free-Software-GIS-03-gdal-proj.pdf
+Cookbook: https://pcjericks.github.io/py-gdalogr-cookbook/vector_layers.html
 
 Obalová zóna
 ------------
 
 V tomto příkladu si ukážeme, jak otevřít vektorová data ve formátu
 Esri Shapefile, načíst datovou vrstvu, zobrazit atributy geoprvků a
-jak vytvořit obalovou zónu nad načtenými geoprvky.
+vytvořit obalovou zónu nad načtenými geoprvky.
 
 Nejprve otevření souboru s daty:
 
@@ -86,7 +87,7 @@ Práce s vrstvou, její otevření:
     >>> l.GetFeatureCount()
     5626
 
-Schéma vrstvy -- definice typu geometrie a jednotlivých atributových polí:
+Schéma vrstvy - definice typu geometrie a jednotlivých atributových polí:
 
 .. code-block:: python
     
@@ -131,12 +132,12 @@ ohraničujícího obdélíku a centroidu polygonu):
     >>> geom.Intersects(buff)
     True
 
-V následujícím příkladu si předvedeme, jak pracovat s vektorovými daty
-*od A do Z*, tedy jeho otevření, zjištění některých metadat, změna
-atributu vybraného geoprvku, uložení změn zpátky do souboru. To celé
-by šlo pravděpodobně vykonat pomocí výše zmíněné knihovny :ref:`Fiona <fiona>`
-přibližně 3× jednoduššeji. OGR přistupuje k datům na nižší úrovi, což
-může být někdy výhodnější.
+Následující příklad ukazuje přístup k vektorovým datům *od A do Z*,
+tedy vytvoření nové datové vrstvy, nastavení metadat, vytvoření a
+zápis nového geoprvku, uložení změn do souboru. To celé by šlo vykonat
+pomocí výše zmíněné knihovny :ref:`Fiona <fiona>` několikanásobně
+jednodušeji. OGR přistupuje k datům na nižší úrovni, což může být
+někdy výhodnější.
 
 .. code-block:: python
 
@@ -161,7 +162,7 @@ může být někdy výhodnější.
     >>> # Vytvoření nové geometrie typu linie - načtením z formátu WKT
     >>> line = ogr.CreateGeometryFromWkt('LINESTRING(%f %f, %f %f)' % (0, 0, 1, 1))
 
-    >>> # Vytvoření nového prvku, nastavení geometrie a atributu Name
+    >>> # Vytvoření nového prvku, nastavení geometrie a atributu Nazev
     >>> feature = ogr.Feature(layer.GetLayerDefn())
     >>> feature.SetGeometry(line)
     >>> feature.SetField("Nazev", 'Základní linie')
