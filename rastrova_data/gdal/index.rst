@@ -1,22 +1,24 @@
-GDAL
-====
+Knihovna GDAL
+=============
 
 Knihovna `GDAL <http://gdal.org>`_ je základním kamenem většiny
 dalších projektů (nejen) open source GIS. Tato knihovna (jejíž
-součástí je i zmíněná knihovna :ref:`OGR <ogr>`) umožňuje práci s
-rastrovými daty. V současnosti podporuje více než `130 rastrových GIS
+součástí je i zmíněná knihovna :doc:`OGR
+<../../vektorova_data/ogr/index>`) umožňuje práci s rastrovými a
+vektorovými daty. V současnosti podporuje více než `130 rastrových GIS
 formátů <http://gdal.org/formats_list.html>`_.
 
-Koncept pro rastrová data je trochu podobný jako :ref:`pro vektorová <ogr-model>`:
+Koncept pro rastrová data do značné míry odpovídá přístupu k
+:ref:`vektorovým datům <ogr-model>`:
 
 * **Driver** - ovladač pro čtení a zápis dat
-* **DataSource** - zdroj dat, ze kterého a do kterého se čte a zapisuje
+* **Data Source** - zdroj dat, ze kterého a do kterého se čte a zapisuje
 * **RasterBand** - rastrový kanál. U něterých zdrojů dat je jenom jedno
   pásmo, ale může jich mít teoreticky neomezeně (např. u
   hyperspektrálních dat).
 
 .. aafig::
-    :aspect: 60
+    :aspect: 70
     :scale: 100
     :proportional:
     :textual:
@@ -39,19 +41,22 @@ Koncept pro rastrová data je trochu podobný jako :ref:`pro vektorová <ogr-mod
                                                |            |
                                                +------------+
                                        
-       
-  
-Informace abstraktnímu modelu pro rastrová data:
-http://gdal.org/gdal_datamodel.html
-  
 Mezi další důležité charakteristiky rastrových dat patří prostorové
 rozlišení (velikost pixelu v mapových jednotkách) a jeho hraniční
 souřadnice.
+       
+Popis abstraktního modelu pro rastrová data:
+http://gdal.org/gdal_datamodel.html
+
+API: http://gdal.org/python/
+
+Cookbook: https://pcjericks.github.io/py-gdalogr-cookbook/raster_layers.html
+
 
 Vytvoření nového souboru z matice hodnot
 ----------------------------------------
 
-V následujícím příkladě vytvoříme nový rastrový soubor a vyplníme ho maticí
+V následující ukázce vytvoříme nový rastrový soubor a vyplníme ho maticí
 hodnot. Výsledek uložíme do souboru ve formátu :wikipedia-en:`GeoTIFF`.
 
 Nejprve nastavíme několik výchozích hodnot, velikost matice (mřížky),
@@ -73,7 +78,7 @@ dat.
     >>> # hraniční souřadnice mřížky
     >>> x_min, x_max, y_min, y_max = (0, 100, 0, 100)
 
-V dalším kromu spočítáme prostorové rozlišení, velikost pixelu na
+V dalším kroku vypočteme prostorové rozlišení, velikost pixelu na
 základně počtu pixelů ve směru os a rozsahu rastrových dat.
 
 .. code-block:: python
@@ -82,9 +87,9 @@ základně počtu pixelů ve směru os a rozsahu rastrových dat.
     >>> x_res = int((x_max - x_min) / pixel_size)
     >>> y_res = int((y_max - y_min) / pixel_size)
 
-Nyní můžeme vytvořit *datový zdroj* pro rastrová data. Nejprve vytvoříme
-instanci objektu `Driver` pro požadovaný formát a následně vytvoříme prázdný
-rastrový soubor. Zde musíme specifikovat
+Nyní můžeme vytvořit *datový zdroj* pro rastrová data. Nejprve
+vytvoříme instanci objektu `Driver` pro požadovaný formát a následně
+prázdný rastrový soubor. Zde musíme specifikovat
 
 * jméno výsledného souboru
 * prostorové rozlišení ve směru os `x` a `y`
@@ -143,7 +148,7 @@ A nakonec uklidíme (pro jistotu) a uzavřeme zápis:
 Rasterizace vektorových dat
 ---------------------------
 
-Další ne zcela obvyklou operací může být převod z vektorových dat do
+Další ne zcela obvyklou operací může být převod vektorových dat do
 rastrové reprezentace. Začátek je stejný jako v předchozím případě:
 
 .. code-block:: python
@@ -168,7 +173,7 @@ Otevřeme vstupní vektorová data:
     >>> # načtení první vrstvy z datového zdroje            
     >>> source_layer = source_ds.GetLayer()
 
-A nyní můžeme zjistit potřebné hraniční souřadnice vstupních geodata a
+A nyní můžeme zjistit potřebné hraniční souřadnice vstupních geodat a
 vytvořit tak cílový rastrový soubor:
 
 .. code-block:: python
@@ -212,7 +217,7 @@ následujícími parametry:
 
 .. gdal.RasterizeLayer(dataset, [1], layer, options = ["ATTRIBUTE=KOD"])
 
-Tato funkce vektorová data zrasterizuje a zapíše je výstupního
+Tato funkce vektorová data zrasterizuje a zapíše je do výstupního
 rastrového souboru.
 
 .. figure:: images/chko.png

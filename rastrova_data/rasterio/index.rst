@@ -1,18 +1,20 @@
-Rasterio
-========
+Knihovna Rasterio
+=================
 
 Knihovna `Rasterio <https://github.com/mapbox/rasterio>`_ je opět dílo
-zejména `Seana Gilliese <http://sgillies.net/>`_, tentokrát v rámci
+zejména `Seana Gilliese <http://sgillies.net/>`_ (podobně jako
+:doc:`Fiona <../../vektorova_data/fiona/index>` či Shapely), tentokrát v rámci
 jeho působení ve firmě `MapBox <http://mapbox.com>`_. Rasterio je
 knihovna pro práci s rastrovými geografickými datovými sadami. Na
-pozadí Rasterio používá spolehlivou knihovnu :doc:`gdal`.
+pozadí Rasterio používá spolehlivou knihovnu :doc:`GDAL <../gdal/index>`.
 
 Rasterio pracuje s objekty knihovny `NumPy <http://www.numpy.org/>`_
-(podobně jako dříve zmíněná :doc:`Fiona <../vectors/fiona/index>` pracuje s objekty
-JSON). Autor tvrdí, že Rasterio se vyslovuje *[raw-STEER-ee-oh]* a
-měla by práci s rastrovými daty udělat více zábavnou a produktivnější.
+(podobně jako dříve zmíněná :doc:`Fiona
+<../../vektorova_data/fiona/index>` pracuje s objekty JSON). Autor
+tvrdí, že Rasterio se vyslovuje *[raw-STEER-ee-oh]* a měla by práci s
+rastrovými daty udělat více zábavnou a produktivnější.
 
-V následujícím příkladu otevřenem rastrový soubor ve formátu
+V následujícím příkladu otevřeneme rastrový soubor ve formátu
 :wikipedia-en:`GeoTIFF` a podíváme se na některá metadata:
 
 .. code-block:: python
@@ -55,9 +57,9 @@ soubor, obsahující pokus o index NDVI.
         
          NDVI = (NIR - VIS) / (NIR  + VIS)
 
-Neprve vytvoříme novou matici pro výsledné hodnoty, následně do tohoto pole uložíme
-výsledek výpočtu pro každý pixel. Pracujeme vlastně v prostředí NumPy, které
-práci s poli významně usnadňuje.
+Neprve vytvoříme novou matici pro výsledné hodnoty, následně do tohoto
+pole uložíme výsledek výpočtu pro každý pixel. Pracujeme v prostředí
+NumPy, které práci s poli významně usnadňuje.
 
 .. code-block:: python
 
@@ -68,9 +70,11 @@ práci s poli významně usnadňuje.
     >>> ndvi.max()
     0.97435898
 
-Výsledek uložíme do nově vytvořeného souboru. Data budou zkomprimována pomocí
-LWZ komprese a uložena v číselném formátu `float64` (mapa obsahuje čísla s
-plovoucí desetinnou čárkou a negativní hodnoty). Výsledný soubor ve formátu GeoTIFF bude mít pouze jeden kanál.
+Výsledek uložíme do nově vytvořeného souboru. Data budou zkomprimována
+pomocí LWZ komprese a uložena v číselném formátu `float64` (rastrový
+soubor obsahuje čísla s plovoucí desetinnou čárkou a záporné
+hodnoty). Výsledný soubor ve formátu GeoTIFF bude mít pouze jeden
+kanál.
 
 .. code-block:: python
 
