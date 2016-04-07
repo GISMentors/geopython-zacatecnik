@@ -67,6 +67,7 @@
    :maxdepth: 2
 
    uvod
+   python/index
    vektorova_data/index
    rastrova_data/index
    owslib/index
@@ -83,6 +84,7 @@ Související materiály
 Python
 ------
 
+* Kurz PyLadies (česky): http://pyladies.cz/praha/
 * Učebnice jazyka Python (česky): http://www.root.cz/knihy/ucebnice-jazyka-python
 * Python guide: http://docs.python-guide.org/en/latest
 * Dive into Python: http://www.diveintopython.net
