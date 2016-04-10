@@ -93,6 +93,8 @@ Python
 GeoPython
 ---------
 
+* `Python Scripting for Spatial Data Processing
+  <https://pythonizame.s3.amazonaws.com/media/Book/python-scripting-spatial-data-processing/file/85ebbca2-7c5d-11e5-964d-04015fb6ba01.pdf>`_
 * **Python GDAL/OGR Cookbook**: http://pcjericks.github.io/py-gdalogr-cookbook/
 * Shapely manual: http://toblerity.github.io/shapely/manual.html
 * "Python Geospatial Development" book, Erik Westra:
