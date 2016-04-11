@@ -1,5 +1,5 @@
 Podmínky
---------
+========
 
 Pokud potřebujeme vykonat určitou část kódu pouze pokud je splněna nějaká
 podmínka (tedy nějaký výraz je vyhodnocený jako pravivý - `True`), potřebujeme
@@ -68,7 +68,7 @@ nabídne vhodné občerstvení:
             print('Návštěvníky z budoucnosti tady nevidíme rádi.')
 
 Ucelené bloky v Pythonu
------------------------
+=======================
 
 Určitě jste si všimli, že na rozdíl od jiných populárních jazyků Python
 nepoužívá k vymezení ucelených bloků kódu složené závorky, ale bloky strukturuje
@@ -112,7 +112,7 @@ Vidíte, že je to méně psaní a Python vás nutí k čitelné struktuře kód
 
 
 Jednořádková forma zápisu podmínky `if`
----------------------------------------
+=======================================
 Programátoři jsou velice lenivý národ a často vytvářejí zkratky, aby ušetřili
 řádek kódu nebo deset znaků na řádku. Často potřebujeme pouze krátkou formu
 zápisu podmínky `if` (z Jazyka C hojne využívaný zápis `vysledek = (podminka ? splneno !

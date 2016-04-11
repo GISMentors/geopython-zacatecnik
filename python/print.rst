@@ -1,5 +1,5 @@
 Program uložený v souboru
--------------------------
+=========================
 Psaní příkazů přímo v Pythonu, interaktivně, má jednu velkou nevýhodu: to, co
 napíšeme, se ztratí, jakmile zavřeme okno příkazové řádky. Na jednoduché výpočty
 to nevadí, ale až budou naše programy složitější, budeme je potřebovat nějak

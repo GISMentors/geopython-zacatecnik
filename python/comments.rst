@@ -1,5 +1,5 @@
 Komentáře
----------
+=========
 
 Program si teď zpřehledníme komentářem. V Pythonu komentář začíná dvojkřížkem
 (#), za který můžeš napsat úplně cokoliv – až do konce řádku bude Python všechno

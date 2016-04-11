@@ -1,5 +1,5 @@
 Operátory a datové typy
------------------------
+=======================
 
 (Nejen aritmetické) operátory slouží k operacím nad hodnotami. Funkce
 jednotlivých operatorů je samovysvětlující, některé jsou trochu více nezvyklé,

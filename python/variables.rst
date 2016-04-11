@@ -1,5 +1,5 @@
 Proměnné a tisk
----------------
+===============
 
 Výrazy můžeme spojovat a kombinovat například pomocí čárky.
 

@@ -1,5 +1,5 @@
 Chyby, jak je číst a interpretovat
-----------------------------------
+==================================
 
 Do souboru `printing.py` napište následující řádky a spusťte jej. Jaké chyby se
 vyskytly a proč? Zkuste je odstranit
@@ -41,11 +41,10 @@ Pokud zkusíme experimentovat a např. sečteme *číslo a řetězec* nebo zkus�
 *dělit nulou*, dostaneme odlišné chyby.
 
 Jak funguje Program
--------------------
+===================
 
 Je to zatím docela jednoduché: příkazy se provádějí jeden po druhém, odshora
 dolů. Program je jako recept: seznam instrukcí.
 
 Pro zatím máme pouze jeden jasný směr, jak jsou programy vykonávány. Časem ale
 přibudou odbočky a smyčky, které přehlednost poněkud zkomplikují.
-

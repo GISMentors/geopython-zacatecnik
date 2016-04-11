@@ -1,5 +1,5 @@
 Načítání vstupu
----------------
+===============
 
 Jak zařídit, aby číslo nemuselo být zapsáno v programu, ale
 aby ho mohl uživatel zadat sám.

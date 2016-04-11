@@ -1,5 +1,5 @@
 Úvod do jazyka Python
-=====================
+#####################
 
 Psát programy v jazyce Python lze buď *interaktivně* nebo do souboru. Při
 interaktivním způsobu práce spustíme interpret jazyka Python přímo v terminálu a
@@ -24,7 +24,7 @@ Python spustíme příkazem `python`:
     >>>
 
 První program
--------------
+=============
 
 Do interpretu jazyka Python můžeme napsat první krátký program. Tradice velí, že
 to musí být pozdrav "Ahoj světe!" vypsaný do terminálu. Interpret jazyka Python
@@ -36,9 +36,17 @@ to musí být pozdrav "Ahoj světe!" vypsaný do terminálu. Interpret jazyka Py
     Ahoj, světe!
     >>>
 
+Stejný program můžeme uložit do souboru s koncovou `.py` a vykonat jej jako
+celek (o ukládání programů do souborů ale bude další část).
 
-Obsah
------
+
+.. code-block:: python
+    
+    #!/usr/bin/env python
+
+    print('Ahoj, světe!')
+
+**Obsah**
 
 .. toctree::
    :maxdepth: 2
@@ -52,3 +60,13 @@ Obsah
    conditions
    arrays
    loops
+   functions
+
+Licence
+-------
+Tato část cituje z kurzů `PyLadies <http://pyladies.cz/>`_ a šířena pod
+kompatibilní licencí `(CC BY-SA 4.0) <http://creativecommons.org/licenses/by-sa/4.0/>`_
+
+TODOs
+-----
+* Předělat příklady, aby více odpovídaly prostředí prostorových dat
