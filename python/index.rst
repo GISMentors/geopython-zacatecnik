@@ -61,6 +61,10 @@ celek (o ukládání programů do souborů ale bude další část).
    arrays
    loops
    functions
+   exceptions
+   modules
+   files
+   classes
 
 Licence
 -------

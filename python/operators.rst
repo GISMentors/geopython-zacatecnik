@@ -129,3 +129,20 @@ Jaký má proměnná datový typ zjistíte rychle pomocí funkce `type()`:
     >>> a = 'elce pelce'
     >>> type(a)
     <class 'str'>
+
+Poznámka o textových řetězcích
+------------------------------
+Textové řetězce musí být uzavřeny do uvozovek - ať už jdnoduchých `'` nebo
+dvojitých `"` (některé jazyky odlišují význam obou uvozovek, ale v Pythonu mezi
+nimi není rozdíl).
+
+Pokud chcete do textového řetězce vložit nějaký speciální znak, např. *nový
+řádek*, musíte použít tzv. *escape sekvenci* - předřadit znak zpětného lomnítka
+před vlastní znak. Nejčastěji se používá znak pro nový řádek `\\n`:
+
+.. code-block:: python
+
+    print("Jeden řádek\ndruhý řádek")
+
+Pokud chcete napsat tabulátor, použijete `\\t` a pokud chcete napsat zpětné
+lomnítko, použijete podle stejné analogie `\\`.
