@@ -294,11 +294,12 @@ rastrového souboru:
             self.data = data # jsme důvěřiví a nebudeme ověřovat, že vstupní
                              # data jsou opravdu sloupce a řádky
 
-        def averadge_filter(self):
+        def averadge_filter(self, size):
             """Funkce, která vrátí nový rastr (pouze data), obsahující původní
             hodnoty, které prošly filtrem o velikosti 3x3, kdy prostřední
-            hodnota odpovídá průměru všech buněk okolo sum(matice)/9
+            hodnota odpovídá průměru všech buněk okolo sum(matice)/(size * size)
 
+            size = 3
             +---+---+---+      +---+---+---+
             | 1 | 2 | 4 |      |   |   |   |
             +---+---+---+      +---+---+---+
@@ -307,12 +308,30 @@ rastrového souboru:
             | 2 | 3 | 3 |      |   |   |   |
             +---+---+---+      +---+---+---+
             """
+            # size musí být liché číslo
+            if size%2 == 0:
+                size += 1
 
             # tohle bude komplikovanější a už na to napsali funkce jiní, zkusíme
             # si to ale naiplementovat sami. Až budete něco dělat s maticemi,
             # použijte dostupné funkce z balíčku numpy
 
-            for .... # TODO tohle tedy fakt musím dopsat
+            result = [ ]
+            for row in range(self.data):
+                if row < int(size/2):
+                    continue
+                elif row > len(self.data)-int(size/2):
+                    continue
+                result.append([])
+                for col in range(self.data[row]):
+                    if col < int(size/2):
+                        continue
+                    elif col > len(self.data)-int(size/2):
+                        continue
+
+                    for  # TODO - pro kazdou bunku
+
+
 
 Slovo o podtržítkách
 --------------------

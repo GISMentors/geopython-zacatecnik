@@ -64,9 +64,9 @@ Následně můžeme zjišťovat vlastnosti této kolekce geoprvků, viz
     >>> # všechna metadata pohromadě
     >>> chko.meta
     >>> ...
-    >>> ...            
+    >>> ...
     >>> import json # naformátovat výstup
-    >>> print json.dumps(chko.meta, sort_keys=True, indent=4, separators=(',', ': '))
+    >>> print(json.dumps(chko.meta, sort_keys=True, indent=4, separators=(',', ': ')))
     {
         "crs": {
             "alpha": 30.28813972222222,
@@ -150,14 +150,14 @@ Prvky v datovém souboru můžeme procházet postupně (sekvenčně):
 .. code-block:: python
 
     >>> for feature in chko:
-    ...     print feature['geometry']['type']
+    ...     print(feature['geometry']['type'])
 
 anebo si vybrat některý z geoprvků (náhodný přístup) a dále s ním
 pracovat:
 
 .. code-block:: python
 
-    >>> print chko[54]['properties']['NAZEV']
+    >>> print(chko[54]['properties']['NAZEV'])
     Český ráj
 
 

@@ -18,10 +18,13 @@ touto knihovnou postavena. Jedná se o jakousi analogii ke knihovnám
 :doc:`OGR <../vektorova_data/ogr/index>` a :doc:`Fiona
 <../vektorova_data/fiona/index>` pro práci s vektorovými daty.
 
+
+.. note::
+
+    Téma *GDAL* je více popsáno v :skoleni:`části pro pokročilé
+    <geopython-pokrocily/rastrova_data/gdal/>`.
+
 .. toctree::
    :maxdepth: 2
 
    rasterio/index
-   gdal/index
-
-..   pil

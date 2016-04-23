@@ -14,8 +14,12 @@ rozhraní ke knihovně OGR, které více odpovídá standardům a postupům
 objektového jazyka Python. **OGR** je z tohoto pohledu knihovna, pomocí
 které lze provádět v porovnání s Fionou nízkoúrovňovné operace.
 
+.. note::
+
+    Téma *OGR* je více popsáno v :skoleni:`části pro začátečníky
+    <geopython-pokrocily/vektorova_data/ogr/>`.
+
 .. toctree::
    :maxdepth: 2
 
    fiona/index
-   ogr/index
