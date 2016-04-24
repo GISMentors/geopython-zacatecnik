@@ -27,16 +27,22 @@ Funkce má následující rozepsanou strukturu
 
             jméno funkce
                │
-        ╭──────┴──────╮
+        +──────+──────+
+        |             |
     def obvod_obdelnika(sirka, vyska):
-                        ╰────┬─────╯
+                        |          |
+                        +────+─────+
+                             |
                         seznam argumentů
 
         "Vrátí obvod obdélníka daných rozměrů"  
-        ╰────── Dokumentační řetězec. ───────╯
+        |                                    |
+        +────── Dokumentační řetězec. ───────+
 
         return 2 * (sirka + vyska)
-               ╰────────┬────────╯
+               |                 |
+               +────────+────────+
+                        |
                     návratová hodnota
 
 Každá funkce je uvozena klíčovým slovem `def`, následuje její jméno a v závorce
