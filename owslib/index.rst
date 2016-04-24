@@ -286,13 +286,13 @@ Zjistíme vlastnosti služby (Capabilities):
     Agentura ochrany přírody a krajiny České republiky
     >>>
     >>> print aopk.identification.title
-    Soustava chráněných území evropského významu Natura 2000
+    Soustava chránených území evropského významu Natura 2000
     >>> print aopk.identification.keywords[0]
     Natura 2000, Chráněné území
     >>> print aopk.identification.fees
     žádné
     >>> print aopk.identification.abstract
-    Služba zpřístupňuje geografická data soustavy chráněných území evropského významu Natura 2000 v České republice
+    Služba zpřístupňuje geografická data soustavy chránených území evropského významu Natura 2000 v České republice
 
 Metadata
 """"""""
@@ -306,7 +306,7 @@ Metadata
     UzemniOchrana_Natura2000:Forma_ochrany_EVL_-_stav_k_24._5._2013
     UzemniOchrana_Natura2000:Evropsky_významná_lokalita__EVL_
 
-Načteme ještě službu chráněných území
+Načteme ještě službu chránených území
 
 .. code-block:: python
     
@@ -318,11 +318,11 @@ Načteme ještě službu chráněných území
     >>> for i in chranena_uzemi_wfs.contents:
     ...     print i
     ... 
-    UzemniOchrana_ChranUzemi:Maloploplošná_zvláště_chráněná_oblast
-    UzemniOchrana_ChranUzemi:Smluvní_chráněné_území­
-    UzemniOchrana_ChranUzemi:Zákonem_chráněné_pásmo_MZCHU
-    UzemniOchrana_ChranUzemi:Velkoplošné_zvláště_chráněné_území­
-    UzemniOchrana_ChranUzemi:Zonace_velkoplošného_zvláště_chráněného_území­
+    UzemniOchrana_ChranUzemi:Maloploplošná_zvláště_chránená_oblast
+    UzemniOchrana_ChranUzemi:Smluvní_chránené_území
+    UzemniOchrana_ChranUzemi:Zákonem_chránené_pásmo_MZCHU
+    UzemniOchrana_ChranUzemi:Velkoplošné_zvláště_chránené_území
+    UzemniOchrana_ChranUzemi:Zonace_velkoplošného_zvláště_chráneného_území
     >>> 
     >>> 
     >>> identifier = u'UzemniOchrana_ChranUzemi:Zonace_velkoplo\xc5\xa1n\xc3\xa9ho_zvl\xc3\xa1\xc5\xa1t\xc4\x9b_chr\xc3\xa1n\xc4\x9bn\xc3\xa9ho_\xc3\xbazem\xc3\xad'
