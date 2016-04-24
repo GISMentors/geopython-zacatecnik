@@ -302,9 +302,9 @@ Metadata
     >>> for i in aopk.contents:
     ...     print i
     ...
-    UzemniOchrana_Natura2000:PtaÄÃ­_oblast
+    UzemniOchrana_Natura2000:Ptačí_oblast
     UzemniOchrana_Natura2000:Forma_ochrany_EVL_-_stav_k_24._5._2013
-    UzemniOchrana_Natura2000:Evropsky_vÃ½znamnÃ¡_lokalita__EVL_
+    UzemniOchrana_Natura2000:Evropsky_významná_lokalita__EVL_
 
 Načteme ještě službu chráněných území
 
@@ -318,11 +318,11 @@ Načteme ještě službu chráněných území
     >>> for i in chranena_uzemi_wfs.contents:
     ...     print i
     ... 
-    UzemniOchrana_ChranUzemi:MaloploÅ¡nÃ©_zvlÃ¡Å¡tÄ_chrÃ¡nÄnÃ©_ÃºzemÃ­__MZCHÃ_
-    UzemniOchrana_ChranUzemi:SmluvnÄ_chrÃ¡nÄnÃ©_ÃºzemÃ­
-    UzemniOchrana_ChranUzemi:ZÃ¡konnÃ©_ochrannÃ©_pÃ¡smo_MZCHÃ
-    UzemniOchrana_ChranUzemi:VelkoploÅ¡nÃ©_zvlÃ¡Å¡tÄ_chrÃ¡nÄnÃ©_ÃºzemÃ­
-    UzemniOchrana_ChranUzemi:Zonace_velkoploÅ¡nÃ©ho_zvlÃ¡Å¡tÄ_chrÃ¡nÄnÃ©ho_ÃºzemÃ­
+    UzemniOchrana_ChranUzemi:Maloploplošná_zvláště_chráněná_oblast
+    UzemniOchrana_ChranUzemi:Smluvní_chráněné_území­
+    UzemniOchrana_ChranUzemi:Zákonem_chráněné_pásmo_MZCHU
+    UzemniOchrana_ChranUzemi:Velkoplošné_zvláště_chráněné_území­
+    UzemniOchrana_ChranUzemi:Zonace_velkoplošného_zvláště_chráněného_území­
     >>> 
     >>> 
     >>> identifier = u'UzemniOchrana_ChranUzemi:Zonace_velkoplo\xc5\xa1n\xc3\xa9ho_zvl\xc3\xa1\xc5\xa1t\xc4\x9b_chr\xc3\xa1n\xc4\x9bn\xc3\xa9ho_\xc3\xbazem\xc3\xad'

@@ -6,8 +6,8 @@ Další důležitou koponentou programovacích jazyků jsou tzv. *smyčky* nebo
 konstrukci typu *"pro každý prvek z množiny prvků vykonej ..."* nebo *"opakuj
 ... dokud není splněna podmínka, že ..."*.
 
-Smyčka `for`
-------------
+Smyčka for
+-----------
 
 Zkusme si v praxi následující příklady:
 
@@ -48,8 +48,8 @@ ale vzít jinou proměnnou definovanou výše a přistupovat k její hodnotě
 
     print(suma)
 
-Smyčka typu `while`
--------------------
+Smyčka typu while
+-----------------
 Na rozdíl od smyčky `for`, která pracuje s prvky z existujícího pole, smyčka
 typu `while` provádí blok kódu, dokud není splněna nějaká podmínka:
 
@@ -65,8 +65,8 @@ typu `while` provádí blok kódu, dokud není splněna nějaká podmínka:
 
     print('Vikend!')
 
-Brzda `break`
--------------
+Brzda break
+-----------
 
 Smyčka `while` může být zrádná v tom, že pokud není podmínka splněna, může běžet
 i nekonečně dlouho
