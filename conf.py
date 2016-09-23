@@ -9,8 +9,8 @@ from utils import get_month_year, get_year
 # -- General configuration ------------------------------------------------
 
 # General information about the project.
-project = u'Školení GeoPython'
-copyright = u'2014-%d, Jáchym Čepický a Martin Landa (GISMentors.eu)' % get_year()
+project = u'Školení GeoPython pro začátečníky'
+copyright = u'2014-%d GISMentors' % get_year()
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
