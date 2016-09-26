@@ -6,7 +6,7 @@ zejména `Seana Gilliese <http://sgillies.net/>`_ (podobně jako
 :doc:`Fiona <../../vektorova_data/fiona/index>` či Shapely), tentokrát v rámci
 jeho působení ve firmě `MapBox <http://mapbox.com>`_. Rasterio je
 knihovna pro práci s rastrovými geografickými datovými sadami. Na
-pozadí Rasterio používá spolehlivou knihovnu :doc:`GDAL <../gdal/index>`.
+pozadí Rasterio používá spolehlivou knihovnu `GDAL <http://gdal.org>`__.
 
 Rasterio pracuje s objekty knihovny `NumPy <http://www.numpy.org/>`_
 (podobně jako dříve zmíněná :doc:`Fiona
@@ -34,7 +34,7 @@ V následujícím příkladu otevřeneme rastrový soubor ve formátu
     >>> src.res
     (10.0, 10.0)
 
-.. figure:: images/rgb.png
+.. figure:: ../images/rgb.png
 
    RGB kompozice
 
@@ -83,6 +83,6 @@ kanál.
     >>> with rasterio.open('ndvi.tif', 'w', **kwargs) as dst:
     ...    dst.write_band(1, ndvi.astype(rasterio.float64))
 
-.. figure:: images/ndvi.png
+.. figure:: ../images/ndvi.png
     
     Výsledný soubor s NDVI indexem

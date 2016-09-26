@@ -4,12 +4,12 @@ Knihovna Fiona
 ==============
 
 Knihovna `Fiona <http://toblerity.org/fiona/>`_ jako nadstavba nad
-knihovnou :doc:`OGR <../ogr/index>` představuje objektově orientovaný
-způsob práce s vektorovými daty. Načtená vektorová data knihovna
-přemapovává do datové struktury :wikipedia-en:`GeoJSON` a stejné
-struktury zapisuje zpět do výstupních souborů. Uživatel se nemusí
-zabývat kurzory, vrstvami, geometrickými operacemi a dalšími
-*odbornými* termíny.
+knihovnou *OGR* (součást knihovny `GDAL <http://gdal.org>`__)
+představuje objektově orientovaný způsob práce s vektorovými
+daty. Načtená vektorová data knihovna přemapovává do datové struktury
+:wikipedia-en:`GeoJSON` a stejné struktury zapisuje zpět do výstupních
+souborů. Uživatel se nemusí zabývat kurzory, vrstvami, geometrickými
+operacemi a dalšími *odbornými* termíny.
 
 Fiona **není** nástroj vhodný na **všechny** operace - jednoduchost práce
 je vykoupena poněkud pomalejším během kódu a omezením velikosti
