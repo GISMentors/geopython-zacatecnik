@@ -13,7 +13,7 @@ Python spustíme příkazem `python`:
 
 .. code-block:: bash
 
-        jachym@krovak:~$ python3
+        $ python3
 
 
 .. code-block:: python
@@ -26,8 +26,7 @@ Python spustíme příkazem `python`:
 První program
 =============
 
-Do interpretu jazyka Python můžeme napsat první krátký program. Tradice velí, že
-to musí být pozdrav "Ahoj světe!" vypsaný do terminálu. Interpret jazyka Python
+V interpretu jazyka Python můžeme napsat první krátký program. Tradice velí začít pozdravem "Ahoj světe!" vypsaným do terminálu. Interpret jazyka Python
 *interpretuje* námi napsaný program:
 
 .. code-block:: python
@@ -68,9 +67,9 @@ celek (o ukládání programů do souborů ale bude další část).
 
 Licence
 -------
-Tato část cituje z kurzů `PyLadies <http://pyladies.cz/>`_ a šířena pod
-kompatibilní licencí `(CC BY-SA 4.0) <http://creativecommons.org/licenses/by-sa/4.0/>`_
+Tato část cituje z kurzů `PyLadies <http://pyladies.cz/>`_ a je šířena pod
+kompatibilní licencí (`CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>`_).
 
-TODOs
------
-* Předělat příklady, aby více odpovídaly prostředí prostorových dat
+.. todo::
+   
+   * Předělat příklady, aby více odpovídaly prostředí prostorových dat
