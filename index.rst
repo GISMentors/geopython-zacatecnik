@@ -24,7 +24,7 @@
 * Python je dnes asi nejvíce "geopozitivní" programovací jazyk
 
   * s množstvím knihoven a nástrojů (`GDAL <http://gdal.org>`_, `PROJ4
-    <http://trac.osgeo.org/proj/>`_, `Shapely
+    <https://github.com/OSGeo/proj.4/wiki>`_, `Shapely
     <http://toblerity.org/shapely/manual.html>`_, `Fiona
     <http://toblerity.org/fiona/manual.html>`_, `Rasterio
     <https://github.com/mapbox/rasterio>`_, `MapServer Python
