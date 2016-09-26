@@ -139,9 +139,9 @@ Text dokumentu
 
    Online HTML verze textu školení je dostupná na adrese:
 
-   * http://training.gismentors.eu/geopython/
+   * http://training.gismentors.eu/geopython-zacatecnik/
 
 Zdrojové texty školení jsou dostupné na adrese:
 
-* https://github.com/GISMentors/geopython
+* https://github.com/GISMentors/geopython-zacatecnik
 
