@@ -31,10 +31,10 @@
     MapScript <http://mapserver.org/mapscript/python.html>`_, `GeoServer
     gsconfig <https://pypi.python.org/pypi/gsconfig>`_, `OWSLib
     <http://geopython.github.io/OWSLib/>`_, `PyWPS
-    <http://pywps.wald.intevation.org/>`_, `pycsw <http://pycsw.org/>`_,
+    <http://pywps.org/>`_, `pycsw <http://pycsw.org/>`_,
     ...)
   * a širokou podpora v deskopech (GRASS GIS - `PyGRASS
-    <http://grass.osgeo.org/grass71/manuals/libpython/pygrass_index.html>`_,
+    <http://grass.osgeo.org/grass72/manuals/libpython/pygrass_index.html>`_,
     Esri ArcGIS - `arcpy
     <http://resources.arcgis.com/en/help/main/10.1/index.html#//000v000000v7000000>`_,
     QGIS - `PyQGIS
@@ -95,7 +95,7 @@ GeoPython
 
 * `Python Scripting for Spatial Data Processing
   <https://pythonizame.s3.amazonaws.com/media/Book/python-scripting-spatial-data-processing/file/85ebbca2-7c5d-11e5-964d-04015fb6ba01.pdf>`_
-* **Python GDAL/OGR Cookbook**: http://pcjericks.github.io/py-gdalogr-cookbook/
+* Python GDAL/OGR Cookbook: http://pcjericks.github.io/py-gdalogr-cookbook/
 * Shapely manual: http://toblerity.github.io/shapely/manual.html
 * "Python Geospatial Development" book, Erik Westra:
 
