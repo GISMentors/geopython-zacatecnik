@@ -1,5 +1,5 @@
-PyProj
-======
+Transformace souřadnic
+======================
 
 Na závěr malá odbočka k souřadnicovým systémům a Python rozhraní pro
 knihovnu `Proj4 <http://trac.osgeo.org/proj>`_ - `PyProj

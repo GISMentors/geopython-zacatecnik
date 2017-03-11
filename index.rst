@@ -71,7 +71,6 @@
    vektorova_data/index
    rastrova_data/index
    owslib/index
-   mapscript/index
    pyproj/index
 
 *******
