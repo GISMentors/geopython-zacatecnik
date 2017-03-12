@@ -5,11 +5,6 @@ GeoPython
 Vychází z workshopu `FOSS4G-CEE-2013 Python-GIS
 <https://github.com/mgax/foss4gcee2013-pygis/>`_ 
 
-Závislosti
-~~~~~~~~~~
-
-* https://pythonhosted.org/sphinxcontrib-aafig/
-  
 Pracovní prostředí
 ~~~~~~~~~~~~~~~~~~
 
