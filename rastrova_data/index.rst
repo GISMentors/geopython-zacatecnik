@@ -7,7 +7,7 @@ většinou uspořádané do matice hodnot v číselné podobě.
 
 .. note::
    
-   Více k rastrové reprezentaci ve :skoleni:`školení Úvod do GIS
+   Více k rastrové reprezentaci ve školení :skoleni:`Úvod do GIS
    <open-source-gis/formaty/rastr.html>`.
 
 Pro práci s rastrovými geodaty se "tradičně" používá knihovna `GDAL
@@ -21,7 +21,7 @@ vektorovými daty.
 
 .. note::
 
-    Téma *GDAL* je více popsáno ve :skoleni:`školení GeoPython pro
+    Téma *GDAL* je více popsáno ve školení :skoleni:`GeoPython pro
     pokročilé <geopython-pokrocily/rastrova_data/gdal/>`.
 
 .. toctree::
