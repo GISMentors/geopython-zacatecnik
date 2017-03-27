@@ -56,11 +56,10 @@ vybraných nástrojů a jejich napojení na jazyk Python:
 
 Seznam samozřejmě není úplný či konečný.
 
-V tomto kurzu se zaměříme na úvod do práce s knihovnami :doc:`Fiona
-<vektorova_data/fiona/index>` a :doc:`Rasterio
-<rastrova_data/rasterio/index>`. Vyzkoušíme si na práci s knihovnou
-pro webové služby OGC :doc:`OWSLib <owslib/index>` a nakonec se
-podíváme na serverové aplikace pomocí rozhraní :doc:`mapscript/index`.
+V tomto kurzu se zaměříme na úvod do práce s vektorovými a rastrovými
+GIS daty pomocí knihoven :doc:`Fiona <vektorova_data/fiona/index>` a
+:doc:`Rasterio <rastrova_data/rasterio/index>`. Vyzkoušíme si také
+práci s knihovnou pro webové služby OGC :doc:`OWSLib <owslib/index>`.
 
 Cílem kurzu není přirozeně kompletní pokrytí problematiky GIS a jazyka
 Python, nýbrž poskytnutí přehledu o nejčastěji používaných základních
