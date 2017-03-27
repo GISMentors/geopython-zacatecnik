@@ -72,7 +72,8 @@
    rastrova_data/index
    owslib/index
    pyproj/index
-
+   ruzne/pracovni-prostredi
+              
 *******
 Dodatky
 *******
