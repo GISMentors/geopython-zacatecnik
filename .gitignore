@@ -2,3 +2,5 @@
 _build
 .*.un~
 *~
+_static/skripty/data*
+_static/skripty/*.pyc

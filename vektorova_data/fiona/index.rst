@@ -28,10 +28,12 @@ postupně všechny geoprvky ve vrstvě, měla by být rychlejší Fiona.
 Datovou vrstvu otevřeme pomocí funkce ``open()``, ta vytvoří objekt
 tvz. *kolekce* geoprvků:
 
+.. literalinclude:: ../../_static/skripty/fiona.py
+   :language: python
+   :lines: 1-2
+                      
 .. code-block:: python
 
-    >>> import fiona
-    >>> chko = fiona.open('chko.shp', 'r')
     >>> chko
     <open Collection 'chko.shp:chko', mode 'r' at 0x7feea9595410>
 
@@ -120,21 +122,23 @@ není o tolik zjednodušena, jak by možná bylo potřeba. Pokud je
 souřadnicový systém datové vrstvy definován pomocí kódu EPSG, je tento
 kód dále využit, v našem případě se jedná o :epsg:`4326`.
 
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 4-5
+
 .. code-block:: python
 
-    >>> natural = fiona.open('natural.shp', 'r')
-    >>> ...
-    >>> from fiona.crs import to_string
-    >>> print(to_string(natural.crs))
     +init=epsg:4326
 
 Při vytvoření nového geoprvku s definicí souřadnicového systému je postupováno
 analogicky (zde S-JTSK, :epsg:`5514`):
 
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 7-8
+
 .. code-block:: python
 
-    >>> from fiona.crs import from_epsg
-    >>> from_epsg(5514)
     {'init': 'epsg:5514', 'no_defs': True}
 
 Fiona těmito funkcemi pouze mapuje jednotlivé parametry souřadnicového
@@ -147,18 +151,16 @@ Procházení geoprvků
 
 Prvky v datovém souboru můžeme procházet postupně (sekvenčně):
 
-.. code-block:: python
-
-    >>> for feature in chko:
-    ...     print(feature['geometry']['type'])
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 10-11
 
 anebo si vybrat některý z geoprvků (náhodný přístup) a dále s ním
 pracovat:
 
-.. code-block:: python
-
-    >>> print(chko[54]['properties']['NAZEV'])
-    Český ráj
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 13
 
 
 Práce s daty
@@ -172,43 +174,56 @@ jako Fiony) nám umožňuje pracovat s geometrickou složkou popisu
 geoprvků opět ve stylu jazyka Python. Stejně jako Fiona, převádí
 shapely geometrické vlastnosti na objekty typu JSON.
 
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 15-19
+
 .. code-block:: python
 
-    >>> from shapely.geometry import shape
-    >>> cr = chko[54]
-    >>> poly = shape(cr['geometry'])
-    >>> poly.bounds
     (-683329.1875, -993228.75, -681265.625, -991528.0)
 
 Shapely obsahuje i některé funkce pro modifikaci geometrií, například
 generalizaci, obalovou zónu (buffer) nebo porovnání dvou geometrií.
 
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 20-21
+
 .. code-block:: python
 
-    >>> simple = poly.simplify(10)
-    >>> simple.intersects(poly)
     True
-    >>> buff = poly.buffer(10)
-    >>> buff.contains(poly)
+
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 23-24
+
+.. code-block:: python
+           
     True
 
 Můžeme změnit některé vlastnosti geoprvků, např. upravit atribut `NAZEV`:
 
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 26-33
+
 .. code-block:: python
 
-    >>> from shapely.geometry import mapping
-    >>> import copy
-    >>> feature = copy.deepcopy(cr)
-    >>> feature['id'] = -1
-    >>> feature['geometry'] = mapping(buff)
-    >>> feature['properties']['NAZEV'] = u'Mordor'
-    >>> chko = fiona.open('chko.shp', 'a')
-    >>> len(chko)
     5626            
-    >>> chko.write(feature)
-    >>> len(chko)
+
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 35-36
+
+.. code-block:: python
+                
     5627
-    >>> chko.close()
+
+Soubor uzavřeme:
+
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 38
 
 Načtení dat z webové služby
 ---------------------------

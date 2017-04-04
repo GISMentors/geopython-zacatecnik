@@ -73,28 +73,33 @@ Webové rozhraní k tomuto serveru najdete na adrese
 http://geoportal.gov.cz/web/guest/catalogue-client. Rozhraní pro webovou službu
 je dostupné na adrese http://geoportal.gov.cz/php/micka/csw/index.php.
 
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 1-3
+
 .. code-block:: python
 
-    >>> from owslib.csw import CatalogueServiceWeb
-    >>> cenia = CatalogueServiceWeb('http://geoportal.gov.cz/php/micka/csw/index.php')
-    >>> cenia.service
     'CSW'
 
 Vyhledávání záznamů:
 
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 5-6
+
 .. code-block:: python
 
-    >>> cenia.getrecords2()
-    >>> cenia.results
     {'matches': 422, 'nextrecord': 11, 'returned': 10}
 
 Zjištění hodnot nalezených záznamů:
 
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 8-9
+
 .. code-block:: python
 
-    >>> for rec in cenia.records:
-    ...     print cenia.records[rec].title
-    ....
+    ...
     ÚP VÚC Adršpach
     Pasport úpo na území Královéhradeckého kraje
     VÚC Hradecko-Pardubické aglomerace
@@ -109,18 +114,19 @@ Zjištění hodnot nalezených záznamů:
 Vyhledávání s omezením na záznamy obsahující slovo *WMS* a minimální
 ohraničující obdélník Prahy:
 
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 11-16
+
 .. code-block:: python
 
-    >>> from owslib.fes import PropertyIsLike, BBox, And, PropertyIsEqualTo
-    >>> wms_query = PropertyIsEqualTo('csw:AnyText', 'WMS')
-    >>> praha_query = BBox([14.22,49.94,14.71,50.18])
-    >>> praha_and_wms = And([praha_query, wms_query])
-    >>> cenia.getrecords2([praha_and_wms], esn='full')
-    >>> cenia.results
     {'matches': 351, 'nextrecord': 11, 'returned': 10}
-    >>> for recid in cenia.records:
-    ...     record = cenia.records[recid]
-    ...     print record.title, record.bbox.minx, record.bbox.miny, record.bbox.maxx, record.bbox.maxy
+
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 18-21
+
+.. code-block:: python           
     ...
     ÚP VÚC Adršpach 48.20735042 11.86320935 51.37551609 19.0302868
     VÚC Hradecko-Pardubické aglomerace 48.20735042 11.86320935 51.37551609 19.0302868
@@ -136,25 +142,33 @@ ohraničující obdélník Prahy:
 
 Vlastnosti záznamu:
 
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 23-26
+
 .. code-block:: python
 
-
-    >>> zm_query = PropertyIsEqualTo('csw:AnyText', 'ZM10')
-    >>> cenia.getrecords2([zm_query], esn='full')
-    >>> zm10 = cenia.records['CZ-CUZK-WMS-ZM10-P']
-    >>> zm10.type
     'service'
-    >>> print zm10.title
+
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 28
+    
+.. code-block:: python
+    
     Prohlížecí služba WMS - ZM 10
-    >>> print zm10.abstract
     Prohlížecí služba WMS-ZM10-P je poskytována jako veřejná prohlížecí
     služba nad daty Základní mapy ČR 1:10 000.  Služba splňuje Technické
     pokyny pro INSPIRE prohlížecí služby v. 3.11 a zároveň splňuje
     standard OGC WMS 1.1.1. a 1.3.0.
-    >>> zm10_url = zm10.references[0]['url']
-    'http://geoportal.cuzk.cz/WMS_ZM10_PUB/WMService.aspx?service=WMS&request=getCapabilities'
-    >>>
 
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 30
+                
+.. code-block:: python
+                
+    'http://geoportal.cuzk.cz/WMS_ZM10_PUB/WMService.aspx?service=WMS&request=getCapabilities'
 
 .. _OWSLibWMS:
 
@@ -174,43 +188,44 @@ pouze náhled (obrázek) těchto dat.
    Více informací na :skoleni:`školení Úvod do GIS
    <open-source-gis/standardy/ogc/wms.html>`.
 
+.. literalinclude:: ../_static/skripty/owslib-wms-example.py
+   :language: python
+   :lines: 1,3-7
+   
 .. code-block:: python
 
-    >>> from owslib.wms import WebMapService
-    >>> zm10_wms = WebMapService(zm10_url)
-    >>> print zm10_wms.identification.title
     Prohlížecí služba WMS - ZM 10
-    >>> print zm10_wms.identification.abstract
     Prohlížecí služba WMS-ZM10-P je poskytována jako veřejná prohlížecí
     služba nad daty Základní mapy ČR 1:10 000.
-    >>> print zm10_wms.provider.name
     Zeměměřický úřad
-    >>> print zm10_wms.provider.contact.address
     Pod Sídlištěm 9
 
 Dostupné mapové vrstvy:
 
+.. literalinclude:: ../_static/skripty/owslib-wms-example.py
+   :language: python
+   :lines: 9
+
 .. code-block:: python
 
-    >>> zm10_wms.contents
     {'GR_ZM10': <owslib.wms.ContentMetadata instance at 0x7f1d7bc1b8c0>}
-    >>> zm10_wms.contents['GR_ZM10'].boundingBox
+
+Rozsah vrstvy:
+
+.. literalinclude:: ../_static/skripty/owslib-wms-example.py
+   :language: python
+   :lines: 11-12
+
+.. code-block:: python
+   
     (-950003.175021186, -1250003.1750036045, -399990.474995786, -899996.8249909044, 'EPSG:5514')
-    >>> zm10_wms.contents['GR_ZM10'].boundingBoxWGS84
     (11.214011580382529, 47.96491460125967, 19.40766262309513, 51.691664934538636)
 
 Stažení a uložení dat:
 
-.. code-block:: python
-
-    >>> img = zm10_wms.getmap(layers=['GR_ZM10'],
-        size=[800, 600],
-        srs="EPSG:5514",
-        bbox=[-950003.175021186, -1250003.1750036045, -399990.474995786, -899996.8249909044],
-        format="image/png")
-    >>> out = open('zm10.png', 'w')
-    >>> out.write(img.read())
-    >>> out.close()
+.. literalinclude:: ../_static/skripty/owslib-wms-example.py
+   :language: python
+   :lines: 14-22
 
 .. _OWSLibWFS:
 
@@ -230,19 +245,20 @@ stahování a sdílení vektorových dat. Nejčastějším výměnným formátem
 
 Nejprve najdeme nějaké WFS v katalogové službě:
 
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 32-37
+
 .. code-block:: python
 
-    >>> wfs_query = PropertyIsLike('csw:AnyText', 'WFS')
-    >>> aopk_query = PropertyIsLike('csw:AnyText', 'AOPK')
-    >>> service_query = PropertyIsLike('apiso:type', 'service')
-    >>> aopk_and_wfs = And([aopk_query, wfs_query, service_query])
-    >>> cenia.getrecords2([aopk_and_wfs], esn='full')
-    >>> cenia.results
     {'matches': 6, 'nextrecord': 0, 'returned': 6}
-    >>>
-    >>> for recid in cenia.records:
-    ...     record = cenia.records[recid]
-    ...     print recid, record.title
+
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 39-41
+
+.. code-block:: python
+
     ... 
     53e37222-89a0-472b-9781-5bfc0a02080a WFS Soustava území Natura 2000
     53e37cd6-5cb8-4ee9-b862-62e10a02080a WFS Památné stromy
@@ -255,52 +271,53 @@ Nejprve najdeme nějaké WFS v katalogové službě:
 Podíváme se, jaká data mají v `Agentůře ochrany přírody a krajiny
 <http://www.ochranaprirody.cz/>`_ (AOPK):
 
+.. literalinclude:: ../_static/skripty/owslib-example.py
+   :language: python
+   :lines: 43-44
+
 .. code-block:: python
 
-    >>> natura = cenia.records['53e37222-89a0-472b-9781-5bfc0a02080a']
-    >>> print natura.abstract
     Služba zpřístupňuje geografická data soustavy území Natura 2000 v České republice; © AOPK ČR
-
-    >>> print natura.identifiers[1]['identifier']
     https://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/
     WFSServer?service=WFS&request=GetCapabilities&version=1.1.0
 
 Načteme WFS AOPK:
 
-.. code-block:: python
-
-    >>> from owslib import wfs as webfeatureservice
-    >>> url = natura.identifiers[1]['identifier']
-    >>> # nefunguje na připojení https, použijeme http
-    >>> aopk = webfeatureservice.WebFeatureService('http://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WFSServer')
-
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 2-5
 
 Zjistíme vlastnosti služby (Capabilities):
 
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 7-8
+
 .. code-block:: python
 
-    >>> capabilities = aopk.getcapabilities()
-    >>> capabilities.geturl()
     'https://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WFSServer?service=WFS&request=GetCapabilities&version=1.1.0'
-    >>> print aopk.provider.name
+
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 10-14
+
+.. code-block:: python
+
     Agentura ochrany přírody a krajiny České republiky
-    >>>
-    >>> print aopk.identification.title
     Soustava chránených území evropského významu Natura 2000
-    >>> print aopk.identification.keywords[0]
     Natura 2000, Chráněné území
-    >>> print aopk.identification.fees
     žádné
-    >>> print aopk.identification.abstract
     Služba zpřístupňuje geografická data soustavy chránených území evropského významu Natura 2000 v České republice
 
 Metadata
 """"""""
 
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 16-17
+
 .. code-block:: python
 
-    >>> for i in aopk.contents:
-    ...     print i
     ...
     UzemniOchrana_Natura2000:Ptačí_oblast
     UzemniOchrana_Natura2000:Forma_ochrany_EVL_-_stav_k_24._5._2013
@@ -308,54 +325,66 @@ Metadata
 
 Načteme ještě službu chránených území
 
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 19-22
+
 .. code-block:: python
     
-    >>> chranena_uzemi = cenia.records['5473579f-fb08-48ab-893d-3d3e0a02080a']
-    >>> chranena_uzemi.identifiers[1]['identifier']
-    'https://gis.nature.cz/arcgis/services/UzemniOchrana/ChranUzemi/MapServer/WFSServer?SERVICE=WFS&request=GetCapabilities'
-    >>> chranena_uzemi_wfs = webfeatureservice.WebFeatureService('http://gis.nature.cz/arcgis/services/UzemniOchrana/ChranUzemi/MapServer/WFSServer')
-    >>> 
-    >>> for i in chranena_uzemi_wfs.contents:
-    ...     print i
     ... 
     UzemniOchrana_ChranUzemi:Maloploplošná_zvláště_chránená_oblast
     UzemniOchrana_ChranUzemi:Smluvní_chránené_území
     UzemniOchrana_ChranUzemi:Zákonem_chránené_pásmo_MZCHU
     UzemniOchrana_ChranUzemi:Velkoplošné_zvláště_chránené_území
     UzemniOchrana_ChranUzemi:Zonace_velkoplošného_zvláště_chráneného_území
-    >>> 
-    >>> 
-    >>> identifier = u'UzemniOchrana_ChranUzemi:Zonace_velkoplo\xc5\xa1n\xc3\xa9ho_zvl\xc3\xa1\xc5\xa1t\xc4\x9b_chr\xc3\xa1n\xc4\x9bn\xc3\xa9ho_\xc3\xbazem\xc3\xad'
-    >>> chranena_uzemi_wfs.contents[identifier]
-    <owslib.feature.wfs100.ContentMetadata instance at 0x7f90a1ec3e60>
-    >>>
-    >>> chranena_uzemi_wfs.contents[identifier].boundingBoxWGS84
+
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 24-25
+
+.. code-block:: python
+
+   <owslib.feature.wfs100.ContentMetadata instance at 0x7f90a1ec3e60>
+
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 27-28
+
+.. code-block:: python
+
     (-891817.1765, -1209945.389, -440108.91589999903, -943075.1875)
-    >>> chranena_uzemi_wfs.contents[identifier].crsOptions
     [urn:ogc:def:crs:EPSG::5514]
-    >>>
 
 Data
 """"
 
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 30-33
+
 .. code-block:: python
 
-    >>> features = chranena_uzemi_wfs.getfeature([identifier])
-    >>> print features
-    <cStringIO.StringI object at 0x7f3e9048dc68>
-    >>> print features.read()
-    "<wfs:FeatureCollection xsi:schemaLocation='https:gis.nature.cz:6443/arcgis/services/UzemniOchrana/Ch..."
+   <owslib.util.ResponseWrapper object at 0x7f697152df90>
+
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 35
+
+.. code-block:: python
+                
+    <wfs:FeatureCollection xsi:schemaLocation='https:gis.nature.cz:6443/arcgis/services/UzemniOchrana/Ch...
 
 CUZK WFS
 """"""""
 
 .. todo:: Nefunguje kraj.read()
 
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 37-40
+
 .. code-block:: python
 
-    >>> cuzk = webfeatureservice.WebFeatureService('http://geoportal.cuzk.cz/wfs_au/wfservice.aspx',
-        version="2.0.0")
-    >>> for c in cuzk.contents: print c
     ...
     gmgml:OKRES
     gmgml:KRAJ
@@ -368,6 +397,11 @@ CUZK WFS
     gmgml:STAT
     gmgml:ORP
     gmgml:OBEC
-    >>> kraj = cuzk.getfeature(['gmgml:KRAJ'])
-    >>> kraj.read()
-    <gmgml:FeatureCollection xsi:schemaLocation="http://www.intergraph.com/geomedia/gml http://geopor....
+
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 42-43
+
+.. code-block:: python
+                    
+   <gmgml:FeatureCollection xsi:schemaLocation="http://www.intergraph.com/geomedia/gml http://geopor....
