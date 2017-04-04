@@ -28,7 +28,7 @@ postupně všechny geoprvky ve vrstvě, měla by být rychlejší Fiona.
 Datovou vrstvu otevřeme pomocí funkce ``open()``, ta vytvoří objekt
 tvz. *kolekce* geoprvků:
 
-.. literalinclude:: ../../_static/skripty/fiona.py
+.. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
    :lines: 1-2
                       
