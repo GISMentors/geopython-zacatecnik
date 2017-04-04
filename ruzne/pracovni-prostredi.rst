@@ -11,7 +11,7 @@ stačit.
 
 .. code-block:: bash
 
-   sudo apt-get fiona python-fiona rasterio python-rasterio python-owslib python-pyproj
+   sudo apt-get install fiona python-fiona rasterio python-rasterio python-owslib python-pyproj
 
 .. tip:: Pokud potřebuje novější verze knihoven, tak před instalací
    zaregistrujte ještě UbuntuGIS repozitář.
