@@ -20,7 +20,7 @@ Vyzkoušíme si např. některé funkce z modulu `math`
 
     print(math.sqrt(10))
 
-Funkce `sqrt` není standardně v základu Pythonu přítomna.  Program by skončil
+Funkce :func:`sqrt` není standardně v základu Pythonu přítomna.  Program by skončil
 výjimkou
 
 .. code-block:: python
@@ -35,7 +35,7 @@ Modul `math` obsahuje celou řadu zajímavých věcí, např. číslo `PI`
     print(math.e)
 
 Importovat můžete buď celé moduly, jako v předchozím příkladě, nebo jenom
-jednotlivé fukce, např. `sin`.
+jednotlivé fukce, např. :func:`sin`.
 
 .. code-block:: python
 
@@ -68,6 +68,11 @@ Nyní zkusíme ještě vytisknout vytvořený buffer ve formátu GeoJSON:
     from shapely.geometry import mapping
 
     print(json.dumps(mapping(patch)))
+
+V předchozím příkladu jsme na posledním řádku použili jako vstup pro funkci
+:func:`print` výstup z funkce :func:`json.dumps`, která zase dostala výstup z
+funkce :func:`mapping` - není to moc přehledné, ale podobné konstrukce se
+používají často.
 
 Dokumentace k modulům
 ---------------------
@@ -107,7 +112,7 @@ Vlastní moduly
 Uložíte-li program do souboru, stává se tímto váš soubor modulem, který lze
 použít a naimportovat.
 
-Vytvoříme soubor `buffer.py` s následujícím obsahem:
+Vytvoříme soubor :file:`buffer.py` s následujícím obsahem:
 
 .. code-block:: python
 
@@ -146,3 +151,7 @@ Nyní můžeme v jiném programu (nebo přímo v interpretu) náš modul použí
             ...
         ))
     }
+
+Moduly nám tedy umožňují uklidit spolu související části programu do logických
+celků, rozsekat rozsáhlé programy do menších souborů a strukturovat tak kód pro
+přehlednější použití.

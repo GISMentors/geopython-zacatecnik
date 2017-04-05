@@ -20,6 +20,16 @@ Tento příklad - vytvořil novou proměnnou typu :type:`file` v režimu *read*,
 dalším řádku ze souboru přečetl *všechna data* a uložil do proměnné :var:`data`
 a nakonec soubor uzavřel.
 
+Lepší je ale využít konstrukci s blokem ``with``, která soubor automaticky
+uzavře (i pokud mezitím např. dojde k výjimce) - konečné :func:`close()` pak již
+není potřeba.
+
+.. code-block:: python
+
+    with open('data.txt', 'r') as data_soubor:
+        data = data_soubor.read()
+
+
 Pojďme vytvořit soubor typu JSON, který bude obsahovat jeden bod ve formátu
 GeoJSON:
 
@@ -34,9 +44,8 @@ GeoJSON:
 
     # vytvoříme nový objekt typu soubor a uložíme do něj json jako textový
     # řetězec
-    file_out = open('/tmp/output.json', 'w') # soubor otevřeme v režimu "write"
-    file_out.write(json.dumps(data))
-    file_out.close()
+    with open('/tmp/output.json', 'w') as file_out: # soubor otevřeme v režimu "write"
+        file_out.write(json.dumps(data))
 
 Výsledný soubor si můžeme prohlédnout v programu QGIS.
 
@@ -56,6 +65,13 @@ pro funkci `open()` jsou `r, w, a`.
     pridat_na_konec.write('text, ktery bude az na konci souboru\n')
     pridat_na_konec.close()
 
+nebo lépe
+
+.. code-block:: python
+
+    with open('soubor.txt', 'a') as pridat_na_konec:
+        pridat_na_konec.write('text, ktery bude az na konci souboru\n')
+
 .. note:: funkce souboru `write()` na rozdíl od `print()` nevkládá znak pro nový
         řádek na konec řádku a musíte ho tam vložit sami (proto `\\n` nakonci)
 
@@ -63,9 +79,9 @@ pro funkci `open()` jsou `r, w, a`.
 Zavírání souborů
 ----------------
 
-Je čisté soubor na konci práce s ním uzavřít funkcí `close()`. Někdy je
-výhodnější kompatní zápis, kdy soubor bude otevřen jenom v rámci daného bloku
-kódu:
+Je čisté (a z pohledu souborového systému i bezpečné) soubor na konci práce s
+ním uzavřít funkcí `close()`. Někdy je výhodnější kompatní zápis, kdy soubor
+bude otevřen jenom v rámci daného bloku kódu:
 
 .. code-block:: python
 

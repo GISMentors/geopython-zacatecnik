@@ -1,7 +1,7 @@
 Pole a slovníky
 ===============
 
-V programovacích jazycích můžeme pracovat s poli (seznami, množinami) prvků. V
+V programovacích jazycích můžeme pracovat s poli (seznamy, množinami) prvků. V
 Pythonu můžeme kombinovat různé datové typy jednotlivých prvků v poli.
 
 Nejjednodušším případem pole může být pole celých čísel od 0 do 9:
@@ -12,7 +12,7 @@ Nejjednodušším případem pole může být pole celých čísel od 0 do 9:
     print(cisla)
 
 Z výše uvedeného je patrné, že pole zapisujeme do *hranatých závorek*. Jak jsme
-pali výše, neusíme se omezovat ja jeden datový typ:
+psali výše, neusíme se omezovat ja jeden datový typ:
 
 .. code-block:: python
 
@@ -35,11 +35,11 @@ první index má hodnotu 0:
       File "<stdin>", line 1, in <module>
     IndexError: list index out of range
 
-Poslední příklad "vyhodil" `IndexError` - pokusili jsme se zobrazit hodnotu
-*jedenáctého prvku* v poli (index 10, ale počítáme od 0!), pole `cisla` má ale
+Poslední příklad "vyhodil" ``IndexError`` - pokusili jsme se zobrazit hodnotu
+*jedenáctého prvku* v poli (index 10, ale počítáme od 0!), pole ``cisla`` má ale
 pouze 10 prvků (maximální index je proto 9).
 
-Funkce `len()` nám vrátí celkovou délku pole (počet jeho prvků):
+Funkce ``len()`` nám vrátí celkovou délku pole (počet jeho prvků):
 
 .. code-block:: python
 
@@ -64,6 +64,7 @@ posledního prvku v poli můžeme získat následujícími dvěma způsoby:
     >>> cisla[len(cisla)-1] # len() vrátí délku pole, nejvyšší index má ale hodnotu o 1 menší
     9
     >>> cisla[-1]
+    9
 
 "Vyzobnout" pouze určité prvky z pole můžeme pomocí zadání dvou krajních indexů:
 

@@ -23,7 +23,7 @@ Následující kód uložte do souboru :file:`deleni.py`
 
         return delenec/delitel
 
-    print(deleni(10/0))
+    print(deleni(10, 0))
 
 A soubor spusťe:
 
@@ -36,7 +36,7 @@ A soubor spusťe:
         ZeroDivisionError: division by zero
 
 Nemůžeme dělit nulou - program vyhodil výjimku a navedl nás na řádek 9 v souboru
-:file:`deleni.py`. Program vyhodil speciální `ZeroDivisionError` výjimku, kterou
+:file:`deleni.py`. Program vyhodil speciální ``ZeroDivisionError`` výjimku, kterou
 můžeme zachytit a zareagovat na ni.
 
 Odchycení výjimky
@@ -61,7 +61,7 @@ Předchozí kód upravíme následujícím způsobem:
     print(deleni(10/0))
 
 Blok kódu, který hrozí výjimkou (v našem případě pouze jeden řádek) jsme
-uzavřeli mezi klíčová slova `try` a `except`, tedy *zkus* a *kdyby to nedopadlo,
+uzavřeli mezi klíčová slova ``try`` a ``except``, tedy *zkus* a *kdyby to nedopadlo,
 tak*
 
 Jako parametr *except* se předá *typ výjimky* a název proměnné, do které bude

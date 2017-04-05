@@ -11,7 +11,7 @@ pracovat s knihovnami pro prostorová data.
 Objekty
 -------
 Když se řekne *objekt*, znamená v Pythonu všechno co můžete uložit do proměnné
-(tedy i funkce, pole, data). V Pythonu není rozdíl mezi objektem a hodnoutou. 
+(tedy i funkce, pole, data). V Pythonu není rozdíl mezi objektem a hodnotou. 
 
 Objekt je "něco", co má nějaké vlastnosti (data) a nějaká chování (metody),
 které s daty pracují. Objekty spojují data a funkčnost do jednoho celku.
@@ -216,7 +216,7 @@ zuby, jmeno` a metody (funkce) `mluv(), jez(), podej()`. Od této třídy pak m�
 odvodit *instanci* konkrétního člověka jménem "Patrik Jouda", který bude mít
 ruku, nohu, několik zubů a funkce že "mluví", "jí" a je schopen něco podat.
 
-Nebo v případě rastrovýc souborů se shodneme na tom, že je potřeba mít třídu
+Nebo v případě rastrových souborů se shodneme na tom, že je potřeba mít třídu
 *rastr*, která bude předepisovat co všechno takový rastrový objekt má mít -
 Transformační matici (což je instance jiného objektu), počet řádků, počet
 sloupců, rozlišení a metodu pro čtení a zápis vlastních dat.
@@ -225,12 +225,12 @@ Už jsme se seznámili se třídou Point, která reprezentuje obecnou bodovou
 geometrii, která má vlastnosti (souřadnice) bodu a spoustu metod pro práci s
 geometriemi.
 
-Vlastní třídu vytvoříme tak, ji uvedeme kláčovým slovek `class` a případně jako
+Vlastní třídu vytvoříme tak, ji uvedeme kláčovým slovem ``class`` a případně jako
 parametr přidáme "rodičovský objekt" (třídy od sebe mohou navzájem vlastnosti
 dědit, např. člověk může dědit vlastnosti od třídy `Živočich`).
 
 Pokud musíme nastavit nějaké proměnné hned na počátku inicializace třídy,
-použijeme k tomu speciální metodu `__init__`, které můžeme předat inicializační
+použijeme k tomu speciální metodu ``__init__``, které můžeme předat inicializační
 parametry (např. v případě našeho bodu `Point` jsme předávali souřadnice `x` a
 `y`').
 

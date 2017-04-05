@@ -12,7 +12,7 @@ ale jasné:
 +-------------+---------------+-----------------------------------------------+
 | \-          | -5            | Negace                                        |
 +-------------+---------------+-----------------------------------------------+
-| //; %       | 7 // 2; 7 % 2 | Dělení se zbytkem (celočíselné dělení); zbytek|
+| \/; %       | 7 \/ 2; 7 % 2 | Dělení se zbytkem (celočíselné dělení); zbytek|
 +-------------+---------------+-----------------------------------------------+
 | \*\*        | 3**2          | Umocnění (3 na druhou)                        |
 +-------------+---------------+-----------------------------------------------+
@@ -59,7 +59,7 @@ Symbol      Příklad         Popis
 <=, >=      3 <= 5, 3 >= 5  Větší nebo rovno, menší nebo rovno
 =========== =============== ==================================
 
-Výsledkem porovnávání je booleanovská hodnota `True` nebo `False`
+Výsledkem porovnávání je booleanovská hodnota ``True`` nebo ``False``
 (pravda/nepravda).
 
 Příklady logických operátorů:
@@ -87,8 +87,8 @@ abychom mohli V programovacích jazycích a databázích proměnné a data efekt
 ukládat, jsou zavedeny různé *datové typy*, které zabírají optimální množství
 paměti v počítači.
 
-    * Nejméně paměti zabere booleanovská hodnota Pravda/Nepravda nebo-li `True` a
-      `False`
+    * Nejméně paměti zabere booleanovská hodnota Pravda/Nepravda nebo-li ``True`` a
+      ``False``
     * Dalším datovým typem je *celé číslo* `integer`
     * Dále *číslo s plovoucí desetinnou čárkou* `float`
     * *Textový řetězec* nebo-li `string` zabírá ještě více místa
@@ -99,7 +99,7 @@ paměti v počítači.
         <http://www.postgresql.org/docs/9.4/static/datatype.html>`_.
 
 Python nám dává nástroje (funkce) pro převod mezi datovými typy, některé už jsme
-viděli `float(), int()` a `int()`:
+viděli ``float(), int()`` a ``int()``:
 
 .. code-block:: python
 
@@ -119,7 +119,7 @@ viděli `float(), int()` a `int()`:
 S dalšími více komplexními datovými typy se budeme seznamovat postupně dále.
 
 
-Jaký má proměnná datový typ zjistíte rychle pomocí funkce `type()`:
+Jaký má proměnná datový typ zjistíte rychle pomocí funkce ``type()``:
 
 .. code-block:: python
 
@@ -132,17 +132,17 @@ Jaký má proměnná datový typ zjistíte rychle pomocí funkce `type()`:
 
 Poznámka o textových řetězcích
 ------------------------------
-Textové řetězce musí být uzavřeny do uvozovek - ať už jdnoduchých `'` nebo
-dvojitých `"` (některé jazyky odlišují význam obou uvozovek, ale v Pythonu mezi
+Textové řetězce musí být uzavřeny do uvozovek - ať už jednoduchých ``'`` nebo
+dvojitých ``"`` (některé jazyky odlišují význam obou uvozovek, ale v Pythonu mezi
 nimi není rozdíl).
 
 Pokud chcete do textového řetězce vložit nějaký speciální znak, např. *nový
 řádek*, musíte použít tzv. *escape sekvenci* - předřadit znak zpětného lomnítka
-před vlastní znak. Nejčastěji se používá znak pro nový řádek `\\n`:
+před vlastní znak. Nejčastěji se používá znak pro nový řádek ``\n``:
 
 .. code-block:: python
 
     print("Jeden řádek\ndruhý řádek")
 
-Pokud chcete napsat tabulátor, použijete `\\t` a pokud chcete napsat zpětné
-lomnítko, použijete podle stejné analogie `\\`.
+Pokud chcete napsat tabulátor, použijete ``\t`` a pokud chcete napsat zpětné
+lomnítko, použijete podle stejné analogie ``\\``.

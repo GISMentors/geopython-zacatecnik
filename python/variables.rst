@@ -59,11 +59,11 @@ Následně provedeme výpočet charakteristik čtverce jak to již umíme:
    Obvod čtverce se stranou 112 cm je 492 cm
    Obsah čtverce se stranou 112 cm je 15129 cm2
 
-Proměnná je reprezentována nami zvoleným slovem (tzv. názvem
+Proměnná je reprezentována námi zvoleným slovem (tzv. názvem
 proměnné), pod kterým budeme přistupovat k její hodnotě.  Název
 proměnné může být v podstatě libovolný. Nesmí ale začínat na číslici
 či se shodovat s jedním z vyhrazených slov, které jsou používány přímo
-interpretem jazyka Python, např. `print, import, if` a podobně.
+interpretem jazyka Python, např. ``print, import, if`` a podobně.
 
 Hodnotu proměnné *přiřadíme* znakem ``=`` (rovná se).
 

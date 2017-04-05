@@ -11,7 +11,7 @@ Otevřete textový editor a napište do něj následující řádky.
 .. note:: Používejte textový editor dle volby svého sdrce. Na Linuxu
         např.  editor `geany`, `gedit` nebo `kate`. Na Windows
         populární `pspad` nebo na všech platformách dostupný
-        `sublime` či `pycharm`.
+        `sublime <https://www.sublimetext.com/>_` či `pycharm <https://www.jetbrains.com/pycharm/>_`.
 
 .. code-block:: python
 
@@ -25,7 +25,12 @@ Otevřete textový editor a napište do něj následující řádky.
 
         #!c:\Python3\python.exe
 
-Soubor uložte pod nějakým názvem a koncovkou `.py`, např.  `pocitani.py`.
+        Při instalaci Pythonu do operačního systému Windows je dobré zaškrtnout
+        volbu `dostupný pro všechny uživatele` a `přidat cestu do systémové
+        proměnné $PATH` - tím zajistíte, že jednoduše přiřadíte soubory s
+        koncovkou ".py" k interpretu Python
+
+Soubor uložte pod nějakým názvem a koncovkou ``.py``, např. ``pocitani.py``.
 
 V příkazovém řádku můžete spustit interpret jazyka a jako parametr mu předat
 soubor, který chcete spustit.

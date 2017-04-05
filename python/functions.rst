@@ -1,7 +1,7 @@
 Funkce
 ======
 
-Až do této chvíle jsme používali funkce (`print, range, input, ...`), které
+Až do této chvíle jsme používali funkce (:func:`print, range, input, ...`), které
 napsal někdo jiný. Nyní si ukážeme, jak napsat funkce vlastní a jak funkce
 fungují.
 
@@ -14,7 +14,7 @@ Příklad nové funkce
 .. code-block:: python
 
     def obvod_obdelnika(sirka, vyska):
-        "Vrátí obvod obdélníka daných rozměrů"
+        """Vrátí obvod obdélníka daných rozměrů"""
         return 2 * (sirka + vyska)
 
     # použití funkce obvod_obdelnika
@@ -35,9 +35,9 @@ Funkce má následující rozepsanou strukturu
                              |
                         seznam argumentů
 
-        "Vrátí obvod obdélníka daných rozměrů"  
-        |                                    |
-        +────── Dokumentační řetězec. ───────+
+        """Vrátí obvod obdélníka daných rozměrů"""
+        |                                        |
+        +──────   Dokumentační řetězec.   ───────+
 
         return 2 * (sirka + vyska)
                |                 |
@@ -51,7 +51,7 @@ seznam argumentů. Za dvojtečkou následuje *odsazený* blok kódu.
 Je dobrým zvykem ihned po definici funkce přidat *dokumentační řetězec* a funkci
 ukončit nějakou *návratovou hodnotou*
 
-.. note:: Dokumentační řetězec ani `return` výraz na konci funkce nejsou nijak
+.. note:: Dokumentační řetězec ani ``return`` výraz na konci funkce nejsou nijak
     povinné, nicméně patří k dobré praxi je dodržovat. Dokumentování funkci
     (tříd, metod) nemá v Pythonu závazná pravidla, je však dobré dodržovat
     některý ze `stylů <https://docs.python.org/devguide/documenting.html>`_. Tím
@@ -89,16 +89,16 @@ a potom *skóre*.
     pořadí, musíme je však explicitně pojmenovat, např. `napis_hlasku(skore=15,
     nazev='Naše')`.
 
-Návratová hodnota `return`
+Návratová hodnota ``return``
 --------------------------
-Obsahuje-li funkce příkaz `return`, přestane se okamžitě vykonávat a *vrátí*
-tuto hodnotu tomu, kdo funkci zavolal. Použijeme-li `return` uprostřed smyčky,
-chová se podobně jako `break` příkaz.
+Obsahuje-li funkce příkaz ``return``, přestane se okamžitě vykonávat a *vrátí*
+tuto hodnotu tomu, kdo funkci zavolal. Použijeme-li ``return`` uprostřed smyčky,
+chová se podobně jako ``break`` příkaz.
 
-Funkce, která nemá žádný příkaz `return` automaticky vrací hodnotu `None`
+Funkce, která nemá žádný příkaz ``return`` automaticky vrací hodnotu ``None``
 
 .. note:: A máme tady další datový typ, vedle čísel, textových řetězců a
-    booleanovských hodnot máme datový typ *žádná hodnota* -- `None`
+    booleanovských hodnot máme datový typ *žádná hodnota* -- ``None``
 
 Platnost proměnných ve funkcích
 -------------------------------
@@ -136,6 +136,6 @@ definována uvnitř těla funkce, se zlou se potážeme:
       File "<stdin>", line 1, in <module>
     NameError: name 'orig_value' is not defined
 
-`orig_value` je *lokální proměnná*
+``orig_value`` je *lokální proměnná*
 
 

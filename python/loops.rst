@@ -25,9 +25,9 @@ a
             print(pozdrav + '!')
 
 Nová užitečná funkce :func:`range()` vrátí pole indexů, které velikostně odpovídá
-zadanému číslu. :func:`range(5)` vrátí pole `[0, 1, 2, 3, 4]`.
+zadanému číslu. :func:`range(5)` vrátí pole ``[0, 1, 2, 3, 4]``.
 
-Pomocí smyčky `for` vytvoříme novou loklání proměnnou `cislo` nebo `pozdrav`, do
+Pomocí smyčky ``for`` vytvoříme novou loklání proměnnou ``cislo`` nebo ``pozdrav``, do
 které budou postupně ukládány hodnoty prvků ze vstupního pole a v těle smyčky se
 bude s touto proměnnou dále pracovat (v našem případě se pouze zavolá funkce
 :func:`print()`.
@@ -35,7 +35,7 @@ bude s touto proměnnou dále pracovat (v našem případě se pouze zavolá fun
 Oblast platnosti proměnných
 ---------------------------
 
-Vidíme, že proměnná `cislo` nebo `pozdrav` je definována při vzniku smyčky. Její
+Vidíme, že proměnná ``cislo`` nebo ``pozdrav`` je definována při vzniku smyčky. Její
 oblast platnosti (... je definována pro ...) platí pouze v těle smyčky. Můžeme
 ale vzít jinou proměnnou definovanou výše a přistupovat k její hodnotě
 
@@ -65,10 +65,10 @@ typu `while` provádí blok kódu, dokud není splněna nějaká podmínka:
 
     print('Vikend!')
 
-Brzda break
------------
+Brzda ``break``
+---------------
 
-Smyčka `while` může být zrádná v tom, že pokud není podmínka splněna, může běžet
+Smyčka ``while`` může být zrádná v tom, že pokud není podmínka splněna, může běžet
 i nekonečně dlouho
 
 .. code-block:: python
@@ -79,10 +79,10 @@ i nekonečně dlouho
             print('Číslo je', randrange(10000))
             print('(Počkej, než se počítač unaví...)')
 
-Tento cyklus musíme přerušit uměle (např. klávesovou zkratkou `Ctrl+C`).
+Tento cyklus musíme přerušit uměle (např. klávesovou zkratkou ``Ctrl+C``).
 
-Pokud chceme z nějaké smyčky (`for` nebo `while`) náhle vyskočit, použijeme
-brzdu `break`. V následující ukázce uvidíme, jak zajistit, že vstup od uživatele
+Pokud chceme z nějaké smyčky (``for`` nebo ``while``) náhle vyskočit, použijeme
+brzdu ``break``. V následující ukázce uvidíme, jak zajistit, že vstup od uživatele
 bude opravdu správný:
 
 

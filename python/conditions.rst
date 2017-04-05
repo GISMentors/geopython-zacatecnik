@@ -2,7 +2,7 @@ Podmínky
 ========
 
 Pokud potřebujeme vykonat určitou část kódu pouze pokud je splněna nějaká
-podmínka (tedy nějaký výraz je vyhodnocený jako pravivý - `True`), potřebujeme
+podmínka (tedy nějaký výraz je vyhodnocený jako pravivý - ``True``), potřebujeme
 podmínky.
 
 Základní konstrukce podmínky je
@@ -13,7 +13,7 @@ Základní konstrukce podmínky je
         co se má stát
 
 Pokud chceme přidat část, která se má splnit pokud podmínka neplatí, přidáme
-blok `else`:
+blok ``else``:
 
 .. code-block:: python
 
@@ -22,8 +22,8 @@ blok `else`:
     else:
         co se má stát v opačním případě
 
-Často může nastat potřeba řetězení více podmínek - za klíčové slovo `else`
-můžeme přidat okamžitě další `if`, ale Python nám umožňuje tento zápis zkrátit:
+Často může nastat potřeba řetězení více podmínek - za klíčové slovo ``else``
+můžeme přidat okamžitě další ``if``, ale Python nám umožňuje tento zápis zkrátit:
 
 
 .. code-block:: python
@@ -72,7 +72,7 @@ Ucelené bloky v Pythonu
 
 Určitě jste si všimli, že na rozdíl od jiných populárních jazyků Python
 nepoužívá k vymezení ucelených bloků kódu složené závorky, ale bloky strukturuje
-pomocí *odsazení*. A na konci řádků není potřeba dávat znak `;` (středník).
+pomocí *odsazení*. A na konci řádků není potřeba dávat znak ``;`` (středník).
 Je v celku jedno, jestli používáte mezery nebo tabulátory a
 jestli používáte 4 mezery nebo 2 tabulátory. Různé stupně odsazení dokonce
 můžete měnit uprostřed programu.
@@ -111,12 +111,12 @@ A to samé v Pythonu
 Vidíte, že je to méně psaní a Python vás nutí k čitelné struktuře kódu.
 
 
-Jednořádková forma zápisu podmínky `if`
-=======================================
+Jednořádková forma zápisu podmínky ``if``
+=========================================
 Programátoři jsou velice lenivý národ a často vytvářejí zkratky, aby ušetřili
 řádek kódu nebo deset znaků na řádku. Často potřebujeme pouze krátkou formu
-zápisu podmínky `if` (z Jazyka C hojne využívaný zápis `vysledek = (podminka ? splneno !
-nespleno);` v Pythonu bohužel neexistuje. Ale jde to:
+zápisu podmínky ``if`` (z Jazyka C hojne využívaný zápis ``vysledek = (podminka ? splneno !
+nespleno);`` v Pythonu bohužel neexistuje. Ale jde to:
 
 .. code-block:: python
 
