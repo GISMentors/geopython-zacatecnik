@@ -44,8 +44,10 @@ přímo u programu.
 
 .. code-block:: bash
 
-    $ virtualenv -p /usr/bin/python3 program_venv
+    virtualenv -p /usr/bin/python3 program_venv
 
+::
+       
     Running virtualenv with interpreter /usr/bin/python3
     Using base prefix '/usr'
     New python executable in program_venv/bin/python3
@@ -57,7 +59,7 @@ musíme virtuální prostředí *aktivovat*:
 
 .. code-block:: bash
 
-    $ source program_venv/bin/activate
+   source program_venv/bin/activate
 
 Od této chvíle pracujeme ve virtuálním prostředí a cokoliv nainstalujeme
 (prostřednictvím ``pip install``) bude uloženo do ``./program_venv/lib/python3.5/``.
@@ -67,7 +69,7 @@ Virtuální prostředí opustíme příkazem
 
 .. code-block:: bash
 
-    $ deactivate
+   deactivate
 
 První program
 =============

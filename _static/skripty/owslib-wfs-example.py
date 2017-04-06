@@ -35,7 +35,7 @@ print (features)
 print (features.read())
 
 cuzk = WebFeatureService('http://geoportal.cuzk.cz/wfs_au/wfservice.aspx',
-                                           version="2.0.0")
+                         version="2.0.0")
 for c in cuzk.contents:
     print (c)
 

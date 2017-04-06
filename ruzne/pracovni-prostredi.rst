@@ -51,7 +51,7 @@ verzi) a spustíme.
 
 .. figure:: images/osgeo4w-2.png
 
-   Vybereme balíčky ``gdal-python`` a ``owslib``.
+   Vybereme balíčky ``gdal-python``, ``python-pip`` a ``owslib``.
 
 .. figure:: images/osgeo4w-3.png
 
@@ -62,11 +62,20 @@ Po úspěšné instalaci spustíme (nutné jako administrátor) příkazovou
 standardní Python instalátor ``pip``.
 
 .. code-block:: bash
-                
+
+   pip install setuptools
    pip install fiona
    pip install rasterio
    pip install pyproj
 
+.. important:: Tento postup nicméně vyžaduje, aby byl na počítači nainstalován
+   kompilátor Microsoft Visual C++! Alternativou je použít neoficiální
+   binární balíčky: http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+   .. code-block:: bash
+
+      pip install cesta/k/wkl/souboru
+   
 .. important:: Při spouštění uživatelských Python skriptů z příkazové
                řádky anebo v rámci Vašeho oblíbeného editoru je vždy
                nutné zajistit, aby byl použit Python z instalace

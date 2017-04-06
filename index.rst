@@ -48,7 +48,7 @@
 
    *Data ke školení* je stažitelná jako `zip archiv
    <http://training.gismentors.eu/geodata/geopython/data.tgz>`_ (63
-   MB). Dále můžete výužít data ze školení :skoleni:`QGIS pro
+   MB). Dále můžete využít data ze školení :skoleni:`QGIS pro
    začátečníky <qgis-zacatecnik>`  a to `vektorovová data
    <http://training.gismentors.eu/geodata/qgis/data.zip>`_ (436 MB) a
    rastrová data `DMT

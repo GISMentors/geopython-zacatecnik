@@ -214,7 +214,7 @@ Rozsah vrstvy:
 
 .. literalinclude:: ../_static/skripty/owslib-wms-example.py
    :language: python
-   :lines: 11-12
+   :lines: 11-13
 
 .. code-block:: python
    
@@ -225,7 +225,28 @@ Stažení a uložení dat:
 
 .. literalinclude:: ../_static/skripty/owslib-wms-example.py
    :language: python
-   :lines: 14-22
+   :lines: 14-23
+
+.. important:: Aktuálně OWSLib webové služby ČÚZK nedokáže
+          konzumovat. Připojení ke službě padá na chybě
+          ``requests.exceptions.TooManyRedirects: Exceeded 30
+          redirects.``
+          
+          Fungující ukázku lze prezentovat nad službou:
+
+          .. code-block:: python
+
+             url='http://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WmsServer'
+             layer='1' # Evropsky významné lokality (EVL)
+
+
+          Výše zmíněna služba AOPK podporuje pouze WMS verze
+          1.3.0. Vzhledem k tomu, že OWSLib používá ve výchozím
+          nastavení verzi služby 1.1.1, je třeba verzi vynutit:
+
+          .. code-block:: python
+
+             wms = WebMapService(url, version='1.3.0')
 
 .. _OWSLibWFS:
 

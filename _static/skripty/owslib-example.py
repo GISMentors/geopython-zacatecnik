@@ -27,7 +27,7 @@ print (zm10.type)
 
 print (u'{}\n{}'.format(zm10.title, zm10.abstract))
 
-zm10_url = zm10.references[0]['url']
+url = zm10.references[0]['url']
 
 wfs_query = PropertyIsLike('csw:AnyText', 'WFS')
 aopk_query = PropertyIsLike('csw:AnyText', 'AOPK')
