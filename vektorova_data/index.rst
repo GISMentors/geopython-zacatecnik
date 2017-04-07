@@ -17,7 +17,7 @@ které lze provádět v porovnání s Fionou nízkoúrovňovné operace.
 .. note::
 
    Téma *OGR* je více popsáno ve školení :skoleni:`GeoPython pro
-   pokročilé <geopython-pokrocily/vektorova_data/ogr/>`.
+   pokročilé <geopython-pokrocily/vektorova_data/>`.
 
 .. toctree::
    :maxdepth: 2
