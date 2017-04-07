@@ -65,6 +65,7 @@ standardní Python instalátor ``pip``.
 
    pip install setuptools
    pip install fiona
+   pip install shapely
    pip install rasterio
    pip install pyproj
 
