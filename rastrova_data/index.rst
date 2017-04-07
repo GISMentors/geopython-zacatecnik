@@ -5,7 +5,7 @@ Rastrová data mohou být v porovnání s vektorovými daty často řádově
 objemnější. Tomu je třeba přizpůsobit práci s nimi. Rastrová data jsou
 většinou uspořádané do matice hodnot v číselné podobě.
 
-.. note::
+.. tip::
    
    Více k rastrové reprezentaci ve školení :skoleni:`Úvod do GIS
    <open-source-gis/formaty/rastr.html>`.
