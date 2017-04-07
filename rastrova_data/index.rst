@@ -22,7 +22,7 @@ vektorovými daty.
 .. note::
 
     Téma *GDAL* je více popsáno ve školení :skoleni:`GeoPython pro
-    pokročilé <geopython-pokrocily/rastrova_data/>`.
+    pokročilé <geopython-pokrocily/gdal/rastrova_data/>`.
 
 .. toctree::
    :maxdepth: 2
