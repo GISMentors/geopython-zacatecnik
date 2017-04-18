@@ -12,7 +12,8 @@ stačit.
    sudo apt-get install fiona python-fiona rasterio python-rasterio python-owslib python-pyproj
 
 .. tip:: Pokud potřebuje novější verze knihoven, tak před instalací
-   zaregistrujte ještě UbuntuGIS repozitář.
+   zaregistrujte ještě `UbuntuGIS repozitář
+   <https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable/+packages?field.name_filter=python&field.status_filter=published&field.series_filter=>`__.
 
    .. code-block:: bash
 
@@ -31,7 +32,9 @@ GIS knihovny jako např. GDAL, je použít metainstalátor `OSGeo4W
              <https://trac.osgeo.org/osgeo4w/ticket/439>`__ a `#438
              <https://trac.osgeo.org/osgeo4w/ticket/438>`__). Pokud
              tyto knihovny bude využívat, doporučujeme alternativní
-             postup, viz kapitola :ref:`win-py-bin`.
+             postup, viz kapitola :ref:`win-py-bin`. Nicméně za
+             určitých podmínek lze tyto dva postupy kombinovat, viz
+             :ref:`osgeo4w-py-bin`.
 
 OSGeo4W (GDAL, OWSLib)
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -112,3 +115,25 @@ knihovny:
    pip install /cesta/k/souboru/gdal.whl
    pip install /cesta/k/souboru/fiona.whl
    ...
+
+Kombinace OSGeo4W a binárních balíčků
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Za určitých podmínek lze kombinovat binární balíčky s instalací
+OSGeo4W. Je nutné ale dodržet verzi Pythonu a platformu. Následující
+postup byl testován s verzí Python 2.7 instalovanou v rámci OSGeo4W.
+
+Nejprve si doinstalujeme v OSGeo4W balíček `python-pip` a stáhneme z
+`Unofficial Windows Binaries for Python Extension Packages
+<http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ binární balíčky
+knihoven Fiona, Shapely a Rasterio pro Python 2.7. Otevřeme OSGeo4W a
+příkazem `pip` doinstalujeme požadované knihovny.
+
+.. code-block:: bash
+
+   pip install /cesta/k/souboru/fiona.whl
+   ...
+
+.. figure:: images/osgeo4w-5.png
+
+   Instalaci knihoven otestujeme z OSGeo4W Shell.
