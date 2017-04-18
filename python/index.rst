@@ -99,7 +99,7 @@ celek (o ukládání programů do souborů ale bude další část).
    :maxdepth: 2
 
    print
-   errors
+   error
    variables
    comments
    input
@@ -115,8 +115,9 @@ celek (o ukládání programů do souborů ale bude další část).
 
 Licence
 -------
-Tato část cituje z kurzů `PyLadies <http://pyladies.cz/>`_ a je šířena pod
-kompatibilní licencí (`CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>`_).
+
+Tato část cituje z kurzů `PyLadies <http://pyladies.cz/>`__ a je šířena pod
+kompatibilní licencí (`CC BY-SA 4.0 <http://creativecommons.org/licenses/by-sa/4.0/>`__).
 
 .. todo::
    
