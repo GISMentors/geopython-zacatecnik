@@ -67,6 +67,7 @@
    :maxdepth: 2
 
    uvod
+   docker
    python/index
    vektorova_data/index
    rastrova_data/index

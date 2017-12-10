@@ -127,6 +127,7 @@ ohraničující obdélník Prahy:
    :lines: 18-21
 
 .. code-block:: python           
+
     ...
     ÚP VÚC Adršpach 48.20735042 11.86320935 51.37551609 19.0302868
     VÚC Hradecko-Pardubické aglomerace 48.20735042 11.86320935 51.37551609 19.0302868

@@ -90,7 +90,7 @@ a potom *skóre*.
     nazev='Naše')`.
 
 Návratová hodnota ``return``
---------------------------
+----------------------------
 Obsahuje-li funkce příkaz ``return``, přestane se okamžitě vykonávat a *vrátí*
 tuto hodnotu tomu, kdo funkci zavolal. Použijeme-li ``return`` uprostřed smyčky,
 chová se podobně jako ``break`` příkaz.

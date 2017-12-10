@@ -28,6 +28,7 @@ Následující kód uložte do souboru :file:`deleni.py`
 A soubor spusťe:
 
 .. code-block:: bash
+
         $ python3 deleni.py
 
         Traceback (most recent call last):

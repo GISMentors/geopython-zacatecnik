@@ -1,7 +1,9 @@
+.. _rasterio:
+
 Knihovna Rasterio
 =================
 
-Knihovna `Rasterio <https://github.com/mapbox/rasterio>`_ je opět dílo
+`Knihovna Rasterio <https://github.com/mapbox/rasterio>`_ je opět dílo
 zejména `Seana Gilliese <http://sgillies.net/>`_ (podobně jako
 :doc:`Fiona <../../vektorova_data/fiona/index>` či Shapely), tentokrát v rámci
 jeho působení ve firmě `MapBox <http://mapbox.com>`_. Rasterio je
@@ -21,5 +23,3 @@ rastrovými daty udělat více zábavnou a produktivnější.
     reclass
     vectorisation
     plugins
-
-

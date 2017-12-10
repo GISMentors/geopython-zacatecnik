@@ -1,3 +1,5 @@
+.. _rasterio-plugins:
+
 Rasterio rozšíření
 ------------------
 

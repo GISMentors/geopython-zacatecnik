@@ -1,4 +1,4 @@
-.. ndvi-algebra::
+.. _ndvi-algebra:
 
 Rasterová algebra
 -----------------
@@ -66,7 +66,7 @@ kanál.
 
 .. literalinclude:: ../../_static/skripty/rasterio-example.py
    :language: python
-   :lines: 20-24
+   :lines: 20-23
 
 .. figure:: ../images/ndvi.png
     

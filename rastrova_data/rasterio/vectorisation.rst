@@ -1,3 +1,5 @@
+.. _rasterio-vectorise:
+
 Vektorizace rastrových dat
 --------------------------
 
@@ -22,7 +24,7 @@ data ze souřadnic obrázku (pixely) na souřadnice geografické.
    :language: python
 
 
-.. figure:: ../images/ndvi-classes.png
+.. figure:: ../images/ndvi-vector.png
     
     Výsledný soubor ve vektorech
 

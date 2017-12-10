@@ -1,4 +1,4 @@
-.. reklasifikace::
+.. _rasterio-reklasifikace:
 
 Reklasifikace
 -------------

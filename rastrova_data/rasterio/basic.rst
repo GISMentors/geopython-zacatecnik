@@ -1,4 +1,6 @@
-Zákaldní metadata rastrových dat
+.. _rasterio-basic:
+
+Základní metadata rastrových dat
 --------------------------------
 
 V následujícím příkladu otevřeneme rastrový soubor ve formátu

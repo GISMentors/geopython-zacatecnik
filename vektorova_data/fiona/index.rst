@@ -3,7 +3,7 @@
 Knihovna Fiona
 ==============
 
-Knihovna `Fiona <http://toblerity.org/fiona/>`_ jako nadstavba nad
+`Knihovna Fiona <http://toblerity.org/fiona/>`_ jako nadstavba nad
 knihovnou *OGR* (součást knihovny `GDAL <http://gdal.org>`__)
 představuje objektově orientovaný způsob práce s vektorovými
 daty. Načtená vektorová data knihovna přemapovává do datové struktury

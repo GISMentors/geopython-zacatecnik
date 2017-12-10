@@ -1,4 +1,4 @@
-.. rasterio-windows::
+.. _rasterio-windows:
 
 Použití oken při čtení a zápis
 ------------------------------
@@ -38,8 +38,7 @@ blocích::
 Jak jsou bloky na rastru definovány můžete z příkazové řádky nástrojem
 ``gdalinfo``.
 
-.. code-block::
-    :language: bash
+.. code-block:: bash
 
     gdalinfo data/lsat7_2002_nir.tiff
 

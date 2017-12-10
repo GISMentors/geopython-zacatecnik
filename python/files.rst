@@ -16,8 +16,8 @@ vznikne nový objekt, se kterým dále pracujeme.
     data_soubor.close()
 
 
-Tento příklad - vytvořil novou proměnnou typu :type:`file` v režimu *read*, na
-dalším řádku ze souboru přečetl *všechna data* a uložil do proměnné :var:`data`
+Tento příklad - vytvořil novou proměnnou typu ``file`` v režimu *read*, na
+dalším řádku ze souboru přečetl *všechna data* a uložil do proměnné ``data``
 a nakonec soubor uzavřel.
 
 Lepší je ale využít konstrukci s blokem ``with``, která soubor automaticky
