@@ -17,9 +17,7 @@ Objekt je "něco", co má nějaké vlastnosti (data) a nějaká chování (metod
 které s daty pracují. Objekty spojují data a funkčnost do jednoho celku.
 
 Jak zjistíte, jaké má objekt vlastnosti (atributy) a funkce (metody)? Samozřejmě
-z dokumentace, např. pomocí programu `pydoc`
-
-.. code-block:: bash    
+z dokumentace, např. pomocí programu ``pydoc``::
 
     $ pydoc list
 
@@ -40,7 +38,7 @@ z dokumentace, např. pomocí programu `pydoc`
      |  __delitem__(...)
      ...
 
-Rychlá pomoc je funkce `dir()`, která vrátí všechny atributy a metody daného
+Rychlá pomoc je funkce ``dir()``, která vrátí všechny atributy a metody daného
 objektu
 
 .. code-block:: python
