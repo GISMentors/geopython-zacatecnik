@@ -42,7 +42,7 @@ Jak zobrazit vektorová data
 ---------------------------
 
 Objekty typu ``shapely.geometry.BaseGeometry`` lze zobrazit přímo jejich
-vypsáním::
+vypsáním:
 
 .. code-block:: python
 
