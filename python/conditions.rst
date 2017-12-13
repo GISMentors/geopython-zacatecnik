@@ -115,7 +115,7 @@ Jednořádková forma zápisu podmínky ``if``
 =========================================
 Programátoři jsou velice lenivý národ a často vytvářejí zkratky, aby ušetřili
 řádek kódu nebo deset znaků na řádku. Často potřebujeme pouze krátkou formu
-zápisu podmínky ``if`` (z Jazyka C hojne využívaný zápis ``vysledek = (podminka ? splneno !
+zápisu podmínky ``if`` (z Jazyka C hojne využívaný zápis ``vysledek = (podminka ? splneno :
 nespleno);`` v Pythonu bohužel neexistuje. Ale jde to:
 
 .. code-block:: python
