@@ -1,12 +1,16 @@
 .. _rasterio-windows:
 
-Použití oken při čtení a zápis
+Použití oken pro čtení a zápis
 ------------------------------
-I když jsou zpracovávaná rastrová data větší, než je pamět RAM vašeho stroje, je
-možné použít tzv. `"okna" pro jejich čtení nebo zápis <https://mapbox.github.io/rasterio/topics/windowed-rw.html>`_.
 
-Okna (:class:`rasterio.Window`) jsou pravidelné matice vstupního rastru. Lze je
-také popsat jako 2 páry souřadnic pixelů::
+Rastrová data lze číst a zapisovat i pomocí tzv. `"oken"
+<https://rasterio.readthedocs.io/en/latest/topics/windowed-rw.html>`__. Tento
+postup se hodí v případě, že pracujete s objemnými rastrovými daty,
+které se do RAM vašeho počáítače nevejdou. Pomocí okna lze načíst část
+matice rastrových dat, tu zpracovat a zapsat do výstupního souboru.
+
+Okna (:class:`rasterio.Window`) jsou pravidelné matice vstupního
+rastru. Lze je také popsat jako 2 páry souřadnic pixelů::
     
     ((první_řádek, poslední_řádek), (první_sloupec, poslední_sloupec))
 
@@ -35,8 +39,8 @@ blocích::
             r = src.read(1, window=window)
             print(r.shape)
 
-Jak jsou bloky na rastru definovány můžete z příkazové řádky nástrojem
-``gdalinfo``.
+To jakým způsobem jsou bloky pro rastrový soubor definovány můžete
+zjistit z příkazové řádky nástrojem ``gdalinfo``.
 
 .. code-block:: bash
 
@@ -50,20 +54,18 @@ Jak jsou bloky na rastru definovány můžete z příkazové řádky nástrojem
     Band 2 Block=1287x1 Type=Float32, ColorInterp=Undefined
     Band 3 Block=1287x1 Type=Float32, ColorInterp=Undefined
 
-Vidíme, že náš rastr používá bloky o velikosti 1287x1 pixel - tedy celý řádek.
-Někdy může být efektivnější celý rastr převzorkovat, než se pustíte do jeho
-blok-po-bloku processingu.
+Vidíme, že náš rastr používá bloky o velikosti 1287x1 pixel - tedy
+celý řádek.  Někdy může být efektivnější celý rastr převzorkovat a
+změnit nastavení bloků, než se pustíte samotného výpočtu. Toho
+docílíme nástrojem knihovny GDAL `gdalwarp` (viz školení
+:skoleni:`Úvod Open Source GIS
+<open-source-gis/knihovny/gdal.html#prikazy-pro-praci-s-rastrovymi-daty>`).
 
 .. code-block:: bash
 
-    gdalwarp -r mode -co TILED=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 ../../data/lsat7_2002_nir.tiff outputs/lsat7-256-block.tiff
-
-    Creating output file that is 1287P x 831L.
-    Processing input file ../../data/lsat7_2002_nir.tiff.
-    0...10...20...30...40...50...60...70...80...90...100 - done.
+    gdalwarp -r mode -co TILED=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 data/lsat7_2002_nir.tiff outputs/lsat7-256-block.tiff
 
     gdalinfo outputs/lsat7-256-block.tiff
-
     ...
     Band 1 Block=256x256 Type=Float32, ColorInterp=Gray
     Band 2 Block=256x256 Type=Float32, ColorInterp=Undefined
@@ -78,9 +80,9 @@ blok-po-bloku processingu.
 NDVI pomocí bloků
 ^^^^^^^^^^^^^^^^^
 
-Následující příklad počítá stejně jako předchozí příklad NDVI, tentokrát ale
-bude postupovat po blocích (čtení i zápis)
-
+Následující příklad prezentuje opět výpočet NDVI, tentokrát ale bude
+postupovat po blocích (čtení i zápis). Tento přístup bude fungovat
+rychleji při větším objemu dat.
 
 .. literalinclude:: ../../_static/skripty/rasterio-ndvi-windows.py
    :language: python

@@ -3,10 +3,10 @@
 Rasterio rozšíření
 ------------------
 
-Pro Rasterio existují zajímavé rošiřující nástrojů, ``pip search`` napoví:
+Pro Rasterio existují zajímavé rošiřující nástroje, ``pip search`` napoví:
 
 `rio-cloudmask <https://github.com/mapbox/rio-cloudmask>`_
-    Plugin pro indentifikace marků ze satelitních snímků
+    Plugin pro indentifikace mraků ze satelitních snímků
 
 `rio-color <https://github.com/mapbox/rio-color>`_
     Plugin pro aplikaci různých barevných korekcí

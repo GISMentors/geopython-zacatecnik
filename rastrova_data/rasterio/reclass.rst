@@ -3,14 +3,16 @@
 Reklasifikace
 -------------
 
-Reklasifickace je proces nahrazení hodnot pixelů vstupní mapy novými hodnotami
-na základě pravidel.
+Reklasifikace je proces nahrazení hodnot pixelů vstupní mapy novými
+hodnotami na základě reklasifikačních pravidel.
 
-V našem případě si reklasifikujeme naši mapu NDVI indexů, kterou jsme si udělali
-v předchozím příkladu :ref:`ndvi-algebra`. 
+V našem případu reklasifikujeme rastrovou mapu NDVI, kterou jsme
+vytvořili v předchozím kapitole :ref:`ndvi-algebra`.
 
-V našem příkladu chceme dále rozdělit NDVI do tříd podle hodnoty. NDVI nabývá
-hodnot od -1 do 1, rozdělíme je na 3 skupiny "od oka":
+Rozdělíme NDVI do tříd podle jejich hodnoty. NDVI nabývá hodnot od -1
+do 1, rozdělíme je na 3 skupiny "od oka":
+
+.. cssclass:: border
 
 +---+----------------+---------------+
 | 1 | Vegetace       | 1 - 0.3       |
@@ -23,8 +25,9 @@ hodnot od -1 do 1, rozdělíme je na 3 skupiny "od oka":
 .. literalinclude:: ../../_static/skripty/rasterio-reclass.py
    :language: python
 
-Výsledný soubor obsahuje pouze 3 hodnoty reprezentující jednotlivé povrchy.
+Výsledný soubor obsahuje pouze 3 hodnoty reprezentující jednotlivé
+třídy.
 
 .. figure:: ../images/ndvi-classes.png
     
-    Výsledný soubor se třemi povrchy.
+    Výsledný soubor se třemi třídami.

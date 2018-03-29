@@ -9,34 +9,33 @@ Tyto matematické operace se vykonávají buď na jedné nebo více
 vrstvách a jejich výstupem je vrstva nová. Rastrová algebra se často používá pro
 prostorové modelování a analýzu.
 
-Operátory jsou obvyklé matematické, statistické, relační a logické operátory (+,
--, \*, /, >, <, >=, <=, <>, mod, div, and, or, not, ...).
+*Operátory* dělíme na matematické, statistické, relační a logické
+operátory (+, -, \*, /, >, <, >=, <=, <>, mod, div, and, or, not,
+...).
 
-Funkce se dělí na:
+*Funkce* se dělíme na:
 
     Lokální
         na individuální buňce, nová hodnota vzniká z jedné rastrové buňky jedné nebo více vrstev.
     Fokální
-        v definovaném okolí, nová hodnota vzniká z definovaného okolí buňky
+        v definovaném okolí, nová hodnota vzniká v rámci definovaného okolí buňky
         (např. jako výsledek operace nad "oknem" 3x3 pixely)
     Zonální
         na specifické oblasti, nová hodnota vzniká ze zóny definované v jiné vrstvě.
     Globální
         používají se všechny buňky informační vrstvy (např. analýzy povrchů).
 
-RasterIO využívá pro uložení dat strukturu `NumPy <http://www.numpy.org/>`_, což
-nám umožňuje s těmito datovými strukturami pracovat standardním způsobem a
-využívat i pokročilé nástroje pro analýzu obrazu, jako je `Sciktit Image
-<http://scikit-image.org/>`_, `Matplot lib
-<https://matplotlib.org/users/image_tutorial.html>`_, `OpenCV
-<https://docs.opencv.org/3.0-last-rst/doc/py_tutorials/py_tutorials.html>`_ a
-další.
+RasterIO využívá pro uložení datový typ `NumPy
+<http://www.numpy.org/>`__, což nám umožňuje s těmito datovými
+strukturami pracovat standardním způsobem a využívat i pokročilé
+nástroje pro analýzu obrazu, jako je `Sciktit Image
+<http://scikit-image.org/>`__, `Matplot lib
+<https://matplotlib.org/users/image_tutorial.html>`__, `OpenCV
+<https://docs.opencv.org/3.0-last-rst/doc/py_tutorials/py_tutorials.html>`__
+a další.
 
-V našem příkladu si ukážeme jednoduchou analýzu - výpočet indexu NDVI ze
-satelitních dat.
-
-Vidíme, že v rastru z předchozího příkladu jsou obsaženy tři barevné kanály.
-Vytvoříme nyní nový soubor, obsahující pokus o index NDVI.
+V našem příkladu si ukážeme jednoduchou analýzu - **výpočet indexu
+NDVI ze satelitních dat**.
 
 .. note:: :wikipedia-en:`Normalizovaný vegetační index
     <Normalized_Difference_Vegetation_Index>` je poměr mezi viditelným
@@ -45,6 +44,10 @@ Vytvoříme nyní nový soubor, obsahující pokus o index NDVI.
     .. math::
         
          NDVI = (NIR - VIS) / (NIR  + VIS)
+
+Rastr z předchozího příkladu obsahuje barevné kanály (první je černený
+kanál, druhý infračervený). Na základě těchto dat vytvoříme nový
+soubor s vypočteným NDVI.
 
 Neprve vytvoříme novou matici pro výsledné hodnoty, následně do tohoto
 pole uložíme výsledek výpočtu pro každý pixel. Pracujeme v prostředí
