@@ -6,7 +6,7 @@ dokumenty, které obsahují kód programu, vizualizace, formátovaný text - vš
 jednom.
 
 Pokud si chcete hrát s nějakou Pythonní knihovnou, je Jupyter skvělá volba -
-můžete si kód hned popisovat, můžete se vrace k jeho jednotlivým částem, měnit
+můžete si kód hned popisovat, můžete se vracet k jeho jednotlivým částem, měnit
 je a sledovat, co to dělá.
 
 .. figure:: images/jupyter.png
@@ -42,7 +42,7 @@ Jak zobrazit vektorová data
 ---------------------------
 
 Objekty typu ``shapely.geometry.BaseGeometry`` lze zobrazit přímo jejich
-vypsáním::
+vypsáním:
 
 .. code-block:: python
 
@@ -77,14 +77,14 @@ A následně ho můžete pustit příkazem::
            --rm --name geopython-workshop \
            opengeolabs/gismentors:geopython
 
-Potom už stačí jenom otevřít prohlížeč na adresse `http://localhost:8888/
+Potom už stačí jenom otevřít prohlížeč na adrese `http://localhost:8888/
 <http://localhost:8888>`_, zadat heslo ``geopython`` a máte před sebou kompletně
-připravený Jupyter notebook s nainstalovanými závislostmi potřenými pro tento
+připravený Jupyter notebook s nainstalovanými závislostmi potřebnými pro tento
 workshop.
 
 Uložená data
 ------------
 
-Data jsou dostupná v adresáři ``/data/data``, svůj adrář pro výstupy můžete
+Data jsou dostupná v adresáři ``/data/data``, svůj adresář pro výstupy můžete
 založit v adresáři ``/outputs/``.
 

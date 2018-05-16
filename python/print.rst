@@ -11,7 +11,7 @@ Otevřete textový editor a napište do něj následující řádky.
 .. note:: Používejte textový editor dle volby svého sdrce. Na Linuxu
         např.  editor `geany`, `gedit` nebo `kate`. Na Windows
         populární `pspad` nebo na všech platformách dostupný
-        `sublime <https://www.sublimetext.com/>_` či `pycharm <https://www.jetbrains.com/pycharm/>_`.
+        `sublime <https://www.sublimetext.com/>`_ či `pycharm <https://www.jetbrains.com/pycharm/>`_.
 
 .. code-block:: python
 
