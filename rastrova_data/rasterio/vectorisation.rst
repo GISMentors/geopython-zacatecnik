@@ -35,20 +35,17 @@ geografické.
     
     Výsledný vektorový soubor
 
-Vektorizace pomocí potrace
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Další možností je vektorizace pomocí knihovny `pypotrace
-<https://pythonhosted.org/pypotrace/>`_.  `Potrace
-<http://potrace.sourceforge.net/>`_ se používá v množství dalších
-programů (např. Inkscape). Nabízí další možnosti vektorizace, ale
-musíte vyřešit převod geografických souřadnic.
-
-.. todo:: Příklad s Potrace. Jedním z problémů pypotrace je, že
-        funguje pouze v Python 2.x.
-
-Rasterizace vektorových dat
----------------------------
-
-.. todo:: Modul `rasterio.features
-          <https://rasterio.readthedocs.io/en/latest/api/rasterio.features.html>`_
+.. Vektorize pomocí potrace
+.. ^^^^^^^^^^^^^^^^^^^^^^^^
+.. 
+.. Další možností je vektorize pomocí knihovny `pypotrace <https://pythonhosted.org/pypotrace/>`_.
+.. `Potrace <http://potrace.sourceforge.net/>`_ se používá v množství dalších programů
+.. (např. Inkscape). Má jiné možnosti vektorize, ale musí se trochu pracovat s
+.. převodem do geografických souřadnic.
+.. 
+.. .. todo:: Příklad s Potrace. Jedním z problémů pypotrace je, že funguje pouze v
+..         Python 2.x.
+.. 
+.. Rasterizace vektorových dat
+.. ---------------------------
+.. .. todo:: Modul `rasterio.features <https://mapbox.github.io/rasterio/api/rasterio.features.html>`_

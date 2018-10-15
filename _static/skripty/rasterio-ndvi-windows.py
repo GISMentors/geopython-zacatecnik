@@ -1,15 +1,17 @@
 import rasterio
 from rasterio.windows import Window
 
-with rasterio.open('data/lsat7_2002_nir.tiff') as src:
+with rasterio.open('data/B04-2018-05-06.tiff') as red:
+    with rasterio.open('data/B08-2018-05-06.tiff') as nir:
+
     step = 256
-    kwargs = src.meta
+    kwargs = red.meta
     kwargs.update(dtype=rasterio.float64, count=1, compress='lzw')
 
     with rasterio.open('data/ndvi.tif', 'w', **kwargs) as dst:
         slices = [(col_start, row_start, step, step) \
-                    for col_start in list(range(0, src.width, 256)) \
-                    for row_start in list(range(0, src.height, 256))
+                    for col_start in list(range(0, red.width, 256)) \
+                    for row_start in list(range(0, red.height, 256))
         ]
 
         # nepoužijeme block windows, protože data používají 1x1287 velké bloky
@@ -17,10 +19,10 @@ with rasterio.open('data/lsat7_2002_nir.tiff') as src:
         for slc in slices:
             win = Window(*slc)
 
-            nir = src.read(1, window=win)
-            vis = src.read(2, window=win)
+            nir_data = nir.read(1, window=win)
+            vis_data = red.read(2, window=win)
 
-            ndvi = (nir - vis) / (nir + vis)
+            ndvi = (nir_data - vis_data) / (nir_data + vis_data)
 
             write_win = Window(slc[0], slc[1], ndvi.shape[1], ndvi.shape[0])
 

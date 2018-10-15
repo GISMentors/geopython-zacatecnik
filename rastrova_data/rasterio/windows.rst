@@ -21,8 +21,8 @@ nebo::
 Příklad načtení dat::
 
     import rasterio
-    with rasterio.open('data/lsat7_2002_nir.tiff') as src:
-        w = src.read(1, window=Window(0, 0, 512, 256))
+    with rasterio.open('data/B04-2018-05-06.tiff') as red:
+        w = red.read(1, window=Window(0, 0, 512, 256))
     
     print(w.shape)
 
@@ -34,9 +34,9 @@ pro čtení, je efektivní, aby velikost oken odpovídala velikosti bloků.
 Následujícím způsobem můžeme zpracovat první kanál našeho rastrového souboru po
 blocích::
 
-    with rasterio.open('data/lsat7_2002_nir.tiff') as src:
-        for ji, window in src.block_windows(1):
-            r = src.read(1, window=window)
+    with rasterio.open('data/B04-2018-05-06.tiff') as red:
+        for ji, window in red.block_windows(1):
+            r = red.read(1, window=window)
             print(r.shape)
 
 To jakým způsobem jsou bloky pro rastrový soubor definovány můžete
@@ -44,37 +44,41 @@ zjistit z příkazové řádky nástrojem ``gdalinfo``.
 
 .. code-block:: bash
 
-    gdalinfo data/lsat7_2002_nir.tiff
+    gdalinfo data/B04-2018-05-06.tiff
 
     Driver: GTiff/GeoTIFF
-    Files: ../../data/lsat7_2002_nir.tiff
-    Size is 1287, 831
+    Files: B04-2018-05-06.tiff
+        B04-2018-05-06.tiff.aux.xml
+    Size is 3117, 1716
+     
     ...
-    Band 1 Block=1287x1 Type=Float32, ColorInterp=Gray
-    Band 2 Block=1287x1 Type=Float32, ColorInterp=Undefined
-    Band 3 Block=1287x1 Type=Float32, ColorInterp=Undefined
+    Band 1 Block=3117x8 Type=UInt16, ColorInterp=Gray
 
-Vidíme, že náš rastr používá bloky o velikosti 1287x1 pixel - tedy
-celý řádek.  Někdy může být efektivnější celý rastr převzorkovat a
-změnit nastavení bloků, než se pustíte samotného výpočtu. Toho
-docílíme nástrojem knihovny GDAL `gdalwarp` (viz školení
-:skoleni:`Úvod Open Source GIS
-<open-source-gis/knihovny/gdal.html#prikazy-pro-praci-s-rastrovymi-daty>`).
+Vidíme, že náš rastr používá bloky o velikosti 3117×8 pixel - tedy 8 řádků.
+Někdy může být efektivnější celý rastr převzorkovat, než se pustíte do jeho
+blok-po-bloku processingu. To můžeme udělat např. 
+nástrojem knihovny GDAL `gdalwarp` (viz školení
+:skoleni:`Úvod Open Source GIS <open-source-gis/knihovny/gdal.html#prikazy-pro-praci-s-rastrovymi-daty>`).
 
 .. code-block:: bash
 
-    gdalwarp -r mode -co TILED=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 data/lsat7_2002_nir.tiff outputs/lsat7-256-block.tiff
+    gdalwarp -r mode -co TILED=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 B04-2018-05-06.tiff outputs/B04-2018-05-06-256block.tiff
 
-    gdalinfo outputs/lsat7-256-block.tiff
+    Creating output file that is 1287P x 831L.
+    Processing input file ../../data/B04-2018-05-06.tiff.
+    0...10...20...30...40...50...60...70...80...90...100 - done.
+
+    gdalinfo outputs/B04-2018-05-06-256block.tiff
+
     ...
-    Band 1 Block=256x256 Type=Float32, ColorInterp=Gray
-    Band 2 Block=256x256 Type=Float32, ColorInterp=Undefined
-    Band 3 Block=256x256 Type=Float32, ColorInterp=Undefined
+    Band 1 Block=256x256 Type=UInt16, ColorInterp=Gray
 
-    with rasterio.open('data/lsat7_2002_nir.tiff') as src:
-    
+A otevřít v Pythonu::
+
+    with rasterio.open('outputs/B04-2018-05-06-256block.tiff') as red:
+
         for ji, window in src.block_windows(1):
-            r = src.read(1, window=window)
+            r = red.read(1, window=window)
             print(r.shape)
 
 NDVI pomocí bloků

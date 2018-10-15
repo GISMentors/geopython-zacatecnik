@@ -14,11 +14,11 @@ with rasterio.open("outputs/ndvi-classes.tif") as src:
     shapes = rasterio.features.shapes(cleaned, transform=src.transform)
 
     names = {
-            1: "Vegetation",
-            2: "Soil",
-            3: "Water"
+            1: "Trees",
+            2: "Grass",
+            3: "Dry",
+            4: "Water",
     }
-
 
     features = {
         "type": "FeatureCollection",
@@ -27,17 +27,18 @@ with rasterio.open("outputs/ndvi-classes.tif") as src:
 
     for (geom, val) in shapes:
         val = int(val)
-        feature = {
-            "type": "Feature",
-            "properties": {
-                "class": val,
-                "name": names[val]
-            },
-            "geometry": geom
-        }
+        if val > 0:
+            feature = {
+                "type": "Feature",
+                "properties": {
+                    "class": val,
+                    "name": names[val]
+                },
+                "geometry": geom
+            }
 
-        features["features"].append(feature)
+            features["features"].append(feature)
 
+    # zápis do souboru
     with open("outputs/ndvi-classes.geojson", "w") as out:
         json.dump(features, out)
-    # zápis do souboru

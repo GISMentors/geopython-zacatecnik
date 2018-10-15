@@ -16,9 +16,93 @@ Rasterio pracuje s objekty knihovny `NumPy <http://www.numpy.org/>`_
 tvrdí, že Rasterio se vyslovuje *[raw-STEER-ee-oh]* a měla by práci s
 rastrovými daty udělat více zábavnou a produktivnější.
 
+Vstupní data
+------------
+Pro vstupní data použijeme dataset stažený ze stránky `Earth Explorer <https://apps.sentinel-hub.com/eo-browser/>`_, která zpřístupňuje data ze satelitů programu `Sentinel <http://copernicus.eu/main/sentinels>`_.
+
+* data/B01-2018-05-06.tiff
+* data/B02-2018-05-06.tiff
+* data/B03-2018-05-06.tiff
+* data/B04-2018-05-06.tiff
+* data/B05-2018-05-06.tiff
+* data/B06-2018-05-06.tiff
+* data/B07-2018-05-06.tiff
+* data/B08-2018-05-06.tiff
+* data/B09-2018-05-06.tiff
+* data/B10-2018-05-06.tiff
+* data/B11-2018-05-06.tiff
+* data/B12-2018-05-06.tiff
+* data/B8A-2018-05-06.tiff
+
+
+Otevření datasetu
+-----------------
+
+Rastrový soubor (skupina souborů) - dataset - se otevírá pomocí funce `open` z
+modulu `rasterio` stejně jako jakýkoliv jiný soubor
+
+.. literalinclude:: ../../_static/skripty/rasterio-open.py
+   :language: python
+   :linenos:
+
+.. note:: Zjistěte následující atributy rastrového datasetu:
+
+        * počet kanálů
+        * definici souřadnicového systému
+        * velikost rastrového souboru (počet pixelů)
+        * prostorové rozlišení
+
+Můžeme si ihned nechat vypsat metadata o otevřeném datasetu.
+
+Kanály družice Sentinel 2
+-------------------------
+
+Data z družice Sentinel 2 obsahují světelné spektrum v různých pásmech
+(`B01-BBA`), jak ale
+zjistit, která pásma jsou která? To je popsáno v dokumentaci na stránce
+projektu: https://earth.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial
+
+.. figure:: ../../images/sentinel2-1.png
+
+.. figure:: ../../images/sentinel2-2.png
+
+.. figure:: ../../images/sentinel2-3.png
+        
+        Rozlišení kanálů družice Sentinel-2, https://earth.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial
+
+Zobrazení dat
+-------------
+
+Nejpřímočařejší cesta je přidat novou rastrovou vrstvu do desktopové prohlížečky
+`QGIS <http://qgis.org>`_. Viz `školení pro začáteníky <http://training.gismentors.eu/qgis-zacatecnik/rastrova_data/rastr_import.html>`_
+
+.. figure:: ../../images/green.png
+
+        Zobrzení zeleného kanálu v programu QGIS
+
+.. note:: Dokážete najít rozdíl mezi Českou republikou a Rakouskem?
+
+        Podívejte se na satelitní snímek a zjistěte, zda jste schopni pouhým
+        okem rozlišit Českou prepubliku a Rakousko
+
+.. note:: Zobrazení rastrových dat v okně Jupyter notebooku
+
+        ::
+
+                import PIL.Image
+
+                # we have to convert the data from 16bit to 8bit, so that PIL can work with it
+                bit8_green = (green.read()[0]/256).astype('uint8')
+                PIL.Image.fromarray(bit8_green, "L")
+
+
+.. only:: html
+
+        **Obsah**
+
+
 .. toctree::
-    basic
-    algebra
+    ndvi 
     windows
     reclass
     vectorisation
