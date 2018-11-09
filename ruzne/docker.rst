@@ -55,7 +55,7 @@ vypsáním::
 .. figure:: images/shapely-screen.png
 
 Docker kontejner
-================
+----------------
 
 `Technologie Docker <https://www.docker.com/>`_ nám umožní nakonfigurovat nějaké
 prostředí a spustit ho v samostaném "kontejneru" bez nutnosti instalovat cokoliv
@@ -83,7 +83,7 @@ připravený Jupyter notebook s nainstalovanými závislostmi potřenými pro te
 workshop.
 
 Uložená data
-------------
+~~~~~~~~~~~~
 
 Data jsou dostupná v adresáři ``/data/data``, svůj adrář pro výstupy můžete
 založit v adresáři ``/outputs/``.

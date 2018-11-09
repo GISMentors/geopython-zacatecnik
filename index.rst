@@ -19,26 +19,27 @@
 .. figure:: images/python-logo.png
    :class: small
         
-* :wikipedia:`Python` "baví"
-* Python se "neučí", Python se "píše"
-* Python je dnes asi nejvíce "geopozitivní" programovací jazyk
+#. :wikipedia:`Python` "baví"
+#. Python se "neučí", Python se "píše"
+#. Python je dnes asi nejvíce "geopozitivní" programovací jazyk
 
-  * s množstvím knihoven a nástrojů (`GDAL <http://gdal.org>`_, `PROJ4
-    <https://github.com/OSGeo/proj.4/wiki>`_, `Shapely
-    <http://toblerity.org/shapely/manual.html>`_, `Fiona
-    <http://toblerity.org/fiona/manual.html>`_, `Rasterio
-    <https://github.com/mapbox/rasterio>`_, `MapServer Python
-    MapScript <http://mapserver.org/mapscript/python.html>`_, `GeoServer
-    gsconfig <https://pypi.python.org/pypi/gsconfig>`_, `OWSLib
-    <http://geopython.github.io/OWSLib/>`_, `PyWPS
-    <http://pywps.org/>`_, `pycsw <http://pycsw.org/>`_,
-    ...)
-  * a širokou podpora v deskopech (GRASS GIS - `PyGRASS
-    <http://grass.osgeo.org/grass72/manuals/libpython/pygrass_index.html>`_,
-    Esri ArcGIS - `arcpy
-    <http://resources.arcgis.com/en/help/main/10.1/index.html#//000v000000v7000000>`_,
-    QGIS - `PyQGIS
+  * s množstvím knihoven a nástrojů (`GDAL
+    <https://pypi.org/project/gdal>`_, `PROJ
+    <https://pypi.org/project/pyproj>`_, `Shapely
+    <https://pypi.org/project/shapely/>`_, `Fiona
+    <https://pypi.org/project/fiona/>`_, `Rasterio
+    <https://pypi.org/project/rasterio>`_, `MapServer mapscript
+    <https://pypi.org/project/mapscript>`_, `GeoServer gsconfig
+    <https://pypi.org/project/gsconfig>`_, `OWSLib
+    <https://pypi.org/project/owslib/>`_, `PyWPS
+    <https://pypi.org/project/pywps>`_, `pycsw
+    <https://pypi.org/project/pycsw>`_, ...)
+  * a širokou podpora v deskopech (GRASS GIS - `pygrass
+    <http://grass.osgeo.org/grass76/manuals/libpython/pygrass_index.html>`_,
+    QGIS - `pyqgis
     <http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins.html>`_,
+    Esri ArcGIS - `arcpy
+    <http://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm>`_,
     ...)
 
 .. index::
@@ -67,14 +68,14 @@
    :maxdepth: 2
 
    uvod
-   docker
    python/index
    vektorova_data/index
    rastrova_data/index
    owslib/index
    pyproj/index
+   ruzne/docker
    ruzne/pracovni-prostredi
-              
+
 *******
 Dodatky
 *******
