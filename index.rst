@@ -86,26 +86,25 @@ Související materiály
 Python
 ------
 
-* Kurz PyLadies (česky): http://pyladies.cz/praha/
+* Kurz PyLadies (česky): http://pyladies.cz
 * Učebnice jazyka Python (česky): http://www.root.cz/knihy/ucebnice-jazyka-python
-* Python guide: http://docs.python-guide.org/en/latest
-* Dive into Python: http://www.diveintopython.net
-
+* Python guide: http://docs.python-guide.org
+* Dive into Python: http://diveintopython3.py.cz
+* ...
 
 GeoPython
 ---------
 
 * `Python Scripting for Spatial Data Processing
-  <https://pythonizame.s3.amazonaws.com/media/Book/python-scripting-spatial-data-processing/file/85ebbca2-7c5d-11e5-964d-04015fb6ba01.pdf>`_
+  <http://www.e-booksdirectory.com/details.php?ebook=10854>`_
 * Python GDAL/OGR Cookbook: http://pcjericks.github.io/py-gdalogr-cookbook/
-* Shapely manual: http://toblerity.github.io/shapely/manual.html
+* Shapely manual: https://shapely.readthedocs.io
+* Fiona manual: https://fiona.readthedocs.io
+* Rasterio  manual: https://rasterio.readthedocs.io  
 * "Python Geospatial Development" book, Erik Westra:
-
-  http://www.packtpub.com/python-geospatial-development/book
-* Přednáška GDAL (ČVUT v Praze),
-
-  http://geo.fsv.cvut.cz/~gin/yfsg/Free-Software-GIS-03-gdal-proj.pdf
+  https://www.packtpub.com/application-development/python-geospatial-development-third-edition
 * `Portál FreeGIS <http://freegis.fsv.cvut.cz/gwiki/GDAL#Uk.C3.A1zky_Python_skript.C5.AF>`_
+* ...
 
 Fóra, dokumentace
 -----------------
