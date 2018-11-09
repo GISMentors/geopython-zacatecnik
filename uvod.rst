@@ -15,18 +15,18 @@ pouhým *odsazením* zdrojového textu.
 
 Ve světe geoinformačních technologií je Python velice oblíbený (a
 můžeme říci, že čím dál oblíbenější). Stojí rozkročen mezi jednoduchým
-skriptováním v shellu a pokročilým programováním na takřka systémové
-úrovni v :wikipedia:`jazyce C <C (programovací jazyk)>`. Má v sobě
-něco i z přístupů jazyka :wikipedia:`Java <Java (programovací
-jazyk)>`. Většina existujících knihoven a programů má pro tento jazyk
-svoje rozhraní, jako příklad můžeme uvést `GDAL Python API
-<http://gdal.org/python/>`_.
+skriptováním v :wikipedia:`shellu <Shellový skript>` a pokročilým
+programováním na takřka systémové úrovni v :wikipedia:`jazyce C <C
+(programovací jazyk)>`. Má v sobě něco i z přístupů jazyka
+:wikipedia:`Java <Java (programovací jazyk)>`. Většina existujících
+knihoven a programů má pro tento jazyk svoje rozhraní, jako příklad
+můžeme uvést `GDAL Python API <http://gdal.org/python/>`_.
 
 S Pythonem lze ve světě GIS dojít daleko, níže uvádíme malý přehled
 vybraných nástrojů a jejich napojení na jazyk Python:
 
 **Desktop**
-    * *GRASS GIS*: http://grass.osgeo.org
+    * *GRASS GIS*: http://grass.osgeo.org (více na školení :skoleni:`GRASS GIS pro pokročilé <grass-gis-pokrocily/skripty/index.html>`)
     * *QGIS*: http://qgis.org
     * *ArcGIS*: http://www.arcgis.com
 
