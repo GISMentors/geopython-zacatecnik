@@ -1,5 +1,14 @@
 import fiona
+
 chko = fiona.open('data/chko.shp', 'r')
+print(chko)
+print(chko.driver)
+
+# doporučujeme využít více obvyklou cestu otevírání souborů pomocí příkazu
+# `with`, který je schopný na konci bloku kódu soubor automaticky uzavřít
+#
+# with fiona.open("data/chko.shp", "r") as chko:
+#   print(chko)
 
 from fiona.crs import to_string
 print(to_string(chko.crs))
