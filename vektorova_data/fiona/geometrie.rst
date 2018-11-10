@@ -1,0 +1,80 @@
+Geometrie geoprvků a knihovna Shapely
+-------------------------------------
+
+V této části se blíže seznámíme s prací s geometrií vektorových prvků
+
+Knihovna `Shapely <http://toblerity.org/shapely/>`_ (stejného autora
+jako Fiony) nám umožňuje pracovat s geometrickou složkou popisu
+geoprvků opět ve stylu jazyka Python. Stejně jako Fiona, převádí
+shapely geometrické vlastnosti na objekty typu JSON.
+
+Jak jsme si řekli, Fiona převádí vstupní data z různých formátů na strukturu
+GeoJSON:
+
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 24-25
+
+Shapely
+^^^^^^^
+
+Shapely obsahuje i některé funkce pro modifikaci geometrií, například
+generalizaci, obalovou zónu (buffer) nebo porovnání dvou geometrií. Shapely
+využívá pro manipulaci s geometriemi knihovu GEOS, která je zase
+re-implementací nástroje JTS (Java Topoology Suite) do jazyka C, a používá se
+například v databázové nadstavbě PostGIS. GEOS a JTS sledují specifikaci OGC
+Simple Feature. Knihovna shapely nám umožní řešit například úlohy typu:
+
+* Jak je velký daný prvek?
+* Překrývají se dva prvky?
+* Jak vypadá společný průnik více prvků?
+* Vytvořit obalovou zónu okolo prvku.
+
+
+Pro práci s geometriemi proto potřebujeme převézt data na struktury Shapely:
+
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 26-30
+
+.. code-block:: python
+
+    (-683329.1875, -993228.75, -681265.625, -991528.0)
+
+.. note:: V proststředí Jupyter notebook můžeme geometrii vizualizovat prostě
+    tak, že obsah proměnné s geometrií necháme vypsat, např.::
+
+        geom = shape(chko[54]["geometry"])
+        geom
+
+.. todo:: Příklad vykreslení geometrie pomocí matplotlib https://deparkes.co.uk/2015/03/11/how-to-plot-polygons-in-python/
+
+Nyní se můžeme vypsat celou řadu metadat o deném geometrickém objektu
+
+.. code-block:: python
+
+    print(geom.type)
+    print(geom.area)
+    ...
+
+.. note:: Zjistěte, jaký má naše geometrie obvod a najděte souřadnice jejího
+    centroidu. Jaká metoda se použije pro vytvoření obalové zóny a jak funguje?
+
+Převod geometrie zpět na formát JSON
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Na převod zpět  do formátu JSON použijeme funkci `mapping` z modulu
+`shapely.geometry`
+
+Jako příklad si vytvoříme "ručně" celý nový vektorový objekt
+
+
+.. code-block:: python
+
+    new_feature = {
+        "type": "Feature",
+        "properties": {
+            "NAZEV": "prvek s obalovou zonou 100m",
+        },
+        "geometry": mapping(geom.buffer(100))
+    }
