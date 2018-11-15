@@ -2,20 +2,19 @@ Práce s vektorovými daty
 ========================
 
 Pro práci s vektorovými daty se v jazyce Python tradičně používá
-knihovna `GDAL <http://gdal.org>`_ (resp. její čast označovaná jako
-*OGR*). V poslední době však začíná být populární i knihovna `Shapely
-<http://toblerity.org/shapely/>`_ a především `Fiona
-<http://toblerity.org/fiona/>`_.
+knihovna `GDAL <http://gdal.org>`__ (resp. její čast označovaná jako
+*OGR*). V poslední době však začíná být populární knihovna `Fiona
+<https://github.com/Toblerity/Fiona>f`__ v kombinaci s `Shapely
+<https://github.com/Toblerity/Shapely>`__.
 
-**Fiona** je projekt programátora `Seana Gilliese
-<http://sgillies.net/>`_, který vytvořil vlastní aplikační rozhraní ke
-knihovně OGR, které více odpovídá standardům a postupům objektového
+*Fiona/Shapely* je projekt programátora `Seana Gilliese
+<http://sgillies.net/>`__, který vytvořil vlastní aplikační rozhraní
+ke knihovně OGR, které více odpovídá standardům a postupům objektového
 jazyka Python. OGR je z tohoto pohledu knihovna, pomocí které lze
-provádět v porovnání s Fionou nízkoúrovňovné operace.
+provádět v porovnání s Fionou "nízkoúrovňovné" operace.
 
-.. note::
-        Pro více informací o vektorových datech prosím navštivte náš kurz `Úvod
-        do GIS <open-source-gis/formaty/vektor.html>`_.
+.. note:: Pro více informací o vektorových datech ve školení
+   :skoleni:`Úvod do GIS <open-source-gis/formaty/vektor.html>`.
 
 .. toctree::
    :maxdepth: 2
