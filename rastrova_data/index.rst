@@ -28,3 +28,4 @@ vektorovými daty.
    :maxdepth: 2
 
    rasterio/index
+   gdal/index
