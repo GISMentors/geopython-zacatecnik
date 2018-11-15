@@ -20,15 +20,15 @@ programováním na takřka systémové úrovni v :wikipedia:`jazyce C <C
 (programovací jazyk)>`. Má v sobě něco i z přístupů jazyka
 :wikipedia:`Java <Java (programovací jazyk)>`. Většina existujících
 knihoven a programů má pro tento jazyk svoje rozhraní, jako příklad
-můžeme uvést `GDAL Python API <http://gdal.org/python/>`_.
+můžeme uvést `GDAL Python API <http://gdal.org/python/>`__.
 
 S Pythonem lze ve světě GIS dojít daleko, níže uvádíme malý přehled
 vybraných nástrojů a jejich napojení na jazyk Python:
 
 **Desktop**
     * *GRASS GIS*: http://grass.osgeo.org (více na školení :skoleni:`GRASS GIS pro pokročilé <grass-gis-pokrocily/skripty/index.html>`)
-    * *QGIS*: http://qgis.org
-    * *ArcGIS*: http://www.arcgis.com
+    * *QGIS*: http://qgis.org (`pyqgis <https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/>`__)
+    * *ArcGIS*: http://www.arcgis.com (`arcpy <http://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm>`__)
 
 **Web**
     * *MapServer*: http://mapserver.org
@@ -38,16 +38,16 @@ vybraných nástrojů a jejich napojení na jazyk Python:
     * *GeoDjango*: http://geodjango.org
 
 **Knihovny a nástroje**
-    * *GDAL*: http://gdal.org
-    * *Fiona*: http://toblerity.org/fiona
+    * *GDAL*: http://gdal.org (`Python API <http://gdal.org/python/>`__)
+    * *Fiona*: https://github.com/Toblerity/Fiona
+    * *Shapely*: https://github.com/Toblerity/Shapely
     * *Rasterio*: https://github.com/mapbox/rasterio
     * *PyProj*: https://github.com/jswhit/pyproj
-    * *R (rpy2)*: http://rpy.sourceforge.net
-    * *Shapely*: http://toblerity.org/shapely
+    * *R (rpy2)*: https://rpy2.bitbucket.io
 
 **Databáze**
-    * *PostGIS*: http://postgis.net
-    * *SpatiaLite*: https://www.gaia-gis.it/fossil/libspatialite/index
+    * *PostGIS*: http://postgis.net (https://pypi.org/project/postgis/)
+    * *SpatiaLite*: https://www.gaia-gis.it/fossil/libspatialite/index (https://pypi.org/project/spatialite/)
     * *GeoAlchemy*: http://geoalchemy.org
 
 **Specializované nástroje**
@@ -57,9 +57,12 @@ vybraných nástrojů a jejich napojení na jazyk Python:
 Seznam samozřejmě není úplný či konečný.
 
 V tomto kurzu se zaměříme na úvod do práce s vektorovými a rastrovými
-GIS daty pomocí knihoven :doc:`Fiona <vektorova_data/fiona/index>` a
-:doc:`Rasterio <rastrova_data/rasterio/index>`. Vyzkoušíme si také
-práci s knihovnou pro webové služby OGC :doc:`OWSLib <owslib/index>`.
+GIS daty pomocí knihoven :doc:`Fiona/Shapely
+<vektorova_data/fiona/index>` a :doc:`Rasterio
+<rastrova_data/rasterio/index>`. Vyzkoušíme si také práci s knihovnou
+pro webové služby OGC :doc:`OWSLib <owslib/index>`. Okrajově se
+dotkneme práce se souřadnicovými systémy pomocí knihovny
+:doc:`pyproj <pyproj/index>`.
 
 Cílem kurzu není přirozeně kompletní pokrytí problematiky GIS a jazyka
 Python, nýbrž poskytnutí přehledu o nejčastěji používaných základních
