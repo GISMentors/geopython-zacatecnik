@@ -41,7 +41,7 @@ Schéma vrstvy - definice typu geometrie a jednotlivých atributových polí:
    >>> l.schema[4].name
    'NAZEV'
 
-Vypsání názvů geoprvky (atribut ``NAZEV``):
+Vypsání názvu geoprvku (atribut ``NAZEV``):
 
 .. code-block:: python
 

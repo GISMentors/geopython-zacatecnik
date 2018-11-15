@@ -4,10 +4,9 @@ Příklad vytvoření nové vrstvy
 Následující příklad ukazuje přístup k vektorovým datům *od A do Z*,
 tedy vytvoření nové datové vrstvy, nastavení metadat, vytvoření a
 zápis nového geoprvku, uložení změn do souboru. To celé by šlo vykonat
-pomocí výše zmíněné knihovny *Fiona*, viz školení :skoleni:`GeoPython
-pro začátečníky <geopython-zacatecnik/vektorova_data/fiona>`,
-několikanásobně jednodušeji. OGR přistupuje k datům na nižší úrovni,
-což může být někdy výhodnější.
+pomocí výše zmíněné knihovny :ref:`Fiona <fiona>` několikanásobně
+jednodušeji. OGR přistupuje k datům na nižší úrovni, což může být
+někdy výhodnější.
 
 .. code-block:: python
 
