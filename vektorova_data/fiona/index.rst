@@ -34,7 +34,14 @@ souborů. Pro práci s geometriemi je potřeba data "dostat" do knihovny
 `Shapely <https://github.com/Toblerity/Shapely>`__, o které je další
 část tohoto tutoriálu.
 
-.. task:: Jak se projeví nově postavená dálnice na území CHKO České středohoří?
+**Užitečné odkazy**
+
+   * `dokumentace knihovny Fiona <https://fiona.readthedocs.io/en/latest/>`__
+   * `dokumentace knihovny Shapely <https://shapely.readthedocs.io/en/latest/>`__
+  
+.. task::
+
+   Jak se projeví nově postavená dálnice na území CHKO České středohoří?
 
    Vytvořte mapu území CHKO České středohoří, které bude zasaženo
    novou dálnicí D8 z Prahy do Drážďan.
