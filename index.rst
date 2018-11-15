@@ -22,8 +22,7 @@
 #. :wikipedia:`Python` "baví"
 #. Python se "neučí", Python se "píše"
 #. Python je dnes asi nejvíce "geopozitivní" programovací jazyk
-
-  * s množstvím knihoven a nástrojů (`GDAL
+    s množstvím knihoven a nástrojů (`GDAL
     <https://pypi.org/project/gdal>`_, `PROJ
     <https://pypi.org/project/pyproj>`_, `Shapely
     <https://pypi.org/project/shapely/>`_, `Fiona
@@ -34,7 +33,8 @@
     <https://pypi.org/project/owslib/>`_, `PyWPS
     <https://pypi.org/project/pywps>`_, `pycsw
     <https://pypi.org/project/pycsw>`_, ...)
-  * a širokou podpora v deskopech (GRASS GIS - `pygrass
+    
+    a širokou podpora v deskopech (GRASS GIS - `pygrass
     <http://grass.osgeo.org/grass76/manuals/libpython/pygrass_index.html>`_,
     QGIS - `pyqgis
     <http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins.html>`_,
