@@ -17,8 +17,8 @@ Nyní můžeme zjistit, kolik prvků je v datasetu obsaženo
 
     print("Počet prvků: ", len(chko))
 
-Sekvenční zpracování prvků
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Sekvenční čtení prvků
+^^^^^^^^^^^^^^^^^^^^^
 
 Prvky v datovém souboru můžeme procházet postupně (sekvenčně):
 
@@ -26,15 +26,20 @@ Prvky v datovém souboru můžeme procházet postupně (sekvenčně):
    :language: python
    :lines: 19-20
 
-anebo si vybrat některý z geoprvků (náhodný přístup) a dále s ním
-pracovat:
+Náhodné čtení prvků
+^^^^^^^^^^^^^^^^^^^
+           
+Anebo si můžeme vybrat některý z geoprvků (náhodný přístup) a dále s
+ním pracovat:
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
    :lines: 22
 
-.. note:: Vyfiltrujte prvky podle vlastnosti
+----
 
-    Vyfiltruje všechna chráněná území, která se nacházejí v Českém středohoří.
-    O kolik prvků se jedná?
+.. task:: 
+
+   Vyberte všechna chráněná území, která se nacházejí v Českém
+   středohoří. O kolik prvků se jedná?
 

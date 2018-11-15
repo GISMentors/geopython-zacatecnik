@@ -1,12 +1,13 @@
 Geometrie geoprvků a knihovna Shapely
 -------------------------------------
 
-V této části se blíže seznámíme s prací s geometrií vektorových prvků
+V této části se blíže seznámíme jak pracovat s geometrií vektorových
+prvků.
 
-Knihovna `Shapely <http://toblerity.org/shapely/>`_ (stejného autora
-jako Fiony) nám umožňuje pracovat s geometrickou složkou popisu
+Knihovna `Shapely <https://github.com/Toblerity/Shapely>`__ (stejného
+autora jako Fiony) nám umožňuje pracovat s geometrickou složkou popisu
 geoprvků opět ve stylu jazyka Python. Stejně jako Fiona, převádí
-shapely geometrické vlastnosti na objekty typu JSON.
+Shapely geometrické vlastnosti na objekty typu JSON.
 
 Jak jsme si řekli, Fiona převádí vstupní data z různých formátů na strukturu
 GeoJSON:
@@ -19,19 +20,20 @@ Shapely
 ^^^^^^^
 
 Shapely obsahuje i některé funkce pro modifikaci geometrií, například
-generalizaci, obalovou zónu (buffer) nebo porovnání dvou geometrií. Shapely
-využívá pro manipulaci s geometriemi knihovu GEOS, která je zase
-re-implementací nástroje JTS (Java Topoology Suite) do jazyka C, a používá se
-například v databázové nadstavbě PostGIS. GEOS a JTS sledují specifikaci OGC
-Simple Feature. Knihovna shapely nám umožní řešit například úlohy typu:
+generalizaci, obalovou zónu (buffer) nebo porovnání dvou
+geometrií. Shapely využívá pro manipulaci s geometriemi knihovu GEOS,
+která je zase re-implementací nástroje JTS (Java Topoology Suite) do
+jazyka C, a používá se například v databázové nadstavbě PostGIS. GEOS
+a JTS odpovídají specifikaci OGC Simple Feature. Knihovna Shapely nám
+umožní řešit například úlohy typu:
 
-* Jak je velký daný prvek?
+* Jakou výměru má plošný prvek?
 * Překrývají se dva prvky?
 * Jak vypadá společný průnik více prvků?
 * Vytvořit obalovou zónu okolo prvku.
 
-
-Pro práci s geometriemi proto potřebujeme převézt data na struktury Shapely:
+Pro práci s geometriemi proto potřebujeme převézt data na struktury
+Shapely:
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
@@ -41,15 +43,16 @@ Pro práci s geometriemi proto potřebujeme převézt data na struktury Shapely:
 
     (-683329.1875, -993228.75, -681265.625, -991528.0)
 
-.. note:: V proststředí Jupyter notebook můžeme geometrii vizualizovat prostě
-    tak, že obsah proměnné s geometrií necháme vypsat, např.::
+.. note:: V prostředí Jupyter notebook můžeme geometrii vizualizovat
+    prostě tak, že obsah proměnné s geometrií necháme vypsat, např.::
 
         geom = shape(chko[54]["geometry"])
         geom
 
-.. todo:: Příklad vykreslení geometrie pomocí matplotlib https://deparkes.co.uk/2015/03/11/how-to-plot-polygons-in-python/
+.. todo:: Příklad vykreslení geometrie pomocí matplotlib
+          https://deparkes.co.uk/2015/03/11/how-to-plot-polygons-in-python/
 
-Nyní se můžeme vypsat celou řadu metadat o deném geometrickém objektu
+Nyní se můžeme vypsat celou řadu metadat o daném geometrickém objektu
 
 .. code-block:: python
 
@@ -57,9 +60,13 @@ Nyní se můžeme vypsat celou řadu metadat o deném geometrickém objektu
     print(geom.area)
     ...
 
-.. note:: Zjistěte, jaký má naše geometrie obvod a najděte souřadnice jejího
-    centroidu. Jaká metoda se použije pro vytvoření obalové zóny a jak funguje?
+.. task:: Zjistěte, jaký má naše geometrie obvod a najděte souřadnice
+   jejího centroidu. Jaká metoda se použije pro vytvoření obalové
+   zóny a jak funguje?
 
+.. note:: Kompletní ukázkový příklad na využití knihoven Fiona a
+   Shapely `zde <../../_static/skripty/fiona-example.py>`__.
+   
 Převod geometrie zpět na formát JSON
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -1,15 +1,16 @@
 Práce s datových zdrojem
 ------------------------
 
-V této části si blíže popíšeme, jak otevřít a načíst vektorový soubor a jak
-manipulovat s jednotlivými objekty.
+V této části si blíže popíšeme, jak otevřít a načíst vektorový soubor
+a jak manipulovat s jednotlivými objekty (tj. vektorovými geoprvky -
+*features*).
 
 Datovou vrstvu otevřeme pomocí funkce ``open()``, ta vytvoří objekt
 tvz. *kolekce* geoprvků:
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
-   :lines: 0-11
+   :lines: 1-11
                       
 
 Následně můžeme zjišťovat vlastnosti této kolekce geoprvků, viz
@@ -98,7 +99,7 @@ kód dále využit, v našem případě se jedná o :epsg:`4326`.
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
-   :lines: 13-15
+   :lines: 13-14
 
 .. code-block:: python
 
