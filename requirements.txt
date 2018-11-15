@@ -1,0 +1,16 @@
+Fiona
+GDAL
+ipython
+jsonschema
+jupyter
+matplotlib
+notebook
+numpy
+OWSLib
+Pillow
+pyproj
+rasterio==1.0a12
+requests
+scipy
+Shapely
+nbstripout
