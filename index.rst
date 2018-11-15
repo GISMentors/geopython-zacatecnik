@@ -73,6 +73,7 @@
    rastrova_data/index
    owslib/index
    pyproj/index
+   geodjango/index
    ruzne/docker
    ruzne/pracovni-prostredi
 

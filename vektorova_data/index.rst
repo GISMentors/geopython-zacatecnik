@@ -21,3 +21,4 @@ provádět v porovnání s Fionou "nízkoúrovňovné" operace.
 
    fiona/index
    ogr/index
+   geopandas/index
