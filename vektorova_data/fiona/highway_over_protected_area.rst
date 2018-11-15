@@ -13,16 +13,17 @@ Dálnice přes České středohoří
 
 Potřebné kroky pro vyřešení úlohy
 
-#. Otevření obou datových zdrojů
-#. Převod na společný souřadnicový systém
+#. Otevření obou datových zdrojů (:file:`highways.geojson` a :file:`chko.shp`)
+#. Převod na společný souřadnicový systém (první datový zdroj je v :epsg:`4326`, druhý v :epsg:`5514`)
 #. Vytvoření obalové zóny okolo dálnic
 #. Zjištění průniku všech geometrií
 
 
 Načtení datových zdrojů
 ^^^^^^^^^^^^^^^^^^^^^^^
+
 Nejprve oba soubory otevřeme pomocí klasického `fiona.open()`. Použijeme buď
-klauzuli `with` nebo nesmíme nakonec zapomenout sobory uzavřít.
+klauzuli `with` nebo nesmíme nakonec zapomenout soubory uzavřít.
 
 .. literalinclude:: ../../_static/skripty/highway-example.py
    :language: python
@@ -31,21 +32,23 @@ klauzuli `with` nebo nesmíme nakonec zapomenout sobory uzavřít.
 
 Společný souřadnicový systém
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Data jak můžeme ověřit, data jsou v různých souřadnicových systémech.
+
+Data, jak můžeme ověřit, jsou v různých souřadnicových systémech.
 
 .. task:: Zjistěte, v jakých souřadnicových systémech jsou dálnice a chráněné
         krajinné oblasti.
 
-Pro další práci proto musíme data převézt na jednotný souřadnicový systém.
+Pro další práci musíme data převést do společného souřadnicového
+systému.
 
-Na transformaci jednotlivých geometrí můžeme použít např. funkci
-`trasnform_geom`
+Pro transformaci vektorových prvků (resp. jejich geometrií) můžeme
+použít funkci `trasnform_geom()`.
 
 .. code-block:: python
 
         from fiona.transform import transform_geom
 
-        wgs84 = "EPSG:4326"
+        wgs84 = "epsg:4326"
         jtsk = {"init": "epsg:5514"}
 
         geom_transformed = transform_geom(wgs84, jtsk, feature["geometry"])
@@ -72,7 +75,7 @@ dálnice D8, transformujeme geometrii na S-JTSK a vytvoříme obalovou zónu:
         jazyce C. Pokud během instalace byla dostupná knihovan GEOS a pokud byl dostupný
         kompilátor jazyka C, jsou tyto optimalizace automaticky zavedeny.
 
-        Ověřit jejch přítomnost, případně je explicitně povolit, můžeme modulem
+        Ověřit jejich přítomnost, případně je explicitně povolit, můžeme modulem
         `speedups`::
 
                 >>> from shapely import speedups
@@ -136,28 +139,32 @@ geometrii.
 
 Zápis do souboru - GeoJSON
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-Zapsat soubor ve formátu GeoJSON je od dost jednodušší, protože se nemusíme
-spoléhat na (relativně) komplikovanou funkci `fiona.write`, ale můžeme data
-zapsat napřímo pomocí modulu `json <https://docs.python.org/3/library/json.html>`_.
+
+Zapsat soubor ve formátu GeoJSON je od dost jednodušší, protože se
+nemusíme spoléhat na (relativně) komplikovanou funkci `fiona.write()`,
+ale můžeme data zapsat napřímo pomocí modulu :python3:`json`.
 
 To nám samozřejmě umožňuje nedodržet stritkní schéma atributů, což může a nemusí
 být výhoda.
 
-Mějte na paměti, že podle `GeoJSON specifikace <https://tools.ietf.org/html/rfc7946#section-4>`_ se předpokládá, že souřadnicovým systémem je `WGS84 (EPSG:4326) <http://epsg.io/4326>`_
+Mějte na paměti, že podle `GeoJSON specifikace
+<https://tools.ietf.org/html/rfc7946#section-4>`_ se předpokládá, že
+souřadnicovým systémem je :epsg:`WGS84 <4326>`.
 
-.. note:: `Existuje i způsob 
+.. note:: `Existuje i způsob
            <http://geojson.org/geojson-spec#coordinate-reference-system-objects>`_,
            jak do GeoJSONu uložit geometrie v jiných souřadnicový
-           systémech a i když s ním některé softwary počítají, do finální specifikace se
-           tento z působ nedostal.
+           systémech a i když s ním některé softwary počítají, do
+           finální specifikace se tento způsob nedostal.
 
 .. task:: Zapište výstup do formátu GeoJSON
 
         Vytvořte část skriptu, která převede geometrie na WGS84 a zapíše
         výsledek do souboru GeoJSON.
 
-.. tip:: Pro převod použijte funkci `transform_geom`, povinný "obal" seznamu
-        vektorových objektu (`features`) vypadá pro formát GeoJSON následovně.
+.. tip:: Pro převod použijte funkci `transform_geom()`, povinný "obal"
+        seznamu vektorových prvků (`features`) vypadá pro formát
+        GeoJSON následovně.
 
         .. code-block:: python 
         
@@ -183,8 +190,9 @@ podívat <../../_static/skripty/highway-example.py>`_.
 Další atributy
 ^^^^^^^^^^^^^^
 
-Někdy je výhodné pro další práci s vektorovými daty, uložit některé atributy
-geometrie jako databázové atributy, např. rozlohu plochy nebo délku linie.
+Někdy je výhodné pro další práci s vektorovými daty, uložit vlastnosti
+geometrie do atributové tabulky, např. rozlohu plochy nebo délku
+linie.
 
 .. task:: Uložení dalších atributů
 
@@ -197,11 +205,12 @@ geometrie jako databázové atributy, např. rozlohu plochy nebo délku linie.
 
 Optimalizace (diskuse)
 ^^^^^^^^^^^^^^^^^^^^^^
+
 Skript je ve své podstatě celkem neefektivní a stálo by za to popřemýšlet o jeho
 optimalizaci, aby proběhl rychleji:
 
 #. Dálniční těleso je reprezentováno dvěmi liniemi, stálo by za zvážení použít
    pouze jednu z nich
-#. Buffer by se mohl spojit pomocí `cascaded_union` do jedné geometrie, tím by
-   se měl následný intersekt zrychlit
+#. Buffer by se mohl spojit pomocí `cascaded_union()` do jedné
+   geometrie, tím by se měl následný průnik zrychlit
 #. ...

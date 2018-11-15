@@ -5,12 +5,6 @@ Vektorizace rastrových dat
 
 Převod rastrových na vektorová data - ohraničení pixelů o stejné hodnotě.
 
-Jelikož používáme `Numpy <http://www.numpy.org/>`_ struktury, můžeme
-pro tuto konverzi využít více nástrojů.
-
-Vektorizace pomocí rasterio
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 Modul `rasterio.features
 <https://rasterio.readthedocs.io/en/latest/api/rasterio.features.html>`__
 obsahuje nástroje pro vektorizaci rastrových dat. K dispozici je

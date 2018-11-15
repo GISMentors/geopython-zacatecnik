@@ -20,23 +20,24 @@ Operátory jsou obvyklé matematické, statistické, relační a logické operá
 
 Funkce se dělí na:
 
-    Lokální
+    *Lokální*
         na individuální buňce, nová hodnota vzniká z jedné rastrové buňky jedné nebo více vrstev.
-    Fokální
+    *Fokální*
         v definovaném okolí, nová hodnota vzniká z definovaného okolí buňky
         (např. jako výsledek operace nad "oknem" 3x3 pixely)
-    Zonální
+    *Zonální*
         na specifické oblasti, nová hodnota vzniká ze zóny definované v jiné vrstvě.
-    Globální
+    *Globální*
         používají se všechny buňky informační vrstvy (např. analýzy povrchů).
 
-RasterIO využívá pro uložení dat strukturu `NumPy <http://www.numpy.org/>`_, což
-nám umožňuje s těmito datovými strukturami pracovat standardním způsobem a
-využívat i pokročilé nástroje pro analýzu obrazu, jako je `Sciktit Image
+Jak již bylo uvedeno, tak Rasterio využívá pro uložení dat strukturu
+`NumPy <http://www.numpy.org/>`_, což nám umožňuje s těmito datovými
+strukturami pracovat standardním způsobem a využívat i pokročilé
+nástroje pro analýzu obrazu, jako je `Sciktit Image
 <http://scikit-image.org/>`_, `Matplot lib
 <https://matplotlib.org/users/image_tutorial.html>`_, `OpenCV
-<https://docs.opencv.org/3.0-last-rst/doc/py_tutorials/py_tutorials.html>`_ a
-další.
+<https://docs.opencv.org/3.0-last-rst/doc/py_tutorials/py_tutorials.html>`_
+a další.
 
 V našem příkladu si ukážeme jednoduchou analýzu - výpočet indexu NDVI ze
 satelitních dat.
@@ -45,14 +46,17 @@ satelitních dat.
 NDVI
 ====
 
-`Normalizovaný vegetační index <https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index>`_
- je jednoduchý grafický indikátor, který ukazuje na přítomnost zelené vegetace v
- daném objeku (snímku). Tento index se obyčejně, ale nikoliv výhradně, používá
- pro zpracování satelitních dat. 
+:wikipedia-en:`Normalizovaný vegetační index
+<Normalized_difference_vegetation_index>` je jednoduchý grafický
+indikátor, který ukazuje na přítomnost zelené vegetace v daném objektu
+(snímku). Tento index se obyčejně, ale nikoliv výhradně, používá pro
+zpracování satelitních dat.
 
  .. figure:: ../images/ndvi-graph.png
 
-        Graf absorbce červeného a infračerveného spektra, zdroj `Wikipedia NDVI <https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index#/media/File:Par_action_spectrum.gif>`_
+        Graf absorbce červeného a infračerveného spektra, zdroj
+        `Wikipedia NDVI
+        <https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index#/media/File:Par_action_spectrum.gif>`_
 
 Chlorofyl zelených rostlin absorbuje červené světlo (od 0.4 do 0.7 µm).
 Buněčná struktura naopak odráží infračervené spektrum (od 0.7 do 1.1 µm). Index
@@ -115,8 +119,9 @@ Výsledný soubor můžete prohlédnout např. v QGIS nebo v Jupyter Notebooku::
     
     Výsledný soubor s NDVI indexem.
 
-.. note:: Zkuste sami vypočítat Water index
+.. task:: Zkuste sami vypočítat Water index
         
-        Pokuste se podle stejného postupu vypočítat tzv. *Water index*. Jaké
-        kanály použít najdete např. ve wikipedii.
+   Pokuste se podle stejného postupu vypočítat tzv. *Water
+   index*. Jaké kanály použít najdete např. na
+   :wikipedia-en:`wikipedii <Normalized difference water index>`.
 

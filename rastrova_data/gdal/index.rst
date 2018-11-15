@@ -1,30 +1,11 @@
 Knihovna GDAL
 =============
 
-Rastrová data mohou být v porovnání s vektorovými daty často řádově
-objemnější. Tomu je třeba přizpůsobit práci s nimi. Rastrová data jsou
-většinou uspořádané do matice hodnot v číselné podobě.
-
-.. note::
-   
-   Více k rastrové reprezentaci ve :skoleni:`školení Úvod do GIS
-   <open-source-gis/formaty/uvod.html>`.
-
 Pro práci s rastrovými geodaty se "tradičně" používá knihovna `GDAL
-<http://gdal.org>`_. Knihovna GDAL je nízkoúrovňová, přistupuje k
-datům pokud možno efektivním způsobem. Alternativou ke knihovně GDAL
-je `Rasterio <https://github.com/mapbox/rasterio>`_, která je nad
-touto knihovnou postavena. Jedná se o jakousi analogii ke knihovnám
-OGR a Fiona pro práci s vektorovými daty, viz kapitola
-:doc:`../vektorova_data/index`.
-
-.. note::
-
-    Téma *Rasterio* je popsáno ve školení :skoleni:`GeoPython pro
-    začátečníky <geopython-zacatecnik/rastrova_data/rasterio/>`.
-
-V současnosti knihovna GDAL podporuje více než `140 rastrových GIS
-formátů <http://gdal.org/formats_list.html>`_.
+<http://gdal.org>`__. Knihovna GDAL je nízkoúrovňová, přistupuje k
+datům pokud možno efektivním způsobem. V současnosti knihovna GDAL
+podporuje více než `140 rastrových GIS formátů
+<http://gdal.org/formats_list.html>`__.
 
 Datový model
 ------------
@@ -224,3 +205,6 @@ rastrového souboru.
 .. figure:: images/chko
            
    Výsledek rasterizace CHKO.
+
+.. tip:: Porovnejte s příkladem pro knihovnu :ref:`Rasterio
+   <rasterio-vectorise>`.

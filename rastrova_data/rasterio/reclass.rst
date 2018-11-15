@@ -5,11 +5,12 @@
 Interpretrace NDVI
 ==================
 
-Jedním z možných postupů je reklasifikace vstupních dat do více pro uživatele
-přístupných skupin.
+Jedním z možných postupů je reklasifikace vstupních dat do uživatelem
+definovaných tříd.
 
-Reklasifikací se přiřadí nové hodnoty vstupním datům,  v našem příkadě bychom
-rádi identifikovali vodní tělesa, ostatní data nás nezajímají.
+Reklasifikací se přiřadí nové hodnoty vstupním datům, v našem příkadě
+bychom rádi identifikovali vodní tělesa, ostatní objekty nás
+nezajímají.
 
 Jak jsme si řekli výše, vodní tělesa by měly mít hodnotu NDVI okolo 0, shodněme
 se, na hodnotách `<-0.1; 0.1>`. Výsledný rastrový soubor bude obsahovat 2
@@ -20,18 +21,20 @@ hodnoty: 1 a `NULL` (tedy žádná data), která bude reprezentována číslem -
 
 .. figure:: ../images/water.png
     
-    Výsledný soubor s 1 - voda, -9999 - NODATA.
+    Výsledný soubor s hodnotami 1 - voda, -9999 - NODATA.
 
-.. note:: Hustá vegetace a další kategorie
+.. note:: Takováto identifikace vodních ploch je samozřejmě velmi
+   nepřesná. V DPZ se používají většinou jiné techniky.
 
-        Pokuste se podobným způsobem do snímku přidat kategorii s hustou
-        vegetací a další kategorie, podle klíče:
+.. task:: 
+
+   Pokuste se podobným způsobem do snímku přidat kategorii s hustou
+   vegetací a další kategorie, podle klíče:
 
         1. voda
         2. hustá vegetace
         3. zástavba
         4. ...
-
 
 Rozdělíme NDVI do tříd podle jejich hodnoty. NDVI nabývá hodnot od -1
 do 1, rozdělíme je na 3 skupiny "od oka":

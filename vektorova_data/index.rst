@@ -4,7 +4,7 @@ Práce s vektorovými daty
 Pro práci s vektorovými daty se v jazyce Python tradičně používá
 knihovna `GDAL <http://gdal.org>`__ (resp. její čast označovaná jako
 *OGR*). V poslední době však začíná být populární knihovna `Fiona
-<https://github.com/Toblerity/Fiona>f`__ v kombinaci s `Shapely
+<https://github.com/Toblerity/Fiona>`__ v kombinaci s `Shapely
 <https://github.com/Toblerity/Shapely>`__.
 
 *Fiona/Shapely* je projekt programátora `Seana Gilliese

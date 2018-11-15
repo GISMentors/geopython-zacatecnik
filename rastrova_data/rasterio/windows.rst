@@ -29,10 +29,10 @@ Příklad načtení dat::
 Bloky
 ^^^^^
 
-Rastrové soubory ukládají většinou data po blocích pokud chcete využívat okna
-pro čtení, je efektivní, aby velikost oken odpovídala velikosti bloků.
-Následujícím způsobem můžeme zpracovat první kanál našeho rastrového souboru po
-blocích::
+Rastrové soubory ukládají většinou data po blocích. Pokud chcete
+využívat okna pro čtení, je efektivní, aby velikost oken odpovídala
+velikosti bloků.  Následujícím způsobem můžeme zpracovat první kanál
+našeho rastrového souboru po blocích::
 
     with rasterio.open('data/B04-2018-05-06.tiff') as red:
         for ji, window in red.block_windows(1):
@@ -40,7 +40,8 @@ blocích::
             print(r.shape)
 
 To jakým způsobem jsou bloky pro rastrový soubor definovány můžete
-zjistit z příkazové řádky nástrojem ``gdalinfo``.
+zjistit z příkazové řádky nástrojem ``gdalinfo`` (součást knihovny
+GDAL).
 
 .. code-block:: bash
 
@@ -54,22 +55,19 @@ zjistit z příkazové řádky nástrojem ``gdalinfo``.
     ...
     Band 1 Block=3117x8 Type=UInt16, ColorInterp=Gray
 
-Vidíme, že náš rastr používá bloky o velikosti 3117×8 pixel - tedy 8 řádků.
-Někdy může být efektivnější celý rastr převzorkovat, než se pustíte do jeho
-blok-po-bloku processingu. To můžeme udělat např. 
-nástrojem knihovny GDAL `gdalwarp` (viz školení
-:skoleni:`Úvod Open Source GIS <open-source-gis/knihovny/gdal.html#prikazy-pro-praci-s-rastrovymi-daty>`).
+Vidíme, že náš rastr používá bloky o velikosti 3117×8 pixel - tedy 8
+řádků.  Někdy může být efektivnější celý rastr převzorkovat, než se
+pustíte do jeho blok-po-bloku processingu. To můžeme udělat např.
+nástrojem knihovny GDAL `gdalwarp` (viz školení :skoleni:`Úvod Open
+Source GIS
+<open-source-gis/knihovny/gdal.html#prikazy-pro-praci-s-rastrovymi-daty>`).
 
 .. code-block:: bash
 
     gdalwarp -r mode -co TILED=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 B04-2018-05-06.tiff outputs/B04-2018-05-06-256block.tiff
-
-    Creating output file that is 1287P x 831L.
-    Processing input file ../../data/B04-2018-05-06.tiff.
-    0...10...20...30...40...50...60...70...80...90...100 - done.
-
+    ...
+    
     gdalinfo outputs/B04-2018-05-06-256block.tiff
-
     ...
     Band 1 Block=256x256 Type=UInt16, ColorInterp=Gray
 
