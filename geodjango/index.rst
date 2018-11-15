@@ -42,12 +42,17 @@ databáze. Následující tabulka ukazuje další potřebné knihovny, pro různ
 databází:
 
 
-Databáze | Požadované knihovny | Verze databází | Poznámka
--------- | -------------------- | ------------------ | ------
-PostgreSQL | GEOS, GDAL, PROJ.4, PostGIS | 9.3+  | Vyžaduje PostGIS.
-MySQL | GEOS, GDAL | 5.5+ | Není kompatibilní s OGC; omezená funkcionalita
-Oracle | GEOS, GDAL | 12.1+ | Express Edition (XE) není podporována
-SQLite | GEOS, GDAL, PROJ.4, SpatiaLite 	3.6.+ | Vyžaduje SpatiaLite 4.0+
++------------+--------------------------------+----------------+------------------------------------------------+
+| Databáze   | Požadované knihovny            | Verze databází | Poznámka                                       |
++============+================================+================+================================================+
+| PostgreSQL | GEOS, GDAL, PROJ.4, PostGIS    | 9.3+           | Vyžaduje PostGIS.                              |
++------------+--------------------------------+----------------+------------------------------------------------+
+| MySQL      | GEOS, GDAL                     | 5.5+           | Není kompatibilní s OGC; omezená funkcionalita |
++------------+--------------------------------+----------------+------------------------------------------------+
+| Oracle     | GEOS, GDAL                     | 12.1+          | Express Edition (XE) není podporována          |
++------------+--------------------------------+----------------+------------------------------------------------+
+| SQLite     | GEOS, GDAL, PROJ.4, SpatiaLite | 3.6.+          | Vyžaduje SpatiaLite 4.0+                       |
++------------+--------------------------------+----------------+------------------------------------------------+
 
 GeoDjango dále závisí na následujících knihovnách
 
