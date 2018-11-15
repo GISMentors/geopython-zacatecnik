@@ -1,6 +1,5 @@
 Dálnice přes České středohoří
 -----------------------------
-
 .. note:: Nová dálnice přes CHKO České středohoří
 
         Najděte oblasti, kterých se bezprostředně dotkla výstavba dálnice D8 z
@@ -22,7 +21,6 @@ Potřebné kroky pro vyřešení úlohy
 
 Načtení datových zdrojů
 ^^^^^^^^^^^^^^^^^^^^^^^
-
 Nejprve oba soubory otevřeme pomocí klasického `fiona.open()`. Použijeme buď
 klauzuli `with` nebo nesmíme nakonec zapomenout sobory uzavřít.
 
@@ -130,3 +128,57 @@ geometrii.
 
 Zápis do souboru - GeoJSON
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+Zapsat soubor ve formátu GeoJSON je od dost jednodušší, protože se nemusíme
+spoléhat na (relativně) komplikovanou funkci `fiona.write`, ale můžeme data
+zapsat napřímo pomocí modulu `json <https://docs.python.org/3/library/json.html>`_.
+
+To nám samozřejmě umožňuje nedodržet stritkní schéma atributů, což může a nemusí
+být výhoda.
+
+Mějte na paměti, že podle `GeoJSON specifikace <https://tools.ietf.org/html/rfc7946#section-4>`_ se předpokládá, že souřadnicovým systémem je `WGS84 (EPSG:4326) <http://epsg.io/4326>`_
+
+.. note:: `Existuje i způsob 
+           <http://geojson.org/geojson-spec#coordinate-reference-system-objects>`_,
+           jak do GeoJSONu uložit geometrie v jiných souřadnicový
+           systémech a i když s ním některé softwary počítají, do finální specifikace se
+           tento z působ nedostal.
+
+.. note:: Zapište výstup do formátu GeoJSON
+
+        Vytvořte část skriptu, která převede geometrie na WGS84 a zapíše
+        výsledek do souboru GeoJSON.
+
+.. tip:: Pro převod použijte funkci `transform_geom`, povinný "obal" seznamu
+        vektorových objektu (`features`) vypadá pro formát GeoJSON následovně.
+
+        .. code-block:: python 
+        
+                {
+                    "type": "FeatureCollection",
+                    "features": [
+                            {
+                                "type":"Feature",
+                                "properties": {...},
+                                "geometry": {...}
+                            },
+                            {
+                                ...
+                            },
+                                ...
+
+                    ]
+                }
+
+Pokud je pro vás úloha příliš komplikovaná, můžete se na `celý skript samozřejmě
+podívat <../../_static/skripty/highway-example.py>`_.
+
+Další atributy
+^^^^^^^^^^^^^^
+
+Někdy je výhodné pro další práci s vektorovými daty, uložit některé atributy
+geometrie jako databázové atributy, např. rozlohu plochy nebo délku linie.
+
+.. note:: Uložení dalších atributů
+
+        Upravíte skript tak, aby výstup obsahoval také celkovou zasaženou plochu
+        (m2) CHKO?
