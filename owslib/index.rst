@@ -19,7 +19,7 @@ prostřednictvím souboru ve formátu XML. Požadavek může mít buď podobu
 speciálního URL, kdy jednotlivé paramery jsou od sebe odděleny znakem
 ``&``, například::
 
-    http://server/sluzba/request=GetCapabilies&service=WMS
+    http://server/sluzba?request=GetCapabilies&service=WMS
 
 V tomto případě posíláme 2 parametry: ``request`` má hodnotu
 ``GetCapabilities`` a parametr ``service`` má hodnotu ``WMS``.
