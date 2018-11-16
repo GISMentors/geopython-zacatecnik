@@ -1,9 +1,9 @@
 .. _rasterio-reklasifikace:
 .. _reklasifikace:
 
-==================
-Interpretrace NDVI
-==================
+=================
+Interpretace NDVI
+=================
 
 Jedním z možných postupů je reklasifikace vstupních dat do uživatelem
 definovaných tříd.
