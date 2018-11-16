@@ -49,7 +49,7 @@ použít funkci `trasnform_geom()`.
         from fiona.transform import transform_geom
 
         wgs84 = "epsg:4326"
-        jtsk = {"init": "epsg:5514"}
+        jtsk = {"init": "epsg:5514", "towgs84": "570.8,85.7,462.8,4.998,1.587,5.261,3.56"}
 
         geom_transformed = transform_geom(wgs84, jtsk, feature["geometry"])
 
