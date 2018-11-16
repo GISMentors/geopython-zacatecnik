@@ -1,7 +1,7 @@
 .. _fiona:
 
-Knihovna Fiona
-==============
+Knihovna Fiona/Shapely
+======================
 
 `Knihovna Fiona <https://github.com/Toblerity/Fiona>`__ jako nadstavba
 nad knihovnou *OGR* (součást knihovny `GDAL <http://gdal.org>`__)
