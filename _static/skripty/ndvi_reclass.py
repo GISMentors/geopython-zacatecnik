@@ -3,6 +3,8 @@ import rasterio
 with rasterio.open('outputs/ndvi.tif') as ndvi:
     water = ndvi.read()
 
+limit = 0.1
+
 water[water < -1*limit] = -9999
 water[water > limit] = -9999
 water[(water >= -1.0*limit) & (water <= 0.1)] = 1
