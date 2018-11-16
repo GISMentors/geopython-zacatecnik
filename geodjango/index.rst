@@ -1,13 +1,15 @@
 GeoDjango
 =========
 
-`Django <https://www.djangoproject.com/>`_ Django je vyspělý webový framework
-napsaný v jazyce Python, který podporuje rychlý vývoj a čisté, pragmatické
-konstrukce. Django je dnes v komunitě Pythonu velice populární a existuje
-množství rozšíření. Jedním takovým rozšířením je i tzv. `GeoDjango <https://docs.djangoproject.com/en/2.1/ref/contrib/gis/>`_
+`Django <https://www.djangoproject.com/>`_ je vyspělý webový framework
+napsaný v jazyce Python, který podporuje rychlý vývoj a čisté,
+pragmatické konstrukce. Django je dnes v komunitě Pythonu velice
+populární a existuje množství rozšíření. Jedním takovým rozšířením je
+i tzv. `GeoDjango
+<https://docs.djangoproject.com/en/2.1/ref/contrib/gis/>`_
 
 `django.contrib.gis` (GeoDjango)  rozšiřuje datové modely používané v Django o
-typy geometrií. Pro ukládání používá buď databázi PostGIS nebo SpatiaLite.
+typy geometrií. Pro ukládání používá buď databázi PostGIS nebo SpatialLite.
 
 * GeometryField
 * PointField
@@ -22,7 +24,7 @@ typy geometrií. Pro ukládání používá buď databázi PostGIS nebo SpatiaLi
 Definice modelu
 ---------------
 
-Příklad definice modelu v s geometrickým atributem
+Příklad definice modelu s geometrickým atributem
 
 .. code-block:: python
 
@@ -37,10 +39,13 @@ Příklad definice modelu v s geometrickým atributem
 Závislosti
 ----------
 
-Jako databázový backend používá GeoDjango PostGIS, SpatiaLite ale i další
-databáze. Následující tabulka ukazuje další potřebné knihovny, pro různé verze
-databází:
+Jako databázový backend používá GeoDjango PostGIS, SpatiaLite ale i
+další databáze. Následující tabulka ukazuje další potřebné knihovny,
+pro různé verze databází:
 
+.. only:: html
+                                 
+   .. cssclass:: border
 
 +------------+--------------------------------+----------------+------------------------------------------------+
 | Databáze   | Požadované knihovny            | Verze databází | Poznámka                                       |
@@ -56,7 +61,7 @@ databází:
 
 GeoDjango dále závisí na následujících knihovnách
 
-* GDAL/OGR pro zpracování dat
+* GDAL pro zpracování dat
 * GEOS pro prostorové topologické operace
 * PROJ.4 pro souřadnicové transformace
 
