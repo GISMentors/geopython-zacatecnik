@@ -19,5 +19,5 @@ img = wms.getmap(
     bbox=[-950003, -1250003, -399990, -899996],
     format="image/png"
 )
-with open('data/wms_download.png', 'w') as out:
+with open('data/wms_download.png', 'wb') as out:
     out.write(img.read())
