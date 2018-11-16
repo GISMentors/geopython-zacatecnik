@@ -10,7 +10,6 @@ V následujícím příkladu si ukážeme převod ze systému S-JTSK
 
 .. literalinclude:: ../_static/skripty/pyproj-example.py
    :language: python
-   :lines: 1-4
 
 ::
 
