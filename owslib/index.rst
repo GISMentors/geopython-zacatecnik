@@ -231,7 +231,7 @@ Stažení a uložení dat:
 .. important:: Aktuálně OWSLib webové služby ČÚZK nedokáže
           konzumovat. Připojení ke službě padá na chybě
           ``requests.exceptions.TooManyRedirects: Exceeded 30
-          redirects.``
+          redirects.`` Vysvětlení hledejte na našem `blogu <http://gismentors.cz/blog/user-agent-hlavicka-requestu-na-wms-server/>`__.
           
           Fungující ukázku lze prezentovat nad službou:
 
