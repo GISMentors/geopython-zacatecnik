@@ -183,7 +183,7 @@ Nyní můžeme zjistit první souřadnici druhého objektu a jeho geometrický t
 
 .. code-block:: python
 
-    >>> print(vrstva['features'][1]['geometry']['type']
+    >>> print(vrstva['features'][1]['geometry']['type'])
     LineString
-    >>> print(vrstva['features'][1]['geometry']['coordinates'][0]
+    >>> print(vrstva['features'][1]['geometry']['coordinates'][0])
     [102.0, 0.0]

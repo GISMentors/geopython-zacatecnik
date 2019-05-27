@@ -32,7 +32,7 @@ umožní řešit například úlohy typu:
 * Jak vypadá společný průnik více prvků?
 * Vytvořit obalovou zónu okolo prvku.
 
-Pro práci s geometriemi proto potřebujeme převézt data na struktury
+Pro práci s geometriemi proto potřebujeme převést data na struktury
 Shapely:
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
