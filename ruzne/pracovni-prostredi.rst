@@ -5,11 +5,11 @@ Ubuntu/Debian
 -------------
 
 Instalace knihoven z výchozích repositářů by měla v běžné situaci
-stačit.
+stačit. Předpokládáme Python verze 3.
 
 .. code-block:: bash
 
-   sudo apt-get install fiona python-fiona rasterio python-rasterio python-owslib python-pyproj
+   sudo apt-get install fiona python3-fiona rasterio python3-rasterio python3-owslib python3-pyproj
 
 .. tip:: Pokud potřebuje novější verze knihoven, tak před instalací
    zaregistrujte ještě `repositář UbuntuGIS
@@ -28,21 +28,18 @@ jako např. GDAL pod MS Windows, je použít metainstalátor `OSGeo4W
 <https://trac.osgeo.org/osgeo4w>`__.
 
 .. important:: Framework OSGeo4W v současnosti bohužel neobsahuje
-   knihovny Fiona, Shapely a Rasterio (viz hlášení `#439
-   <https://trac.osgeo.org/osgeo4w/ticket/439>`__ a `#438
-   <https://trac.osgeo.org/osgeo4w/ticket/438>`__). Pokud
-   tyto knihovny budete využívat, doporučujeme alternativní
-   postup, viz kapitola :ref:`win-py-bin`. Nicméně za
-   určitých podmínek lze tyto dva postupy kombinovat, viz
-   kapitola :ref:`osgeo4w-py-bin`.
+   knihovnu Rasterio (viz hlášení `#438
+   <https://trac.osgeo.org/osgeo4w/ticket/438>`__). Pokud tuto
+   knihovnu budete využívat, doporučujeme alternativní postup, viz
+   kapitola :ref:`win-py-bin`. Nicméně za určitých podmínek lze tyto
+   dva postupy kombinovat, viz kapitola :ref:`osgeo4w-py-bin`.
 
 OSGeo4W (GDAL, OWSLib)
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Nejprve si na stáhneme instalátor OSGeo4W (`32bit
-<http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86.exe>`__ nebo
-`64bit <http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe>`__
-verzi) a spustíme.
+Nejprve si na stáhneme instalátor OSGeo4W (doporučujeme `64bit
+<http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe>`__ verzi)
+a spustíme.
 
 .. note:: OSGeo4W nainstaluje na počítač svoji vlastní verzi
           Pythonu. Pokud máte Python již nainstalován, budete mít na
@@ -62,15 +59,12 @@ verzi) a spustíme.
 
    Určíme adresář, kam se OSGeo4W nainstaluje.
 
-V dalším kroku zvolíme požadované balíčky buď pro Python 2:
-
-* gdal-python
-* owslib
-
-anebo Python 3:
+V dalším kroku zvolíme požadované balíčky pro Python 3:
 
 * python3-gdal
 * python3-owslib
+* python3-fiona
+* python3-shapely
     
 .. figure:: images/osgeo4w-2.png
 
@@ -80,7 +74,8 @@ anebo Python 3:
 
    Instalátor OSGeo4W stáhne a nainstaluje všechny potřebné závislosti.
 
-Instalaci knihoven GDAL a OWSLib otestujeme z *OSGeo4W Shell*:
+Instalaci knihovny GDAL otestujeme z *OSGeo4W Shell* (prostředí pro
+Python 3 nastavíme příkazem ``py3_env.bat``):
  
 .. figure:: images/osgeo4w-4.png
 
@@ -123,12 +118,12 @@ Kombinace OSGeo4W a binárních balíčků
 
 Za určitých podmínek lze kombinovat binární balíčky s instalací
 OSGeo4W. Je nutné ale dodržet verzi Pythonu a platformu. Následující
-postup byl testován s verzí Python 2.7 instalovanou v rámci OSGeo4W.
+postup byl testován s verzí Python 3.7 instalovanou v rámci OSGeo4W.
 
-Nejprve si doinstalujeme z OSGeo4W balíček `python-pip` a stáhneme z
+Nejprve si doinstalujeme z OSGeo4W balíček `python3-pip` a stáhneme z
 `Unofficial Windows Binaries for Python Extension Packages
 <http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ binární balíčky
-knihoven Fiona, Shapely a Rasterio pro Python 2.7. Otevřeme OSGeo4W a
+knihoven Fiona, Shapely a Rasterio pro Python 3.7. Otevřeme OSGeo4W a
 příkazem `pip` doinstalujeme požadované knihovny.
 
 .. code-block:: bash
