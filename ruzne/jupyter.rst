@@ -5,16 +5,17 @@ Jupyter notebook
 dokumenty, které obsahují kód programu, vizualizace, formátovaný text - vše v
 jednom.
 
-Pokud si chcete hrát s nějakou Pythonní knihovnou, je Jupyter skvělá volba -
-můžete si kód hned popisovat, můžete se vrace k jeho jednotlivým částem, měnit
-je a sledovat, co to dělá.
+Pokud si chcete hrát s nějakou Python knihovnou, je Jupyter skvělá
+volba - můžete si kód hned popisovat, vracet se k jeho jednotlivým
+částem, měnit jej a sledovat změny chování.
 
 .. figure:: images/jupyter.png
-
+   :class: middle
+           
 Jak zobrazit rastrová data numpy
 --------------------------------
 
-`Použít můžeme <https://mapbox.github.io/rasterio/topics/plotting.html>`_ jak Matplotlib
+Použít můžeme například knihovnu Matplotlib
 
 .. code-block:: python
 
@@ -24,8 +25,8 @@ Jak zobrazit rastrová data numpy
          pyplot.imshow(src.read(1), cmap='pink')
          pyplot.show()
 
-Tak ``rasterio.plot.show`` funkci, která umí pracovat se třemi kanály a ještě
-zobrazí správné geografické souřadnice.
+anebo funkci ``rasterio.plot.show`` funkci, která umí navíc pracovat
+se třemi kanály a ještě zobrazí správné geografické souřadnice.
 
 .. code-block:: python
 
@@ -34,18 +35,18 @@ zobrazí správné geografické souřadnice.
     with rasterio.open("/data/data/lsat7_2002_nir.tiff") as src:
         show(src.read(), transform=src.transform)
 
-    
+Dále můžeme zobrazit i `více kanálů vedle sebe nebo třeba histogram
+<https://rasterio.readthedocs.io/en/latest/topics/plotting.html?highlight=plotting>`__.
 
-Dále můžeme zobrazit i `více kanálů vedle sebe nebo třeba histogram <https://mapbox.github.io/rasterio/topics/plotting.html>`_.
 
 Jak zobrazit vektorová data
 ---------------------------
 
-Objekty typu ``shapely.geometry.BaseGeometry`` lze zobrazit přímo jejich
-vypsáním::
+Objekty typu ``shapely.geometry.BaseGeometry`` lze zobrazit přímo
+jejich vypsáním:
 
 .. code-block:: python
-
+                
     import shapely
     import shapely.geometry
     geom = shapely.geometry.LineString([(0, 0), (1, 1), (1,2), (2,2)])
@@ -53,13 +54,15 @@ vypsáním::
     geom
 
 .. figure:: images/shapely-screen.png
-
+   :class: middle
+           
 Docker kontejner
 ----------------
 
-`Technologie Docker <https://www.docker.com/>`_ nám umožní nakonfigurovat nějaké
-prostředí a spustit ho v samostaném "kontejneru" bez nutnosti instalovat cokoliv
-(kromě samotného Dockeru) na hostitelský systém.
+Technologie `Docker <https://www.docker.com/>`__ nám umožní
+nakonfigurovat prostředí a spustit jej v samostaném "kontejneru" bez
+nutnosti instalovat cokoliv (kromě samotného Dockeru) na hostitelský
+systém.
 
 .. note:: Pokud vám tento krok připadá příliš komplikovaný, nic se neděje,
         můžete pokračovat za použití ``virtualenv`` nebo instalací potřebných
@@ -85,6 +88,6 @@ workshop.
 Uložená data
 ~~~~~~~~~~~~
 
-Data jsou dostupná v adresáři ``/data/data``, svůj adrář pro výstupy můžete
-založit v adresáři ``/outputs/``.
+Data jsou dostupná v adresáři :file:`/data/data`. Adresář pro výstupy
+můžete založit v adresáři :file:`/outputs/`.
 
