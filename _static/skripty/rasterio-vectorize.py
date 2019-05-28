@@ -7,7 +7,7 @@ with rasterio.open("outputs/ndvi-classes.tif") as src:
 
     data = src.read(1)
 
-    # čičtění dat
+    # čištění dat
     cleaned = rasterio.features.sieve(data, 100)
 
     # převod na vektory - vrací generátor
