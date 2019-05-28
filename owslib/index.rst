@@ -89,7 +89,7 @@ Vyhledávání záznamů:
 
 .. code-block:: python
 
-    {'matches': 422, 'nextrecord': 11, 'returned': 10}
+    {'matches': 2621, 'nextrecord': 11, 'returned': 10}
 
 Zjištění hodnot nalezených záznamů:
 
@@ -100,16 +100,16 @@ Zjištění hodnot nalezených záznamů:
 .. code-block:: python
 
     ...
-    ÚP VÚC Adršpach
-    Pasport úpo na území Královéhradeckého kraje
-    VÚC Hradecko-Pardubické aglomerace
-    ÚP VÚC okresu Jičín
-    ÚP VÚC Krkonoše
-    ÚP VÚC Orlické hory a podhůří
-    ÚP VÚC Trutnovsko - Náchodsko
-    Prognóza rozvoje území kraje
-    Pasport obcí ÚPD Pardubického kraje - mapová služba WMS
-    WMS služba Pardubického kraje - polohopis, ortofoto
+    Olomouc
+    Olomouc
+    Dálniční exity GN
+    Global Network - Jednotná georeferenční síť pozemních komunikací
+    Železniční přejezd GN
+    Kilometráž GN
+    Osa železničních tratí
+    Železniční tunely
+    Železniční mosty a propustky
+    Železniční přejezdy
 
 Vyhledávání s omezením na záznamy obsahující slovo *WMS* a minimální
 ohraničující obdélník Prahy:
@@ -120,7 +120,7 @@ ohraničující obdélník Prahy:
 
 .. code-block:: python
 
-    {'matches': 351, 'nextrecord': 11, 'returned': 10}
+    {'matches': 113, 'nextrecord': 11, 'returned': 10}
 
 .. literalinclude:: ../_static/skripty/owslib-example.py
    :language: python
@@ -129,16 +129,16 @@ ohraničující obdélník Prahy:
 .. code-block:: python           
 
     ...
-    ÚP VÚC Adršpach 48.20735042 11.86320935 51.37551609 19.0302868
-    VÚC Hradecko-Pardubické aglomerace 48.20735042 11.86320935 51.37551609 19.0302868
-    ÚP VÚC okresu Jičín 48.23303412 11.93768841 51.35407571 18.95542894
-    ÚP VÚC Krkonoše 48.20735042 11.86320935 51.37551609 19.0302868
-    ÚP VÚC Orlické hory a podhůří 48.20735042 11.86320935 51.37551609 19.0302868
-    ÚP VÚC Trutnovsko - Náchodsko 48.20735042 11.86320935 51.37551609 19.0302868
-    Prognóza rozvoje území kraje 48.20735042 11.86320935 51.37551609 19.0302868
-    WMS služba Pardubického kraje - polohopis, ortofoto 48.11130361 11.83822588 51.45351762 19.12784541
-    Služba WMS Pardubického kraje - tematické vrstvy 48.22866996 12.03230308 51.34271802 19.63025648
-    Letecká dopravní síť 48.55 12.09 51.06 18.86
+    ÚP VÚC Adršpach: 48.20735042 11.86320935 51.37551609 19.0302868
+    VÚC Hradecko-Pardubické aglomerace: 48.20735042 11.86320935 51.37551609 19.0302868
+    ÚP VÚC okresu Jičín: 48.23303412 11.93768841 51.35407571 18.95542894
+    ÚP VÚC Krkonoše: 48.20735042 11.86320935 51.37551609 19.0302868
+    ÚP VÚC Orlické hory a podhůří: 48.20735042 11.86320935 51.37551609 19.0302868
+    ÚP VÚC Trutnovsko - Náchodsko: 48.20735042 11.86320935 51.37551609 19.0302868
+    Prognóza rozvoje území kraje: 48.20735042 11.86320935 51.37551609 19.0302868
+    WMS služba Pardubického kraje - polohopis, ortofoto: 48.11130361 11.83822588 51.45351762 19.12784541
+    Služba WMS Pardubického kraje - tematické vrstvy: 48.22866996 12.03230308 51.34271802 19.63025648
+    Prohlížecí služba WMS - Data200: 48.55 12.09 51.06 18.86
     >>>
 
 Vlastnosti záznamu:
@@ -228,12 +228,11 @@ Stažení a uložení dat:
    :language: python
    :lines: 14-23
 
-.. important:: Aktuálně OWSLib webové služby ČÚZK nedokáže
-          konzumovat. Připojení ke službě padá na chybě
+.. important:: Možné problémy při připojení ke službě. V minulosti končilo připojení chybou
           ``requests.exceptions.TooManyRedirects: Exceeded 30
           redirects.`` Vysvětlení hledejte na našem `blogu <http://gismentors.cz/blog/user-agent-hlavicka-requestu-na-wms-server/>`__.
           
-          Fungující ukázku lze prezentovat nad službou:
+.. task:: Vyzkoušejte připojení ke službě:
 
           .. code-block:: python
 
