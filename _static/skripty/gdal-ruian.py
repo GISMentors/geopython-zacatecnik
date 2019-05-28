@@ -15,10 +15,10 @@ day = (today.replace(month=today.month, day=1) - datetime.timedelta(days=1))
 datum = day.strftime("%Y%m%d")
 
 # URL souboru VDP
-url='http://vdp.cuzk.cz/vymenny_format/soucasna/{}_OB_{}_UKSH.xml.gz'.format(datum, obec)
+url='http://vdp.cuzk.cz/vymenny_format/soucasna/{}_OB_{}_UKSH.xml.zip'.format(datum, obec)
 
 # otevrit vstupni datasource (RUIAN)
-ds = ogr.Open('/vsicurl/' + url)
+ds = ogr.Open('/vsizip/vsicurl/' + url)
 # nacist vrstvu parcel
 layer = ds.GetLayerByName('Parcely')
 
