@@ -1,6 +1,6 @@
 # coding=utf-8
 from owslib.wfs import WebFeatureService
-# nefunguje na pripojeni https, pouzijeme http
+# pokud nefunguje na pripojeni https, pouzijeme http
 url = 'http://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WFSServer'
 aopk = WebFeatureService(url)
 
@@ -24,10 +24,10 @@ for rec in chranena_uzemi_wfs.contents:
 identifier = u'ChranUzemi:Zonace_velkoplošného_zvláště_chráněného_území'
 print (chranena_uzemi_wfs.contents[identifier])
     
-print ('{}\n{}'.format(chranena_uzemi_wfs.contents[identifier].boundingBoxWGS84,
+print ('{}\n{}'.format(chranena_uzemi_wfs.contents[identifier].boundingBox,
                        chranena_uzemi_wfs.contents[identifier].crsOptions))
 
-# getfeature nepodporuje UTF-8
+# getfeature nepodporuje UTF-8, ani zakodovani timto zpusobem nemusi fungovat
 identifier = 'ChranUzemi:Zonace_velkoplo\xc5\xa1n\xc3\xa9ho_zvl\xc3\xa1\xc5\xa1t\xc4\x9b_chr\xc3\xa1n\xc4\x9bn\xc3\xa9ho_\xc3\xbazem\xc3\xad'
 features = chranena_uzemi_wfs.getfeature([identifier])
 print (features)
@@ -41,3 +41,11 @@ for c in cuzk.contents:
 
 kraj = cuzk.getfeature(['gmgml:KRAJ'])
 print (kraj.read())
+
+vuv = WebFeatureService('http://ags.vuv.cz/arcgis/services/inspire/priority_datasets/MapServer/WFSServer',
+                         version="2.0.0")
+for c in vuv.contents:
+    print (c)
+
+floodedAreas = vuv.getfeature(['inspire_priority_datasets:FD_CZ_1000_floodedAreas'])
+print (floodedAreas.read())

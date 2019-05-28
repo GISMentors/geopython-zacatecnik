@@ -289,7 +289,7 @@ Nejprve najdeme nějaké WFS v katalogové službě:
     53f3708e-9d1c-4da6-983c-086e0a02080a WFS Průchodnost krajiny pro velké savce
 
 
-Podíváme se, jaká data mají v `Agentůře ochrany přírody a krajiny
+Podíváme se, jaká data mají v `Agentuře ochrany přírody a krajiny
 <http://www.ochranaprirody.cz/>`_ (AOPK):
 
 .. literalinclude:: ../_static/skripty/owslib-example.py
@@ -373,7 +373,7 @@ Načteme ještě službu chránených území
 
 .. code-block:: python
 
-    (-891817.1765, -1209945.389, -440108.91589999903, -943075.1875)
+    (12.13496541407338, 48.40534103216736, 18.82327290073213, 51.27775263472881, urn:ogc:def:crs:EPSG::5514)
     [urn:ogc:def:crs:EPSG::5514]
 
 Data
@@ -395,10 +395,21 @@ Data
                 
     <wfs:FeatureCollection xsi:schemaLocation='https:gis.nature.cz:6443/arcgis/services/UzemniOchrana/Ch...
 
+VUV
+"""
+
+.. literalinclude:: ../_static/skripty/owslib-wfs-example.py
+   :language: python
+   :lines: 45-51
+
+.. code-block:: python
+                
+    <wfs:FeatureCollection xsi:schemaLocation='...
+
 CUZK WFS
 """"""""
 
-.. todo:: Nefunguje kraj.read()
+.. todo:: Nutnost autentizace pro kraj.read()
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
