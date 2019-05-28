@@ -74,7 +74,7 @@
    owslib/index
    pyproj/index
    geodjango/index
-   ruzne/docker
+   ruzne/jupyter
    ruzne/pracovni-prostredi
 
 *******
