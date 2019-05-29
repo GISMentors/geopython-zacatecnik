@@ -44,6 +44,7 @@ vybraných nástrojů a jejich napojení na jazyk Python:
     * *Rasterio*: https://github.com/mapbox/rasterio
     * *PyProj*: https://github.com/jswhit/pyproj
     * *R (rpy2)*: https://rpy2.bitbucket.io
+    * *GeoPython*: http://geopandas.org
 
 **Databáze**
     * *PostGIS*: http://postgis.net (https://pypi.org/project/postgis/)
