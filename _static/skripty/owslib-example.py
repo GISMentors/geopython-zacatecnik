@@ -29,8 +29,8 @@ print (u'{}\n{}'.format(zm10.title, zm10.abstract))
 
 url = zm10.references[0]['url']
 
-wfs_query = PropertyIsLike('csw:AnyText', 'WFS')
-aopk_query = PropertyIsLike('csw:AnyText', 'AOPK')
+wfs_query = PropertyIsLike('csw:AnyText', 'WFS%')
+aopk_query = PropertyIsLike('csw:AnyText', 'Agentura%')
 service_query = PropertyIsLike('apiso:type', 'service')
 aopk_and_wfs = And([aopk_query, wfs_query, service_query])
 cenia.getrecords2([aopk_and_wfs], esn='full')

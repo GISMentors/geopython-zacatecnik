@@ -272,7 +272,7 @@ Nejprve najdeme nějaké WFS v katalogové službě:
 
 .. code-block:: python
 
-    {'matches': 6, 'nextrecord': 0, 'returned': 6}
+    {'matches': , 'nextrecord': 0, 'returned': 6}
 
 .. literalinclude:: ../_static/skripty/owslib-example.py
    :language: python
