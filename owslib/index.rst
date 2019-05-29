@@ -272,7 +272,7 @@ Nejprve najdeme nějaké WFS v katalogové službě:
 
 .. code-block:: python
 
-    {'matches': , 'nextrecord': 0, 'returned': 6}
+    {'matches': 9, 'nextrecord': 0, 'returned': 9}
 
 .. literalinclude:: ../_static/skripty/owslib-example.py
    :language: python
@@ -287,6 +287,7 @@ Nejprve najdeme nějaké WFS v katalogové službě:
     54735935-a88c-4c58-99bc-3dee0a02080a WFS Mezinárodní ochrana přírody
     53e47f1f-1bb8-405f-9254-514a0a02080a WFS Údaje o území
     53f3708e-9d1c-4da6-983c-086e0a02080a WFS Průchodnost krajiny pro velké savce
+    ...
 
 
 Podíváme se, jaká data mají v `Agentuře ochrany přírody a krajiny
