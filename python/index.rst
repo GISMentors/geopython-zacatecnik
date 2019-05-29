@@ -46,7 +46,7 @@ daného programu.
 
 .. code-block:: bash
 
-    virtualenv -p /usr/bin/python3 program_venv
+    python3 -m venv program_venv
 
 ::
        
