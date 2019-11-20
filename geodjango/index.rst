@@ -65,4 +65,4 @@ GeoDjango dále závisí na následujících knihovnách
 * GEOS pro prostorové topologické operace
 * PROJ.4 pro souřadnicové transformace
 
-.. todo:: Tato část je zatím *pahýl* a potřebuje rozšířit...
+.. todo:: Tato část je zatím *pahýl* a potřebuje rozšířit.
