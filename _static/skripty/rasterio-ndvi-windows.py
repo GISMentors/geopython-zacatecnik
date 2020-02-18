@@ -6,9 +6,9 @@ with rasterio.open('data/B04-2018-05-06.tiff') as red:
 
         step = 256
         kwargs = red.meta
-        kwargs.update(dtype=rasterio.float64, count=1, compress='lzw')
+        kwargs.update(dtype=rasterio.float32, count=1, compress='lzw')
 
-        with rasterio.open('data/ndvi.tif', 'w', **kwargs) as dst:
+        with rasterio.open('outputs/ndvi_w.tif', 'w', **kwargs) as dst:
             slices = [(col_start, row_start, step, step) \
                         for col_start in list(range(0, red.width, 256)) \
                         for row_start in list(range(0, red.height, 256))
@@ -19,11 +19,11 @@ with rasterio.open('data/B04-2018-05-06.tiff') as red:
             for slc in slices:
                 win = Window(*slc)
 
-                nir_data = nir.read(1, window=win)
-                vis_data = red.read(1, window=win)
+                nir_data = nir.read(1, window=win).astype(float)
+                vis_data = red.read(1, window=win).astype(float)
 
                 ndvi = (nir_data - vis_data) / (nir_data + vis_data)
 
                 write_win = Window(slc[0], slc[1], ndvi.shape[1], ndvi.shape[0])
 
-                dst.write_band(1, ndvi.astype(rasterio.float64), window=write_win)
+                dst.write_band(1, ndvi.astype(rasterio.float32), window=write_win)

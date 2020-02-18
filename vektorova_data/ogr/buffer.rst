@@ -48,7 +48,7 @@ Vypsání názvu geoprvku (atribut ``NAZEV``):
     >>> features_nr = l.GetFeatureCount()
     >>> for i in range(features_nr):
     ...     f = l.GetNextFeature()
-    ...     print f.GetField('NAZEV')
+    ...     print(f.GetField('NAZEV'))
     Český ráj
     ...
 

@@ -6,7 +6,7 @@ Použití oken pro čtení a zápis
 Rastrová data lze číst a zapisovat i pomocí tzv. `"oken"
 <https://rasterio.readthedocs.io/en/latest/topics/windowed-rw.html>`__. Tento
 postup se hodí v případě, že pracujete s objemnými rastrovými daty,
-které se do RAM vašeho počáítače nevejdou. Pomocí okna lze načíst část
+které se do RAM vašeho počítače nevejdou. Pomocí okna lze načíst část
 matice rastrových dat, tu zpracovat a zapsat do výstupního souboru.
 
 Okna (:class:`rasterio.Window`) jsou pravidelné matice vstupního
@@ -21,6 +21,8 @@ nebo::
 Příklad načtení dat::
 
     import rasterio
+    from rasterio.windows import Window
+    
     with rasterio.open('data/B04-2018-05-06.tiff') as red:
         w = red.read(1, window=Window(0, 0, 512, 256))
     
@@ -64,7 +66,7 @@ Source GIS
 
 .. code-block:: bash
 
-    gdalwarp -r mode -co TILED=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 B04-2018-05-06.tiff outputs/B04-2018-05-06-256block.tiff
+    gdalwarp -r mode -co TILED=YES -co BLOCKXSIZE=256 -co BLOCKYSIZE=256 data/B04-2018-05-06.tiff outputs/B04-2018-05-06-256block.tiff
     ...
     
     gdalinfo outputs/B04-2018-05-06-256block.tiff
@@ -75,7 +77,7 @@ A otevřít v Pythonu::
 
     with rasterio.open('outputs/B04-2018-05-06-256block.tiff') as red:
 
-        for ji, window in src.block_windows(1):
+        for ji, window in red.block_windows(1):
             r = red.read(1, window=window)
             print(r.shape)
 
