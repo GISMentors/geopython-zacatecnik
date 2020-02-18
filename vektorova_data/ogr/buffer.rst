@@ -59,7 +59,7 @@ ohraničujícího obdélíku a centroidu polygonu):
 
     >>> f = l.GetFeature(54)
     >>> f.GetField('NAZEV')
-    >>> print f.GetField('NAZEV')
+    >>> print (f.GetField('NAZEV'))
     Český ráj
     >>> geom = f.GetGeometryRef()
     >>> geom.GetEnvelope()
