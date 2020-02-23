@@ -75,7 +75,8 @@
    pyproj/index
    geodjango/index
    ruzne/jupyter
-   ruzne/pracovni-prostredi
+   ruzne/instalace
+   ruzne/editor
 
 *******
 Dodatky
