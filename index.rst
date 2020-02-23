@@ -75,7 +75,7 @@
    pyproj/index
    geodjango/index
    ruzne/jupyter
-   ruzne/instalace
+   ruzne/instalace/index
    ruzne/editor
 
 *******
