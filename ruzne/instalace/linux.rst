@@ -1,5 +1,5 @@
 Instalace na operačním systému Linux
-------------------------------------
+====================================
 
 Nejsnazším způsobem je použít balíčky jazyka Python přímo z distribuce. Tedy na
 příklad v případě Ubuntu nebo Debian, stačí spustit terminál a pomocí nástroje

@@ -1,5 +1,5 @@
-Instalace na platformě MS Windows
----------------------------------
+Instalace na operační systému MS Windows
+========================================
 
 .. note:: Kurzy GISMentors probíhají na operačním systému Linux a máme pro to
         řadu dobrých důvodů: větší provázanost knihoven, stabilita, možnost
@@ -91,8 +91,8 @@ proměnné prostředí pro Python 3.
 
 .. figure:: ../../images/osgeo4w-4.png
 
-Instalace chybějícíh knihoven
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Instalace chybějících knihoven
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Potřebujeme stáhnout a nainstalovat knihovny, které v distribuci OSGeo4W nejsou
 a nebo nefungují, zejména balíčky
 
@@ -156,7 +156,7 @@ kurzu)
 .. _win-py-bin:
 
 Instalace nativního interpretu CPython
--------------------------------------
+--------------------------------------
 
 .. note:: Pokud budete používat pouze nativní interpretr CPythonu, mimo
         prostředí OSGeo4W, nebudete moci kombinovat knihovny s QGIS, GRASS a

@@ -2,10 +2,11 @@
 Instalace potřebných knihoven
 =============================
 
-Jazyk Python lze provozovat na všech běžných desktopových platformách (Linux,
-Windows, MacOS), i těch méně běžných. Existují i porty Pythonu do malých
-jednoprocesorových počítačů `Micropython <https://micropython.org/>`_, stejně
-tak ho lze využít k programování např. vývojové desky `Micro:bit <https://micropython.org/>`_.
+Jazyk Python lze provozovat na všech běžných desktopových platformách
+(Linux, Windows, MacOS), i těch méně běžných. Existují i porty Pythonu
+do malých jednoprocesorových počítačů `Micropython
+<https://micropython.org/>`__, stejně tak ho lze využít k programování
+např. vývojové desky `Micro:bit <https://microbit.org/>`__.
 
 Je dobré i uvědomit, že Python, jako takový je vlastně pouze specifikace jazyka
 -  předpis, jak se má daný zápis kódu interpretovat. Existuje řada intepretů
@@ -36,7 +37,7 @@ kódu využívat funkce programu v jazyce Java v jazyce C (tedy ... jsou na to
 techniky, ale ty patří mezi hodně pokročilé). Proto je potřeba používat takový
 interpert jazyka, který je použitý s požadovanými knihovnami.
 
-Proto se budeme držet referenční implemntace CPython.
+Proto se budeme držet referenční implementace CPython.
 
 Verze jazyka Python
 -------------------
@@ -49,6 +50,9 @@ jakou verzi zvolit, berte 3. Pokud přijdete k projektu, který využívá Pyhon
 Python 3 bude použitelné i pro Python 2. 
 
 V poslední době ale většina projektů přestává Python 2 podporovat.
+
+Návody pro vybrané platformy
+----------------------------
 
 .. toctree::
         :maxdepth: 2
