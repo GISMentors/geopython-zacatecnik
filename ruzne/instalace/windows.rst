@@ -131,7 +131,7 @@ Ze stránek `Unofficial Windows Binaries for Python Extension Packages
 <http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ stáhneme pro
 knihovny Fiona, Shapely a Rasterio soubory ve formátu Wheel - je
 důležité, aby verze Pythonu, pro kterou byly balíky připraveny, byla
-stejná jako verze Pythonu v OSGeo4W. Proto spustíme OSGeo4W Shell a
+stejná jako verze Pythonu v OSGeo4W. Proto spustíme *OSGeo4W Shell* a
 zjistíme verzi::
 
         C:\> python3 --version
@@ -144,9 +144,9 @@ V našem případě tedy stáhneme soubory
 * :file:`Fiona‑1.8.13‑cp37‑cp37m‑win_amd64.whl`
 * :file:`Shapely‑1.7.0‑cp37‑cp37m‑win_amd64.whl`
 
-A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí *OSGeo4W
-Shell* jako administrátor (nezapomeňte nejprve nastavit prostředí pro
-Python 3 spuštěním skriptu :file:`py3_env`).
+A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí
+**OSGeo4W Shell** jako administrátor. Nezapomeňte nejprve nastavit
+prostředí pro Python 3 spuštěním skriptu :file:`py3_env`.
 
 .. code-block:: bash
 
