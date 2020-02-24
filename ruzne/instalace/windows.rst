@@ -99,7 +99,7 @@ nastaví proměnné prostředí pro Python 3.
 
 .. code-block:: bash
 
-        c:\> c:\OSGeo4W64\bin\py3_env.bat
+        C:\> py3_env.bat
 
 .. figure:: ../../images/osgeo4w-4.png
 
@@ -111,9 +111,9 @@ Instalace chybějících knihoven
 Potřebujeme stáhnout a nainstalovat knihovny, které v distribuci OSGeo4W nejsou
 a nebo nefungují, zejména balíčky
 
-* Rasterio
-* Fiona
-* Shapely
+* `Rasterio <https://www.lfd.uci.edu/~gohlke/pythonlibs/#rasterio>`__
+* `Fiona <https://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona>`__
+* `Shapely <https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely>`__
 
 Ze stránek `Unofficial Windows Binaries for Python Extension Packages
 <http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ stáhneme pro
@@ -122,15 +122,15 @@ důležité, aby verze Pythonu, pro kterou byly balíky připraveny, byla
 stejná jako verze Pythonu v OSGeo4W. Proto spustíme OSGeo4W Shell a
 zjistíme verzi::
 
-        c:\> python3 --version
+        C:\> python3 --version
 
         Python 3.7.0
 
 V našem případě tedy stáhneme soubory
 
-* rasterio‑1.1.2‑cp37‑cp37m‑win_amd64.whl
-* Fiona‑1.8.13‑cp37‑cp37m‑win_amd64.whl
-* Shapely‑1.7.0‑cp37‑cp37m‑win_amd64.whl
+* :file:`rasterio‑1.1.2‑cp37‑cp37m‑win_amd64.whl`
+* :file:`Fiona‑1.8.13‑cp37‑cp37m‑win_amd64.whl`
+* :file:`Shapely‑1.7.0‑cp37‑cp37m‑win_amd64.whl`
 
 A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí *OSGeo4W
 Shell* jako administrátor (nezapomeňte nejprve nastavit prostředí pro
@@ -138,19 +138,19 @@ Python 3 spuštěním skriptu :file:`py3_env.bat`).
 
 .. code-block:: bash
 
-        c:\> py3_env.bat
+        C:\> py3_env.bat
        
-        c:\> cd c:\Users\Administrator\Downloads
+        C:\> cd C:\Users\Administrator\Downloads
 
-        c:\Users\Administrator\Downloads> pip install Fiona-1.8.13-cp37-cp37m-win_amd64.whl
-        c:\Users\Administrator\Downloads> pip install rasterio-1.1.2-cp37-cp37m-win_amd64.whl
-        c:\Users\Administrator\Downloads> pip install Shapely-1.7.0-cp37-cp37m-win_amd64.whl
+        C:\Users\Administrator\Downloads> pip3 install Fiona-1.8.13-cp37-cp37m-win_amd64.whl
+        C:\Users\Administrator\Downloads> pip3 install rasterio-1.1.2-cp37-cp37m-win_amd64.whl
+        C:\Users\Administrator\Downloads> pip3 install Shapely-1.7.0-cp37-cp37m-win_amd64.whl
 
 Následně můžeme instalaci vyzkoušet
 
 .. code-block:: bash
 
-        c:\Users\Administrator\Downloads>python3
+        C:\Users\Administrator\Downloads>python3
 
         Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:59:51) [MSC v.1914 64 bit (AMD64)] on win32
         Type "help", "copyright", "credits" or "license" for more information.
@@ -178,36 +178,36 @@ kurzu)
 Instalace nativního interpretu CPython
 --------------------------------------
 
-.. note:: Pokud budete používat pouze nativní interpretr CPythonu, mimo
-        prostředí OSGeo4W, nebudete moci kombinovat knihovny s QGIS, GRASS a
-        dalšími.
+.. important:: Pokud budete používat pouze nativní interpret CPython, (mimo
+   prostředí OSGeo4W), nebudete moci (nebo velmi obtížně) kombinovat
+   knihovny s QGIS, GRASS GIS a dalšími.
 
-Ze stránek https://www.python.org/downloads/windows/ stáhněte aktuální verzi jazyka Python s označením
-3 - použijte 64bit verzi - tedy `Windows x86-64 executable installer <https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe>`_
+Ze stránek https://www.python.org/downloads/windows/ stáhněte aktuální
+verzi jazyka Python s označením 3 - použijte 64bit verzi - tedy
+např. `Windows x86-64 executable installer
+<https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe>`__.
 
-.. note:: Odkazy výše odkazjí přímo na verzi interpretu 3.8.1! Ujistěte se, že
-        stahujete aktuální verzi intepretu.
+.. note:: Odkazy výše ukazují přímo na verzi interpretu 3.8.1!
+   Ujistěte se, že stahujete aktuální verzi intepretu.
 
-Spusťte instalátor - v Administrátorském režimu - a nastavte Customize installation. Zaškrtněte přidání
-Python do proměnné :var:`PATH`.
+Spusťte instalátor - v administrátorském režimu - a nastavte *Customize
+installation*. Zaškrtněte přidání Python do proměnné :envvar:`PATH`.
 
 
 .. figure:: ../../images/install-windows-cpython-1.png
 
-        Spuštění instalátoru, volba Custom
+        Spuštění instalátoru, volba Customize installation
 
-Na další obrazovce zvolte určitě instalaci `pip` a ujistěte se, že budete
-instalovat Python pro "všechny uživatele". Python se tak nainstaluje do
-kořenového adresáře na disk `C:\Program files\Python3` a ne pouze kamsi do uživatelských
-složek.
+Na další obrazovce zvolte určitě instalaci :program:`pip`.
 
 .. figure:: ../../images/install-windows-cpython-2.png
 
         Další volby
 
-V dalším kroku se ujistěte, že instalujete "pro všechny uživatele", cesta vede
-do adresáře `Program Files`, asociujte soubory s koncovkou `.py` jako soubory
-interpretované Pythonem.
+V dalším kroku se ujistěte, že budete instalovat Python pro "všechny
+uživatele" (*Install for all users*). Python se tak nainstaluje do
+kořenového adresáře na disk :file:`C:\\\Program Files\\Python38` a ne
+pouze kamsi do uživatelských složek.
 
 .. figure:: ../../images/install-windows-cpython-3.png
 
@@ -219,7 +219,8 @@ Průběh instalace a hotovo.
 
         Sledování průběhu instalace
 
-Po instalaci a spuštění příkazové řádky (`cmd`) můžete Python spustit:
+Po instalaci a spuštění příkazové řádky (`cmd`) můžete Python spustit
+přímo:
 
 .. figure:: ../../images/python-windows-1.png
 
@@ -228,12 +229,13 @@ Po instalaci a spuštění příkazové řádky (`cmd`) můžete Python spustit:
 V dalším kroce je potřeba do prostředí doinstalovat námi požadované knihovny. 
 
 Ze stránek `Unofficial Windows Binaries for Python Extension Packages
-<http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ stáhneme pro knihovny
-GDAL, Fiona, Shapely, Rasterio a OWSLib soubory ve formátu Wheel (vždy
-pro danou verzi Pythonu (v tomto dokumentu používáme 3.8) a platformu (amd64)).
+<http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ stáhneme knihovny
+GDAL, Fiona, Shapely, Rasterio a OWSLib soubory ve formátu Wheel. Vždy
+pro danou verzi Pythonu (v tomto dokumentu používáme 3.8) a 64bit
+platformu (amd64).
 
-Poté otevřeme příkazovou řádku Windows a doinstalujeme požadované
-knihovny, například:
+Poté otevřeme příkazovou řádku Windows jako administrátor a
+doinstalujeme požadované knihovny, například:
 
 .. code-block:: bash
 
@@ -241,12 +243,13 @@ knihovny, například:
    pip install Downloads\Fiona-1.8.13-cp38-cp38-win32.whl
    ...
 
-Instalace rasterio
+Instalace Rasterio
 ^^^^^^^^^^^^^^^^^^
-Před vlastní instalací knihovny Rasterio do prostředí CPython na Windows musíme
-instalovat ručně balík `Numpy
-<https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy>`_ a Microsoft Visual Studio
-2015 a mladší, nelépe ke stažení z
+
+Před vlastní instalací knihovny Rasterio do prostředí CPython na
+Windows musíme instalovat ručně balík `Numpy
+<https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy>`_ a Microsoft
+Visual Studio 2015 a mladší, nejlépe ke stažení z
 
 * `http://go.microsoft.com/fwlink/?LinkId=691126&fixForIE=.exe. <http://go.microsoft.com/fwlink/?LinkId=691126&fixForIE=.exe.>`_
 
@@ -264,7 +267,7 @@ A následně můžeme instalaci vyzkoušet:
 
 .. code-block:: bash
 
-        c:\Users\Administrator\Downloads>python3
+        C:\Users\Administrator\Downloads>python
 
         Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:59:51) [MSC v.1914 64 bit (AMD64)] on win32
         Type "help", "copyright", "credits" or "license" for more information.
