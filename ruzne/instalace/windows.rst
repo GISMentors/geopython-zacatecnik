@@ -75,15 +75,15 @@ A samozřejmě můžete i nainstalovat desktopové programy QGIS a GRASS GIS
 
 Po potvrzení se balíčky stáhnou a nainstalují.
 
-.. figure:: ../../images/install-windows-1.png
+.. figure:: ../images/install-windows-1.png
 
         Spuštění instalátoru, volba Advanced Install
 
-.. figure:: ../../images/install-windows-2.png
+.. figure:: ../images/install-windows-2.png
 
         Výběr balíčků
 
-.. figure:: ../../images/install-windows-3.png
+.. figure:: ../images/install-windows-3.png
 
         Sledování průběhu instalace
 
@@ -113,7 +113,7 @@ nastaví proměnné prostředí pro Python 3.
         >>> from osgeo import gdal
         gdal.__version__
         
-.. figure:: ../../images/osgeo4w-4.png
+.. figure:: ../images/osgeo4w-run.png
 
 .. _osgeo4w-fiona-etc:
 
@@ -206,13 +206,13 @@ Spusťte instalátor - v administrátorském režimu - a nastavte *Customize
 installation*. Zaškrtněte přidání Python do proměnné :envvar:`PATH`.
 
 
-.. figure:: ../../images/install-windows-cpython-1.png
+.. figure:: ../images/install-windows-cpython-1.png
 
         Spuštění instalátoru, volba Customize installation
 
 Na další obrazovce zvolte určitě instalaci :program:`pip`.
 
-.. figure:: ../../images/install-windows-cpython-2.png
+.. figure:: ../images/install-windows-cpython-2.png
 
         Další volby
 
@@ -221,20 +221,20 @@ uživatele" (*Install for all users*). Python se tak nainstaluje do
 kořenového adresáře na disk :file:`C:\\\Program Files\\Python38` a ne
 pouze kamsi do uživatelských složek.
 
-.. figure:: ../../images/install-windows-cpython-3.png
+.. figure:: ../images/install-windows-cpython-3.png
 
         Sledování průběhu instalace
 
 Průběh instalace a hotovo.
 
-.. figure:: ../../images/install-windows-cpython-4.png
+.. figure:: ../images/install-windows-cpython-4.png
 
         Sledování průběhu instalace
 
 Po instalaci a spuštění příkazové řádky (`cmd`) můžete Python spustit
 přímo:
 
-.. figure:: ../../images/python-windows-1.png
+.. figure:: ../images/python-windows-1.png
 
         Sledování průběhu instalace
 

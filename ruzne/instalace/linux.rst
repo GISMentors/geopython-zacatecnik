@@ -5,7 +5,7 @@ Nejsnazším způsobem je použít balíčky jazyka Python přímo z
 distribuce. V případě Ubuntu nebo Debian stačí spustit terminál a
 pomocí nástroje :program:`apt` Python nainstalovat.
 
-.. figure:: ../../images/install-ubuntu.png
+.. figure:: ../images/install-ubuntu.png
 
         Instalace jazyka Python do prostředí Linux
 
