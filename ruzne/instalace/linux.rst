@@ -1,16 +1,16 @@
 Instalace na operačním systému Linux
 ====================================
 
-Nejsnazším způsobem je použít balíčky jazyka Python přímo z distribuce. Tedy na
-příklad v případě Ubuntu nebo Debian, stačí spustit terminál a pomocí nástroje
-`apt` Python nainstalovat.
+Nejsnazším způsobem je použít balíčky jazyka Python přímo z
+distribuce. V případě Ubuntu nebo Debian stačí spustit terminál a
+pomocí nástroje :program:`apt` Python nainstalovat.
 
 .. figure:: ../../images/install-ubuntu.png
 
         Instalace jazyka Python do prostředí Linux
 
-Vedle samotného interpetu jazyka je dobré pořídit i balíčkovací nástroj pro
-instalaci dalších knihoven `pip`
+Vedle samotného interpretu jazyka je dobré pořídit i balíčkovací
+nástroj :program:`pip` pro instalaci dalších knihoven
 
 .. code-block:: bash
 
@@ -33,11 +33,12 @@ balíčcích přítomná, tím lépe
 
    sudo apt-get install fiona python3-fiona rasterio python3-rasterio python3-owslib python3-pyproj python3-gdal libgdal-dev
 
-.. tip:: Pokud potřebuje novější verze knihoven, tak před instalací
-   zaregistrujte ještě `repositář UbuntuGIS
+.. tip:: Pro uživatele Ubuntu. Pokud potřebuje novější verze knihoven
+   než jsou v distribuci, tak před instalací zaregistrujte ještě
+   `repositář UbuntuGIS
    <https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable/+packages?field.name_filter=python&field.status_filter=published&field.series_filter=>`__.
 
    .. code-block:: bash
 
       sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
-      sudo apt-get update
+      sudo apt update
