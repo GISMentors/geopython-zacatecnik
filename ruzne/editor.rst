@@ -4,7 +4,7 @@ Výběr textového editoru pro jazyk Python
 
 Pro uživatele Windows se jako vhodný jeví nástroj PyCharm. 
 V komunitní verzi je k dispozici zdarma. Jeho instalace
-je jednoduchá. Ke stažení je na `<https://www.jetbrains.com/pycharm/>`
+je jednoduchá. Ke stažení je na `<https://www.jetbrains.com/pycharm/>`_
 
 Po spuštění editoru je možné vytvořit nový projekt.
 
@@ -16,7 +16,7 @@ Při jeho konfiguraci je možné nastavit interpret jazyka.
 .. figure:: images/pycharm-interpret.png
    :class: middle
 
-V případě využití OSGeo4W je vhodný BAT soubor C:\OSGeo4W64\bin\python-qgis.bat
+V případě využití OSGeo4W je vhodný BAT soubor C:\\OSGeo4W64\\bin\\python-qgis.bat
 Obsahuje přes samotným spuštěním python.exe nastavení cest, ke knihovnám.
 
 V nově vytvořeném projektu můžeme kliknout pravým tlačítkem na název projektu a
@@ -48,7 +48,7 @@ Vytvoříme novou konfiguraci.
 
 Zejména vybereme skript, který chceme v této konfiguraci spouštět.
 
-.. figure:: images/pycharm-run-4.png
+.. figure:: images/pycharm-run-3.png
    :class: middle
 
 A pak již můžeme pomocí tlačítka Run skript spustit.
