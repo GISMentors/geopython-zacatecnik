@@ -88,6 +88,15 @@ Po potvrzení se balíčky stáhnou a nainstalují.
 
         Sledování průběhu instalace
 
+.. _osgeo4w-install-cmd:
+
+.. tip:: Nainstalovat celé prostředí lze přímo z příkazové řádky
+   MS Windows:
+
+   .. code-block:: bash
+                   
+      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -q -P gdal python3-pip python3-shapely python3-gdal python3-owslib qgis-ltr grass
+   
 .. note:: V tuto chvíli (2020-02) bohužel nejde v použitelné formě
         instalovat balíčky ``rasterio`` (chybí) a ``fiona``
         (nefunkční), které budeme v tomto kurzu používat. Vazby na
