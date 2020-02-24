@@ -95,7 +95,8 @@ Po potvrzení se balíčky stáhnou a nainstalují.
 
    .. code-block:: bash
                    
-      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -q -P gdal python3-pip python3-shapely python3-gdal python3-owslib qgis-ltr grass
+      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://download.osgeo.org/osgeo4w -q \
+      -P gdal python3-pip python3-shapely python3-gdal python3-owslib qgis-ltr grass
    
 .. note:: V tuto chvíli (2020-02) bohužel nejde v použitelné formě
         instalovat balíčky ``rasterio`` (chybí) a ``fiona``
