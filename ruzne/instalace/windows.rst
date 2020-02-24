@@ -87,7 +87,7 @@ Po potvrzení se balíčky stáhnou a nainstalují.
 
         Sledování průběhu instalace
 
-.. _osgeo4w-install-cmd:
+.. _instalace-osgeo4w-cmd:
 
 .. tip:: Nainstalovat celé prostředí lze přímo z příkazové řádky
    MS Windows:
@@ -108,8 +108,11 @@ nastaví proměnné prostředí pro Python 3.
 
 .. code-block:: bash
 
-        C:\> py3_env.bat
-
+        C:\> py3_env
+        C:\> python3
+        >>> from osgeo import gdal
+        gdal.__version__
+        
 .. figure:: ../../images/osgeo4w-4.png
 
 .. _osgeo4w-fiona-etc:
@@ -143,11 +146,11 @@ V našem případě tedy stáhneme soubory
 
 A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí *OSGeo4W
 Shell* jako administrátor (nezapomeňte nejprve nastavit prostředí pro
-Python 3 spuštěním skriptu :file:`py3_env.bat`).
+Python 3 spuštěním skriptu :file:`py3_env`).
 
 .. code-block:: bash
 
-        C:\> py3_env.bat
+        C:\> py3_env
        
         C:\> cd C:\Users\Administrator\Downloads
 
