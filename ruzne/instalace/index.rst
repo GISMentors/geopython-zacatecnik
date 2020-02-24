@@ -3,12 +3,12 @@ Instalace potřebných knihoven
 =============================
 
 Jazyk Python lze provozovat na všech běžných desktopových platformách
-(Linux, Windows, MacOS), i těch méně běžných. Existují i porty Pythonu
+(Linux, MS Windows, MacOS), i těch méně běžných. Existují i porty Pythonu
 do malých jednoprocesorových počítačů `Micropython
 <https://micropython.org/>`__, stejně tak ho lze využít k programování
 např. vývojové desky `Micro:bit <https://microbit.org/>`__.
 
-Je dobré i uvědomit, že Python, jako takový je vlastně pouze specifikace jazyka
+Je dobré si uvědomit, že Python jako takový, je vlastně pouze specifikace jazyka
 -  předpis, jak se má daný zápis kódu interpretovat. Existuje řada intepretů
 jazyka Python, naprogramových ovšem v jiných programovacích jazycích, jako jsou
 
@@ -31,25 +31,30 @@ Bohužel ne všechny implementace dokáží držet krok s vývojem a tak jazyk P
 jeho interpret CPython jsou momentálně ve verzi 3.7 (jaro 2020), Jython ustrnul
 ve verzi 2.7 a nezdá se, že by se posouval.
 
-Součástí programování je ale i využívání externích knihoven - a ty jsou mezi
-různými jazyky (programovacími platformami) spíš nepřenositelné. Nelze na úrovni
-kódu využívat funkce programu v jazyce Java v jazyce C (tedy ... jsou na to
-techniky, ale ty patří mezi hodně pokročilé). Proto je potřeba používat takový
-interpert jazyka, který je použitý s požadovanými knihovnami.
+Nedílnou součástí programování je využívání dostupných knihoven - a ty
+jsou mezi různými jazyky (programovacími platformami) spíše
+nepřenositelné. Na úrovni kódu nelze využívat funkce knihovny napsané
+v jazyce Java v programu, který je implementován v jazyce C a
+pod. (tedy ... jsou na to techniky, ale ty patří mezi hodně
+pokročilé). Proto je potřeba používat takový interpert jazyka, který
+je použitý s požadovanými knihovnami.
 
 Proto se budeme držet referenční implementace CPython.
 
 Verze jazyka Python
 -------------------
 
-V současné době se ještě stále nacházíme v přechodné fázi, mezi verzí jazyka 2 a
-3. Naše kurzy již využívají Python3, stejně tak všechny námi doporučené
-knihovny a programy. Pokud vám ale někdo dá "na výběr" nebo si nejste jisti,
-jakou verzi zvolit, berte 3. Pokud přijdete k projektu, který využívá Pyhon 2
-(poslední verze je 2.7), syntaxe je na 99% stejná, takže vše, co se naučíte pro
-Python 3 bude použitelné i pro Python 2. 
+V současné době se ještě stále nacházíme v přechodné fázi mezi verzí
+jazyka 2 a 3. Naše kurzy již využívají Python verze 3, stejně tak
+všechny námi doporučené knihovny a programy. Pokud vám ale někdo dá
+"na výběr" nebo si nejste jisti, jakou verzi zvolit, je Python 3
+jasnou volbou. Pokud přijdete k projektu, který využívá Pyhon 2
+(poslední verze je 2.7), syntaxe je na 99% stejná, takže vše, co se
+naučíte pro Python 3 bude použitelné i pro Python 2.
 
-V poslední době ale většina projektů přestává Python 2 podporovat.
+Je potřeba zdůraznit, že se Python 2 již dále `nevyvijí
+<https://www.python.org/doc/sunset-python-2/>`__. Což znamená, že v
+poslední době většina projektů přestává Python 2 podporovat.
 
 Návody pro vybrané platformy
 ----------------------------
