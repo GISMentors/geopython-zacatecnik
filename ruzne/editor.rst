@@ -2,10 +2,11 @@
 Výběr textového editoru pro jazyk Python
 ========================================
 
-Pro uživatele MS Windows (nejen) se jako vhodný jeví nástroj
-:program:`PyCharm`.  V komunitní verzi je k dispozici zdarma. Jeho
-instalace je jednoduchá. Ke stažení je na
-`<https://www.jetbrains.com/pycharm/>`_.
+Pro uživatele MS Windows (nejen) se jako vhodný jeví nástroj `PyCharm
+<https://www.jetbrains.com/pycharm/>`__.  V komunitní verzi je k
+dispozici zdarma. Jeho instalace je jednoduchá. Komunitní verze ke
+stažení `zde
+<https://www.jetbrains.com/pycharm/download/download-thanks.html?code=PCC>`__.
 
 Po spuštění editoru je možné vytvořit nový projekt.
 
