@@ -64,7 +64,7 @@ Kanály družice Sentinel 2
 -------------------------
 
 Data z družice Sentinel 2 obsahují světelné spektrum v různých pásmech
-(`B01-BBA`), jak ale
+(`B01-B8A`), jak ale
 zjistit, která pásma jsou která? To je popsáno v dokumentaci na stránce
 projektu: https://earth.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial
 

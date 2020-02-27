@@ -3,7 +3,7 @@ Práce s rastrovými daty
 
 Rastrová data mohou být v porovnání s vektorovými daty často řádově
 objemnější. Tomu je třeba přizpůsobit i práci s nimi. Rastrová data
-jsou většinou uspořádané do matice hodnot v číselné podobě.
+jsou většinou uspořádaná do matice hodnot v číselné podobě.
 
 .. note::
    

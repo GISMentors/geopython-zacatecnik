@@ -16,7 +16,7 @@ rastru. Lze je také popsat jako 2 páry souřadnic pixelů::
 
 nebo::
 
-    Window(první_sloupeček, první_řádek, šířka, výška)
+    Window(první_sloupec, první_řádek, šířka, výška)
 
 Příklad načtení dat::
 
