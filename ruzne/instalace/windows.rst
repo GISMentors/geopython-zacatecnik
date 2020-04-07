@@ -154,9 +154,9 @@ prostředí pro Python 3 spuštěním skriptu :file:`py3_env`.
        
         C:\> cd C:\Users\Administrator\Downloads
 
-        C:\Users\Administrator\Downloads> pip3 install Fiona-1.8.13-cp37-cp37m-win_amd64.whl
-        C:\Users\Administrator\Downloads> pip3 install rasterio-1.1.2-cp37-cp37m-win_amd64.whl
-        C:\Users\Administrator\Downloads> pip3 install Shapely-1.7.0-cp37-cp37m-win_amd64.whl
+        C:\Users\Administrator\Downloads> python3 -m pip install Fiona-1.8.13-cp37-cp37m-win_amd64.whl
+        C:\Users\Administrator\Downloads> python3 -m pip install rasterio-1.1.2-cp37-cp37m-win_amd64.whl
+        C:\Users\Administrator\Downloads> python3 -m pip install Shapely-1.7.0-cp37-cp37m-win_amd64.whl
 
 Následně můžeme instalaci vyzkoušet
 
