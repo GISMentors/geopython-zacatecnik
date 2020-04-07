@@ -138,7 +138,7 @@ zjistíme verzi::
 
         Python 3.7.0
 
-V našem případě tedy stáhneme soubory
+V našem případě tedy stáhneme např. soubory
 
 * :file:`rasterio‑1.1.2‑cp37‑cp37m‑win_amd64.whl`
 * :file:`Fiona‑1.8.13‑cp37‑cp37m‑win_amd64.whl`
