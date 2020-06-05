@@ -10,6 +10,7 @@ Pracovní prostředí
 
 * OSGeo Live:
   http://live.osgeo.org/en/index.html
+* OSGeo4W
 * Data archive:
   https://gismentors.github.io/pygis/pygis-workshop.zip
 * Jednotlivé kroky
@@ -21,6 +22,10 @@ Pracovní prostředí
     cd ~/Desktop
     curl -O http://gismentors.github.io/pygis/pygis-workshop.zip
     unzip pygis-workshop.zip
+
+* Testy prostředí
+
+   python3 -m pytest tests
 
 * Kompletní výsledný program
   https://github.com/gismentors/pygis/tree/master/hikers.py
