@@ -65,8 +65,7 @@ výběru jednotlivých balíčků.
 Před volbou softwarových balíčků k instalaci ještě zvolte server, ze
 kterého se budou balíčky stahovány. Kromě oficiálního
 http://download.osgeo.org jsou dispozici i další servery, které mohou
-mít rychlejší odezvu. V našem případě zvolíme
-http://osgeo4w-oslandia.com.
+mít rychlejší odezvu.
 
 .. figure:: ../images/install-windows-1a.png
            
@@ -96,7 +95,7 @@ V našem případě najděte a nainstalujte následující balíčky:
 
    .. code-block:: bash
                    
-      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://osgeo4w-oslandia.com -q ^
+      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://download.osgeo.org/osgeo4w -q ^
       -P python3-pip,python3-gdal,python3-owslib,qgis-ltr
    
 .. note:: A samozřejmě můžete i nainstalovat desktopové programy QGIS
