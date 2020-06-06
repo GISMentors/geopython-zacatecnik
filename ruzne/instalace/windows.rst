@@ -1,18 +1,16 @@
 Instalace na operační systému MS Windows
 ========================================
 
-Tato kapitola by vám měla pomoci nastavit celkem použitelné prostředí
-pro zpracování prostorových dat pomocí open source knihoven v
-jazyce Python na operačním systému MS Windows.
+Tato kapitola by vám měla pomoci nastavit použitelné prostředí pro
+zpracování prostorových dat pomocí open source knihoven v jazyce
+Python na operačním systému MS Windows.
         
 .. note:: Kurzy GISMentors probíhají na operačním systému Linux a máme
         pro to řadu dobrých důvodů: lepší provázanost knihoven,
         stabilita, možnost snáze něco "opravit". Platforma MS Windows
         pro nás není domácí. Navíc není pro vývoj programů pro práci s
         prostorovými daty s využitím open source knihoven úplně
-        ideální, především pro svou roztříštěnost a nestabilitu. To
-        samozřejmě nemusí platit pro nástroje poskytované velkými
-        producenty proprietárních GIS aplikací.
+        ideální, především pro svou roztříštěnost a nestabilitu.
 
 Na operačním systému MS Windows máme (minimálně) **dvě
 prostředí/možnosti**, v jakých můžeme Python provozovat:
@@ -26,25 +24,25 @@ prostředí/možnosti**, v jakých můžeme Python provozovat:
 * Nativní distribuce Pythonu ze stránek `http://python.org
   <http://python.org>`_. Do tohoto prostředí lze doinstalovat všechny knihovny
   používané v tomto kurzu, ale jejich zapojení např. do QGIS nebo GRASS GIS bude
-  spíše nemožné.
+  velmi obtížné až nemožné.
 
 .. note:: Je "zvykem", že na MS Windows si všechny programy s sebou
         instalují všechny potřebné knihovny. Takže pokud máte v
         systému Esri ArcGIS, máte i další interní interpret Pythonu
         zabalený spolu s ArcGISem. Většinou ale nebudete vědět "kde v
-        systému je" a jaké verze. Navíc integrace s ostatními
-        knihovnami bude ještě obtížnější.
+        systému je" a jaké verze. Navíc integrace s ostatními (open
+        source) knihovnami bude ještě obtížnější.
 
 Instalace OSGeo4W
 -----------------
 
 `OSGeo4W <https://trac.osgeo.org/osgeo4w/>`_ je síťový instalátor pro
-otevřený software pro GIS na operačním systému MS Windows. Instalace
-probíhá tak, že stáhneme neprve instalátor (typicky
+otevřený GIS software pro operační systém MS Windows. Instalace
+probíhá tak, že stáhneme neprve instalátor (typicky 64bit
 `osgeo4w-setup-x86_64.exe
-<http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe>`__), který
-nás po spuštění provede výběrem požadovaných balíčků a po odsouhlasení
-je sám stáhne a nainstaluje.
+<http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe>`__),
+který nás po spuštění provede výběrem požadovaných balíčků a po
+odsouhlasení je sám stáhne a nainstaluje.
 
 .. note:: OSGeo4W nainstaluje na počítač svoji vlastní verzi
           Pythonu. Pokud máte Python již nainstalován, budete mít na
@@ -58,30 +56,33 @@ je sám stáhne a nainstaluje.
 
 Při instalaci vyberte pokročilou volbu - *Advanced Install* - po
 zvolení zdrojových serverů a cílového adresáře, se dostanete až k
-výběru jednotlivých balíčků.  Pomocí vyhledávání můžete najít
-jednotlivé balíčky a poklepáním myší na řádek se volba ze `Skip` změní
-na číslo verze, kterou lze nainstalovat (někdy je dostupných verzí
-víc). V našem případě najděte a nainstalujte následující balíčky:
-
-* ``gdal``
-* ``python3-pip``
-* ``python3-gdal``
-* ``python3-owslib``
-
-A samozřejmě můžete i nainstalovat desktopové programy QGIS a GRASS GIS
-
-* ``qgis`` (nebo ``qgis-ltr``)
-* ``grass``
-
-Po potvrzení se balíčky stáhnou a nainstalují.
+výběru jednotlivých balíčků.
 
 .. figure:: ../images/install-windows-1.png
+           
+   Spuštění OSGeo4W instalátoru, volba Advanced Install
 
-        Spuštění instalátoru, volba Advanced Install
+Pomocí vyhledávání můžete najít jednotlivé balíčky a poklepáním myší
+na řádek se volba ze `Skip` změní na číslo verze, kterou lze
+nainstalovat (někdy je dostupných verzí víc).
+
+Po potvrzení se balíčky stáhnou a nainstalují.
 
 .. figure:: ../images/install-windows-2.png
 
         Výběr balíčků
+
+V našem případě najděte a nainstalujte následující balíčky:
+
+* ``python3-pip``
+* ``python3-gdal``
+* ``python3-owslib``
+
+.. note:: A samozřejmě můžete i nainstalovat desktopové programy QGIS
+   a GRASS GIS (není podmínkou pro toto školení).
+
+   * ``qgis`` (nebo ``qgis-ltr``)
+   * ``grass``
 
 .. figure:: ../images/install-windows-3.png
 
@@ -95,25 +96,24 @@ Po potvrzení se balíčky stáhnou a nainstalují.
    .. code-block:: bash
                    
       osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://download.osgeo.org/osgeo4w -q ^
-      -P gdal -P python3-pip -P python3-gdal -P python3-owslib -P qgis-ltr -P grass
+      -P python3-pip,python3-gdal,python3-owslib,qgis-ltr
    
-.. note:: V tuto chvíli (2020-02) bohužel nejde v použitelné formě
-        instalovat balíčky ``rasterio`` (chybí) a ``fiona``
-        (nefunkční), které budeme v tomto kurzu používat. Vazby na
-        knihovnu GDAL ale fungují dobře, viz :ref:`osgeo4w-fiona-etc`.
-
 Pro otestování prostředí otevřeme *OSGeo4W Shell*. Před vstupem do
-interpreta jazyka Python, musíme spustit skript :file:`p3_env.bat`, který
+interpreta jazyka Python, musíme spustit skript :file:`p3_env`, který
 nastaví proměnné prostředí pro Python 3.
 
-.. code-block:: bash
+.. code-block:: cmd
 
-        C:\> py3_env
-        C:\> python3
-        >>> from osgeo import gdal
-        gdal.__version__
+   py3_env
+   python3 -c 'from osgeo import gdal; print(gdal.__version__)'
         
 .. figure:: ../images/osgeo4w-run.png
+
+.. important:: V tuto chvíli (jaro 2020) bohužel nejde v použitelné
+   formě instalovat balíčky ``rasterio`` (chybí) a ``fiona/shapely``
+   (nefunkční), které budeme v tomto kurzu používat. Vazby na knihovnu
+   GDAL ale fungují dobře, postup je popsán v kapitole
+   :ref:`osgeo4w-fiona-etc`.
 
 .. _osgeo4w-fiona-etc:
 
