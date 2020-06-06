@@ -62,7 +62,18 @@ výběru jednotlivých balíčků.
            
    Spuštění OSGeo4W instalátoru, volba Advanced Install
 
-Pomocí vyhledávání můžete najít jednotlivé balíčky a poklepáním myší
+Před volbou softwarových balíčků k instalaci ještě zvolte server, ze
+kterého se budou balíčky stahovány. Kromě oficiálního
+http://download.osgeo.org jsou dispozici i další servery, které mohou
+mít rychlejší odezvu. V našem případě zvolíme
+http://osgeo4w-oslandia.com.
+
+.. figure:: ../images/install-windows-1a.png
+           
+   Volba serveru pro stahování instalačních balíčků.
+
+Další nastavení nechme ve výchozím stavu. V sekci **Select Packages**
+pomocí vyhledávání můžete jednotlivé balíčky najít a poklepáním myší
 na řádek se volba ze `Skip` změní na číslo verze, kterou lze
 nainstalovat (někdy je dostupných verzí víc).
 
@@ -70,23 +81,13 @@ Po potvrzení se balíčky stáhnou a nainstalují.
 
 .. figure:: ../images/install-windows-2.png
 
-        Výběr balíčků
+   Výběr softwarových balíčků, v tomto případě ``python3-gdal``.
 
 V našem případě najděte a nainstalujte následující balíčky:
 
 * ``python3-pip``
 * ``python3-gdal``
 * ``python3-owslib``
-
-.. note:: A samozřejmě můžete i nainstalovat desktopové programy QGIS
-   a GRASS GIS (není podmínkou pro toto školení).
-
-   * ``qgis`` (nebo ``qgis-ltr``)
-   * ``grass``
-
-.. figure:: ../images/install-windows-3.png
-
-        Sledování průběhu instalace
 
 .. _instalace-osgeo4w-cmd:
 
@@ -95,9 +96,19 @@ V našem případě najděte a nainstalujte následující balíčky:
 
    .. code-block:: bash
                    
-      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://download.osgeo.org/osgeo4w -q ^
+      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://osgeo4w-oslandia.com -q ^
       -P python3-pip,python3-gdal,python3-owslib,qgis-ltr
    
+.. note:: A samozřejmě můžete i nainstalovat desktopové programy QGIS
+   a GRASS GIS (není podmínkou pro toto školení).
+
+   * ``qgis`` (nebo ``qgis-ltr`` pro LTR verzi)
+   * ``grass``
+
+.. figure:: ../images/install-windows-3.png
+
+        Sledování průběhu instalace
+
 Pro otestování prostředí otevřeme *OSGeo4W Shell*. Před vstupem do
 interpreta jazyka Python, musíme spustit skript :file:`p3_env`, který
 nastaví proměnné prostředí pro Python 3.
@@ -105,7 +116,7 @@ nastaví proměnné prostředí pro Python 3.
 .. code-block:: cmd
 
    py3_env
-   python3 -c 'from osgeo import gdal; print(gdal.__version__)'
+   python3 -c "from osgeo import gdal; print(gdal.__version__)"
         
 .. figure:: ../images/osgeo4w-run.png
 
