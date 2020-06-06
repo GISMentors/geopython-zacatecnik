@@ -97,7 +97,7 @@ V našem případě najděte a nainstalujte následující balíčky:
 
    .. code-block:: bash
                    
-      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://download.osgeo.org/osgeo4w -q ^
+      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://osgeo4w-oslandia.com/osgeo4w -q ^
       -P python3-pip,python3-gdal,python3-owslib,qgis-ltr-full
    
 .. note:: A samozřejmě můžete i nainstalovat desktopový program QGIS
