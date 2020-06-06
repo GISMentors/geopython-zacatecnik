@@ -98,13 +98,12 @@ V našem případě najděte a nainstalujte následující balíčky:
    .. code-block:: bash
                    
       osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://download.osgeo.org/osgeo4w -q ^
-      -P python3-pip,python3-gdal,python3-owslib,qgis-ltr
+      -P python3-pip,python3-gdal,python3-owslib,qgis-ltr-full
    
-.. note:: A samozřejmě můžete i nainstalovat desktopové programy QGIS
-   a GRASS GIS (není podmínkou pro toto školení).
+.. note:: A samozřejmě můžete i nainstalovat desktopový program QGIS
+   (není podmínkou pro toto školení).
 
-   * ``qgis`` (nebo ``qgis-ltr`` pro LTR verzi)
-   * ``grass``
+   * ``qgis-full`` (nebo ``qgis-ltr-full`` pro LTR verzi)
 
 .. figure:: ../images/install-windows-3.png
 
