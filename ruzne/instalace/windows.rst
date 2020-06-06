@@ -151,50 +151,46 @@ zjistíme verzi::
 
 V našem případě tedy stáhneme např. soubory
 
-* :file:`rasterio‑1.1.2‑cp37‑cp37m‑win_amd64.whl`
+* :file:`rasterio‑1.1.4‑cp37‑cp37m‑win_amd64.whl`
 * :file:`Fiona‑1.8.13‑cp37‑cp37m‑win_amd64.whl`
 * :file:`Shapely‑1.7.0‑cp37‑cp37m‑win_amd64.whl`
 
 A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí
-**OSGeo4W Shell** jako administrátor. Nezapomeňte nejprve nastavit
+*OSGeo4W Shell* jako *administrátor*. Nezapomeňte nejprve nastavit
 prostředí pro Python 3 spuštěním skriptu :file:`py3_env`.
 
 .. code-block:: bash
 
-        C:\> py3_env
+   py3_env
        
-        C:\> cd C:\Users\Administrator\Downloads
+   cd C:\Users\Administrator\Downloads
 
-        C:\Users\Administrator\Downloads> python3 -m pip install Fiona-1.8.13-cp37-cp37m-win_amd64.whl
-        C:\Users\Administrator\Downloads> python3 -m pip install rasterio-1.1.2-cp37-cp37m-win_amd64.whl
-        C:\Users\Administrator\Downloads> python3 -m pip install Shapely-1.7.0-cp37-cp37m-win_amd64.whl
+   python3 -m pip install Fiona-1.8.13-cp37-cp37m-win_amd64.whl
+   python3 -m pip install rasterio-1.1.4-cp37-cp37m-win_amd64.whl
+   python3 -m pip install Shapely-1.7.0-cp37-cp37m-win_amd64.whl
 
 Následně můžeme instalaci vyzkoušet
 
-.. code-block:: bash
+.. code-block:: cmd
 
-        C:\Users\Administrator\Downloads>python3
+   python3
 
-        Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:59:51) [MSC v.1914 64 bit (AMD64)] on win32
-        Type "help", "copyright", "credits" or "license" for more information.
-
-        >>> import shapely
-        >>> import fiona
-        >>> import rasterio
-        >>>
+   > import shapely
+   > import fiona
+   > import rasterio
 
 A otestovat, jak se daří načíst prostorová data (po stažení dat z úvodu tohoto
 kurzu)
 
-.. code-block:: bash
+.. code-block:: cmd
 
-        >>> chko = fiona.open("data/chko.shp")
-        >>> chko.driver
-        'ESRI Shapefile'
+   > chko = fiona.open("data/chko.shp")
+   > chko.driver
+   'ESRI Shapefile'
 
-        >>> lsat = rasterio.open("data/lsat7_2002_nir.tiff")
-        >>> lsat.driver
-        'GTiff'
+   > lsat = rasterio.open("data/lsat7_2002_nir.tiff")
+   > lsat.driver
+   'GTiff'
 
 .. _win-py-bin:
 
