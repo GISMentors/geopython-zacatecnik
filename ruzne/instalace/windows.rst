@@ -90,8 +90,10 @@ V našem případě najděte a nainstalujte následující balíčky:
 
 .. _instalace-osgeo4w-cmd:
 
-.. tip:: Nainstalovat celé prostředí lze přímo z příkazové řádky
-   MS Windows:
+.. tip:: Nainstalovat celé prostředí lze jednoduše **v jednom kroku**
+   přímo z příkazové řádky MS Windows. Otevřte příkazový řádek Windows
+   jako *admistrátor*, přepněte se do adresáře (příkaz ``cd``), kam jste
+   stáhli instálator OSGeo4W a spusťte následující příkaz.
 
    .. code-block:: bash
                    
