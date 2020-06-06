@@ -65,7 +65,7 @@ výběru jednotlivých balíčků.
 Před volbou softwarových balíčků k instalaci ještě zvolte server, ze
 kterého se budou balíčky stahovány. Kromě oficiálního
 http://download.osgeo.org jsou dispozici i další servery, které mohou
-mít rychlejší odezvu.
+mít rychlejší odezvu. 
 
 .. figure:: ../images/install-windows-1a.png
            
@@ -175,21 +175,21 @@ Následně můžeme instalaci vyzkoušet
 
    python3
 
-   > import shapely
-   > import fiona
-   > import rasterio
+   >>> import shapely
+   >>> import fiona
+   >>> import rasterio
 
 A otestovat, jak se daří načíst prostorová data (po stažení dat z úvodu tohoto
 kurzu)
 
 .. code-block:: cmd
 
-   > chko = fiona.open("data/chko.shp")
-   > chko.driver
+   >>> chko = fiona.open("data/chko.shp")
+   >>> chko.driver
    'ESRI Shapefile'
 
-   > lsat = rasterio.open("data/lsat7_2002_nir.tiff")
-   > lsat.driver
+   >>> lsat = rasterio.open("data/lsat7_2002_nir.tiff")
+   >>> lsat.driver
    'GTiff'
 
 .. _win-py-bin:
@@ -197,12 +197,12 @@ kurzu)
 Instalace nativního interpretu CPython
 --------------------------------------
 
-.. important:: Pokud budete používat pouze nativní interpret CPython, (mimo
-   prostředí OSGeo4W), nebudete moci (nebo velmi obtížně) kombinovat
-   knihovny s QGIS, GRASS GIS a dalšími.
+.. important:: Pokud budete používat pouze nativní interpret CPython
+   (mimo prostředí OSGeo4W), nebudete moci (nebo velmi obtížně)
+   kombinovat knihovny s QGIS, GRASS GIS a dalšími.
 
 Ze stránek https://www.python.org/downloads/windows/ stáhněte aktuální
-verzi jazyka Python s označením 3 - použijte 64bit verzi - tedy
+verzi jazyka Python s označením 3.x - použijte 64bit verzi - tedy
 např. `Windows x86-64 executable installer
 <https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe>`__.
 
@@ -238,14 +238,10 @@ Průběh instalace a hotovo.
 
         Sledování průběhu instalace
 
-Po instalaci a spuštění příkazové řádky (`cmd`) můžete Python spustit
-přímo:
+Po instalaci a spuštění příkazové řádky (`cmd`) můžete Python sputit přímo.
 
-.. figure:: ../images/python-windows-1.png
-
-        Sledování průběhu instalace
-
-V dalším kroce je potřeba do prostředí doinstalovat námi požadované knihovny. 
+V dalším kroce je potřeba do prostředí doinstalovat námi požadované
+knihovny.
 
 Ze stránek `Unofficial Windows Binaries for Python Extension Packages
 <http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ stáhneme knihovny
@@ -256,7 +252,7 @@ platformu (amd64).
 Poté otevřeme příkazovou řádku Windows jako administrátor a
 doinstalujeme požadované knihovny, například:
 
-.. code-block:: bash
+.. code-block:: cmd
 
    pip install Downloads\Shapely-1.7.0-cp38-cp38-win32.whl
    pip install Downloads\Fiona-1.8.13-cp38-cp38-win32.whl
@@ -269,43 +265,38 @@ Před vlastní instalací knihovny Rasterio do prostředí CPython na
 Windows musíme instalovat ručně balík `Numpy
 <https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy>`_ a Microsoft
 Visual Studio 2015 a mladší, nejlépe ke stažení z
+`http://go.microsoft.com/fwlink/?LinkId=691126&fixForIE=.exe. <http://go.microsoft.com/fwlink/?LinkId=691126&fixForIE=.exe.>`_
 
-* `http://go.microsoft.com/fwlink/?LinkId=691126&fixForIE=.exe. <http://go.microsoft.com/fwlink/?LinkId=691126&fixForIE=.exe.>`_
-
-.. code-block:: bash
+.. code-block:: cmd
 
    pip install Downloads\numpy‑1.18.1+mkl‑cp38‑cp38‑win_amd64.whl
 
 Potom už můžeme instalovat rasterio
 
-.. code-block:: bash
+.. code-block:: cmd
 
    pip install Downloads\rasterio‑1.1.2‑cp38‑cp38‑win_amd64.whl
 
 A následně můžeme instalaci vyzkoušet:
 
-.. code-block:: bash
+.. code-block:: cmd
 
-        C:\Users\Administrator\Downloads>python
+   python
 
-        Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:59:51) [MSC v.1914 64 bit (AMD64)] on win32
-        Type "help", "copyright", "credits" or "license" for more information.
+   >>> import shapely
+   >>> import fiona
+   >>> import rasterio
 
-        >>> import shapely
-        >>> import fiona
-        >>> import rasterio
-        >>>
+A otestovat, jak se daří načíst prostorová data (po stažení dat z
+úvodu tohoto kurzu)
 
-A otestovat, jak se daří načíst prostorová data (po stažení dat z úvodu tohoto
-kurzu)
+.. code-block:: cmd
 
-.. code-block:: bash
+   >>> chko = fiona.open("data/chko.shp")
+   >>> chko.driver
+   'ESRI Shapefile'
 
-        >>> chko = fiona.open("data/chko.shp")
-        >>> chko.driver
-        'ESRI Shapefile'
-
-        >>> lsat = rasterio.open("data/lsat7_2002_nir.tiff")
-        >>> lsat.driver
-        'GTiff'
+   >>> lsat = rasterio.open("data/lsat7_2002_nir.tiff")
+   >>> lsat.driver
+   'GTiff'
 
