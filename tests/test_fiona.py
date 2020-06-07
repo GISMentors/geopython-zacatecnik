@@ -3,7 +3,7 @@ import fiona
 from fiona.crs import from_epsg
         
 class TestFiona:
-    data_dir = 'data'
+    data_dir = os.path.join('tests', 'data')
     sample_file = 'chko.shp'
     nfeat = 3
     nprop = 14
