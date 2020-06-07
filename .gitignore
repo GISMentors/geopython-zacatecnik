@@ -4,3 +4,4 @@ _build
 *~
 _static/skripty/data*
 _static/skripty/*.pyc
+__pycache__/
