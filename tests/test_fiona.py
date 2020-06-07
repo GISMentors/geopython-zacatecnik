@@ -3,13 +3,12 @@ import fiona
 from fiona.crs import from_epsg
         
 class TestFiona:
-    data_dir = os.path.join('tests', 'data')
-    sample_file = 'chko.shp'
+    sample_file = os.path.join('tests', 'data', 'chko.shp')
     nfeat = 3
     nprop = 14
     
     def test_fiona_open(self):
-        with fiona.open(os.path.join(self.data_dir, self.sample_file), 'r', encoding='utf-8') as chko:
+        with fiona.open(self.sample_file, 'r', encoding='utf-8') as chko:
             # metadata
             assert chko.driver == 'ESRI Shapefile'
             
@@ -23,7 +22,7 @@ class TestFiona:
         assert from_epsg(5514)['init'] == 'epsg:5514'
 
     def test_fiona_read(self):
-        with fiona.open(os.path.join(self.data_dir, self.sample_file), 'r', encoding='utf-8') as chko:
+        with fiona.open(self.sample_file, 'r', encoding='utf-8') as chko:
 
             # seq read
             n = 0 
