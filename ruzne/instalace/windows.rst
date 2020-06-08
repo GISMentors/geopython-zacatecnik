@@ -300,3 +300,30 @@ A otestovat, jak se daří načíst prostorová data (po stažení dat z
    >>> lsat.driver
    'GTiff'
 
+Otestování instalace
+--------------------
+
+Otevřte *OSGeo4W Shell* (anebo příkazový řádek Windows v případě
+nativního interpretu CPython) jako správce a doinstalujte
+:program:`pytest`.
+
+.. code-block:: cmd
+
+   python3 -m pip install pytest
+
+Stáhněte repositář *geopython-zacatecnik* pomocí :program:`git` anebo
+přímo jako `zip
+<https://github.com/GISMentors/geopython-zacatecnik/archive/master.zip>`. Zip
+soubor rozbalte a vstupte do rozbalené složky.
+
+.. code-block:: cmd
+
+   cd C:\Users\user\Downloads\geopython-zacatecnik-master
+
+   py3_env
+   python3 -m pytest tests
+
+
+.. figure:: ../images/windows-pytest.png
+
+   Spuštění testu 
