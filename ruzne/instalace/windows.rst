@@ -304,4 +304,4 @@ nastavíme prostředí pro Python 3 pomocí ``py3_env``).
 
 .. figure:: ../images/pytest-windows.png
 
-   Spuštění testu pod Windows.
+   Spuštění testů pod Windows.
