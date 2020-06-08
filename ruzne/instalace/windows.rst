@@ -275,17 +275,26 @@ pro Python 3 pomocí ``py3_env``).
 
 Stáhněte repositář *geopython-zacatecnik* pomocí :program:`git` anebo
 přímo jako `zip soubor
-<https://github.com/GISMentors/geopython-zacatecnik/archive/master.zip>`__. Zip
-archiv rozbalte a vstupte do rozbalené složky.
+<https://github.com/GISMentors/geopython-zacatecnik/archive/master.zip>`__
+a rozbalte.
+
+Otevřte *OSGeo4W Shell* (anebo příkazový řádek Windows v případě
+nativního interpretu CPython) jako běžný uživatel a vstupte do
+rozbalené složky, např.:
 
 .. code-block:: cmd
 
-   cd C:\Users\user\Downloads\geopython-zacatecnik-master
+   cd C:\Users\user\Downloads\geopython-zacatecnik-master\geopython-zacatecnik-master
 
-Otevřte *OSGeo4W Shell* (anebo příkazový řádek Windows v případě
-nativního interpretu CPython) jako běžný uživatel. Testy spustíte
-následujícím příkazem (v případě *OSGeo4W Shell* ještě nastavíme
-prostředí pro Python 3 pomocí ``py3_env``).
+.. note:: Nejedná se překlep. Zip obsahuje složku
+   :file:`geopython-zacatecnik-master`, což se pod Windows projeví
+   vnořením do složky :file:`geopython-zacatecnik-master`
+   (odpovídající názvu zip souboru). Následující příkaz je podstatné
+   spustit ze složky, která obsahuje podsložku :file:`tests`. To
+   můžete ověřit příkazem ``dir``.
+
+Testy spustíte následujícím příkazem (v případě *OSGeo4W Shell* ještě
+nastavíme prostředí pro Python 3 pomocí ``py3_env``).
 
 .. code-block:: cmd
 
