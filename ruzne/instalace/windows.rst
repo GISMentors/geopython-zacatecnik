@@ -282,8 +282,10 @@ archiv rozbalte a vstupte do rozbalené složky.
 
    cd C:\Users\user\Downloads\geopython-zacatecnik-master
 
-Testy spustíte následujícím příkazem (v případě *OSGeo4W Shell* ještě
-nastavíme prostředí pro Python 3 pomocí ``py3_env``).
+Otevřte *OSGeo4W Shell* (anebo příkazový řádek Windows v případě
+nativního interpretu CPython) jako běžný uživatel. Testy spustíte
+následujícím příkazem (v případě *OSGeo4W Shell* ještě nastavíme
+prostředí pro Python 3 pomocí ``py3_env``).
 
 .. code-block:: cmd
 
