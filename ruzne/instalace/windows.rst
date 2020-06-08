@@ -169,28 +169,7 @@ prostředí pro Python 3 spuštěním skriptu :file:`py3_env`.
    python3 -m pip install rasterio-1.1.4-cp37-cp37m-win_amd64.whl
    python3 -m pip install Shapely-1.7.0-cp37-cp37m-win_amd64.whl
 
-Následně můžeme instalaci vyzkoušet
-
-.. code-block:: cmd
-
-   python3
-
-   >>> import shapely
-   >>> import fiona
-   >>> import rasterio
-
-A otestovat, jak se daří načíst prostorová data (po stažení dat z úvodu tohoto
-kurzu)
-
-.. code-block:: cmd
-
-   >>> chko = fiona.open("data/chko.shp")
-   >>> chko.driver
-   'ESRI Shapefile'
-
-   >>> lsat = rasterio.open("data/lsat7_2002_nir.tiff")
-   >>> lsat.driver
-   'GTiff'
+Následně můžeme instalaci vyzkoušet :ref:`install-pytest`.
 
 .. _win-py-bin:
 
@@ -277,34 +256,15 @@ Potom už můžeme instalovat rasterio
 
    pip install Downloads\rasterio‑1.1.2‑cp38‑cp38‑win_amd64.whl
 
-A následně můžeme instalaci vyzkoušet:
-
-.. code-block:: cmd
-
-   python
-
-   >>> import shapely
-   >>> import fiona
-   >>> import rasterio
-
-A otestovat, jak se daří načíst prostorová data (po stažení dat z
-úvodu tohoto kurzu)
-
-.. code-block:: cmd
-
-   >>> chko = fiona.open("data/chko.shp")
-   >>> chko.driver
-   'ESRI Shapefile'
-
-   >>> lsat = rasterio.open("data/lsat7_2002_nir.tiff")
-   >>> lsat.driver
-   'GTiff'
+Následně můžeme instalaci vyzkoušet :ref:`install-pytest`.
+   
+.. _install-pytest:
 
 Otestování instalace
 --------------------
 
 Otevřte *OSGeo4W Shell* (anebo příkazový řádek Windows v případě
-nativního interpretu CPython) jako správce a doinstalujte
+nativního interpretu CPython) jako *správce* a doinstalujte
 :program:`pytest`.
 
 .. code-block:: cmd
@@ -312,18 +272,23 @@ nativního interpretu CPython) jako správce a doinstalujte
    python3 -m pip install pytest
 
 Stáhněte repositář *geopython-zacatecnik* pomocí :program:`git` anebo
-přímo jako `zip
-<https://github.com/GISMentors/geopython-zacatecnik/archive/master.zip>`. Zip
-soubor rozbalte a vstupte do rozbalené složky.
+přímo jako `zip soubor
+<https://github.com/GISMentors/geopython-zacatecnik/archive/master.zip>`__. Zip
+archiv rozbalte a vstupte do rozbalené složky.
 
 .. code-block:: cmd
 
    cd C:\Users\user\Downloads\geopython-zacatecnik-master
 
+Testy spustíte následujícím příkazem (v případě *OSGeo4W Shell* ještě
+nastavíme Python 3 prostředí pomocí ``py3_env``).
+
+.. code-block:: cmd
+
    py3_env
    python3 -m pytest tests
 
 
-.. figure:: ../images/windows-pytest.png
+.. figure:: ../images/pytest-windows.png
 
-   Spuštění testu 
+   Spuštění testu pod Windows.
