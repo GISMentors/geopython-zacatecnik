@@ -156,7 +156,7 @@ V našem případě tedy stáhneme např. soubory
 * :file:`Shapely‑1.7.0‑cp37‑cp37m‑win_amd64.whl`
 
 A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí
-*OSGeo4W Shell* jako *administrátor*. Nezapomeňte nejprve nastavit
+*OSGeo4W Shell* jako *správce*. Nezapomeňte nejprve nastavit
 prostředí pro Python 3 spuštěním skriptu :file:`py3_env`.
 
 .. code-block:: bash
@@ -228,7 +228,7 @@ GDAL, Fiona, Shapely, Rasterio a OWSLib soubory ve formátu Wheel. Vždy
 pro danou verzi Pythonu (v tomto dokumentu používáme 3.8) a 64bit
 platformu (amd64).
 
-Poté otevřeme příkazovou řádku Windows jako administrátor a
+Poté otevřeme příkazovou řádku Windows jako *správce* a
 doinstalujeme požadované knihovny, například:
 
 .. code-block:: cmd
@@ -265,10 +265,12 @@ Otestování instalace
 
 Otevřte *OSGeo4W Shell* (anebo příkazový řádek Windows v případě
 nativního interpretu CPython) jako *správce* a doinstalujte
-:program:`pytest`.
+:program:`pytest` (v případě *OSGeo4W Shell* ještě nastavíme prostředí
+pro Python 3 pomocí ``py3_env``).
 
 .. code-block:: cmd
 
+   py3_env
    python3 -m pip install pytest
 
 Stáhněte repositář *geopython-zacatecnik* pomocí :program:`git` anebo
@@ -281,7 +283,7 @@ archiv rozbalte a vstupte do rozbalené složky.
    cd C:\Users\user\Downloads\geopython-zacatecnik-master
 
 Testy spustíte následujícím příkazem (v případě *OSGeo4W Shell* ještě
-nastavíme Python 3 prostředí pomocí ``py3_env``).
+nastavíme prostředí pro Python 3 pomocí ``py3_env``).
 
 .. code-block:: cmd
 
