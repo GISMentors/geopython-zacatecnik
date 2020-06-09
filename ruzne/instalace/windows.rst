@@ -15,16 +15,16 @@ Python na operačním systému MS Windows.
 Na operačním systému MS Windows máme (minimálně) **dvě
 prostředí/možnosti**, v jakých můžeme Python provozovat:
 
-* Z distribuce `OSGeo4W <https://trac.osgeo.org/osgeo4w/>`_ - což je
-  sada programů s otevřeným zdrojovým kódem pro operační systém MS
-  Windows. Všechny programy z této distribuce spolu navzájem "mluví",
-  bohužel ale OSGeo4W neobsahuje (nebo nejsou aktuální) všechny
-  knihovny, které v tomto kurzu doporučujeme. Situace se v budoucnu
-  ale může změnit.
-* Nativní distribuce Pythonu ze stránek `http://python.org
-  <http://python.org>`_. Do tohoto prostředí lze doinstalovat všechny knihovny
-  používané v tomto kurzu, ale jejich zapojení např. do QGIS nebo GRASS GIS bude
-  velmi obtížné až nemožné.
+1. *(preferovaná)* Z distribuce `OSGeo4W <https://trac.osgeo.org/osgeo4w/>`_ - což je
+   sada programů s otevřeným zdrojovým kódem pro operační systém MS
+   Windows. Všechny programy z této distribuce spolu navzájem "mluví",
+   bohužel ale OSGeo4W neobsahuje (nebo nejsou aktuální) všechny
+   knihovny, které v tomto kurzu doporučujeme. Situace se v budoucnu
+   ale může změnit. :ref:`Návod <win-osgeo4w-bin>`.
+2. *(alternativní)* Nativní distribuce Pythonu ze stránek `http://python.org
+   <http://python.org>`_. Do tohoto prostředí lze doinstalovat všechny knihovny
+   používané v tomto kurzu, ale jejich zapojení např. do QGIS nebo GRASS GIS bude
+   velmi obtížné až nemožné. :ref:`Návod <win-py-bin>`.
 
 .. note:: Je "zvykem", že na MS Windows si všechny programy s sebou
         instalují všechny potřebné knihovny. Takže pokud máte v
@@ -33,8 +33,10 @@ prostředí/možnosti**, v jakých můžeme Python provozovat:
         systému je" a jaké verze. Navíc integrace s ostatními (open
         source) knihovnami bude ještě obtížnější.
 
-Instalace OSGeo4W
------------------
+.. _win-osgeo4w-bin:
+
+První možnost (preferovaná): Instalace OSGeo4W
+----------------------------------------------
 
 `OSGeo4W <https://trac.osgeo.org/osgeo4w/>`_ je síťový instalátor pro
 otevřený GIS software pro operační systém MS Windows. Instalace
@@ -173,8 +175,8 @@ Následně můžeme instalaci vyzkoušet :ref:`install-pytest`.
 
 .. _win-py-bin:
 
-Instalace nativního interpretu CPython
---------------------------------------
+Druhá možnost (alternativní): Instalace nativního interpretu CPython
+--------------------------------------------------------------------
 
 .. important:: Pokud budete používat pouze nativní interpret CPython
    (mimo prostředí OSGeo4W), nebudete moci (nebo velmi obtížně)
