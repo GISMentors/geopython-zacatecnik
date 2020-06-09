@@ -15,7 +15,7 @@ Po spuštění je možné vytvořit nový soubor s příponou py,
 který v okamžiku uložení bude zvýrazněn dle syntaxe jazyka Python.
 
 Spouštění skriptů přímo z editoru umožňuje řada balíčků, které je však nutno instalovat.
-Nejznámější je atom-pyrun, ale tan se nám bohužel nepodařilo nakonfigurovat,
+Nejznámější je atom-python-run, ale tan se nám bohužel nepodařilo nakonfigurovat,
 tak aby načítal prostředí OSGeo4W.
 Konfigurace se zdařila s využitím balíčku script.
 
@@ -25,7 +25,7 @@ Zde zvolíme možnost Install a napíšeme script.
 .. figure:: images/atom-install-packages.png
    :class: middle
 
-Pak zvolíme Install pro nalezený balíček script.
+Pak zvolíme tlačítko Install pro nalezený balíček script.
 
 Po nainstalování můžeme nakonfigurovat interpret pro spouštění
 z menu :menuselection:`Packages --> Script --> Configure Script`.
