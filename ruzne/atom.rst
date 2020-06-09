@@ -1,4 +1,4 @@
 Editor Atom
 ===========
 
-.. todo: dopsat
+.. todo:: sepsat
