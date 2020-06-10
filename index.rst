@@ -76,7 +76,7 @@
    geodjango/index
    ruzne/jupyter
    ruzne/instalace/index
-   ruzne/editor
+   ruzne/editor/index
 
 *******
 Dodatky

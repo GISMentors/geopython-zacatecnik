@@ -10,5 +10,7 @@ Pro jazyk Python existuje obrovské množství editorů (či
 názorem potom `VIM <https://www.vim.org/>`__ anebo `Emacs
 <https://www.gnu.org/software/emacs/>`__ ;-)
 
-Následují návody pro dva vybrané editor :doc:`PyCharm <pycharm>` a
-:doc:`Atom <atom>`.
+Následují návody pro dva vybrané editory
+
+* :doc:`PyCharm <pycharm>` a
+* :doc:`Atom <atom>`.

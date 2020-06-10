@@ -1,4 +1,3 @@
-==============
 Editor PyCharm
 ==============
 
@@ -10,12 +9,12 @@ stažení `zde
 
 Po spuštění editoru je možné vytvořit nový projekt.
 
-.. figure:: images/pycharm-project.png
+.. figure:: ../images/pycharm-project.png
    :class: middle
 
 Při jeho konfiguraci je možné nastavit interpret jazyka.
 
-.. figure:: images/pycharm-interpret.png
+.. figure:: ../images/pycharm-interpret.png
    :class: middle
 
 V případě využití OSGeo4W je vhodný BAT soubor
@@ -25,7 +24,7 @@ V případě využití OSGeo4W je vhodný BAT soubor
 V nově vytvořeném projektu můžeme kliknout pravým tlačítkem na název projektu a
 přidat nový Python soubor.
 
-.. figure:: images/pycharm-file.png
+.. figure:: ../images/pycharm-file.png
    :class: middle
 
 Soubor můžeme naplnit importem knihoven, které budeme používat, 
@@ -41,17 +40,17 @@ tak abychom ověřili, že máme konfiguraci v pořádku.
 
 Spuštění kódu realizujeme přes menu :menuselection:`Run --> Run`.
 
-.. figure:: images/pycharm-run-1.png
+.. figure:: ../images/pycharm-run-1.png
    :class: middle
 
 Vytvoříme novou konfiguraci.
 
-.. figure:: images/pycharm-run-2.png
+.. figure:: ../images/pycharm-run-2.png
    :class: middle
 
 Zejména vybereme skript, který chceme v této konfiguraci spouštět.
 
-.. figure:: images/pycharm-run-3.png
+.. figure:: ../images/pycharm-run-3.png
    :class: middle
 
 A pak již můžeme pomocí tlačítka Run skript spustit.
@@ -59,6 +58,6 @@ Další spuštění je pak již jednodušší, protože konfigurace je již k di
 
 Pokud vše proběhne bez problémů uvidíme výstup s exit code 0.
 
-.. figure:: images/pycharm-run-4.png
+.. figure:: ../images/pycharm-run-4.png
    :class: middle
 
