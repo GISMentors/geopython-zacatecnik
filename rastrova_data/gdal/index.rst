@@ -48,26 +48,26 @@ dat.
 
 .. code-block:: python
 
-    >>> from osgeo import gdal, ogr, osr
+    from osgeo import gdal, ogr, osr
 
-    >>> # počet pixelů ve směru os x a y, a hodnota pro nodata
-    >>> pixel_size = 20
-    >>> NoData_value = -9999
+    # počet pixelů ve směru os x a y, a hodnota pro nodata
+    pixel_size = 20
+    NoData_value = -9999
 
-    >>> # název výstupního souboru
-    >>> raster_fn = 'test.tif'
+    # název výstupního souboru
+    raster_fn = 'test.tif'
 
-    >>> # hraniční souřadnice mřížky
-    >>> x_min, x_max, y_min, y_max = (0, 100, 0, 100)
+    # hraniční souřadnice mřížky
+    x_min, x_max, y_min, y_max = (0, 100, 0, 100)
 
 V dalším kroku vypočteme prostorové rozlišení, velikost pixelu na
 základně počtu pixelů ve směru os a rozsahu rastrových dat.
 
 .. code-block:: python
 
-    >>> # prostorové rozlišení
-    >>> x_res = int((x_max - x_min) / pixel_size)
-    >>> y_res = int((y_max - y_min) / pixel_size)
+    # prostorové rozlišení
+    x_res = int((x_max - x_min) / pixel_size)
+    y_res = int((y_max - y_min) / pixel_size)
 
 Nyní můžeme vytvořit *datový zdroj* pro rastrová data. Nejprve
 vytvoříme instanci objektu `Driver` pro požadovaný formát a následně
@@ -90,9 +90,9 @@ stejném formátu v jakém bývají uloženy v tzv. *world file* souboru:
 
 .. code-block:: python
 
-    >>> target_driver = gdal.GetDriverByName('GTiff')
-    >>> target_ds = target_driver.Create(raster_fn, x_res, y_res, 1, gdal.GDT_Byte)
-    >>> target_ds.SetGeoTransform((x_min, pixel_size, 0, y_max, 0, -pixel_size))
+    target_driver = gdal.GetDriverByName('GTiff')
+    target_ds = target_driver.Create(raster_fn, x_res, y_res, 1, gdal.GDT_Byte)
+    target_ds.SetGeoTransform((x_min, pixel_size, 0, y_max, 0, -pixel_size))
 
 V dalším kroku zapíšeme data do vybraného pásma (číslování pásem
 začíná hodnotou 1 a ne více obvyklou 0). Do připraveného rastrového
@@ -101,14 +101,13 @@ kanálu můžeme nyní zapsat hodnoty jako matici hodnot ve formátu
 
 .. code-block:: python
 
-    >>> band = target_ds.GetRasterBand(1)
-    >>> ...
-    >>> import numpy as np
-    >>> band.WriteArray(np.array([[0, 0, 0, 0, 0],
-    ...                  [0, 10, 15, 10, 0],
-    ...                  [0, 15, 25, 15, 0],
-    ...                  [0, 10, 15, 10, 0],
-    ...                  [0, 0, 0, 0, 0]]))
+    band = target_ds.GetRasterBand(1)
+    import numpy as np
+    band.WriteArray(np.array([[0, 0, 0, 0, 0],
+                      [0, 10, 15, 10, 0],
+                      [0, 15, 25, 15, 0],
+                      [0, 10, 15, 10, 0],
+                      [0, 0, 0, 0, 0]]))
 
 Dále definujeme pro data souřadnicový systém. Ten se nastavuje pomocí
 zápisu ve formátu :wikipedia-en:`Well-known text` (WKT). Souřadnicový
@@ -117,15 +116,15 @@ jako formátu WKT:
 
 .. code-block:: python
 
-    >>> outRasterSRS = osr.SpatialReference()
-    >>> outRasterSRS.ImportFromEPSG(5514)
-    >>> target_ds.SetProjection(outRasterSRS.ExportToWkt()) # !!! jiné než u vektorových dat
+    outRasterSRS = osr.SpatialReference()
+    outRasterSRS.ImportFromEPSG(5514)
+    target_ds.SetProjection(outRasterSRS.ExportToWkt()) # !!! jiné než u vektorových dat
 
 A nakonec uklidíme (pro jistotu) a uzavřeme zápis:
 
 .. code-block:: python
 
-    >>> band.FlushCache()
+    band.FlushCache()
 
 Rasterizace vektorových dat
 ---------------------------
@@ -135,49 +134,49 @@ rastrové reprezentace. Začátek je stejný jako v předchozím případě:
 
 .. code-block:: python
 
-    >>> from osgeo import gdal, ogr, osr
-    >>> ...
-    >>> # počet pixelů ve směru os x a y, a hodnota pro nodata
-    >>> pixel_size = 50
-    >>> NoData_value = -9999
-    >>> ...
-    >>> # název výstupního souboru
-    >>> raster_fn = 'chko.tif'
+    from osgeo import gdal, ogr, osr
+
+    # počet pixelů ve směru os x a y, a hodnota pro nodata
+    pixel_size = 50
+    NoData_value = -9999
+
+    # název výstupního souboru
+    raster_fn = 'chko.tif'
 
 Otevřeme vstupní vektorová data:
 
 .. code-block:: python
 
-    >>> # název vstupního vektorového souboru
-    >>> vector_fn = 'chko.shp'
-    >>> # otevření zdroje dat (DataSource)
-    >>> source_ds = ogr.Open(vector_fn)
-    >>> # načtení první vrstvy z datového zdroje            
-    >>> source_layer = source_ds.GetLayer()
+    # název vstupního vektorového souboru
+    vector_fn = 'chko.shp'
+    # otevření zdroje dat (DataSource)
+    source_ds = ogr.Open(vector_fn)
+    # načtení první vrstvy z datového zdroje
+    source_layer = source_ds.GetLayer()
 
 A nyní můžeme zjistit potřebné hraniční souřadnice vstupních geodat a
 vytvořit tak cílový rastrový soubor:
 
 .. code-block:: python
 
-    >>> # získat hraniční souřadnice
-    >>> x_min, x_max, y_min, y_max = source_layer.GetExtent()
-    >>> ...
-    >>> # vytvořit data source pro výstupní data
-    >>> x_res = int((x_max - x_min) / pixel_size)
-    >>> y_res = int((y_max - y_min) / pixel_size)
-    >>> tiff_driver = gdal.GetDriverByName('GTiff')
-    >>> target_ds = tiff_driver.Create(raster_fn, x_res, y_res, 3, gdal.GDT_Byte)
-    >>> target_ds.SetGeoTransform((x_min, pixel_size, 0, y_max, 0, -pixel_size))
+    # získat hraniční souřadnice
+    x_min, x_max, y_min, y_max = source_layer.GetExtent()
+
+    # vytvořit data source pro výstupní data
+    x_res = int((x_max - x_min) / pixel_size)
+    y_res = int((y_max - y_min) / pixel_size)
+    tiff_driver = gdal.GetDriverByName('GTiff')
+    target_ds = tiff_driver.Create(raster_fn, x_res, y_res, 3, gdal.GDT_Byte)
+    target_ds.SetGeoTransform((x_min, pixel_size, 0, y_max, 0, -pixel_size))
 
 Zkopírujeme také informaci o souřadnicovém systému (S-JTSK
 :epsg:`5514`) ze vstupního datové zdroje na výstup:
 
 .. code-block:: python
 
-    >>> outRasterSRS = osr.SpatialReference()
-    >>> outRasterSRS.ImportFromEPSG(5514)
-    >>> target_ds.SetProjection(outRasterSRS.ExportToWkt()) # !!! jiné než u vektorů
+    outRasterSRS = osr.SpatialReference()
+    outRasterSRS.ImportFromEPSG(5514)
+    target_ds.SetProjection(outRasterSRS.ExportToWkt()) # !!! jiné než u vektorů
 
 Zlatým hřebem tohoto příkladu je funkce ``RasterizeLayer()`` s
 následujícími parametry:
@@ -190,12 +189,12 @@ následujícími parametry:
 
 .. code-block:: python
 
-    >>> gdal.RasterizeLayer(target_ds,
+    gdal.RasterizeLayer(target_ds,
         [1, 2, 3],
         source_layer,
         burn_values=[255,125,0],
         options=['ALL_TOUCHED=TRUE']) # žádné mezery okolo znaku '='
-    >>> target_ds.FlushCache()
+    target_ds.FlushCache()
 
 .. gdal.RasterizeLayer(dataset, [1], layer, options = ["ATTRIBUTE=KOD"])
 
