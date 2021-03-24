@@ -27,7 +27,7 @@ měla by být rychlejší Fiona. Fiona taktéž podporuje narozdíl od
    Python :python3:`json`. Pokud budete pracovat s daty uloženými v
    databázích je vhodnější použít jejich vlastní knihovny (jako
    např. :python3:`sqlite3`) či obecnější `GeoAlchemy
-   <http://geoalchemy.org>`__.
+   <https://geoalchemy-2.readthedocs.io/en/latest/>`__.
 
 Knihovna Fiona se stará o manipulaci atributových dat a správu
 souborů. Pro práci s geometriemi je potřeba data "dostat" do knihovny
