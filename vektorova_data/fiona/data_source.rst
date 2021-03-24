@@ -14,7 +14,7 @@ tvz. *kolekce* geoprvků:
                       
 
 Následně můžeme zjišťovat vlastnosti této kolekce geoprvků, viz
-`dokumentace knihovny <http://toblerity.org/fiona/manual.html>`_.
+`dokumentace knihovny <https://fiona.readthedocs.io/en/latest/>`__.
 
 .. code-block:: python
 
