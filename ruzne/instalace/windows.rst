@@ -38,8 +38,8 @@ prostředí/možnosti**, v jakých můžeme Python provozovat:
 První možnost (preferovaná): Instalace OSGeo4W
 ----------------------------------------------
 
-`OSGeo4W <https://trac.osgeo.org/osgeo4w/>`_ je síťový instalátor pro
-otevřený GIS software pro operační systém MS Windows. Instalace
+`OSGeo4W <https://trac.osgeo.org/osgeo4w/>`__ je síťový instalátor
+otevřeného GIS softwaru pro operační systém MS Windows. Instalace
 probíhá tak, že stáhneme neprve instalátor (typicky 64bit
 `osgeo4w-setup-x86_64.exe
 <http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe>`__),
@@ -89,6 +89,9 @@ V našem případě najděte a nainstalujte následující balíčky:
 * ``python3-pip``
 * ``python3-gdal``
 * ``python3-owslib``
+* ``python3-fiona``
+* ``python3-shapely``  
+* ``python3-rasterio``
 
 .. _instalace-osgeo4w-cmd:
 
@@ -100,7 +103,7 @@ V našem případě najděte a nainstalujte následující balíčky:
    .. code-block:: bash
                    
       osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://osgeo4w-oslandia.com/osgeo4w -q ^
-      -P python3-pip,python3-gdal,python3-owslib,qgis-ltr-full
+      -P python3-pip,python3-gdal,python3-owslib,qgis-ltr-full,python3-fiona,python3-shapely,python3-rasterio
    
 .. note:: A samozřejmě můžete i nainstalovat desktopový program QGIS
    (není podmínkou pro toto školení).
@@ -122,54 +125,49 @@ nastaví proměnné prostředí pro Python 3.
         
 .. figure:: ../images/osgeo4w-run.png
 
-.. important:: V tuto chvíli (jaro 2020) bohužel nejde v použitelné
-   formě instalovat balíčky ``rasterio`` (chybí) a ``fiona/shapely``
-   (nefunkční), které budeme v tomto kurzu používat. Vazby na knihovnu
-   GDAL ale fungují dobře, postup je popsán v kapitole
-   :ref:`osgeo4w-fiona-etc`.
-
 .. _osgeo4w-fiona-etc:
 
-Instalace chybějících knihoven
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note:: Pokud narazíte na problém s instalací či nefunkčností
+   knihoven Fiona, Shapely či Rasterio, tak pokračujte podle
+   návodu níže.
 
-Potřebujeme stáhnout a nainstalovat knihovny, které v distribuci OSGeo4W nejsou
-a nebo nefungují, zejména balíčky
+   Potřebujeme stáhnout a nainstalovat knihovny, které v distribuci OSGeo4W nejsou
+   a nebo nefungují, zejména balíčky
 
-* `Rasterio <https://www.lfd.uci.edu/~gohlke/pythonlibs/#rasterio>`__
-* `Fiona <https://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona>`__
-* `Shapely <https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely>`__
+   * `Rasterio <https://www.lfd.uci.edu/~gohlke/pythonlibs/#rasterio>`__
+   * `Fiona <https://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona>`__
+   * `Shapely <https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely>`__
 
-Ze stránek `Unofficial Windows Binaries for Python Extension Packages
-<http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ stáhneme pro
-knihovny Fiona, Shapely a Rasterio soubory ve formátu Wheel - je
-důležité, aby verze Pythonu, pro kterou byly balíky připraveny, byla
-stejná jako verze Pythonu v OSGeo4W. Proto spustíme *OSGeo4W Shell* a
-zjistíme verzi::
+   Ze stránek `Unofficial Windows Binaries for Python Extension Packages
+   <http://www.lfd.uci.edu/%7Egohlke/pythonlibs/>`__ stáhneme pro
+   knihovny Fiona, Shapely a Rasterio soubory ve formátu Wheel - je
+   důležité, aby verze Pythonu, pro kterou byly balíky připraveny, byla
+   stejná jako verze Pythonu v OSGeo4W. Proto spustíme *OSGeo4W Shell* a
+   zjistíme verzi::
 
-        C:\> python3 --version
+           C:\> python3 --version
 
-        Python 3.7.0
+           Python 3.7.0
 
-V našem případě tedy stáhneme např. soubory
+   V našem případě tedy stáhneme např. soubory
 
-* :file:`rasterio‑1.1.4‑cp37‑cp37m‑win_amd64.whl`
-* :file:`Fiona‑1.8.13‑cp37‑cp37m‑win_amd64.whl`
-* :file:`Shapely‑1.7.0‑cp37‑cp37m‑win_amd64.whl`
+   * :file:`rasterio‑1.2.1‑cp37‑cp37m‑win_amd64.whl`
+   * :file:`Fiona‑1.8.18‑cp37‑cp37m‑win_amd64.whl`
+   * :file:`Shapely‑1.7.1‑cp37‑cp37m‑win_amd64.whl`
 
-A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí
-*OSGeo4W Shell* jako *správce*. Nezapomeňte nejprve nastavit
-prostředí pro Python 3 spuštěním skriptu :file:`py3_env`.
+   A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí
+   *OSGeo4W Shell* jako *správce*. Nezapomeňte nejprve nastavit
+   prostředí pro Python 3 spuštěním skriptu :file:`py3_env`.
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   py3_env
-       
-   cd C:\Users\Administrator\Downloads
+      py3_env
 
-   python3 -m pip install Fiona-1.8.13-cp37-cp37m-win_amd64.whl
-   python3 -m pip install rasterio-1.1.4-cp37-cp37m-win_amd64.whl
-   python3 -m pip install Shapely-1.7.0-cp37-cp37m-win_amd64.whl
+      cd C:\Users\Administrator\Downloads
+
+      python3 -m pip install Fiona-1.8.18-cp37-cp37m-win_amd64.whl
+      python3 -m pip install rasterio-1.2.1-cp37-cp37m-win_amd64.whl
+      python3 -m pip install Shapely-1.7.1-cp37-cp37m-win_amd64.whl
 
 Následně můžeme instalaci vyzkoušet :ref:`install-pytest`.
 

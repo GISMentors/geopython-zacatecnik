@@ -34,9 +34,9 @@ z menu :menuselection:`Packages --> Script --> Configure Script`.
 
 Zde pak musíme zapsat cestu k interpretu jazyka Python. V případě
 využití OSGeo4W je vhodný BAT soubor
-:file:`C:\\OSGeo4W64\\bin\\python-qgis.bat` (anebo
-:file:`C:\\OSGeo4W64\\bin\\python-qgis-ltr.bat` pokud máte
-nainstalovánu LTR verzi QGIS). Tento postup v každém případě
+:file:`C:\\OSGeo4W64\\bin\\python-qgis-ltr.bat` (anebo
+:file:`C:\\OSGeo4W64\\bin\\python-qgis.bat` na základě verze
+QGISu, kterou máte nainstalovánu). Tento postup v každém případě
 předpokládá, že máte v prostředí OSGeo4W nainstalován QGIS. Před
 samotným spuštěním :file:`python.exe` nastaví korektní cesty ke
 knihovnám.
