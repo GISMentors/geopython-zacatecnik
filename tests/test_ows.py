@@ -18,12 +18,12 @@ def test_wms():
     assert response
     assert int(response.info()["Content-Length"])
 
-def test_csw():
-    url = "http://micka.cenia.cz/metadata/csw/index.php"
-    csw = CSW(url)
+# def test_csw():
+#     url = "http://micka.cenia.cz/metadata/csw/index.php"
+#     csw = CSW(url)
 
-    assert csw
+#     assert csw
 
-    csw.getrecords2()
+#     csw.getrecords2()
 
-    assert csw.results["matches"] > 0
+#     assert csw.results["matches"] > 0
