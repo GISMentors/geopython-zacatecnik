@@ -47,7 +47,7 @@ souborů. Pro práci s geometriemi je potřeba data "dostat" do knihovny
    novou dálnicí D8 z Prahy do Drážďan.
 
    Jako vstupní data použijte (najdete v datové sadě pro školení
-   :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`:
+   :skoleni:`QGIS pro začátečníky <qgis-zacatecnik>`):
 
    * Vrstvu velkoplošných chráněných území z `AOPK <http://www.ochranaprirody.cz/>`__ (:file:`ochrana_uzemi/velkoplosna_uzemi`)
    * Vrstvu dálnic z datasetu `OpenStreetMap <http://openstreetmap.org>`__ (:file:`osm/silnice`; `typ = 1`)
