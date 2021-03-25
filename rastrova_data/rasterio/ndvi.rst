@@ -31,12 +31,13 @@ Funkce se dělí na:
         používají se všechny buňky informační vrstvy (např. analýzy povrchů).
 
 Jak již bylo uvedeno, tak Rasterio využívá pro uložení dat strukturu
-`NumPy <http://www.numpy.org/>`_, což nám umožňuje s těmito datovými
+`NumPy <http://www.numpy.org/>`__, což nám umožňuje s těmito datovými
 strukturami pracovat standardním způsobem a využívat i pokročilé
 nástroje pro analýzu obrazu, jako je `Sciktit Image
-<http://scikit-image.org/>`_, `Matplot lib
-<https://matplotlib.org/users/image_tutorial.html>`_, `OpenCV
-<https://docs.opencv.org/3.0-last-rst/doc/py_tutorials/py_tutorials.html>`_
+<http://scikit-image.org/>`__, `Matplot lib
+<https://matplotlib.org/stable/tutorials/introductory/images.html#sphx-glr-tutorials-introductory-images-py>`__,
+`OpenCV
+<https://docs.opencv.org/3.0-last-rst/doc/py_tutorials/py_tutorials.html>`__
 a další.
 
 V našem příkladu si ukážeme jednoduchou analýzu - výpočet indexu NDVI ze
@@ -89,39 +90,43 @@ infračervenou barvu o něco více než červenou mají nízké hodnoty NDVI (0.
 Výpočet NDVI
 ============
 
-Výpočet s daty v NumPy provedeme už jednoduše:
+Výpočet s daty v NumPy provedeme už jednoduše (:lcode:`10`):
 
 .. literalinclude:: ../../_static/skripty/rasterio-example.py
    :language: python
-   :lines: 1-9
-
+   :lines: 1-12
+   :emphasize-lines: 10
+   :linenos:
 
 -----------------------
 Zápis do nového souboru
 -----------------------
 
 Pro výstupní soubor musíme nejprve nadefinovat jeho parametry, jako je
-rozlišení, datový typ, počet pixelů, souřadnicový systém. Většinu údajů můžeme
-zkopírovat ze vstupního souboru, a ty důležité (počet kanálů a datový typ)
-přepíšeme:
+rozlišení, datový typ, počet pixelů, souřadnicový systém. Většinu
+údajů můžeme zkopírovat ze vstupního souboru (:lcode:`8`), a ty
+rozdílné (v našem případě datový typ) přepíšeme (:lcode:`14`):
 
 .. literalinclude:: ../../_static/skripty/rasterio-example.py
    :language: python
-   :lines: 11-26
+   :lines: 8-17
+   :linenos:
+   :emphasize-lines: 1, 7
+   :lineno-start: 8
 
-Výsledný soubor můžete prohlédnout např. v QGIS nebo v Jupyter Notebooku::
+.. note:: Výsledný soubor můžete prohlédnout např. v QGIS nebo v
+   Jupyter Notebooku:
 
+   .. code-block:: python
 
-        bit8_green = ((ndvi+1)*128).astype('uint8') # convert to 0-256 values
-        PIL.Image.fromarray(bit8_green, "L")
+      bit8_green = ((ndvi+1)*128).astype('uint8') # convert to 0-256 values
+      PIL.Image.fromarray(bit8_green, "L")
 
 .. figure:: ../images/ndvi.png
     
     Výsledný soubor s NDVI indexem.
 
-.. task:: Zkuste sami vypočítat Water index
-        
+.. task:: 
    Pokuste se podle stejného postupu vypočítat tzv. *Water
    index*. Jaké kanály použít najdete např. na
    :wikipedia-en:`wikipedii <Normalized difference water index>`.
-
