@@ -1,16 +1,16 @@
 from owslib.wms import WebMapService
-url='http://geoportal.cuzk.cz/WMS_ZM10_PUB/WMService.aspx?service=WMS&request=getCapabilities'
+url='http://geoportal.cuzk.cz/WMS_ZM10_PUB/WMService.aspx'
 wms = WebMapService(url)
-print (u'{}\n{}{}\n{}'.format(wms.identification.title,
-                              wms.identification.abstract,
-                              wms.provider.name,
-                              wms.provider.contact.address))
+print('{}\n{}{}\n{}'.format(wms.identification.title,
+                            wms.identification.abstract,
+                            wms.provider.name,
+                            wms.provider.contact.address))
 
-print (wms.contents)
+print(wms.contents)
 
-layer = 'GR_ZM10'
-print ('{}\n{}'.format(wms.contents[layer].boundingBox,
-                       wms.contents[layer].boundingBoxWGS84))
+layer = list(wms.contents.keys())[0]
+print('{}\n{}'.format(wms.contents[layer].boundingBox,
+                      wms.contents[layer].boundingBoxWGS84))
 
 img = wms.getmap(
     layers=[layer],

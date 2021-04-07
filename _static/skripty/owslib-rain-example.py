@@ -33,3 +33,4 @@ outputFile = '/tmp/output.csv'
 execution.getOutput(outputFile)
 with open(outputFile) as fd:
     print (fd.readlines())
+o
