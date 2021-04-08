@@ -1,23 +1,29 @@
 Načítání dat pomocí webových služeb OGC
 #######################################
 
-`Open Geospatial Consortium <http://opengeospatial.org>`_ (OGC) je mezinárodní
-standardizační organizace. Její členové se zabývají vývojem a údržbou standardů
-pro prostorová data a služby. Mezi nejznámnější OGC standardy patří formát `Geography
-Markup Language <http://opengeospatial.org/standards/gml>`_, `Keyhole Markup
-Language <http://opengeospatial.org/stanards/kml>`_ a tzv. *Otevřené webové
-služby* (OGC OWS), mezi které patří `Web Mapping Service (OGC WMS)
-<http://opengeospatial.org/standards/wms>`_, `Web Feature Service (OGC WFS)
-<http://opengeospatial.org/standards/wfs>`_, `Web Coveradge Service (OGC WCS)
-<http://opengeospatial.org/standards/wcs>`_ a další.
+`Open Geospatial Consortium <http://opengeospatial.org>`_ (OGC) je
+mezinárodní standardizační organizace. Její členové se zabývají
+vývojem a údržbou standardů pro prostorová data a služby (viz
+:skoleni:`školení Úvod do GIS
+<open-source-gis/standardy/ogc/index.html>`). Mezi nejznámnější OGC
+standardy patří formáty *Geography Markup Language* (:skoleni:`OGC GML
+<open-source-gis/standardy/ogc/gml.html>`), *GeoPackage*
+(:skoleni:`OGC GPKG <open-source-gis/standardy/ogc/gpkg.html>`) a
+tzv. *Otevřené webové služby* (:skoleni:`OGC OWS
+<open-source-gis/standardy/ogc/index.html#index-1>`), mezi které patří
+*Web Mapping Service* (:skoleni:`OGC WMS
+<open-source-gis/standardy/ogc/wms.html>`), *Web Feature
+Service* (:skoleni:`OGC WFS <open-source-gis/standardy/ogc/wfs.html>`),
+*Web Coverage Service* (:skoleni:`OGC WCS
+<open-source-gis/standardy/ogc/wcs.html>`) a další.
 
 Standardy OGC OWS jsou postaveny na komunikaci mezi serverem a
-klientem (:wikipedia:`client-server protocol <Klient-server>`), kdy
-klient (váš počítač) posílá serveru (počítači, ze kterého chcete
-získat data či na něm spusit službu) požadavky. Server odpovídá
-prostřednictvím souboru ve formátu XML. Požadavek může mít buď podobu
-speciálního URL, kdy jednotlivé paramery jsou od sebe odděleny znakem
-``&``, například::
+klientem (viz :skoleni:`školení Úvod do GIS
+<open-source-gis/server/index.html>`), kdy klient (váš počítač) posílá
+serveru (počítači, ze kterého chcete získat data či na něm spustit
+službu) požadavky. Server odpovídá prostřednictvím souboru ve
+formátu :wikipedia:`XML`. Požadavek může mít buď podobu speciálního URL, kdy
+jednotlivé paramery jsou od sebe odděleny znakem ``&``, například::
 
     http://server/sluzba?request=GetCapabilies&service=WMS
 
@@ -34,18 +40,15 @@ například:
    </wps:Execute> 
 
 Práce s těmito dotazy a zpracovávání odpovědí může být komplikovaná. Jednotlivé
-zápisy se liší každou verzi standardů. Také proto vznikla knihovna *OWSLib*, která
+zápisy se liší každou verzí standardů. Také proto vznikla knihovna *OWSLib*, která
 život programátorů značně usnadňuje.
 
-OWSLib
-======
-
-Knihovna `OWSLib <http://geopython.github.io/OWSLib/>`_ je Python
-rozhraní pro otevřené webové služby *OGC OWS*. Knihovna umožňuje se
-připojit k různým službám a pracovat s nimi z pozice *klienta* a to
-bez ohledu na serverovou implementaci. Knihovna momentálně podporuje
-standardy WMS, WFS, WCS, CSW, WPS, SOS, WMC a další (seznam se stále
-rozšiřuje). 
+Knihovna `OWSLib <http://geopython.github.io/OWSLib/>`_ představuje
+Python rozhraní pro otevřené webové služby *OGC OWS*. Knihovna
+umožňuje se připojit k různým službám a pracovat s nimi z pozice
+*klienta* a to bez ohledu na serverovou implementaci. Knihovna
+momentálně podporuje standardy WMS, WFS, WCS, CSW, WPS, SOS, WMC a
+další (seznam se stále rozšiřuje).
 
 Dokumentace: http://geopython.github.io/OWSLib/
 
@@ -63,17 +66,17 @@ Chceme-li nějakou OGC webovou službu začít využívat, musíme především
 znát její adresu.  Také pro tento účel vznikají *katalogové služby*,
 kdy specializované servery udržující metadatové záznamy webových
 služeb a datových souborů. Pro Českou republiku je organizací `Cenia
-<http://cenia.cz>`_ udržován `Národní geoportál INSPIRE
-<http://geoportal.gov.cz>`_, který obsahuje informace o všech
+<http://cenia.cz>`__ udržován `Národní geoportál INSPIRE
+<http://geoportal.gov.cz>`__, který obsahuje informace o všech
 dostupných webových službách a datových souborech poskytovaných
-veřejnou správnou. Umožňuje v nich vyhledávat pomocí stanardu `OGC CSW
-<http://opengeospatial.org/standards/csw>`_.
+veřejnou správnou. Umožňuje v nich vyhledávat pomocí standardu
+:skoleni:`OGC CSW <open-source-gis/standardy/ogc/csw.html>`.
 
 Webové rozhraní k tomuto serveru najdete na adrese
 http://geoportal.gov.cz/web/guest/catalogue-client. Rozhraní pro webovou službu
 je dostupné na adrese http://geoportal.gov.cz/php/micka/csw/index.php.
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
    :lines: 1-3
 
@@ -83,7 +86,7 @@ je dostupné na adrese http://geoportal.gov.cz/php/micka/csw/index.php.
 
 Vyhledávání záznamů:
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
    :lines: 5-6
 
@@ -93,11 +96,11 @@ Vyhledávání záznamů:
 
 Zjištění hodnot nalezených záznamů:
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
    :lines: 8-9
 
-.. code-block:: python
+.. code-block:: bash
 
     ...
     Olomouc
@@ -110,11 +113,12 @@ Zjištění hodnot nalezených záznamů:
     Železniční tunely
     Železniční mosty a propustky
     Železniční přejezdy
-
+    ...
+    
 Vyhledávání s omezením na záznamy obsahující slovo *WMS* a minimální
 ohraničující obdélník Prahy:
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
    :lines: 11-16
 
@@ -122,11 +126,11 @@ ohraničující obdélník Prahy:
 
     {'matches': 113, 'nextrecord': 11, 'returned': 10}
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
-   :lines: 18-21
+   :lines: 18-22
 
-.. code-block:: python           
+.. code-block:: bash
 
     ...
     ÚP VÚC Adršpach: 48.20735042 11.86320935 51.37551609 19.0302868
@@ -139,21 +143,21 @@ ohraničující obdélník Prahy:
     WMS služba Pardubického kraje - polohopis, ortofoto: 48.11130361 11.83822588 51.45351762 19.12784541
     Služba WMS Pardubického kraje - tematické vrstvy: 48.22866996 12.03230308 51.34271802 19.63025648
     Prohlížecí služba WMS - Data200: 48.55 12.09 51.06 18.86
-    >>>
+    ...
 
-Vlastnosti záznamu:
+Vyhledání služby obsahující v názvu "ZM10":
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
-   :lines: 23-26
+   :lines: 24-27
 
 .. code-block:: python
 
     'service'
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
-   :lines: 28
+   :lines: 29
     
 .. code-block:: python
     
@@ -163,9 +167,9 @@ Vlastnosti záznamu:
     pokyny pro INSPIRE prohlížecí služby v. 3.11 a zároveň splňuje
     standard OGC WMS 1.1.1. a 1.3.0.
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
-   :lines: 30
+   :lines: 31
                 
 .. code-block:: python
                 
@@ -180,9 +184,9 @@ OGC WMS
     single: WMS
     single: OGC OWS
 
-`OGC Web Map Service <http://opengeospatial.org/standards/wms>`_ slouží ke
-stahování a sdílení mapových dat. Ke klientovi nejsou posílána vlastní data, ale
-pouze náhled (obrázek) těchto dat.
+`OGC Web Map Service <http://opengeospatial.org/standards/wms>`_
+slouží ke stahování a sdílení mapových dat. Klientovi nejsou posílána
+vlastní data, ale pouze náhled (obrázek) těchto dat.
 
 .. note::
 
@@ -226,7 +230,7 @@ Stažení a uložení dat:
 
 .. literalinclude:: ../_static/skripty/owslib-wms-example.py
    :language: python
-   :lines: 14-23
+   :lines: 15-23
 
 .. important:: Možné problémy při připojení ke službě. V minulosti končilo připojení chybou
           ``requests.exceptions.TooManyRedirects: Exceeded 30
@@ -257,28 +261,35 @@ OGC WFS
     single: WFS
     single: OGC OWS
 
-Služba `OGC Web Feature Service <http://opengeospatial.org/standards/wfs>`_ slouží ke
-stahování a sdílení vektorových dat. Nejčastějším výměnným formátem je `OGC GML
-<http://opengeospatial.org/standards/gml>`_.
+Služba `OGC Web Feature Service
+<http://opengeospatial.org/standards/wfs>`__ slouží ke stahování a
+sdílení vektorových dat. Nejčastějším výměnným formátem je `OGC GML
+<http://opengeospatial.org/standards/gml>`__.
 
-.. note:: Předpokládáme, že máme naimportováno vše potřebné pro práci s
-    katalogovou službou, pokud ne, vraťte se prosím výše, viz :ref:`OWSLibCSW`.
+.. note::
+
+   Více informací na :skoleni:`školení Úvod do GIS
+   <open-source-gis/standardy/ogc/wfs.html>`.
+
+.. note:: Předpokládáme, že máme naimportováno vše potřebné pro práci
+   s katalogovou službou, pokud ne, vraťte se prosím výše, viz
+   :ref:`OWSLibCSW`.
 
 Nejprve najdeme nějaké WFS v katalogové službě:
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
-   :lines: 32-37
+   :lines: 33-38
 
 .. code-block:: python
 
     {'matches': 9, 'nextrecord': 0, 'returned': 9}
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
-   :lines: 39-41
+   :lines: 40-42
 
-.. code-block:: python
+.. code-block:: bash
 
     ... 
     53e37222-89a0-472b-9781-5bfc0a02080a WFS Soustava území Natura 2000
@@ -293,9 +304,9 @@ Nejprve najdeme nějaké WFS v katalogové službě:
 Podíváme se, jaká data mají v `Agentuře ochrany přírody a krajiny
 <http://www.ochranaprirody.cz/>`_ (AOPK):
 
-.. literalinclude:: ../_static/skripty/owslib-example.py
+.. literalinclude:: ../_static/skripty/owslib-csw-example.py
    :language: python
-   :lines: 43-44
+   :lines: 44-45
 
 .. code-block:: python
 
@@ -307,13 +318,13 @@ Načteme WFS AOPK:
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 2-5
+   :lines: 1-3
 
 Zjistíme vlastnosti služby (Capabilities):
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 7-8
+   :lines: 5-6
 
 .. code-block:: python
 
@@ -321,7 +332,7 @@ Zjistíme vlastnosti služby (Capabilities):
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 10-14
+   :lines: 8-12
 
 .. code-block:: python
 
@@ -336,7 +347,7 @@ Metadata
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 16-17
+   :lines: 14-15
 
 .. code-block:: python
 
@@ -344,12 +355,13 @@ Metadata
     UzemniOchrana_Natura2000:Ptačí_oblast
     UzemniOchrana_Natura2000:Forma_ochrany_EVL_-_stav_k_24._5._2013
     UzemniOchrana_Natura2000:Evropsky_významná_lokalita__EVL_
-
-Načteme ještě službu chránených území
+    ..
+    
+Načteme ještě službu chránených území:
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 19-22
+   :lines: 17-20
 
 .. code-block:: python
     
@@ -359,30 +371,31 @@ Načteme ještě službu chránených území
     UzemniOchrana_ChranUzemi:Zákonem_chránené_pásmo_MZCHU
     UzemniOchrana_ChranUzemi:Velkoplošné_zvláště_chránené_území
     UzemniOchrana_ChranUzemi:Zonace_velkoplošného_zvláště_chráneného_území
-
+    ...
+    
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 24-25
+   :lines: 22-23
 
-.. code-block:: python
+.. code-block:: bash
 
    <owslib.feature.wfs100.ContentMetadata instance at 0x7f90a1ec3e60>
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 27-28
+   :lines: 25-26
 
-.. code-block:: python
+.. code-block:: bash
 
     (12.13496541407338, 48.40534103216736, 18.82327290073213, 51.27775263472881, urn:ogc:def:crs:EPSG::5514)
     [urn:ogc:def:crs:EPSG::5514]
 
-Data
-""""
+Stažení dat
+"""""""""""
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 30-33
+   :lines: 28-29
 
 .. code-block:: python
 
@@ -390,7 +403,7 @@ Data
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 35
+   :lines: 31
 
 .. code-block:: python
                 
@@ -401,9 +414,9 @@ VUV
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 45-51
+   :lines: 41-47
 
-.. code-block:: python
+.. code-block:: bash
                 
     <wfs:FeatureCollection xsi:schemaLocation='...
 
@@ -414,9 +427,9 @@ CUZK WFS
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 37-40
+   :lines: 33-36
 
-.. code-block:: python
+.. code-block:: bash
 
     ...
     gmgml:OKRES
@@ -433,8 +446,62 @@ CUZK WFS
 
 .. literalinclude:: ../_static/skripty/owslib-wfs-example.py
    :language: python
-   :lines: 42-43
+   :lines: 38-39
 
-.. code-block:: python
+.. code-block:: bash
                     
    <gmgml:FeatureCollection xsi:schemaLocation="http://www.intergraph.com/geomedia/gml http://geopor....
+
+.. _OWSLibWPS:
+
+OGC WPS
+-------
+
+.. index::
+    single: WPS
+    single: OGC OWS
+
+Služba `OGC Web Processing Service
+<http://opengeospatial.org/standards/wps>`__ umožňuje spuštění
+výpočetního nástoje na vzdáleném serveru.
+
+.. note::
+
+   Více informací na :skoleni:`školení Úvod do GIS
+   <open-source-gis/standardy/ogc/wps.html>`.
+
+Přípojíme se k výpočetní službě a vypíšeme její typ:
+
+.. literalinclude:: ../_static/skripty/owslib-wps-example.py
+   :language: python
+   :lines: 1-4
+
+Vypíšeme seznam výpočetních nástrojů, které služba poskytuje:
+
+.. literalinclude:: ../_static/skripty/owslib-wps-example.py
+   :language: python
+   :lines: 7-8 
+
+Vybeme nástroj s identifikátorem:
+
+.. literalinclude:: ../_static/skripty/owslib-wps-example.py
+   :language: python
+   :lines: 10
+
+Vyplníme seznam vstupních parametrů nástroje:
+
+.. literalinclude:: ../_static/skripty/owslib-wps-example.py
+   :language: python
+   :lines: 12-18
+
+Výpočet spustíme:
+
+.. literalinclude:: ../_static/skripty/owslib-wps-example.py
+   :language: python
+   :lines: 20
+
+Výsledek (v našem případě CSV soubor) uložíme na disk:
+
+.. literalinclude:: ../_static/skripty/owslib-wps-example.py
+   :language: python
+   :lines: 21-22

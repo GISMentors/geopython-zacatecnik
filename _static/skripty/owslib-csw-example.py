@@ -17,7 +17,8 @@ print(cenia.results)
 
 for recid in cenia.records:
     record = cenia.records[recid]
-    print('{}: {} {} {} {}'.format(record.title, record.bbox.minx, record.bbox.miny,
+    print('{}: {} {} {} {}'.format(record.title,
+                                   record.bbox.minx, record.bbox.miny,
                                    record.bbox.maxx, record.bbox.maxy))
 
 zm_query = PropertyIsEqualTo('csw:AnyText', '%ZM10%')
@@ -38,7 +39,7 @@ print(cenia.results)
 
 for recid in cenia.records:
     record = cenia.records[recid]
-    print(u'{}: {}'.format(recid, record.title))
+    print('{}: {}'.format(recid, record.title))
 
 natura = cenia.records['53e37222-89a0-472b-9781-5bfc0a02080a']
 print('{}\n{}'.format(natura.abstract, natura.identifiers[1]['identifier']))

@@ -1,6 +1,5 @@
 from owslib.wfs import WebFeatureService
-# pokud nefunguje na pripojeni https, pouzijeme http
-url = 'http://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WFSServer'
+url = 'https://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WFSServer'
 aopk = WebFeatureService(url)
 
 capabilities = aopk.getcapabilities()
