@@ -24,3 +24,8 @@ aktuálního adresáře (řádek :lcode:`27`).
          a její konzolové nastroje, viz `dokumentace
          <http://freegis.fsv.cvut.cz/gwiki/RUIAN_/_GDAL#VFR_konverzn.C3.AD_skripty>`__.
          
+Pro srovnání ještě stejný skript za použití knihoven Fiona a Shapely
+
+.. literalinclude:: ../../_static/skripty/fiona-ruian.py
+   :language: python
+   :linenos:
