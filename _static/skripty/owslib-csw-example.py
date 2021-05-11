@@ -21,7 +21,7 @@ for recid in cenia.records:
                                    record.bbox.minx, record.bbox.miny,
                                    record.bbox.maxx, record.bbox.maxy))
 
-zm_query = PropertyIsEqualTo('csw:AnyText', '%ZM10%')
+zm_query = PropertyIsLike('csw:AnyText', '%WMS - ZM 10%')
 cenia.getrecords2([zm_query], esn='full')
 zm10 = cenia.records['CZ-CUZK-WMS-ZM10-P']
 print(zm10.type)
