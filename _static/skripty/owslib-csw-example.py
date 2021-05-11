@@ -11,8 +11,8 @@ for rec in cenia.records:
 from owslib.fes import PropertyIsLike, BBox, And, PropertyIsEqualTo
 wms_query = PropertyIsEqualTo('csw:AnyText', 'WMS')
 praha_query = BBox([14.22, 49.94, 14.71, 50.18])
-praha_and_wms = And([praha_query, wms_query]) # nefunguje
-cenia.getrecords2([praha_and_wms], esn='full') # nefunguje
+praha_and_wms = And([wms_query, praha_query])
+cenia.getrecords2([praha_and_wms], esn='full')
 print(cenia.results)
 
 for recid in cenia.records:
