@@ -42,17 +42,15 @@ V následující ukázce vytvoříme nový rastrový soubor a vyplníme ho matic
 hodnot. Výsledek uložíme do souboru ve formátu :wikipedia-en:`GeoTIFF`.
 
 Nejprve nastavíme několik výchozích hodnot, velikost matice (mřížky),
-tj. velikost pixelu, číselná hodnota pro ``nodata`` (žádná) data,
-jméno výsledného souboru a extent (hraniční souřadnice) rastrových
-dat.
+tj. velikost pixelu, jméno výsledného souboru a extent (hraniční souřadnice)
+rastrových dat.
 
 .. code-block:: python
 
     from osgeo import gdal, ogr, osr
 
-    # počet pixelů ve směru os x a y, a hodnota pro nodata
+    # počet pixelů ve směru os x a y
     pixel_size = 20
-    NoData_value = -9999
 
     # název výstupního souboru
     raster_fn = 'test.tif'
@@ -84,9 +82,9 @@ stejném formátu v jakém bývají uloženy v tzv. *world file* souboru:
 * souřadnice levého-horního rohu `x`
 * rozlišení ve směru osy `x`
 * naklonění osy `x`
-* souřadnice levého-horního roku `y`
-* rozlišení ve směru osy `y`
+* souřadnice levého-horního rohu `y`
 * naklonění osy `y`
+* rozlišení ve směru osy `y`
 
 .. code-block:: python
 
@@ -136,9 +134,8 @@ rastrové reprezentace. Začátek je stejný jako v předchozím případě:
 
     from osgeo import gdal, ogr, osr
 
-    # počet pixelů ve směru os x a y, a hodnota pro nodata
+    # počet pixelů ve směru os x a y
     pixel_size = 50
-    NoData_value = -9999
 
     # název výstupního souboru
     raster_fn = 'chko.tif'
