@@ -56,7 +56,7 @@ rastrových dat.
     raster_fn = 'test.tif'
 
     # hraniční souřadnice mřížky
-    x_min, x_max, y_min, y_max = (0, 100, 0, 100)
+    x_min, x_max, y_min, y_max = (-467500, -467400, -1101200, -1101100)
 
 V dalším kroku vypočteme prostorové rozlišení, velikost pixelu na
 základně počtu pixelů ve směru os a rozsahu rastrových dat.
