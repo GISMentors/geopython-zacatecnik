@@ -60,7 +60,13 @@ Zjištění hodnot nalezených záznamů:
     Železniční mosty a propustky
     Železniční přejezdy
     ...
-    
+
+K získání dalších 10 záznamů rozšíříme volání funkce getrecords2 o parametr startposition
+
+.. code-block:: python
+
+    cenia.getrecords2([praha_and_wms], esn='full', startposition=11)
+
 Vyhledávání s omezením na záznamy obsahující slovo *WMS* a minimální
 ohraničující obdélník Prahy:
 
