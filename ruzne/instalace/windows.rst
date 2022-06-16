@@ -22,7 +22,7 @@ prostředí/možnosti**, v jakých můžeme Python provozovat:
    knihovny, které v tomto kurzu doporučujeme. Situace se v budoucnu
    ale může změnit. :ref:`Návod <win-osgeo4w-bin>`.
 2. *(alternativní)* Nativní distribuce Pythonu ze stránek `http://python.org
-   <http://python.org>`_. Do tohoto prostředí lze doinstalovat všechny knihovny
+   <http://python.org>`__. Do tohoto prostředí lze doinstalovat všechny knihovny
    používané v tomto kurzu, ale jejich zapojení např. do QGIS nebo GRASS GIS bude
    velmi obtížné až nemožné. :ref:`Návod <win-py-bin>`.
 
@@ -40,9 +40,8 @@ První možnost (preferovaná): Instalace OSGeo4W
 
 `OSGeo4W <https://trac.osgeo.org/osgeo4w/>`__ je síťový instalátor
 otevřeného GIS softwaru pro operační systém MS Windows. Instalace
-probíhá tak, že stáhneme neprve instalátor (typicky 64bit
-`osgeo4w-setup-x86_64.exe
-<http://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe>`__),
+probíhá tak, že stáhneme neprve instalátor `osgeo4w-setup.exe
+<http://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe>`__),
 který nás po spuštění provede výběrem požadovaných balíčků a po
 odsouhlasení je sám stáhne a nainstaluje.
 
@@ -102,7 +101,7 @@ V našem případě najděte a nainstalujte následující balíčky:
 
    .. code-block:: bash
                    
-      osgeo4w-setup-x86_64.exe -g -k -a x86_64 -R C:\OSGeo4W64 -s http://osgeo4w-oslandia.com/osgeo4w -q ^
+      osgeo4w-setup.exe -g -k -a x86_64 -R C:\OSGeo4W -s http://osgeo4w-oslandia.com/osgeo4w -q ^
       -P python3-pip,python3-gdal,python3-owslib,qgis-ltr-full,python3-fiona,python3-shapely,python3-rasterio
    
 .. note:: A samozřejmě můžete i nainstalovat desktopový program QGIS

@@ -18,8 +18,8 @@ Při jeho konfiguraci je možné nastavit interpret jazyka.
    :class: middle
 
 V případě využití OSGeo4W je vhodný BAT soubor
-:file:`C:\\OSGeo4W64\\bin\\python-qgis-ltr.bat` (anebo
-:file:`C:\\OSGeo4W64\\bin\\python-qgis.bat` na základě verze
+:file:`C:\\OSGeo4W\\bin\\python-qgis-ltr.bat` (anebo
+:file:`C:\\OSGeo4W\\bin\\python-qgis.bat` na základě verze
 QGISu, kterou máte nainstalovánu). Před samotným spuštěním
 :file:`python.exe` nastaví korektní cesty ke knihovnám.
 
