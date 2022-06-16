@@ -53,7 +53,7 @@ Vypsání názvu geoprvku (atribut ``NAZEV``):
     ...
 
 Vypsání vlastnosti geometrické složky popisu geoprvků (minimálního
-ohraničujícího obdélíku a centroidu polygonu):
+ohraničujícího obdélíku a centroidu polygonu, vytvoření obálky):
 
 .. code-block:: python
 
