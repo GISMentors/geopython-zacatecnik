@@ -13,7 +13,7 @@ někdy výhodnější.
     >>> from osgeo import osr
     >>> # Vytvoření driveru pro formát GML a vytvoření prázdného souboru
     >>> drv = ogr.GetDriverByName('GML')
-    >>> ds = drv.CreateDataSource('/tmp/out.gml')
+    >>> ds = drv.CreateDataSource('output/out.gml')
     >>> srs = osr.SpatialReference()
     >>> srs.ImportFromEPSG(5514)
     >>> layer = ds.CreateLayer('out.gml', srs, ogr.wkbLineString)
@@ -44,7 +44,7 @@ Výsledek zkontrolujeme:
 
 .. code:: python
 
-    >>> ds = ogr.Open('/tmp/out.gml')
+    >>> ds = ogr.Open('outputs/out.gml')
     >>> layer = ds.GetLayer(0)
     >>> layer.GetFeatureCount()
     1
