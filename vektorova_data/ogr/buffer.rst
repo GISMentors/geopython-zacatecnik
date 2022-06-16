@@ -10,7 +10,7 @@ Nejprve otevření souboru s daty:
 .. code-block:: python
 
     >>> from osgeo import ogr
-    >>> ds = ogr.Open("chko.shp")
+    >>> ds = ogr.Open("data/chko.shp")
     >>> ds
     <osgeo.ogr.DataSource; proxy of <Swig Object of type 'OGRDataSourceShadow *' at 0x7f98d8152a50> >
     >>> ds.GetLayerCount()
