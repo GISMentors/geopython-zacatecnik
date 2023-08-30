@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Načítání dat pomocí webových služeb OGC &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="OGC CSW" href="csw.html" />
+    <link rel="prev" title="Knihovna GDAL" href="../rastrova_data/gdal/index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../rastrova_data/gdal/index.html" title="Knihovna GDAL"
+             accesskey="P">předchozí</a> |
+          <a href="csw.html" title="OGC CSW"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="nacitani-dat-pomoci-webovych-sluzeb-ogc">
+<h1>Načítání dat pomocí webových služeb OGC<a class="headerlink" href="#nacitani-dat-pomoci-webovych-sluzeb-ogc" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="http://opengeospatial.org">Open Geospatial Consortium</a> (OGC) je
+mezinárodní standardizační organizace. Její členové se zabývají
+vývojem a údržbou standardů pro prostorová data a služby (viz
+<a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/index.html">školení Úvod do GIS</a>). Mezi nejznámnější OGC
+standardy patří formáty <em>Geography Markup Language</em> (<a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/gml.html">OGC GML</a>), <em>GeoPackage</em>
+(<a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/gpkg.html">OGC GPKG</a>) a
+tzv. <em>Otevřené webové služby</em> (<a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/index.html#index-1">OGC OWS</a>), mezi které patří
+<em>Web Mapping Service</em> (<a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/wms.html">OGC WMS</a>), <em>Web Feature
+Service</em> (<a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/wfs.html">OGC WFS</a>),
+<em>Web Coverage Service</em> (<a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/wcs.html">OGC WCS</a>) a další.</p>
+<p>Standardy OGC OWS jsou postaveny na komunikaci mezi serverem a
+klientem (viz <a class="reference external" href="http://training.gismentors.eu/open-source-gis/server/index.html">školení Úvod do GIS</a>), kdy klient (váš počítač) posílá
+serveru (počítači, ze kterého chcete získat data či na něm spustit
+službu) požadavky. Server odpovídá prostřednictvím souboru ve
+formátu <a class="reference external" href="http://cs.wikipedia.org/wiki/XML">XML</a>. Požadavek může mít buď podobu speciálního URL, kdy
+jednotlivé paramery jsou od sebe odděleny znakem <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, například:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/sluzba?request=GetCapabilies&amp;service=WMS
+</pre></div>
+</div>
+<p>V tomto případě posíláme 2 parametry: <code class="docutils literal notranslate"><span class="pre">request</span></code> má hodnotu
+<code class="docutils literal notranslate"><span class="pre">GetCapabilities</span></code> a parametr <code class="docutils literal notranslate"><span class="pre">service</span></code> má hodnotu <code class="docutils literal notranslate"><span class="pre">WMS</span></code>.</p>
+<p>Další možností je poslat serveru požadavek jako soubor ve formátu XML,
+například:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>&lt;wps:GetCapabilities xmlns:wps=&quot;http://www.opengis.net/wps/1.0.0&quot; ...&gt;
+     &lt;ows:Identifier&gt;Buffer&lt;/ows:Identifier&gt;
+&lt;/wps:Execute&gt;
+</pre></div>
+</div>
+<p>Práce s těmito dotazy a zpracovávání odpovědí může být komplikovaná. Jednotlivé
+zápisy se liší každou verzí standardů. Také proto vznikla knihovna <em>OWSLib</em>, která
+život programátorů značně usnadňuje.</p>
+<p>Knihovna <a class="reference external" href="http://geopython.github.io/OWSLib/">OWSLib</a> představuje
+Python rozhraní pro otevřené webové služby <em>OGC OWS</em>. Knihovna
+umožňuje se připojit k různým službám a pracovat s nimi z pozice
+<em>klienta</em> a to bez ohledu na serverovou implementaci. Knihovna
+momentálně podporuje standardy WMS, WFS, WCS, CSW, WPS, SOS, WMC a
+další (seznam se stále rozšiřuje).</p>
+<p>Dokumentace: <a class="reference external" href="http://geopython.github.io/OWSLib/">http://geopython.github.io/OWSLib/</a></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="csw.html">OGC CSW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wms.html">OGC WMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wfs.html">OGC WFS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wps.html">OGC WPS</a></li>
+</ul>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Načítání dat pomocí webových služeb OGC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="csw.html">OGC CSW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wms.html">OGC WMS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wfs.html">OGC WFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wps.html">OGC WPS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../rastrova_data/gdal/index.html" title="Knihovna GDAL"
+              >předchozí</a> |
+            <a href="csw.html" title="OGC CSW"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

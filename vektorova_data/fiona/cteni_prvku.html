@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Procházení geoprvků &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Geometrie geoprvků a knihovna Shapely" href="geometrie.html" />
+    <link rel="prev" title="Práce s datových zdrojem" href="data_source.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="data_source.html" title="Práce s datových zdrojem"
+             accesskey="P">předchozí</a> |
+          <a href="geometrie.html" title="Geometrie geoprvků a knihovna Shapely"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="prochazeni-geoprvku">
+<h1>Procházení geoprvků<a class="headerlink" href="#prochazeni-geoprvku" title="Permalink to this heading">¶</a></h1>
+<p>V této části si ukážeme, jak načíst vektorové prvky uložené v  datovém zdroji.</p>
+<p>Nejprve dataset otevřeme</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fiona</span>
+<span class="n">chko</span> <span class="o">=</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/chko.shp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nyní můžeme zjistit, kolik prvků je v datasetu obsaženo</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet prvků: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chko</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="sekvencni-cteni-prvku">
+<h2>Sekvenční čtení prvků<a class="headerlink" href="#sekvencni-cteni-prvku" title="Permalink to this heading">¶</a></h2>
+<p>Prvky v datovém souboru můžeme procházet postupně (sekvenčně):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">chko</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="nahodne-cteni-prvku">
+<h2>Náhodné čtení prvků<a class="headerlink" href="#nahodne-cteni-prvku" title="Permalink to this heading">¶</a></h2>
+<p>Anebo si můžeme vybrat některý z geoprvků (náhodný přístup) a dále s
+ním pracovat:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">chko</span><span class="p">[</span><span class="mi">54</span><span class="p">][</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Vyberte všechna chráněná území, která se nacházejí v Českém
+středohoří. O kolik prvků se jedná?</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s vektorovými daty</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Knihovna Fiona/Shapely</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ogr/index.html">Knihovna OGR (GDAL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geopandas/index.html">GeoPandas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="data_source.html" title="Práce s datových zdrojem"
+              >předchozí</a> |
+            <a href="geometrie.html" title="Geometrie geoprvků a knihovna Shapely"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Načítání vstupu &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Operátory a datové typy" href="operators.html" />
+    <link rel="prev" title="Komentáře" href="comments.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="comments.html" title="Komentáře"
+             accesskey="P">předchozí</a> |
+          <a href="operators.html" title="Operátory a datové typy"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="nacitani-vstupu">
+<h1>Načítání vstupu<a class="headerlink" href="#nacitani-vstupu" title="Permalink to this heading">¶</a></h1>
+<p>Jak zařídit, aby číslo nemuselo být zapsáno v programu, ale
+aby ho mohl uživatel zadat sám.</p>
+<p>Stejně jako pro výstup používáme <em>funkci</em> <cite>print</cite> pro vstup použijeme funkci
+<cite>input</cite>.</p>
+<p>Protože ale ze vstupu jsou načítány <em>textové řetězce</em>, musíme je nejprve převézt
+na <em>číslo</em> a k tomu použijeme funkci <cite>float</cite> (tedy převod na číslo s plovoucí
+desetinnou čárkou).</p>
+<p>Hotový program může vypadat takto:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tento program počítá obvod a obsah čtverce.</span>
+
+<span class="n">strana</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Zadej stranu v centimetrech: &#39;</span><span class="p">)</span>
+<span class="n">strana</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">strana</span><span class="p">)</span> <span class="c1"># převod na číslo</span>
+
+<span class="c1"># výstup</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obvod čtverce se stranou&#39;</span><span class="p">,</span> <span class="n">strana</span><span class="p">,</span> <span class="s1">&#39;je&#39;</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">strana</span><span class="p">,</span> <span class="s1">&#39;cm&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obsah čtverce se stranou&#39;</span><span class="p">,</span> <span class="n">strana</span><span class="p">,</span> <span class="s1">&#39;je&#39;</span><span class="p">,</span> <span class="n">strana</span> <span class="o">*</span> <span class="n">strana</span><span class="p">,</span> <span class="s1">&#39;cm2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Výstup jedné funkce můžeme poslat na vstup do druhé funkce - můžeme je za sebou
+řetězit:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">strana</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Zadej stranu v centimetrech: &#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>A pro větší čitelnost (pokud je řádek příliš dlouhý) můžem i logicky mezi
+závorkami zalomit:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">strana</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Zadej stranu v centimetrech: &#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="comments.html" title="Komentáře"
+              >předchozí</a> |
+            <a href="operators.html" title="Operátory a datové typy"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

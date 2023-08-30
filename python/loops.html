@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Smyčky, cykly &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Funkce" href="functions.html" />
+    <link rel="prev" title="Pole a slovníky" href="arrays.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="arrays.html" title="Pole a slovníky"
+             accesskey="P">předchozí</a> |
+          <a href="functions.html" title="Funkce"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="smycky-cykly">
+<h1>Smyčky, cykly<a class="headerlink" href="#smycky-cykly" title="Permalink to this heading">¶</a></h1>
+<p>Další důležitou koponentou programovacích jazyků jsou tzv. <em>smyčky</em> nebo
+<em>cykly</em>. Jsou to opakující se části kódu  a pomáhají programátorovi vytvořit
+konstrukci typu <em>„pro každý prvek z množiny prvků vykonej …“</em> nebo <em>„opakuj
+… dokud není splněna podmínka, že …“</em>.</p>
+<section id="smycka-for">
+<h2>Smyčka for<a class="headerlink" href="#smycka-for" title="Permalink to this heading">¶</a></h2>
+<p>Zkusme si v praxi následující příklady:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cislo</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cislo</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>a</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">pozdrav</span> <span class="ow">in</span> <span class="s1">&#39;Ahoj&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;Hola&#39;</span><span class="p">,</span> <span class="s1">&#39;Hei&#39;</span><span class="p">,</span> <span class="s1">&#39;SYN&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pozdrav</span> <span class="o">+</span> <span class="s1">&#39;!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nová užitečná funkce <code class="xref py py-func docutils literal notranslate"><span class="pre">range()</span></code> vrátí pole indexů, které velikostně odpovídá
+zadanému číslu. <code class="xref py py-func docutils literal notranslate"><span class="pre">range(5)()</span></code> vrátí pole <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code>.</p>
+<p>Pomocí smyčky <code class="docutils literal notranslate"><span class="pre">for</span></code> vytvoříme novou loklání proměnnou <code class="docutils literal notranslate"><span class="pre">cislo</span></code> nebo <code class="docutils literal notranslate"><span class="pre">pozdrav</span></code>, do
+které budou postupně ukládány hodnoty prvků ze vstupního pole a v těle smyčky se
+bude s touto proměnnou dále pracovat (v našem případě se pouze zavolá funkce
+<code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code>.</p>
+</section>
+<section id="oblast-platnosti-promennych">
+<h2>Oblast platnosti proměnných<a class="headerlink" href="#oblast-platnosti-promennych" title="Permalink to this heading">¶</a></h2>
+<p>Vidíme, že proměnná <code class="docutils literal notranslate"><span class="pre">cislo</span></code> nebo <code class="docutils literal notranslate"><span class="pre">pozdrav</span></code> je definována při vzniku smyčky. Její
+oblast platnosti (… je definována pro …) platí pouze v těle smyčky. Můžeme
+ale vzít jinou proměnnou definovanou výše a přistupovat k její hodnotě</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">suma</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">suma</span> <span class="o">=</span> <span class="n">suma</span> <span class="o">+</span> <span class="n">i</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">suma</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="smycka-typu-while">
+<h2>Smyčka typu while<a class="headerlink" href="#smycka-typu-while" title="Permalink to this heading">¶</a></h2>
+<p>Na rozdíl od smyčky <cite>for</cite>, která pracuje s prvky z existujícího pole, smyčka
+typu <cite>while</cite> provádí blok kódu, dokud není splněna nějaká podmínka:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dny</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pondeli&#39;</span><span class="p">,</span> <span class="s1">&#39;utery&#39;</span><span class="p">,</span> <span class="s1">&#39;streda&#39;</span><span class="p">,</span> <span class="s1">&#39;cvrtek&#39;</span><span class="p">,</span> <span class="s1">&#39;patek&#39;</span><span class="p">,</span> <span class="s1">&#39;sobota&#39;</span><span class="p">,</span> <span class="s1">&#39;nedele&#39;</span><span class="p">]</span>
+
+<span class="n">den</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">den</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dny</span><span class="p">[</span><span class="n">den</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;: Musim do Kolbenky :-(&#39;</span><span class="p">)</span>
+    <span class="n">den</span> <span class="o">=</span> <span class="n">den</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vikend!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="brzda-break">
+<h2>Brzda <code class="docutils literal notranslate"><span class="pre">break</span></code><a class="headerlink" href="#brzda-break" title="Permalink to this heading">¶</a></h2>
+<p>Smyčka <code class="docutils literal notranslate"><span class="pre">while</span></code> může být zrádná v tom, že pokud není podmínka splněna, může běžet
+i nekonečně dlouho</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Číslo je&#39;</span><span class="p">,</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(Počkej, než se počítač unaví...)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Tento cyklus musíme přerušit uměle (např. klávesovou zkratkou <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code>).</p>
+<p>Pokud chceme z nějaké smyčky (<code class="docutils literal notranslate"><span class="pre">for</span></code> nebo <code class="docutils literal notranslate"><span class="pre">while</span></code>) náhle vyskočit, použijeme
+brzdu <code class="docutils literal notranslate"><span class="pre">break</span></code>. V následující ukázce uvidíme, jak zajistit, že vstup od uživatele
+bude opravdu správný:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">odpoved</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Řekni Ááá! &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">odpoved</span> <span class="o">==</span> <span class="s1">&#39;Ááá&#39;</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Špatně, zkus to znovu&#39;</span><span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hotovo, ani to nebolelo.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="arrays.html" title="Pole a slovníky"
+              >předchozí</a> |
+            <a href="functions.html" title="Funkce"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

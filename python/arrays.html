@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Pole a slovníky &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Smyčky, cykly" href="loops.html" />
+    <link rel="prev" title="Podmínky" href="conditions.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="conditions.html" title="Podmínky"
+             accesskey="P">předchozí</a> |
+          <a href="loops.html" title="Smyčky, cykly"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pole-a-slovniky">
+<h1>Pole a slovníky<a class="headerlink" href="#pole-a-slovniky" title="Permalink to this heading">¶</a></h1>
+<p>V programovacích jazycích můžeme pracovat s poli (seznamy, množinami) prvků. V
+Pythonu můžeme kombinovat různé datové typy jednotlivých prvků v poli.</p>
+<p>Nejjednodušším případem pole může být pole celých čísel od 0 do 9:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cisla</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="go">print(cisla)</span>
+</pre></div>
+</div>
+<p>Z výše uvedeného je patrné, že pole zapisujeme do <em>hranatých závorek</em>. Jak jsme
+psali výše, neusíme se omezovat ja jeden datový typ:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">netrideny_srot</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;elce pelce do pekelce&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="o">/</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>K prvkům pole přistupujeme pomocí <em>indexů</em> - pomocí čísla pozice prvku v poli,
+první index má hodnotu 0:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">netrideny_srot</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">1000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">netrideny_srot</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="go">3.3333333333333335</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cisla</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cisla</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">IndexError</span>: <span class="n">list index out of range</span>
+</pre></div>
+</div>
+<p>Poslední příklad „vyhodil“ <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> - pokusili jsme se zobrazit hodnotu
+<em>jedenáctého prvku</em> v poli (index 10, ale počítáme od 0!), pole <code class="docutils literal notranslate"><span class="pre">cisla</span></code> má ale
+pouze 10 prvků (maximální index je proto 9).</p>
+<p>Funkce <code class="docutils literal notranslate"><span class="pre">len()</span></code> nám vrátí celkovou délku pole (počet jeho prvků):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">cisla</span><span class="p">)</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">netrideny_srot</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>Pole můžeme slučovat:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">jeste_vetsi_srot</span> <span class="o">=</span> <span class="n">cisla</span> <span class="o">+</span> <span class="n">netrideny_srot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">jeste_vetsi_srot</span><span class="p">)</span>
+<span class="go">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1000, &#39;elce pelce do pekelce&#39;, 3.3333333333333335]</span>
+</pre></div>
+</div>
+<p>K prvkům pole můžeme přistupovat „od zadu“ používáním záporných indexů. Hodnotu
+posledního prvku v poli můžeme získat následujícími dvěma způsoby:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cisla</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">cisla</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># len() vrátí délku pole, nejvyšší index má ale hodnotu o 1 menší</span>
+<span class="go">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cisla</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">9</span>
+</pre></div>
+</div>
+<p>„Vyzobnout“ pouze určité prvky z pole můžeme pomocí zadání dvou krajních indexů:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">jeste_vetsi_srot</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">11</span><span class="p">]</span>
+<span class="go">[8, 9, 1000, &#39;elce pelce do pekelce&#39;]</span>
+</pre></div>
+</div>
+<section id="n-tice-tuple">
+<h2>N-tice (tuple)<a class="headerlink" href="#n-tice-tuple" title="Permalink to this heading">¶</a></h2>
+<p>Uspořádané <em>n-tice</em> prvků (v Pythonu se jmenují <cite>tuple</cite>) se chovají stejně jako
+pole, ale s tím rozdílem, že po jejich inicializaci je <em>nemůžeme nijak měnit</em>.
+Použít se dají pro větší bezpečnost (nelze je přepsat) u vstupních hodnot v
+prgramu (např. dny v týdnu, měsíce, senzam vstupních hodnot a pod.).</p>
+<p>Chovají se stejně jako seznamy, akorát při inicializaci se nepoužívají závorky
+hranaté, ale kulaté.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tyden</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;pondeli&#39;</span><span class="p">,</span> <span class="s1">&#39;utery&#39;</span><span class="p">,</span> <span class="s1">&#39;streda&#39;</span><span class="p">,</span> <span class="s1">&#39;ctvrtek&#39;</span><span class="p">,</span> <span class="s1">&#39;patek&#39;</span><span class="p">,</span> <span class="s1">&#39;sobota&#39;</span><span class="p">,</span> <span class="s1">&#39;nedele&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">tyden</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">ctvrtek</span>
+</pre></div>
+</div>
+</section>
+<section id="slovniky-asociativni-pole">
+<h2>Slovníky (asociativní pole)<a class="headerlink" href="#slovniky-asociativni-pole" title="Permalink to this heading">¶</a></h2>
+<p>Slovníky jsou v podstatě pole s tím rozdílem, že k jednotlivým prvkům se
+nepřistupuje pomocí číselných indexů, ale pomocí pojmenovaných odkazů. Při
+jejich definici používáme složené závorky <cite>{ }</cite> a klíč od hodnoty oddělujeme
+dvojtečkou <cite>:</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">telefonni_seznam</span> <span class="o">=</span> <span class="p">{</span>
+<span class="go">    &#39;Petr&#39;: 728123432,</span>
+<span class="go">    &#39;Pavel&#39;: 8344569870,</span>
+<span class="go">    &#39;Klara&#39;: 9087354398,</span>
+<span class="go">    &#39;Verca&#39;: 87698394,</span>
+<span class="go">...}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">telefonni_seznam</span><span class="p">[</span><span class="s1">&#39;Petr&#39;</span><span class="p">])</span>
+<span class="go">728123432</span>
+</pre></div>
+</div>
+</section>
+<section id="zanorovani-poli">
+<h2>Zanořování polí<a class="headerlink" href="#zanorovani-poli" title="Permalink to this heading">¶</a></h2>
+<p>Jednotlivé prvky polí mohou být jakéhokoliv datového typu - číslo, text nebo i
+<em>jiné pole</em>. Takto můžeme vytvářet matice (uspořádané n-tice řádků a sloupců)
+jako <em>pole polí</em>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cerveny_kanal</span> <span class="o">=</span> <span class="p">[</span>
+<span class="go">    [1, 2, 3, 4, 5, 6, 7, 8, 9],</span>
+<span class="go">    [5, 2, 3, 4, 2, 6, 7, 8, 8],</span>
+<span class="go">    [1, 2, 3, 4, 5, 8, 7, 8, 9],</span>
+<span class="go">    [3, 2, 8, 4, 0, 6, 3, 8, 10],</span>
+<span class="go">    [1, 5, 3, 4, 2, 6, 2, 8, 1],</span>
+<span class="go">    [8, 2, 7, 4, 5, 0, 7, 5, 9],</span>
+<span class="go">    [1, 8, 3, 3, 5, 9, 7, 1, 9],</span>
+<span class="go">    [2, 2, 3, 4, 7, 6, 2, 8, 0],</span>
+<span class="go">    [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>Zanořovat pole lze samozřejmě „prakticky“ nekonečně:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rastr</span> <span class="o">=</span> <span class="p">[</span>
+<span class="go">    cerveny_kanal,</span>
+<span class="go">    zeleny_kanal,</span>
+<span class="go">    modry_kanal</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>Stejně tak můžeme libovolně zanořovat slovníky. Ty se využívají v populární
+datovém formátu <a class="reference external" href="http://json.org">JSON</a> a od něho odvozeného formátu <a class="reference external" href="http://geojson.org">GeoJSON</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">vrstva</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+<span class="go">&quot;features&quot;: [</span>
+<span class="go">  { &quot;type&quot;: &quot;Feature&quot;,</span>
+<span class="go">    &quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;, &quot;coordinates&quot;: [102.0, 0.5]},</span>
+<span class="go">    &quot;properties&quot;: {&quot;prop0&quot;: &quot;value0&quot;}</span>
+<span class="go">    },</span>
+<span class="go">  { &quot;type&quot;: &quot;Feature&quot;,</span>
+<span class="go">    &quot;geometry&quot;: {</span>
+<span class="go">      &quot;type&quot;: &quot;LineString&quot;,</span>
+<span class="go">      &quot;coordinates&quot;: [</span>
+<span class="go">        [102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]</span>
+<span class="go">        ]</span>
+<span class="go">      },</span>
+<span class="go">    &quot;properties&quot;: {</span>
+<span class="go">      &quot;prop0&quot;: &quot;value0&quot;,</span>
+<span class="go">      &quot;prop1&quot;: 0.0</span>
+<span class="go">      }</span>
+<span class="go">    },</span>
+<span class="go">  { &quot;type&quot;: &quot;Feature&quot;,</span>
+<span class="go">     &quot;geometry&quot;: {</span>
+<span class="go">       &quot;type&quot;: &quot;Polygon&quot;,</span>
+<span class="go">       &quot;coordinates&quot;: [</span>
+<span class="go">         [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],</span>
+<span class="go">           [100.0, 1.0], [100.0, 0.0] ]</span>
+<span class="go">         ]</span>
+<span class="go">     },</span>
+<span class="go">     &quot;properties&quot;: {</span>
+<span class="go">       &quot;prop0&quot;: &quot;value0&quot;,</span>
+<span class="go">       &quot;prop1&quot;: {&quot;this&quot;: &quot;that&quot;}</span>
+<span class="go">       }</span>
+<span class="go">     }</span>
+<span class="go">   ]</span>
+<span class="go"> }</span>
+</pre></div>
+</div>
+<p>Nyní můžeme zjistit první souřadnici druhého objektu a jeho geometrický typ:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">vrstva</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">])</span>
+<span class="go">LineString</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">vrstva</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;coordinates&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">[102.0, 0.0]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="conditions.html" title="Podmínky"
+              >předchozí</a> |
+            <a href="loops.html" title="Smyčky, cykly"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Interpretace NDVI &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Vektorizace rastrových dat" href="vectorisation.html" />
+    <link rel="prev" title="Použití oken pro čtení a zápis" href="windows.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="windows.html" title="Použití oken pro čtení a zápis"
+             accesskey="P">předchozí</a> |
+          <a href="vectorisation.html" title="Vektorizace rastrových dat"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="interpretace-ndvi">
+<span id="reklasifikace"></span><span id="rasterio-reklasifikace"></span><h1>Interpretace NDVI<a class="headerlink" href="#interpretace-ndvi" title="Permalink to this heading">¶</a></h1>
+<p>Jedním z možných postupů je reklasifikace vstupních dat do uživatelem
+definovaných tříd.</p>
+<p>Reklasifikací se přiřadí nové hodnoty vstupním datům, v našem příkadě
+bychom rádi identifikovali vodní tělesa, ostatní objekty nás
+nezajímají.</p>
+<p>Jak jsme si řekli výše, vodní tělesa by měly mít hodnotu NDVI okolo 0, shodněme
+se, na hodnotách <cite>&lt;-0.1; 0.1&gt;</cite>. Výsledný rastrový soubor bude obsahovat 2
+hodnoty: 1 a <cite>NULL</cite> (tedy žádná data), která bude reprezentována číslem -9999.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;outputs/ndvi.tif&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ndvi</span><span class="p">:</span>
+    <span class="n">water</span> <span class="o">=</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">limit</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">water</span><span class="p">[</span><span class="n">water</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">limit</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9999</span>
+<span class="n">water</span><span class="p">[</span><span class="n">water</span> <span class="o">&gt;</span> <span class="n">limit</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9999</span>
+<span class="n">water</span><span class="p">[(</span><span class="n">water</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mf">1.0</span><span class="o">*</span><span class="n">limit</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">water</span> <span class="o">&lt;=</span> <span class="mf">0.1</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">kwargs</span> <span class="o">=</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">meta</span>
+<span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">rasterio</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="s1">&#39;lzw&#39;</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=-</span><span class="mi">9999</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;outputs/water.tif&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+    <span class="n">dst</span><span class="o">.</span><span class="n">write_band</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">water</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">int32</span><span class="p">))</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id1">
+<img alt="../../_images/water.png" src="../../_images/water.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 8 </span><span class="caption-text">Výsledný soubor s hodnotami 1 - voda, -9999 - NODATA.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Takováto identifikace vodních ploch je samozřejmě velmi
+nepřesná. V DPZ se používají většinou jiné techniky.</p>
+</div>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Pokuste se podobným způsobem do snímku přidat kategorii s hustou
+vegetací a další kategorie, podle klíče:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>voda</p></li>
+<li><p>hustá vegetace</p></li>
+<li><p>zástavba</p></li>
+<li><p>…</p></li>
+</ol>
+</div></blockquote>
+</div>
+<p>Rozdělíme NDVI do tříd podle jejich hodnoty. NDVI nabývá hodnot od -1
+do 1, rozdělíme je na 3 skupiny „od oka“:</p>
+<table class="border docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Stromy</p></td>
+<td><p>1 - 0.4</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Tráva</p></td>
+<td><p>0.4 - 0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Suchá půda, sníh</p></td>
+<td><p>0.1 - -0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Voda</p></td>
+<td><p>-0.1 - -1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;outputs/ndvi.tif&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># reklasifikace začíná</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">data</span> <span class="o">&gt;</span> <span class="mf">0.6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">data</span><span class="p">[(</span><span class="n">data</span> <span class="o">&lt;=</span> <span class="mf">0.6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="mf">0.2</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">data</span><span class="p">[(</span><span class="n">data</span> <span class="o">&lt;=</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">data</span><span class="p">[(</span><span class="n">data</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">4</span>
+
+    <span class="c1"># zápis do souboru</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">meta</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">rasterio</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="s1">&#39;lzw&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;outputs/ndvi-classes.tif&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+        <span class="n">dst</span><span class="o">.</span><span class="n">write_band</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">int16</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Výsledný soubor obsahuje pouze 4 hodnoty reprezentující jednotlivé třídy.</p>
+<figure class="align-center" id="id2">
+<img alt="../../_images/ndvi-classes.png" src="../../_images/ndvi-classes.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 9 </span><span class="caption-text">Výsledný soubor se třemi třídami.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s rastrovými daty</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Knihovna Rasterio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gdal/index.html">Knihovna GDAL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="windows.html" title="Použití oken pro čtení a zápis"
+              >předchozí</a> |
+            <a href="vectorisation.html" title="Vektorizace rastrových dat"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

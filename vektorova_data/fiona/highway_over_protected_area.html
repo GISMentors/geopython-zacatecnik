@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Dálnice přes České středohoří &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Knihovna OGR (GDAL)" href="../ogr/index.html" />
+    <link rel="prev" title="Geometrie geoprvků a knihovna Shapely" href="geometrie.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="geometrie.html" title="Geometrie geoprvků a knihovna Shapely"
+             accesskey="P">předchozí</a> |
+          <a href="../ogr/index.html" title="Knihovna OGR (GDAL)"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="dalnice-pres-ceske-stredohori">
+<h1>Dálnice přes České středohoří<a class="headerlink" href="#dalnice-pres-ceske-stredohori" title="Permalink to this heading">¶</a></h1>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Nová dálnice přes CHKO České středohoří</p>
+<p>Najděte oblasti, kterých se bezprostředně dotkla výstavba dálnice D8 z
+Prahy do Drážďan. Předpokládejme, že se jedná o oblast 200m od dálnice.
+O jak velké území se jedná?</p>
+</div>
+<figure class="align-center" id="id1">
+<img alt="../../_images/highways_areas.png" src="../../_images/highways_areas.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 1 </span><span class="caption-text">Dálniční síť České republiky spolu s mapou chráněných krajinných
+oblastí.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Potřebné kroky pro vyřešení úlohy</p>
+<ol class="arabic simple">
+<li><p>Otevření obou datových zdrojů (<code class="file docutils literal notranslate"><span class="pre">highways.geojson</span></code> a <code class="file docutils literal notranslate"><span class="pre">chko.shp</span></code>)</p></li>
+<li><p>Převod na společný souřadnicový systém (první datový zdroj je v <a class="reference external" href="http://epsg.io/4326">EPSG:4326</a>, druhý v <a class="reference external" href="http://epsg.io/5514">EPSG:5514</a>)</p></li>
+<li><p>Vytvoření obalové zóny okolo dálnic</p></li>
+<li><p>Zjištění průniku všech geometrií</p></li>
+</ol>
+<section id="nacteni-datovych-zdroju">
+<h2>Načtení datových zdrojů<a class="headerlink" href="#nacteni-datovych-zdroju" title="Permalink to this heading">¶</a></h2>
+<p>Nejprve oba soubory otevřeme pomocí klasického <cite>fiona.open()</cite>. Použijeme buď
+klauzuli <cite>with</cite> nebo nesmíme nakonec zapomenout soubory uzavřít.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kn">import</span> <span class="nn">fiona</span>
+</span><span class="hll"><span class="kn">import</span> <span class="nn">json</span>
+</span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">shape</span>
+<span class="kn">from</span> <span class="nn">fiona.transform</span> <span class="kn">import</span> <span class="n">transform_geom</span>
+<span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">cascaded_union</span>
+<span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">speedups</span>
+
+<span class="n">speedups</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="hll">
+</span><span class="hll"><span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/chko.shp&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pas</span><span class="p">:</span>
+</span><span class="hll">    <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/highways.geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hws</span><span class="p">:</span>
+</span></pre></div>
+</div>
+</section>
+<section id="spolecny-souradnicovy-system">
+<h2>Společný souřadnicový systém<a class="headerlink" href="#spolecny-souradnicovy-system" title="Permalink to this heading">¶</a></h2>
+<p>Data, jak můžeme ověřit, jsou v různých souřadnicových systémech.</p>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Zjistěte, v jakých souřadnicových systémech jsou dálnice a chráněné
+krajinné oblasti.</p>
+</div>
+<p>Pro další práci musíme data převést do společného souřadnicového
+systému.</p>
+<p>Pro transformaci vektorových prvků (resp. jejich geometrií) můžeme
+použít funkci <cite>trasnform_geom()</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fiona.transform</span> <span class="kn">import</span> <span class="n">transform_geom</span>
+
+<span class="n">wgs84</span> <span class="o">=</span> <span class="s2">&quot;epsg:4326&quot;</span>
+<span class="n">jtsk</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;init&quot;</span><span class="p">:</span> <span class="s2">&quot;epsg:5514&quot;</span><span class="p">,</span> <span class="s2">&quot;towgs84&quot;</span><span class="p">:</span> <span class="s2">&quot;570.8,85.7,462.8,4.998,1.587,5.261,3.56&quot;</span><span class="p">}</span>
+
+<span class="n">geom_transformed</span> <span class="o">=</span> <span class="n">transform_geom</span><span class="p">(</span><span class="n">wgs84</span><span class="p">,</span> <span class="n">jtsk</span><span class="p">,</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="vytvoreni-obalove-zony-okolo-dalnic">
+<h2>Vytvoření obalové zóny okolo dálnic<a class="headerlink" href="#vytvoreni-obalove-zony-okolo-dalnic" title="Permalink to this heading">¶</a></h2>
+<p>Pro každý prvek v dálniční síti, nejprve vyfiltrujeme pouze prvky se jménem
+dálnice D8, transformujeme geometrii na S-JTSK a vytvoříme obalovou zónu:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fiona</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">shape</span>
+<span class="kn">from</span> <span class="nn">fiona.transform</span> <span class="kn">import</span> <span class="n">transform_geom</span>
+<span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">cascaded_union</span>
+<span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">speedups</span>
+
+<span class="n">speedups</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/chko.shp&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pas</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/highways.geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hws</span><span class="p">:</span>
+<span class="hll">
+</span><span class="hll">        <span class="n">buffered_highways</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="n">wgs84</span> <span class="o">=</span> <span class="s2">&quot;EPSG:4326&quot;</span>
+</span><span class="hll">        <span class="n">jtsk</span> <span class="o">=</span> <span class="n">pas</span><span class="o">.</span><span class="n">crs</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="n">d8</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">hw</span><span class="p">:</span> <span class="n">hw</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;ref&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;D8&quot;</span><span class="p">,</span> <span class="n">hws</span><span class="p">))</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="k">for</span> <span class="n">hw</span> <span class="ow">in</span> <span class="n">d8</span><span class="p">:</span>
+</span><span class="hll">            <span class="n">geom_transformed</span> <span class="o">=</span> <span class="n">transform_geom</span><span class="p">(</span><span class="n">wgs84</span><span class="p">,</span> <span class="n">jtsk</span><span class="p">,</span> <span class="n">hw</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+</span><span class="hll">
+</span><span class="hll">            <span class="n">g</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">geom_transformed</span><span class="p">)</span>
+</span><span class="hll">            <span class="n">buffered_highways</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</span></pre></div>
+</div>
+<figure class="align-center" id="id2">
+<img alt="../../_images/highway-buffer.png" src="../../_images/highway-buffer.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 2 </span><span class="caption-text">Obalová zóna 200m okolo dálnice</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Zrychlení topologických operací</p>
+<p>Modul <cite>shapely.speedups</cite> obsahuje zrychlení některých operací optimalizovaných v
+jazyce C. Pokud během instalace byla dostupná knihovan GEOS a pokud byl dostupný
+kompilátor jazyka C, jsou tyto optimalizace automaticky zavedeny.</p>
+<p>Ověřit jejich přítomnost, případně je explicitně povolit, můžeme modulem
+<cite>speedups</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">speedups</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">speedups</span><span class="o">.</span><span class="n">available</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">speedups</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="prunik-geometrii">
+<h2>Průnik geometrií<a class="headerlink" href="#prunik-geometrii" title="Permalink to this heading">¶</a></h2>
+<p>Pro každou chráněnou krajinnou oblast musíme nejprve zjistit, jestli se
+geometrie CHKO a obalové zóny okolo dálnice protínají - teprve potom má smysl
+pokračovat s interkací.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fiona</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">shape</span>
+<span class="kn">from</span> <span class="nn">fiona.transform</span> <span class="kn">import</span> <span class="n">transform_geom</span>
+<span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">cascaded_union</span>
+<span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">speedups</span>
+
+<span class="n">speedups</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/chko.shp&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pas</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/highways.geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hws</span><span class="p">:</span>
+
+        <span class="n">buffered_highways</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">wgs84</span> <span class="o">=</span> <span class="s2">&quot;EPSG:4326&quot;</span>
+        <span class="n">jtsk</span> <span class="o">=</span> <span class="n">pas</span><span class="o">.</span><span class="n">crs</span>
+
+        <span class="n">d8</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">hw</span><span class="p">:</span> <span class="n">hw</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;ref&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;D8&quot;</span><span class="p">,</span> <span class="n">hws</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">hw</span> <span class="ow">in</span> <span class="n">d8</span><span class="p">:</span>
+            <span class="n">geom_transformed</span> <span class="o">=</span> <span class="n">transform_geom</span><span class="p">(</span><span class="n">wgs84</span><span class="p">,</span> <span class="n">jtsk</span><span class="p">,</span> <span class="n">hw</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+
+            <span class="n">g</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">geom_transformed</span><span class="p">)</span>
+<span class="hll">            <span class="n">buffered_highways</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="n">intersections</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="hll">
+</span><span class="hll">        <span class="k">for</span> <span class="n">hw</span> <span class="ow">in</span> <span class="n">buffered_highways</span><span class="p">:</span>
+</span><span class="hll">
+</span><span class="hll">            <span class="k">for</span> <span class="n">pa</span> <span class="ow">in</span> <span class="n">pas</span><span class="p">:</span>
+</span><span class="hll">
+</span><span class="hll">                <span class="n">pa_geom</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">pa</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+</span><span class="hll">                <span class="k">if</span> <span class="n">hw</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">pa_geom</span><span class="p">):</span>
+</span><span class="hll">                    <span class="n">out_geom</span> <span class="o">=</span> <span class="n">hw</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">pa_geom</span><span class="p">)</span>
+</span><span class="hll">                    <span class="n">intersections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out_geom</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="spojeni-do-jedne-geometrie">
+<h2>Spojení do jedné geometrie<a class="headerlink" href="#spojeni-do-jedne-geometrie" title="Permalink to this heading">¶</a></h2>
+<p>V tuto chvíli máme data rozkouskovaná, bylo by ale vhodné je spojit do jednoho
+geometrického objektu.</p>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Spojení geometrií do jednoho objektu</p>
+<p>Navrhněte postup, jak spojit více geometrií do jedné.</p>
+</div>
+</section>
+<section id="zapis-do-souboru-ogc-geopackage">
+<h2>Zápis do souboru - OGC GeoPackage<a class="headerlink" href="#zapis-do-souboru-ogc-geopackage" title="Permalink to this heading">¶</a></h2>
+<p>Pokud potřebujeme uložit některý z binárních typů vektorových souborů (ESRI
+Shapefile, OGC GeoPackage, …) musíme nejprve nadefinovat datové schéma -
+atributy a typ geometrií.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;highway&#39;</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="s1">&#39;MultiPolygon&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Následně můžeme otevřít nový soubor pro zápis a uložit do něj námi vytvořenou
+geometrii.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;chko_x_highway.gpkg&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GPKG&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:5514&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="n">feature</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Feature&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s1">&#39;highway&#39;</span><span class="p">:</span> <span class="s1">&#39;D8&#39;</span>
+                <span class="p">},</span>
+                <span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="n">mapping</span><span class="p">(</span><span class="n">one_geometry</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="zapis-do-souboru-geojson">
+<h2>Zápis do souboru - GeoJSON<a class="headerlink" href="#zapis-do-souboru-geojson" title="Permalink to this heading">¶</a></h2>
+<p>Zapsat soubor ve formátu GeoJSON je od dost jednodušší, protože se
+nemusíme spoléhat na (relativně) komplikovanou funkci <cite>fiona.write()</cite>,
+ale můžeme data zapsat napřímo pomocí modulu <a class="reference external" href="https://docs.python.org/3/library/json.html">json</a>.</p>
+<p>To nám samozřejmě umožňuje nedodržet stritkní schéma atributů, což může a nemusí
+být výhoda.</p>
+<p>Mějte na paměti, že podle <a class="reference external" href="https://tools.ietf.org/html/rfc7946#section-4">GeoJSON specifikace</a> se předpokládá, že
+souřadnicovým systémem je <a class="reference external" href="http://epsg.io/4326">WGS84</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p><a class="reference external" href="http://geojson.org/geojson-spec#coordinate-reference-system-objects">Existuje i způsob</a>,
+jak do GeoJSONu uložit geometrie v jiných souřadnicový
+systémech a i když s ním některé softwary počítají, do
+finální specifikace se tento způsob nedostal.</p>
+</div>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Zapište výstup do formátu GeoJSON</p>
+<p>Vytvořte část skriptu, která převede geometrie na WGS84 a zapíše
+výsledek do souboru GeoJSON.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pro převod použijte funkci <cite>transform_geom()</cite>, povinný „obal“
+seznamu vektorových prvků (<cite>features</cite>) vypadá pro formát
+GeoJSON následovně.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>
+                <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="o">...</span>
+            <span class="p">},</span>
+                <span class="o">...</span>
+
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Pokud je pro vás úloha příliš komplikovaná, můžete se na <a class="reference external" href="../../_static/skripty/highway-example.py">celý skript samozřejmě
+podívat</a>.</p>
+</section>
+<section id="dalsi-atributy">
+<h2>Další atributy<a class="headerlink" href="#dalsi-atributy" title="Permalink to this heading">¶</a></h2>
+<p>Někdy je výhodné pro další práci s vektorovými daty, uložit vlastnosti
+geometrie do atributové tabulky, např. rozlohu plochy nebo délku
+linie.</p>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Uložení dalších atributů</p>
+<p>Upravíte skript tak, aby výstup obsahoval také celkovou zasaženou plochu
+(m2) CHKO?</p>
+</div>
+<figure class="align-center" id="id3">
+<img alt="../../_images/hw-buffer-final.png" src="../../_images/hw-buffer-final.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 3 </span><span class="caption-text">Obalová zóna okolo dálnice protínající CHKO České středohoří.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="optimalizace-diskuse">
+<h2>Optimalizace (diskuse)<a class="headerlink" href="#optimalizace-diskuse" title="Permalink to this heading">¶</a></h2>
+<p>Skript je ve své podstatě celkem neefektivní a stálo by za to popřemýšlet o jeho
+optimalizaci, aby proběhl rychleji:</p>
+<ol class="arabic simple">
+<li><p>Dálniční těleso je reprezentováno dvěmi liniemi, stálo by za zvážení použít
+pouze jednu z nich</p></li>
+<li><p>Buffer by se mohl spojit pomocí <cite>cascaded_union()</cite> do jedné
+geometrie, tím by se měl následný průnik zrychlit</p></li>
+<li><p>…</p></li>
+</ol>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s vektorovými daty</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Knihovna Fiona/Shapely</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ogr/index.html">Knihovna OGR (GDAL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geopandas/index.html">GeoPandas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="geometrie.html" title="Geometrie geoprvků a knihovna Shapely"
+              >předchozí</a> |
+            <a href="../ogr/index.html" title="Knihovna OGR (GDAL)"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

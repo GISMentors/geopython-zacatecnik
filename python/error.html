@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Chyby, jak je číst a interpretovat &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Proměnné a tisk" href="variables.html" />
+    <link rel="prev" title="Program uložený v souboru" href="print.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="print.html" title="Program uložený v souboru"
+             accesskey="P">předchozí</a> |
+          <a href="variables.html" title="Proměnné a tisk"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="chyby-jak-je-cist-a-interpretovat">
+<h1>Chyby, jak je číst a interpretovat<a class="headerlink" href="#chyby-jak-je-cist-a-interpretovat" title="Permalink to this heading">¶</a></h1>
+<p>Do souboru <cite>printing.py</cite> napište následující řádky a spusťte jej. Jaké chyby se
+vyskytly a proč? Zkuste je odstranit</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">10</span> <span class="o">-</span> <span class="mf">2.2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ahoj&quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="s2">&quot;PyLadies!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Součet čísel 3 a 8 je&quot;</span><span class="p">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Máma má mísu&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V</span> <span class="n">míse</span> <span class="n">je</span> <span class="n">maso</span><span class="o">.</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Při běhu souboru byla až zcela na konci nalezena <em>Chyba Syntaxe</em> - soubor ani
+nešel spustit.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="n">File</span> <span class="s2">&quot;/tmp/printing.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">13</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">V</span> <span class="n">míse</span> <span class="n">je</span> <span class="n">maso</span><span class="o">.</span><span class="p">)</span>
+               <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
+</pre></div>
+</div>
+<p>Python vypíše jméno souboru, číslo řádku a pozici na řádku, kde našel chybu.
+Dále napíše, jakého druhu chyba je. Pokud se jedná o chybu vnořenou ve větší
+hloubi kódu, bývá vypsán celý „stack“ (sloupec) – řetězec vyvolaných <em>výjimek</em>,
+jak se chyba projevila a kde všude nadělala paseku. Proto <em>je výhodné začít s
+hledáním chyby od spodu</em> ve výpisu.</p>
+<p>Pokud zkusíme experimentovat a např. sečteme <em>číslo a řetězec</em> nebo zkusíme
+<em>dělit nulou</em>, dostaneme odlišné chyby.</p>
+</section>
+<section id="jak-funguje-program">
+<h1>Jak funguje Program<a class="headerlink" href="#jak-funguje-program" title="Permalink to this heading">¶</a></h1>
+<p>Je to zatím docela jednoduché: příkazy se provádějí jeden po druhém, odshora
+dolů. Program je jako recept: seznam instrukcí.</p>
+<p>Pro zatím máme pouze jeden jasný směr, jak jsou programy vykonávány. Časem ale
+přibudou odbočky a smyčky, které přehlednost poněkud zkomplikují.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="print.html" title="Program uložený v souboru"
+              >předchozí</a> |
+            <a href="variables.html" title="Proměnné a tisk"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

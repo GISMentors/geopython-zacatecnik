@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Výjimky &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Moduly" href="modules.html" />
+    <link rel="prev" title="Funkce" href="functions.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="functions.html" title="Funkce"
+             accesskey="P">předchozí</a> |
+          <a href="modules.html" title="Moduly"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="vyjimky">
+<h1>Výjimky<a class="headerlink" href="#vyjimky" title="Permalink to this heading">¶</a></h1>
+<p>Když se v Pythonu něco fatálně nepovede, nestane se to, že by program
+nekontrolovatelně spadnul. Na místo toho „vyhodí“ <em>výjimku</em> a dá vám možnost na
+ni reagovat. Můžete například pokračovat dál v jiné konfiguraci, smazat dočasné
+soubory a program ukončit čistě a tak podobně.</p>
+<p>Výjimek je mnoho typů a ve vlastních programech si můžete vytvářet vlastní.
+Můžete tak reagovat na mimořádné události (jako například špatně zadaný
+uživatelský vstup, nefunkční internetové připojení, neexistující soubor a tak
+dál).</p>
+<p>Následující kód uložte do souboru <code class="file docutils literal notranslate"><span class="pre">deleni.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="k">def</span> <span class="nf">deleni</span><span class="p">(</span><span class="n">delenec</span><span class="p">,</span> <span class="n">delitel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vydeli jedno cislo druhym</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">delenec</span><span class="o">/</span><span class="n">delitel</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">deleni</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>A soubor spusťe:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>deleni.py
+
+Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;deleni.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">9</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span>print<span class="o">(</span>deleni<span class="o">(</span><span class="m">10</span>/0<span class="o">))</span>
+ZeroDivisionError:<span class="w"> </span>division<span class="w"> </span>by<span class="w"> </span>zero
+</pre></div>
+</div>
+<p>Nemůžeme dělit nulou - program vyhodil výjimku a navedl nás na řádek 9 v souboru
+<code class="file docutils literal notranslate"><span class="pre">deleni.py</span></code>. Program vyhodil speciální <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code> výjimku, kterou
+můžeme zachytit a zareagovat na ni.</p>
+<section id="odchyceni-vyjimky">
+<h2>Odchycení výjimky<a class="headerlink" href="#odchyceni-vyjimky" title="Permalink to this heading">¶</a></h2>
+<p>Předchozí kód upravíme následujícím způsobem:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="k">def</span> <span class="nf">deleni</span><span class="p">(</span><span class="n">delenec</span><span class="p">,</span> <span class="n">delitel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vydeli jedno cislo druhym</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">delenec</span><span class="o">/</span><span class="n">delitel</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ZeroDivisionError</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dělitel nesmí být nula!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">deleni</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Blok kódu, který hrozí výjimkou (v našem případě pouze jeden řádek) jsme
+uzavřeli mezi klíčová slova <code class="docutils literal notranslate"><span class="pre">try</span></code> a <code class="docutils literal notranslate"><span class="pre">except</span></code>, tedy <em>zkus</em> a <em>kdyby to nedopadlo,
+tak</em></p>
+<p>Jako parametr <em>except</em> se předá <em>typ výjimky</em> a název proměnné, do které bude
+uložena, abychom s ní případně mohli dál pracovat.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="functions.html" title="Funkce"
+              >předchozí</a> |
+            <a href="modules.html" title="Moduly"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

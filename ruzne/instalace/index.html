@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Instalace potřebných knihoven &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Instalace na operačním systému Linux" href="linux.html" />
+    <link rel="prev" title="Jupyter notebook" href="../jupyter.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../jupyter.html" title="Jupyter notebook"
+             accesskey="P">předchozí</a> |
+          <a href="linux.html" title="Instalace na operačním systému Linux"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="instalace-potrebnych-knihoven">
+<h1>Instalace potřebných knihoven<a class="headerlink" href="#instalace-potrebnych-knihoven" title="Permalink to this heading">¶</a></h1>
+<p>Jazyk Python lze provozovat na všech běžných desktopových platformách
+(Linux, MS Windows, MacOS), i těch méně běžných. Existují i porty Pythonu
+do malých jednoprocesorových počítačů <a class="reference external" href="https://micropython.org/">Micropython</a>, stejně tak ho lze využít k programování
+např. vývojové desky <a class="reference external" href="https://microbit.org/">Micro:bit</a>.</p>
+<p>Je dobré si uvědomit, že Python jako takový, je vlastně pouze specifikace jazyka
+-  předpis, jak se má daný zápis kódu interpretovat. Existuje řada intepretů
+jazyka Python, naprogramových ovšem v jiných programovacích jazycích, jako jsou</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://python.org">CPython</a> - základní interpret v jazyce C. Když se řekně
+„python“, myslí se tím obvykle jazyk + tento výchozí interpreter.</p></li>
+<li><p><a class="reference external" href="https://ironpython.net/">IronPython</a> - interpret jazyka z prostředí .NET</p></li>
+<li><p><a class="reference external" href="https://www.jython.org/">Jython</a> - interpret jazyka Python naprogramovaný
+v jazyce Java</p></li>
+<li><p><a class="reference external" href="https://www.pypy.org/">PyPy</a> - Python interpreter napsaný v Pythonu</p></li>
+<li><p><a class="reference external" href="https://github.com/pythonnet/pythonnet">PythonNet</a> nebo <a class="reference external" href="https://github.com/stackless-dev/stackless/wiki">Stackless</a> Python (ty jsou více
+okrajové).</p></li>
+</ul>
+<p>Každá implementace má nějaký důvod - např. pomocí Jython můžete zaintegrovat
+kusy kódu do jinak javového prostředí. Můžete si „z jazyka Python“ dosáhnout pro
+potřebné knihovny do prostředí Java. PyPy se zase zdá být rychlejší, než výchozí
+CPython.</p>
+<p>Bohužel ne všechny implementace dokáží držet krok s vývojem a tak jazyk Python a
+jeho interpret CPython jsou momentálně ve verzi 3.7 (jaro 2020), Jython ustrnul
+ve verzi 2.7 a nezdá se, že by se posouval.</p>
+<p>Nedílnou součástí programování je využívání dostupných knihoven - a ty
+jsou mezi různými jazyky (programovacími platformami) spíše
+nepřenositelné. Na úrovni kódu nelze využívat funkce knihovny napsané
+v jazyce Java v programu, který je implementován v jazyce C a
+pod. (tedy … jsou na to techniky, ale ty patří mezi hodně
+pokročilé). Proto je potřeba používat takový interpert jazyka, který
+je použitý s požadovanými knihovnami.</p>
+<p>Proto se budeme držet referenční implementace CPython.</p>
+<section id="verze-jazyka-python">
+<h2>Verze jazyka Python<a class="headerlink" href="#verze-jazyka-python" title="Permalink to this heading">¶</a></h2>
+<p>V současné době se ještě stále nacházíme v přechodné fázi mezi verzí
+jazyka 2 a 3. Naše kurzy již využívají Python verze 3, stejně tak
+všechny námi doporučené knihovny a programy. Pokud vám ale někdo dá
+„na výběr“ nebo si nejste jisti, jakou verzi zvolit, je Python 3
+jasnou volbou. Pokud přijdete k projektu, který využívá Pyhon 2
+(poslední verze je 2.7), syntaxe je na 99% stejná, takže vše, co se
+naučíte pro Python 3 bude použitelné i pro Python 2.</p>
+<p>Je potřeba zdůraznit, že se Python 2 již dále <a class="reference external" href="https://www.python.org/doc/sunset-python-2/">nevyvijí</a>. Což znamená, že v
+poslední době většina projektů přestává Python 2 podporovat.</p>
+</section>
+<section id="navody-pro-vybrane-platformy">
+<h2>Návody pro vybrané platformy<a class="headerlink" href="#navody-pro-vybrane-platformy" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linux.html">Instalace na operačním systému Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Instalace na operační systému MS Windows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#prvni-moznost-preferovana-instalace-osgeo4w">První možnost (preferovaná): Instalace OSGeo4W</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#druha-moznost-alternativni-instalace-nativniho-interpretu-cpython">Druhá možnost (alternativní): Instalace nativního interpretu CPython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#otestovani-instalace">Otestování instalace</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instalace potřebných knihoven</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#verze-jazyka-python">Verze jazyka Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navody-pro-vybrane-platformy">Návody pro vybrané platformy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../jupyter.html" title="Jupyter notebook"
+              >předchozí</a> |
+            <a href="linux.html" title="Instalace na operačním systému Linux"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Použití oken pro čtení a zápis &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Interpretace NDVI" href="reclass.html" />
+    <link rel="prev" title="Rastrová algebra - výpočet NDVI" href="ndvi.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="ndvi.html" title="Rastrová algebra - výpočet NDVI"
+             accesskey="P">předchozí</a> |
+          <a href="reclass.html" title="Interpretace NDVI"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pouziti-oken-pro-cteni-a-zapis">
+<span id="rasterio-windows"></span><h1>Použití oken pro čtení a zápis<a class="headerlink" href="#pouziti-oken-pro-cteni-a-zapis" title="Permalink to this heading">¶</a></h1>
+<p>Rastrová data lze číst a zapisovat i pomocí tzv. <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/topics/windowed-rw.html">„oken“</a>. Tento
+postup se hodí v případě, že pracujete s objemnými rastrovými daty,
+které se do RAM vašeho počítače nevejdou. Pomocí okna lze načíst část
+matice rastrových dat, tu zpracovat a zapsat do výstupního souboru.</p>
+<p>Okna (<code class="xref py py-class docutils literal notranslate"><span class="pre">rasterio.Window</span></code>) jsou pravidelné matice vstupního
+rastru. Lze je také popsat jako 2 páry souřadnic pixelů:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">první_řádek</span><span class="p">,</span> <span class="n">poslední_řádek</span><span class="p">),</span> <span class="p">(</span><span class="n">první_sloupec</span><span class="p">,</span> <span class="n">poslední_sloupec</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>nebo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Window</span><span class="p">(</span><span class="n">první_sloupec</span><span class="p">,</span> <span class="n">první_řádek</span><span class="p">,</span> <span class="n">šířka</span><span class="p">,</span> <span class="n">výška</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Příklad načtení dat:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.windows</span> <span class="kn">import</span> <span class="n">Window</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/B04-2018-05-06.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">red</span><span class="p">:</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">red</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">Window</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="bloky">
+<h2>Bloky<a class="headerlink" href="#bloky" title="Permalink to this heading">¶</a></h2>
+<p>Rastrové soubory ukládají většinou data po blocích. Pokud chcete
+využívat okna pro čtení, je efektivní, aby velikost oken odpovídala
+velikosti bloků.  Následujícím způsobem můžeme zpracovat první kanál
+našeho rastrového souboru po blocích:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/B04-2018-05-06.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">red</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">ji</span><span class="p">,</span> <span class="n">window</span> <span class="ow">in</span> <span class="n">red</span><span class="o">.</span><span class="n">block_windows</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">red</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">window</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To jakým způsobem jsou bloky pro rastrový soubor definovány můžete
+zjistit z příkazové řádky nástrojem <code class="docutils literal notranslate"><span class="pre">gdalinfo</span></code> (součást knihovny
+GDAL).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdalinfo<span class="w"> </span>data/B04-2018-05-06.tiff
+
+Driver:<span class="w"> </span>GTiff/GeoTIFF
+Files:<span class="w"> </span>B04-2018-05-06.tiff
+<span class="w">    </span>B04-2018-05-06.tiff.aux.xml
+Size<span class="w"> </span>is<span class="w"> </span><span class="m">3117</span>,<span class="w"> </span><span class="m">1716</span>
+
+...
+Band<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nv">Block</span><span class="o">=</span>3117x8<span class="w"> </span><span class="nv">Type</span><span class="o">=</span>UInt16,<span class="w"> </span><span class="nv">ColorInterp</span><span class="o">=</span>Gray
+</pre></div>
+</div>
+<p>Vidíme, že náš rastr používá bloky o velikosti 3117×8 pixel - tedy 8
+řádků.  Někdy může být efektivnější celý rastr převzorkovat, než se
+pustíte do jeho blok-po-bloku processingu. To můžeme udělat např.
+nástrojem knihovny GDAL <cite>gdalwarp</cite> (viz školení <a class="reference external" href="http://training.gismentors.eu/open-source-gis/knihovny/gdal.html#prikazy-pro-praci-s-rastrovymi-daty">Úvod Open
+Source GIS</a>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdalwarp<span class="w"> </span>-r<span class="w"> </span>mode<span class="w"> </span>-co<span class="w"> </span><span class="nv">TILED</span><span class="o">=</span>YES<span class="w"> </span>-co<span class="w"> </span><span class="nv">BLOCKXSIZE</span><span class="o">=</span><span class="m">256</span><span class="w"> </span>-co<span class="w"> </span><span class="nv">BLOCKYSIZE</span><span class="o">=</span><span class="m">256</span><span class="w"> </span>data/B04-2018-05-06.tiff<span class="w"> </span>outputs/B04-2018-05-06-256block.tiff
+...
+
+gdalinfo<span class="w"> </span>outputs/B04-2018-05-06-256block.tiff
+...
+Band<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nv">Block</span><span class="o">=</span>256x256<span class="w"> </span><span class="nv">Type</span><span class="o">=</span>UInt16,<span class="w"> </span><span class="nv">ColorInterp</span><span class="o">=</span>Gray
+</pre></div>
+</div>
+<p>A otevřít v Pythonu:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;outputs/B04-2018-05-06-256block.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">red</span><span class="p">:</span>
+
+    <span class="k">for</span> <span class="n">ji</span><span class="p">,</span> <span class="n">window</span> <span class="ow">in</span> <span class="n">red</span><span class="o">.</span><span class="n">block_windows</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">red</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">window</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ndvi-pomoci-bloku">
+<h2>NDVI pomocí bloků<a class="headerlink" href="#ndvi-pomoci-bloku" title="Permalink to this heading">¶</a></h2>
+<p>Následující příklad prezentuje opět výpočet NDVI, tentokrát ale bude
+postupovat po blocích (čtení i zápis). Tento přístup bude fungovat
+rychleji při větším objemu dat.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.windows</span> <span class="kn">import</span> <span class="n">Window</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/B04-2018-05-06.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">red</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/B08-2018-05-06.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">nir</span><span class="p">:</span>
+
+        <span class="n">step</span> <span class="o">=</span> <span class="mi">256</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="n">red</span><span class="o">.</span><span class="n">meta</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">rasterio</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="s1">&#39;lzw&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;outputs/ndvi_w.tif&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+            <span class="n">slices</span> <span class="o">=</span> <span class="p">[(</span><span class="n">col_start</span><span class="p">,</span> <span class="n">row_start</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span> \
+                        <span class="k">for</span> <span class="n">col_start</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">red</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span> \
+                        <span class="k">for</span> <span class="n">row_start</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">red</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
+            <span class="p">]</span>
+
+            <span class="c1"># nepoužijeme block windows, protože data používají 1x1287 velké bloky</span>
+            <span class="c1"># for ji, window in src.block_windows(1):</span>
+            <span class="k">for</span> <span class="n">slc</span> <span class="ow">in</span> <span class="n">slices</span><span class="p">:</span>
+                <span class="n">win</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="o">*</span><span class="n">slc</span><span class="p">)</span>
+
+                <span class="n">nir_data</span> <span class="o">=</span> <span class="n">nir</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">win</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+                <span class="n">vis_data</span> <span class="o">=</span> <span class="n">red</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">win</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+                <span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir_data</span> <span class="o">-</span> <span class="n">vis_data</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir_data</span> <span class="o">+</span> <span class="n">vis_data</span><span class="p">)</span>
+
+                <span class="n">write_win</span> <span class="o">=</span> <span class="n">Window</span><span class="p">(</span><span class="n">slc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">slc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+                <span class="n">dst</span><span class="o">.</span><span class="n">write_band</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">window</span><span class="o">=</span><span class="n">write_win</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s rastrovými daty</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Knihovna Rasterio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gdal/index.html">Knihovna GDAL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="ndvi.html" title="Rastrová algebra - výpočet NDVI"
+              >předchozí</a> |
+            <a href="reclass.html" title="Interpretace NDVI"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

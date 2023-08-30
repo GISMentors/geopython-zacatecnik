@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Knihovna GDAL &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Načítání dat pomocí webových služeb OGC" href="../../owslib/index.html" />
+    <link rel="prev" title="Rasterio rozšíření" href="../rasterio/plugins.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../rasterio/plugins.html" title="Rasterio rozšíření"
+             accesskey="P">předchozí</a> |
+          <a href="../../owslib/index.html" title="Načítání dat pomocí webových služeb OGC"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="knihovna-gdal">
+<h1>Knihovna GDAL<a class="headerlink" href="#knihovna-gdal" title="Permalink to this heading">¶</a></h1>
+<p>Pro práci s rastrovými geodaty se „tradičně“ používá knihovna <a class="reference external" href="http://gdal.org">GDAL</a>. Knihovna GDAL je nízkoúrovňová, přistupuje k
+datům pokud možno efektivním způsobem. V současnosti knihovna GDAL
+podporuje více než <a class="reference external" href="http://gdal.org/formats_list.html">140 rastrových GIS formátů</a>.</p>
+<section id="datovy-model">
+<h2>Datový model<a class="headerlink" href="#datovy-model" title="Permalink to this heading">¶</a></h2>
+<p>Koncept pro rastrová data do značné míry odpovídá přístupu k
+<a class="reference internal" href="../../vektorova_data/ogr/index.html#ogr-model"><span class="std std-ref">vektorovým datům</span></a>:</p>
+<ul class="simple">
+<li><p><strong>Driver</strong> - ovladač pro čtení a zápis dat</p></li>
+<li><p><strong>Datasource</strong> - zdroj dat, ze kterého a do kterého se čte a zapisuje</p></li>
+<li><p><strong>RasterBand</strong> - rastrový kanál. U něterých zdrojů dat je jenom jedno
+pásmo, ale může jich mít teoreticky neomezeně (např. u
+hyperspektrálních dat).</p></li>
+</ul>
+<figure class="align-center">
+<img alt="../../_images/gdal-schema.png" class="middle" src="../../_images/gdal-schema.png" />
+</figure>
+<p>Mezi další důležité charakteristiky rastrových dat patří prostorové
+rozlišení (velikost pixelu v mapových jednotkách) a jeho hraniční
+souřadnice.</p>
+<p>Užitečné odkazy:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://gdal.org/gdal_datamodel.html">Popis abstraktního modelu pro rastrová data</a></p></li>
+<li><p><a class="reference external" href="http://gdal.org/python/">API</a></p></li>
+<li><p><a class="reference external" href="https://pcjericks.github.io/py-gdalogr-cookbook/raster_layers.html">Cookbook</a></p></li>
+</ul>
+</section>
+<section id="priklad-vytvoreni-noveho-souboru-z-matice-hodnot">
+<h2>Příklad vytvoření nového souboru z matice hodnot<a class="headerlink" href="#priklad-vytvoreni-noveho-souboru-z-matice-hodnot" title="Permalink to this heading">¶</a></h2>
+<p>V následující ukázce vytvoříme nový rastrový soubor a vyplníme ho maticí
+hodnot. Výsledek uložíme do souboru ve formátu <a class="reference external" href="http://en.wikipedia.org/wiki/GeoTIFF">GeoTIFF</a>.</p>
+<p>Nejprve nastavíme několik výchozích hodnot, velikost matice (mřížky),
+tj. velikost pixelu, jméno výsledného souboru a extent (hraniční souřadnice)
+rastrových dat.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span><span class="p">,</span> <span class="n">ogr</span><span class="p">,</span> <span class="n">osr</span>
+
+<span class="c1"># počet pixelů ve směru os x a y</span>
+<span class="n">pixel_size</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># název výstupního souboru</span>
+<span class="n">raster_fn</span> <span class="o">=</span> <span class="s1">&#39;test.tif&#39;</span>
+
+<span class="c1"># hraniční souřadnice mřížky</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">467500</span><span class="p">,</span> <span class="o">-</span><span class="mi">467400</span><span class="p">,</span> <span class="o">-</span><span class="mi">1101200</span><span class="p">,</span> <span class="o">-</span><span class="mi">1101100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>V dalším kroku vypočteme prostorové rozlišení, velikost pixelu na
+základně počtu pixelů ve směru os a rozsahu rastrových dat.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># prostorové rozlišení</span>
+<span class="n">x_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>
+<span class="n">y_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nyní můžeme vytvořit <em>datový zdroj</em> pro rastrová data. Nejprve
+vytvoříme instanci objektu <cite>Driver</cite> pro požadovaný formát a následně
+prázdný rastrový soubor. Zde musíme specifikovat</p>
+<ul class="simple">
+<li><p>jméno výsledného souboru</p></li>
+<li><p>prostorové rozlišení ve směru os <cite>x</cite> a <cite>y</cite></p></li>
+<li><p>počet pásem (kanálů)</p></li>
+<li><p>typ číselné hodnoty</p></li>
+</ul>
+<p>Nakonec nastavíme transformační parametry, které jsou ve
+stejném formátu v jakém bývají uloženy v tzv. <em>world file</em> souboru:</p>
+<ul class="simple">
+<li><p>souřadnice levého-horního rohu <cite>x</cite></p></li>
+<li><p>rozlišení ve směru osy <cite>x</cite></p></li>
+<li><p>naklonění osy <cite>x</cite></p></li>
+<li><p>souřadnice levého-horního rohu <cite>y</cite></p></li>
+<li><p>naklonění osy <cite>y</cite></p></li>
+<li><p>rozlišení ve směru osy <cite>y</cite></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target_driver</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;GTiff&#39;</span><span class="p">)</span>
+<span class="n">target_ds</span> <span class="o">=</span> <span class="n">target_driver</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">raster_fn</span><span class="p">,</span> <span class="n">x_res</span><span class="p">,</span> <span class="n">y_res</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Byte</span><span class="p">)</span>
+<span class="n">target_ds</span><span class="o">.</span><span class="n">SetGeoTransform</span><span class="p">((</span><span class="n">x_min</span><span class="p">,</span> <span class="n">pixel_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">pixel_size</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>V dalším kroku zapíšeme data do vybraného pásma (číslování pásem
+začíná hodnotou 1 a ne více obvyklou 0). Do připraveného rastrového
+kanálu můžeme nyní zapsat hodnoty jako matici hodnot ve formátu
+<a class="reference external" href="http://en.wikipedia.org/wiki/NumPy">NumPy</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">band</span> <span class="o">=</span> <span class="n">target_ds</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">band</span><span class="o">.</span><span class="n">WriteArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]))</span>
+</pre></div>
+</div>
+<p>Dále definujeme pro data souřadnicový systém. Ten se nastavuje pomocí
+zápisu ve formátu <a class="reference external" href="http://en.wikipedia.org/wiki/Well-known text">Well-known text</a> (WKT). Souřadnicový
+systém definujeme pomocí kódu <a class="reference external" href="http://en.wikipedia.org/wiki/EPSG">EPSG</a> a vyexportujeme
+jako formátu WKT:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">outRasterSRS</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+<span class="n">outRasterSRS</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="mi">5514</span><span class="p">)</span>
+<span class="n">target_ds</span><span class="o">.</span><span class="n">SetProjection</span><span class="p">(</span><span class="n">outRasterSRS</span><span class="o">.</span><span class="n">ExportToWkt</span><span class="p">())</span> <span class="c1"># !!! jiné než u vektorových dat</span>
+</pre></div>
+</div>
+<p>A nakonec uklidíme (pro jistotu) a uzavřeme zápis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">band</span><span class="o">.</span><span class="n">FlushCache</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="rasterizace-vektorovych-dat">
+<h2>Rasterizace vektorových dat<a class="headerlink" href="#rasterizace-vektorovych-dat" title="Permalink to this heading">¶</a></h2>
+<p>Další ne zcela obvyklou operací může být převod vektorových dat do
+rastrové reprezentace. Začátek je stejný jako v předchozím případě:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span><span class="p">,</span> <span class="n">ogr</span><span class="p">,</span> <span class="n">osr</span>
+
+<span class="c1"># počet pixelů ve směru os x a y</span>
+<span class="n">pixel_size</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># název výstupního souboru</span>
+<span class="n">raster_fn</span> <span class="o">=</span> <span class="s1">&#39;chko.tif&#39;</span>
+</pre></div>
+</div>
+<p>Otevřeme vstupní vektorová data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># název vstupního vektorového souboru</span>
+<span class="n">vector_fn</span> <span class="o">=</span> <span class="s1">&#39;chko.shp&#39;</span>
+<span class="c1"># otevření zdroje dat (DataSource)</span>
+<span class="n">source_ds</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">vector_fn</span><span class="p">)</span>
+<span class="c1"># načtení první vrstvy z datového zdroje</span>
+<span class="n">source_layer</span> <span class="o">=</span> <span class="n">source_ds</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A nyní můžeme zjistit potřebné hraniční souřadnice vstupních geodat a
+vytvořit tak cílový rastrový soubor:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># získat hraniční souřadnice</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">source_layer</span><span class="o">.</span><span class="n">GetExtent</span><span class="p">()</span>
+
+<span class="c1"># vytvořit data source pro výstupní data</span>
+<span class="n">x_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">x_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>
+<span class="n">y_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">y_max</span> <span class="o">-</span> <span class="n">y_min</span><span class="p">)</span> <span class="o">/</span> <span class="n">pixel_size</span><span class="p">)</span>
+<span class="n">tiff_driver</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;GTiff&#39;</span><span class="p">)</span>
+<span class="n">target_ds</span> <span class="o">=</span> <span class="n">tiff_driver</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">raster_fn</span><span class="p">,</span> <span class="n">x_res</span><span class="p">,</span> <span class="n">y_res</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">gdal</span><span class="o">.</span><span class="n">GDT_Byte</span><span class="p">)</span>
+<span class="n">target_ds</span><span class="o">.</span><span class="n">SetGeoTransform</span><span class="p">((</span><span class="n">x_min</span><span class="p">,</span> <span class="n">pixel_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">pixel_size</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Zkopírujeme také informaci o souřadnicovém systému (S-JTSK
+<a class="reference external" href="http://epsg.io/5514">EPSG:5514</a>) ze vstupního datové zdroje na výstup:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">outRasterSRS</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+<span class="n">outRasterSRS</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="mi">5514</span><span class="p">)</span>
+<span class="n">target_ds</span><span class="o">.</span><span class="n">SetProjection</span><span class="p">(</span><span class="n">outRasterSRS</span><span class="o">.</span><span class="n">ExportToWkt</span><span class="p">())</span> <span class="c1"># !!! jiné než u vektorů</span>
+</pre></div>
+</div>
+<p>Zlatým hřebem tohoto příkladu je funkce <code class="docutils literal notranslate"><span class="pre">RasterizeLayer()</span></code> s
+následujícími parametry:</p>
+<ul class="simple">
+<li><p>cílový datový zdroj</p></li>
+<li><p>rastrová pásma (kanály)</p></li>
+<li><p>zdrojová vektorová vrstva</p></li>
+<li><p>hodnoty pro jednotlivá pásma</p></li>
+<li><p>dodatečné parametry</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gdal</span><span class="o">.</span><span class="n">RasterizeLayer</span><span class="p">(</span><span class="n">target_ds</span><span class="p">,</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="n">source_layer</span><span class="p">,</span>
+    <span class="n">burn_values</span><span class="o">=</span><span class="p">[</span><span class="mi">255</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ALL_TOUCHED=TRUE&#39;</span><span class="p">])</span> <span class="c1"># žádné mezery okolo znaku &#39;=&#39;</span>
+<span class="n">target_ds</span><span class="o">.</span><span class="n">FlushCache</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Tato funkce vektorová data zrasterizuje a zapíše je do výstupního
+rastrového souboru.</p>
+<figure class="align-center" id="id1">
+<img alt="../../_images/chko.png" src="../../_images/chko.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 11 </span><span class="caption-text">Výsledek rasterizace CHKO.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Porovnejte s příkladem pro knihovnu <a class="reference internal" href="../rasterio/vectorisation.html#rasterio-vectorise"><span class="std std-ref">Rasterio</span></a>.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s rastrovými daty</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../rasterio/index.html">Knihovna Rasterio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Knihovna GDAL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../rasterio/plugins.html" title="Rasterio rozšíření"
+              >předchozí</a> |
+            <a href="../../owslib/index.html" title="Načítání dat pomocí webových služeb OGC"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

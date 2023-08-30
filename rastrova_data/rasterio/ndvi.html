@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Rastrová algebra - výpočet NDVI &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Použití oken pro čtení a zápis" href="windows.html" />
+    <link rel="prev" title="Knihovna Rasterio" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Knihovna Rasterio"
+             accesskey="P">předchozí</a> |
+          <a href="windows.html" title="Použití oken pro čtení a zápis"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="rastrova-algebra-vypocet-ndvi">
+<span id="ndvi"></span><span id="algebra"></span><h1>Rastrová algebra - výpočet NDVI<a class="headerlink" href="#rastrova-algebra-vypocet-ndvi" title="Permalink to this heading">¶</a></h1>
+<section id="rasterova-algebra">
+<h2>Rasterová algebra<a class="headerlink" href="#rasterova-algebra" title="Permalink to this heading">¶</a></h2>
+<p>Nástroj srovnatelný s topologickými překryvnými operacemi vektorových dat.
+Umožňuje kombinovat rastrové vrstvy pomocí různých matematických operací.
+Tyto matematické operace se vykonávají buď na jedné nebo více
+vrstvách a jejich výstupem je vrstva nová. Rastrová algebra se často používá pro
+prostorové modelování a analýzu.</p>
+<p>Operátory jsou obvyklé matematické, statistické, relační a logické operátory (+,
+-, *, /, &gt;, &lt;, &gt;=, &lt;=, &lt;&gt;, mod, div, and, or, not, …).</p>
+<p>Funkce se dělí na:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><em>Lokální</em></dt><dd><p>na individuální buňce, nová hodnota vzniká z jedné rastrové buňky jedné nebo více vrstev.</p>
+</dd>
+<dt><em>Fokální</em></dt><dd><p>v definovaném okolí, nová hodnota vzniká z definovaného okolí buňky
+(např. jako výsledek operace nad „oknem“ 3x3 pixely)</p>
+</dd>
+<dt><em>Zonální</em></dt><dd><p>na specifické oblasti, nová hodnota vzniká ze zóny definované v jiné vrstvě.</p>
+</dd>
+<dt><em>Globální</em></dt><dd><p>používají se všechny buňky informační vrstvy (např. analýzy povrchů).</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Jak již bylo uvedeno, tak Rasterio využívá pro uložení dat strukturu
+<a class="reference external" href="http://www.numpy.org/">NumPy</a>, což nám umožňuje s těmito datovými
+strukturami pracovat standardním způsobem a využívat i pokročilé
+nástroje pro analýzu obrazu, jako je <a class="reference external" href="http://scikit-image.org/">Sciktit Image</a>, <a class="reference external" href="https://matplotlib.org/stable/tutorials/introductory/images.html#sphx-glr-tutorials-introductory-images-py">Matplot lib</a>,
+<a class="reference external" href="https://docs.opencv.org/3.0-last-rst/doc/py_tutorials/py_tutorials.html">OpenCV</a>
+a další.</p>
+<p>V našem příkladu si ukážeme jednoduchou analýzu - výpočet indexu NDVI ze
+satelitních dat.</p>
+</section>
+<section id="id1">
+<h2>NDVI<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_difference_vegetation_index">Normalizovaný vegetační index</a> je jednoduchý grafický
+indikátor, který ukazuje na přítomnost zelené vegetace v daném objektu
+(snímku). Tento index se obyčejně, ale nikoliv výhradně, používá pro
+zpracování satelitních dat.</p>
+<blockquote>
+<div><figure class="align-center" id="id2">
+<img alt="../../_images/ndvi-graph.png" src="../../_images/ndvi-graph.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 5 </span><span class="caption-text">Graf absorbce červeného a infračerveného spektra, zdroj
+<a class="reference external" href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index#/media/File:Par_action_spectrum.gif">Wikipedia NDVI</a></span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+<p>Chlorofyl zelených rostlin absorbuje červené světlo (od 0.4 do 0.7 µm).
+Buněčná struktura naopak odráží infračervené spektrum (od 0.7 do 1.1 µm). Index
+NDVI spočítáme jako poměr těchto dvou spekter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>NDVI=(NIR−RED)/(NIR+RED)
+</pre></div>
+</div>
+<dl class="simple">
+<dt>kde</dt><dd><ul class="simple">
+<li><p>NIR - near-infrared (Band 8)</p></li>
+<li><p>RED - red (Band 4)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Index NDVI nabývá hodnot mezi -1 a +1.  Obecně lze říci, že čím více odraženého
+světla v infračerveném spektru v poměru k červené barvě, tím více je v daném
+pixelu přítomna hustá zelená vegetace, jako například les.</p>
+<p>Hustá vegetace bude nabývat relativně vysoké pozitivní hodnoty (0.3 až 0.8),
+mraky a sníh budou mít negativní hodnoty indexu. Volně stojící voda (oceány,
+jezera, řeky), mají spíše nízkou odrazivost v obou spektrech, jejich hodnoty
+se pohybují okolo 0 z obou stran. Půdy, které mají tendenci odrážet
+infračervenou barvu o něco více než červenou mají nízké hodnoty NDVI (0.1-0.2)</p>
+<blockquote>
+<div><figure class="align-center" id="id3">
+<img alt="../../_images/NDVI_102003.png" src="../../_images/NDVI_102003.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 6 </span><span class="caption-text">Příklad mapy NDVI Britských ostrovů z družice  NOAA AVHRR). <a class="reference external" href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index#/media/File:NDVI_102003.png">Wikipedia
+NDVI Great Britain</a></span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+<section id="vypocet-ndvi">
+<h2>Výpočet NDVI<a class="headerlink" href="#vypocet-ndvi" title="Permalink to this heading">¶</a></h2>
+<p>Výpočet s daty v NumPy provedeme už jednoduše (<span class="lcode">10</span>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/B04-2018-05-06.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">vis</span><span class="p">:</span>
+<span class="linenos"> 4</span>    <span class="n">vis_data</span> <span class="o">=</span> <span class="n">vis</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/B08-2018-05-06.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">nir</span><span class="p">:</span>
+<span class="linenos"> 7</span>    <span class="n">nir_data</span> <span class="o">=</span> <span class="n">nir</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos"> 8</span>    <span class="n">meta</span> <span class="o">=</span> <span class="n">nir</span><span class="o">.</span><span class="n">meta</span>
+<span class="linenos"> 9</span>
+<span class="hll"><span class="linenos">10</span><span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir_data</span> <span class="o">-</span> <span class="n">vis_data</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir_data</span> <span class="o">+</span> <span class="n">vis_data</span><span class="p">)</span>
+</span><span class="linenos">11</span>
+<span class="linenos">12</span><span class="nb">print</span> <span class="p">(</span><span class="n">ndvi</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+<section id="zapis-do-noveho-souboru">
+<h3>Zápis do nového souboru<a class="headerlink" href="#zapis-do-noveho-souboru" title="Permalink to this heading">¶</a></h3>
+<p>Pro výstupní soubor musíme nejprve nadefinovat jeho parametry, jako je
+rozlišení, datový typ, počet pixelů, souřadnicový systém. Většinu
+údajů můžeme zkopírovat ze vstupního souboru (<span class="lcode">8</span>), a ty
+rozdílné (v našem případě datový typ) přepíšeme (<span class="lcode">14</span>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 8</span>    <span class="n">meta</span> <span class="o">=</span> <span class="n">nir</span><span class="o">.</span><span class="n">meta</span>
+</span><span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir_data</span> <span class="o">-</span> <span class="n">vis_data</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir_data</span> <span class="o">+</span> <span class="n">vis_data</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="nb">print</span> <span class="p">(</span><span class="n">ndvi</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="linenos">13</span>
+<span class="hll"><span class="linenos">14</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;dtype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;float32&quot;</span>
+</span><span class="linenos">15</span>
+<span class="linenos">16</span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;outputs/ndvi.tif&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+<span class="linenos">17</span>   <span class="n">dst</span><span class="o">.</span><span class="n">write_band</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Výsledný soubor můžete prohlédnout např. v QGIS nebo v
+Jupyter Notebooku:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bit8_green</span> <span class="o">=</span> <span class="p">((</span><span class="n">ndvi</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span> <span class="c1"># convert to 0-256 values</span>
+<span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">bit8_green</span><span class="p">,</span> <span class="s2">&quot;L&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<figure class="align-center" id="id4">
+<img alt="../../_images/ndvi.png" src="../../_images/ndvi.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 7 </span><span class="caption-text">Výsledný soubor s NDVI indexem.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Pokuste se podle stejného postupu vypočítat tzv. <em>Water
+index</em>. Jaké kanály použít najdete např. na
+<a class="reference external" href="http://en.wikipedia.org/wiki/Normalized difference water index">wikipedii</a>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s rastrovými daty</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Knihovna Rasterio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gdal/index.html">Knihovna GDAL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Knihovna Rasterio"
+              >předchozí</a> |
+            <a href="windows.html" title="Použití oken pro čtení a zápis"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

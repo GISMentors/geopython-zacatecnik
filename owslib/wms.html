@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>OGC WMS &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="OGC WFS" href="wfs.html" />
+    <link rel="prev" title="OGC CSW" href="csw.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="csw.html" title="OGC CSW"
+             accesskey="P">předchozí</a> |
+          <a href="wfs.html" title="OGC WFS"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="ogc-wms">
+<span id="owslibwms"></span><h1>OGC WMS<a class="headerlink" href="#ogc-wms" title="Permalink to this heading">¶</a></h1>
+<p id="index-0"><a class="reference external" href="http://opengeospatial.org/standards/wms">OGC Web Map Service</a>
+slouží ke stahování a sdílení mapových dat. Klientovi nejsou posílána
+vlastní data, ale pouze náhled (obrázek) těchto dat.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Více informací na <a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/wms.html">školení Úvod do GIS</a>.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.wms</span> <span class="kn">import</span> <span class="n">WebMapService</span>
+<span class="n">wms</span> <span class="o">=</span> <span class="n">WebMapService</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}{}</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wms</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+                            <span class="n">wms</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">abstract</span><span class="p">,</span>
+                            <span class="n">wms</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                            <span class="n">wms</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">contact</span><span class="o">.</span><span class="n">address</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Prohlížecí</span> <span class="n">služba</span> <span class="n">WMS</span> <span class="o">-</span> <span class="n">ZM</span> <span class="mi">10</span>
+<span class="n">Prohlížecí</span> <span class="n">služba</span> <span class="n">WMS</span><span class="o">-</span><span class="n">ZM10</span><span class="o">-</span><span class="n">P</span> <span class="n">je</span> <span class="n">poskytována</span> <span class="n">jako</span> <span class="n">veřejná</span> <span class="n">prohlížecí</span>
+<span class="n">služba</span> <span class="n">nad</span> <span class="n">daty</span> <span class="n">Základní</span> <span class="n">mapy</span> <span class="n">ČR</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span> <span class="mf">000.</span>
+<span class="n">Zeměměřický</span> <span class="n">úřad</span>
+<span class="n">Pod</span> <span class="n">Sídlištěm</span> <span class="mi">9</span>
+</pre></div>
+</div>
+<p>Dostupné mapové vrstvy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;GR_ZM10&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">owslib</span><span class="o">.</span><span class="n">wms</span><span class="o">.</span><span class="n">ContentMetadata</span> <span class="n">instance</span> <span class="n">at</span> <span class="mh">0x7f1d7bc1b8c0</span><span class="o">&gt;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Rozsah vrstvy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layer</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBox</span><span class="p">,</span>
+                      <span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBoxWGS84</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">-</span><span class="mf">950003.175021186</span><span class="p">,</span> <span class="o">-</span><span class="mf">1250003.1750036045</span><span class="p">,</span> <span class="o">-</span><span class="mf">399990.474995786</span><span class="p">,</span> <span class="o">-</span><span class="mf">899996.8249909044</span><span class="p">,</span> <span class="s1">&#39;EPSG:5514&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="mf">11.214011580382529</span><span class="p">,</span> <span class="mf">47.96491460125967</span><span class="p">,</span> <span class="mf">19.40766262309513</span><span class="p">,</span> <span class="mf">51.691664934538636</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Stažení a uložení dat:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">wms</span><span class="o">.</span><span class="n">getmap</span><span class="p">(</span>
+    <span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="n">layer</span><span class="p">],</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">],</span>
+    <span class="n">srs</span><span class="o">=</span><span class="s2">&quot;EPSG:5514&quot;</span><span class="p">,</span>
+    <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">950003</span><span class="p">,</span> <span class="o">-</span><span class="mi">1250003</span><span class="p">,</span> <span class="o">-</span><span class="mi">399990</span><span class="p">,</span> <span class="o">-</span><span class="mi">899996</span><span class="p">],</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;image/png&quot;</span>
+<span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/wms_download.png&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Možné problémy při připojení ke službě. V minulosti končilo připojení chybou
+<code class="docutils literal notranslate"><span class="pre">requests.exceptions.TooManyRedirects:</span> <span class="pre">Exceeded</span> <span class="pre">30</span>
+<span class="pre">redirects.</span></code> Vysvětlení hledejte na našem <a class="reference external" href="http://gismentors.cz/blog/user-agent-hlavicka-requestu-na-wms-server/">blogu</a>.</p>
+</div>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Vyzkoušejte připojení ke službě:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WmsServer&#39;</span>
+<span class="n">layer</span><span class="o">=</span><span class="s1">&#39;1&#39;</span> <span class="c1"># Evropsky významné lokality (EVL)</span>
+</pre></div>
+</div>
+<p>Výše zmíněna služba AOPK podporuje pouze WMS verze
+1.3.0. Vzhledem k tomu, že OWSLib používá ve výchozím
+nastavení verzi služby 1.1.1, je třeba verzi vynutit:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wms</span> <span class="o">=</span> <span class="n">WebMapService</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s1">&#39;1.3.0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Načítání dat pomocí webových služeb OGC</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csw.html">OGC CSW</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OGC WMS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wfs.html">OGC WFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wps.html">OGC WPS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="csw.html" title="OGC CSW"
+              >předchozí</a> |
+            <a href="wfs.html" title="OGC WFS"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

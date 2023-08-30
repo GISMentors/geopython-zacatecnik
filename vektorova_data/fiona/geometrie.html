@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Geometrie geoprvků a knihovna Shapely &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Dálnice přes České středohoří" href="highway_over_protected_area.html" />
+    <link rel="prev" title="Procházení geoprvků" href="cteni_prvku.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="cteni_prvku.html" title="Procházení geoprvků"
+             accesskey="P">předchozí</a> |
+          <a href="highway_over_protected_area.html" title="Dálnice přes České středohoří"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="geometrie-geoprvku-a-knihovna-shapely">
+<h1>Geometrie geoprvků a knihovna Shapely<a class="headerlink" href="#geometrie-geoprvku-a-knihovna-shapely" title="Permalink to this heading">¶</a></h1>
+<p>V této části se blíže seznámíme jak pracovat s geometrií vektorových
+prvků.</p>
+<p>Knihovna <a class="reference external" href="https://github.com/Toblerity/Shapely">Shapely</a> (stejného
+autora jako Fiony) nám umožňuje pracovat s geometrickou složkou popisu
+geoprvků opět ve stylu jazyka Python. Stejně jako Fiona, převádí
+Shapely geometrické vlastnosti na objekty typu JSON.</p>
+<p>Jak jsme si řekli, Fiona převádí vstupní data z různých formátů na strukturu
+GeoJSON:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">shape</span>
+<span class="n">cr</span> <span class="o">=</span> <span class="n">chko</span><span class="p">[</span><span class="mi">54</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="shapely">
+<h2>Shapely<a class="headerlink" href="#shapely" title="Permalink to this heading">¶</a></h2>
+<p>Shapely obsahuje i některé funkce pro modifikaci geometrií, například
+generalizaci, obalovou zónu (buffer) nebo porovnání dvou
+geometrií. Shapely využívá pro manipulaci s geometriemi knihovu GEOS,
+která je zase re-implementací nástroje JTS (Java Topoology Suite) do
+jazyka C, a používá se například v databázové nadstavbě PostGIS. GEOS
+a JTS odpovídají specifikaci OGC Simple Feature. Knihovna Shapely nám
+umožní řešit například úlohy typu:</p>
+<ul class="simple">
+<li><p>Jakou výměru má plošný prvek?</p></li>
+<li><p>Překrývají se dva prvky?</p></li>
+<li><p>Jak vypadá společný průnik více prvků?</p></li>
+<li><p>Vytvořit obalovou zónu okolo prvku.</p></li>
+</ul>
+<p>Pro práci s geometriemi proto potřebujeme převést data na struktury
+Shapely:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">cr</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">])</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">poly</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+
+<span class="n">simple</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">simple</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">poly</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">-</span><span class="mf">683329.1875</span><span class="p">,</span> <span class="o">-</span><span class="mf">993228.75</span><span class="p">,</span> <span class="o">-</span><span class="mf">681265.625</span><span class="p">,</span> <span class="o">-</span><span class="mf">991528.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V prostředí Jupyter notebook můžeme geometrii vizualizovat
+prostě tak, že obsah proměnné s geometrií necháme vypsat, např.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geom</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">chko</span><span class="p">[</span><span class="mi">54</span><span class="p">][</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
+<span class="n">geom</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Příklad vykreslení geometrie pomocí matplotlib
+<a class="reference external" href="https://deparkes.co.uk/2015/03/11/how-to-plot-polygons-in-python/">https://deparkes.co.uk/2015/03/11/how-to-plot-polygons-in-python/</a></p>
+</div>
+<p>Nyní se můžeme vypsat celou řadu metadat o daném geometrickém objektu</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Zjistěte, jaký má naše geometrie obvod a najděte souřadnice
+jejího centroidu. Jaká metoda se použije pro vytvoření obalové
+zóny a jak funguje?</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Kompletní ukázkový příklad na využití knihoven Fiona a
+Shapely <a class="reference external" href="../../_static/skripty/fiona-example.py">zde</a>.</p>
+</div>
+</section>
+<section id="prevod-geometrie-zpet-na-format-json">
+<h2>Převod geometrie zpět na formát JSON<a class="headerlink" href="#prevod-geometrie-zpet-na-format-json" title="Permalink to this heading">¶</a></h2>
+<p>Na převod zpět  do formátu JSON použijeme funkci <cite>mapping</cite> z modulu
+<cite>shapely.geometry</cite></p>
+<p>Jako příklad si vytvoříme „ručně“ celý nový vektorový objekt</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_feature</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;NAZEV&quot;</span><span class="p">:</span> <span class="s2">&quot;prvek s obalovou zonou 100m&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">mapping</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s vektorovými daty</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Knihovna Fiona/Shapely</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ogr/index.html">Knihovna OGR (GDAL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geopandas/index.html">GeoPandas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="cteni_prvku.html" title="Procházení geoprvků"
+              >předchozí</a> |
+            <a href="highway_over_protected_area.html" title="Dálnice přes České středohoří"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

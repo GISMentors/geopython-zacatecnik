@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Jupyter notebook &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Instalace potřebných knihoven" href="instalace/index.html" />
+    <link rel="prev" title="GeoDjango" href="../geodjango/index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../geodjango/index.html" title="GeoDjango"
+             accesskey="P">předchozí</a> |
+          <a href="instalace/index.html" title="Instalace potřebných knihoven"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="jupyter-notebook">
+<h1>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="http://jupyter.org/">Jupyter</a> je webová aplikace, která vám umožní vytvářet
+dokumenty, které obsahují kód programu, vizualizace, formátovaný text - vše v
+jednom.</p>
+<p>Pokud si chcete hrát s nějakou Python knihovnou, je Jupyter skvělá
+volba - můžete si kód hned popisovat, vracet se k jeho jednotlivým
+částem, měnit jej a sledovat změny chování.</p>
+<figure class="align-center">
+<img alt="../_images/jupyter.png" class="middle" src="../_images/jupyter.png" />
+</figure>
+<section id="jak-zobrazit-rastrova-data-numpy">
+<h2>Jak zobrazit rastrová data numpy<a class="headerlink" href="#jak-zobrazit-rastrova-data-numpy" title="Permalink to this heading">¶</a></h2>
+<p>Použít můžeme například knihovnu Matplotlib</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;/data/data/lsat7_2002_nir.tiff&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+     <span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">)</span>
+     <span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>anebo funkci <code class="docutils literal notranslate"><span class="pre">rasterio.plot.show</span></code> funkci, která umí navíc pracovat
+se třemi kanály a ještě zobrazí správné geografické souřadnice.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;/data/data/lsat7_2002_nir.tiff&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">show</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">transform</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Dále můžeme zobrazit i <a class="reference external" href="https://rasterio.readthedocs.io/en/latest/topics/plotting.html?highlight=plotting">více kanálů vedle sebe nebo třeba histogram</a>.</p>
+</section>
+<section id="jak-zobrazit-vektorova-data">
+<h2>Jak zobrazit vektorová data<a class="headerlink" href="#jak-zobrazit-vektorova-data" title="Permalink to this heading">¶</a></h2>
+<p>Objekty typu <code class="docutils literal notranslate"><span class="pre">shapely.geometry.BaseGeometry</span></code> lze zobrazit přímo
+jejich vypsáním:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shapely</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span>
+<span class="n">geom</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
+
+<span class="n">geom</span>
+</pre></div>
+</div>
+<figure class="align-center">
+<img alt="../_images/shapely-screen.png" class="middle" src="../_images/shapely-screen.png" />
+</figure>
+</section>
+<section id="docker-kontejner">
+<h2>Docker kontejner<a class="headerlink" href="#docker-kontejner" title="Permalink to this heading">¶</a></h2>
+<p>Technologie <a class="reference external" href="https://www.docker.com/">Docker</a> nám umožní
+nakonfigurovat prostředí a spustit jej v samostaném „kontejneru“ bez
+nutnosti instalovat cokoliv (kromě samotného Dockeru) na hostitelský
+systém.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Pokud vám tento krok připadá příliš komplikovaný, nic se neděje,
+můžete pokračovat za použití <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> nebo instalací potřebných
+závislostí na váš domácí systém.</p>
+</div>
+<p>Pro účely tohoto kurzu jsme <a class="reference external" href="https://github.com/GISMentors/geopython-docker">připravili Docker image</a>, který můžete stáhnout ze stránek <a class="reference external" href="https://hub.docker.com/r/opengeolabs/gismentors/">Docker hub</a> příkazem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">opengeolabs</span><span class="o">/</span><span class="n">gismentors</span><span class="p">:</span><span class="n">geopython</span>
+</pre></div>
+</div>
+<p>A následně ho můžete pustit příkazem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -p 8888:8888 \
+       -v $(pwd):/localdata/ \
+       --rm --name geopython-workshop \
+       opengeolabs/gismentors:geopython
+</pre></div>
+</div>
+<p>Potom už stačí jenom otevřít prohlížeč na adresse <a class="reference external" href="http://localhost:8888">http://localhost:8888/</a>, zadat heslo <code class="docutils literal notranslate"><span class="pre">geopython</span></code> a máte před sebou kompletně
+připravený Jupyter notebook s nainstalovanými závislostmi potřenými pro tento
+workshop.</p>
+<section id="ulozena-data">
+<h3>Uložená data<a class="headerlink" href="#ulozena-data" title="Permalink to this heading">¶</a></h3>
+<p>Data jsou dostupná v adresáři <code class="file docutils literal notranslate"><span class="pre">/data/data</span></code>. Adresář pro výstupy
+můžete založit v adresáři <code class="file docutils literal notranslate"><span class="pre">/outputs/</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Jupyter notebook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#jak-zobrazit-rastrova-data-numpy">Jak zobrazit rastrová data numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jak-zobrazit-vektorova-data">Jak zobrazit vektorová data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-kontejner">Docker kontejner</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../geodjango/index.html" title="GeoDjango"
+              >předchozí</a> |
+            <a href="instalace/index.html" title="Instalace potřebných knihoven"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

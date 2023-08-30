@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Třídy a objekty &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Práce s vektorovými daty" href="../vektorova_data/index.html" />
+    <link rel="prev" title="Práce se soubory" href="files.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="files.html" title="Práce se soubory"
+             accesskey="P">předchozí</a> |
+          <a href="../vektorova_data/index.html" title="Práce s vektorovými daty"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tridy-a-objekty">
+<h1>Třídy a objekty<a class="headerlink" href="#tridy-a-objekty" title="Permalink to this heading">¶</a></h1>
+<p>Python je <em>objektově - orientovaný programovací jazyk (OOP)</em> i když jeho
+objektové vlastnosti nemusíte moc využívat, sem tam na vás vykouknou a dobré o
+tom něco vědět.</p>
+<p>Téma objektově orientovaného programovaní dosti přesahuje smysl tohoto
+tutoriálu, budeme se snažit jím projít co možná po povrchu, abychom byli schopni
+pracovat s knihovnami pro prostorová data.</p>
+<section id="objekty">
+<h2>Objekty<a class="headerlink" href="#objekty" title="Permalink to this heading">¶</a></h2>
+<p>Když se řekne <em>objekt</em>, znamená v Pythonu všechno co můžete uložit do proměnné
+(tedy i funkce, pole, data). V Pythonu není rozdíl mezi objektem a hodnotou.</p>
+<p>Objekt je „něco“, co má nějaké vlastnosti (data) a nějaká chování (metody),
+které s daty pracují. Objekty spojují data a funkčnost do jednoho celku.</p>
+<p>Jak zjistíte, jaké má objekt vlastnosti (atributy) a funkce (metody)? Samozřejmě
+z dokumentace, např. pomocí programu <code class="docutils literal notranslate"><span class="pre">pydoc</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pydoc list
+
+Help on class list in module __builtin__:
+
+class list(object)
+ |  list() -&gt; new empty list
+ |  list(iterable) -&gt; new list initialized from iterable&#39;s items
+ |
+ |  Methods defined here:
+ |
+ |  __add__(...)
+ |      x.__add__(y) &lt;==&gt; x+y
+ |
+ |  __contains__(...)
+ |      x.__contains__(y) &lt;==&gt; y in x
+ |
+ |  __delitem__(...)
+ ...
+</pre></div>
+</div>
+<p>Rychlá pomoc je funkce <code class="docutils literal notranslate"><span class="pre">dir()</span></code>, která vrátí všechny atributy a metody daného
+objektu</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">([])</span>
+<span class="go">[&#39;__add__&#39;, &#39;__class__&#39;, &#39;__contains__&#39;, &#39;__delattr__&#39;, &#39;__delitem__&#39;,</span>
+<span class="go">&#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;,</span>
+<span class="go">&#39;__getitem__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__iadd__&#39;, &#39;__imul__&#39;, &#39;__init__&#39;,</span>
+<span class="go">&#39;__iter__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__mul__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;,</span>
+<span class="go">&#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__reversed__&#39;, &#39;__rmul__&#39;,</span>
+<span class="go">&#39;__setattr__&#39;, &#39;__setitem__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;,</span>
+<span class="go">&#39;append&#39;, &#39;clear&#39;, &#39;copy&#39;, &#39;count&#39;, &#39;extend&#39;, &#39;index&#39;, &#39;insert&#39;, &#39;pop&#39;,</span>
+<span class="go">&#39;remove&#39;, &#39;reverse&#39;, &#39;sort&#39;]</span>
+</pre></div>
+</div>
+<p>z tohoto výpisu sice nepoznáte, jedná-li se o data (atributy) nebo metody
+(funkce) daného objektu, ale pro základní přehled to stačí a odhadnout se to
+podle názvu většinou dá. K podtržítkám v názvech některých vlastností se
+dostaneme níže.</p>
+</section>
+<section id="pole-prvku-jako-objekt">
+<h2>Pole prvků jako objekt<a class="headerlink" href="#pole-prvku-jako-objekt" title="Permalink to this heading">¶</a></h2>
+<p>Pojďme se podívat v rychlosti na objekt, který už známe, akorát jsme nevěděli,
+že je to objekt, na <em>seznam prvků</em>. Jaké má vlastnosti zjistíme pomocí funkce
+<cite>dir()</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">([])</span> <span class="c1"># vypíše vlastnosti prázdného pole</span>
+<span class="p">[</span><span class="s1">&#39;__add__&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iadd__&#39;</span><span class="p">,</span> <span class="s1">&#39;__imul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__mul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reversed__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span>
+<span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="s1">&#39;clear&#39;</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;extend&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;insert&#39;</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span>
+<span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="s1">&#39;reverse&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Pomiňme pro chvíli vlastnosti začínající dvěma podtržítky <cite>__</cite> a všimněme si
+těch, které začínají od <cite>append</cite>. Podíváme-li se do dokumentace pomocí nástroje
+<cite>pydoc</cite> (<cite>pydoc list</cite>), zjistíme, že</p>
+<blockquote>
+<div><dl class="simple">
+<dt>append(objekt)</dt><dd><p>přidá nový element na konec pole</p>
+</dd>
+<dt>count(hodnota)</dt><dd><p>vrátí počet prvků, které odpovídají dané hodnotě</p>
+</dd>
+<dt>extend(iterable)</dt><dd><p>přidá další seznam na konec stávajícího seznamu</p>
+</dd>
+<dt>index(hodnota)</dt><dd><p>vrátí první index zadané hodnoty</p>
+</dd>
+<dt>insert(index, objekt)</dt><dd><p>vloží nový prvek na zadaný index (např. <cite>pole.insert(0, ‚elece pelce‘)</cite>
+vloží nový prvek na první pozici pole</p>
+</dd>
+<dt>pop()</dt><dd><p>odebere poslední provek z pole</p>
+</dd>
+<dt>remove(hodnota)</dt><dd><p>smaže první prvek odpovídající zadané hodnotě</p>
+</dd>
+<dt>reverse()</dt><dd><p>otočí pořadí elementů v poli</p>
+</dd>
+<dt>sort()</dt><dd><p>seřadí elementy v poli</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Příklad použití:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pole</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;kecy v kleci&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pole</span><span class="p">)</span>
+<span class="go">[10, 5, &#39;x&#39;, &#39;kecy v kleci&#39;, [7, &#39;a&#39;], &#39;+&#39;, -10]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pole</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">unorderable types: str() &lt; int()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pole</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;jeste neco&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pole</span><span class="p">)</span>
+<span class="go">[10, 5, &#39;x&#39;, &#39;kecy v kleci&#39;, [7, &#39;a&#39;], &#39;+&#39;, -10, &#39;jeste neco&#39;]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pole</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;neco na 4tou pozici&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pole</span><span class="p">)</span>
+<span class="go">[10, 5, &#39;x&#39;, &#39;neco na 4tou pozici&#39;, &#39;kecy v kleci&#39;, [7, &#39;a&#39;], &#39;+&#39;, -10, &#39;jeste neco&#39;]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>A takto se s objekty pracuje - používáme jejich metody (v praxi funkce) a
+atributy (data).</p>
+</section>
+<section id="objekt-point-z-modulu-shapely">
+<h2>Objekt <cite>Point</cite> z modulu <cite>shapely</cite><a class="headerlink" href="#objekt-point-z-modulu-shapely" title="Permalink to this heading">¶</a></h2>
+<p>Podíváme-li se do dokumentace třídy <cite>shapely.geometry.Point</cite>, uvidíme, že má
+následující metody (vybírám ty zajímavé - použijte <cite>pydoc
+shapely.geometry.Point</cite>):</p>
+<blockquote>
+<div><dl class="simple">
+<dt>almost_equals()</dt><dd><p>porovnává souřadnice až do přiměřeného počtu desetinných míst</p>
+</dd>
+<dt>buffer()</dt><dd><p>vrátí buffer podle zadaných parametrů</p>
+</dd>
+<dt>contains()</dt><dd><p>obsahuje jinou gemetrii</p>
+</dd>
+<dt>crosses()</dt><dd><p>kříží se s jinou geometrií</p>
+</dd>
+<dt>difference()</dt><dd><p>vrátí rozdíl s jinou geometrií</p>
+</dd>
+<dt>distance()</dt><dd><p>počítá vzdálenost k jiné geometrii</p>
+</dd>
+</dl>
+<p>overlaps, intersects, …</p>
+<dl class="simple">
+<dt>simplify()</dt><dd><p>generalizeace</p>
+</dd>
+<dt>to_wkb()</dt><dd><p>vrátí <em>well known binary</em> representaci geometrie</p>
+</dd>
+<dt>to_wkt()</dt><dd><p>vrátí <em>well known text</em> representaci geometrie</p>
+</dd>
+</dl>
+<p>…</p>
+</div></blockquote>
+<p>Vybral jsem pouze některé metody, ale pojďme je trochu vyzkoušet:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry.import</span> <span class="n">Point</span>
+
+<span class="n">bod1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="c1"># vyrobíme nový bod, předpis pro parametry je ve funkci</span>
+                    <span class="c1"># __init__</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bod1</span><span class="p">)</span>
+
+<span class="n">bod2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bod2</span><span class="p">)</span>
+
+<span class="c1"># měly by vzniknout 2 kruhy, které se vzájemně dotýkají svých středů</span>
+<span class="n">buffer1</span> <span class="o">=</span> <span class="n">bod1</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">buffer2</span> <span class="o">=</span> <span class="n">bod2</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># a jdeme si hrát</span>
+<span class="n">buffer1</span><span class="o">.</span><span class="n">almost_equals</span><span class="p">(</span><span class="n">buffer2</span><span class="p">)</span> <span class="c1"># vrátí False</span>
+
+<span class="n">myunion</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># inicializace prázdné proměnné</span>
+<span class="k">if</span> <span class="n">buffer1</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">buffer2</span><span class="p">):</span> <span class="c1"># pokud spolu geometrie souvisí</span>
+    <span class="n">myunion</span> <span class="o">=</span> <span class="n">buffer1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">buffer2</span><span class="p">)</span> <span class="c1"># udělej jejich spojení</span>
+
+<span class="c1"># ověření, že střed je střed</span>
+<span class="n">centroid</span> <span class="o">=</span> <span class="n">buffer2</span><span class="o">.</span><span class="n">centroid</span><span class="p">()</span>
+
+<span class="n">centroid</span><span class="o">.</span><span class="n">almost_equals</span><span class="p">(</span><span class="n">bod2</span><span class="p">)</span> <span class="c1"># -&gt; True</span>
+</pre></div>
+</div>
+</section>
+<section id="vlastni-tridy-po-povrchu">
+<h2>Vlastní třídy (po povrchu)<a class="headerlink" href="#vlastni-tridy-po-povrchu" title="Permalink to this heading">¶</a></h2>
+<p>Jak si vytvářet vlastní objekty vytvoříme tak, že nejprve definujeme <em>třídu</em> a
+následně budeme vytvářet její <em>instance</em>.</p>
+<p>Třída je jakýsi předpis pro objekt. Jeho instance je od třídy odvozený konkrétní
+objekt.</p>
+<p>Příkladem třídy může být <cite>Clovek</cite>, který má atributy (vlastnosti) <cite>ruka, noha,
+zuby, jmeno</cite> a metody (funkce) <cite>mluv(), jez(), podej()</cite>. Od této třídy pak můžeme
+odvodit <em>instanci</em> konkrétního člověka jménem „Patrik Jouda“, který bude mít
+ruku, nohu, několik zubů a funkce že „mluví“, „jí“ a je schopen něco podat.</p>
+<p>Nebo v případě rastrových souborů se shodneme na tom, že je potřeba mít třídu
+<em>rastr</em>, která bude předepisovat co všechno takový rastrový objekt má mít -
+Transformační matici (což je instance jiného objektu), počet řádků, počet
+sloupců, rozlišení a metodu pro čtení a zápis vlastních dat.</p>
+<p>Už jsme se seznámili se třídou Point, která reprezentuje obecnou bodovou
+geometrii, která má vlastnosti (souřadnice) bodu a spoustu metod pro práci s
+geometriemi.</p>
+<p>Vlastní třídu vytvoříme tak, ji uvedeme kláčovým slovem <code class="docutils literal notranslate"><span class="pre">class</span></code> a případně jako
+parametr přidáme „rodičovský objekt“ (třídy od sebe mohou navzájem vlastnosti
+dědit, např. člověk může dědit vlastnosti od třídy <cite>Živočich</cite>).</p>
+<p>Pokud musíme nastavit nějaké proměnné hned na počátku inicializace třídy,
+použijeme k tomu speciální metodu <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, které můžeme předat inicializační
+parametry (např. v případě našeho bodu <cite>Point</cite> jsme předávali souřadnice <cite>x</cite> a
+<cite>y</cite>‘).</p>
+<p>V rámci třídy musíte odkazovat slovem <strong>self</strong> na vlastnosti dané třídy. <cite>self</cite>
+obsahuje odkaz „sám na sebe“.</p>
+<p>Vyzkoušejme si malý příklad vlastní třídy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># definice vlastní třídy</span>
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">():</span>
+    <span class="k">pass</span> <span class="c1"># &#39;pass&#39; znamená &quot;nedělej nic&quot;</span>
+
+<span class="n">moje_trida</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">moje_trida</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Tento krátý program vytiskne adresu v paměti počítače <em>instance třídy</em>
+<cite>MyClass</cite>, kterou jsme uložili do proměnné <cite>moje_trida</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">MyClass</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f5b72e0fd30</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Pokusme se naši třídu trochu rozšířit - a pojďme si vyrobit vlastní model
+rastrového souboru:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Raster</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="c1"># je vhodné odvodit třídu od základního objektu &#39;object&#39;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Třída reprezentující rastrová data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">transformation</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Konstruktor třídy - tato funkce se zavolá při vzniku nové</span>
+<span class="sd">        instance třídy. Máme zde dva povinné parametry:</span>
+
+<span class="sd">        columns - počet sloupců</span>
+<span class="sd">        rows - počet řádků</span>
+
+<span class="sd">        a jeden nepovinný parametr</span>
+
+<span class="sd">        transformation - transformační matice, jak ji známe např. z formátu</span>
+<span class="sd">                GeoTIFF. Výchozí hodnota tohoto parametru je nastavena na</span>
+<span class="sd">                None, můžeme ho při zadání přeskočit</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># nastavíme atributy (data) třídy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rows</span> <span class="o">=</span> <span class="n">rows</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transforamtion</span> <span class="o">=</span> <span class="n">transformation</span>
+
+        <span class="c1"># inicializace prázdného pole &#39;data&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Metoda (funkce), která nám umožní nastavit data,</span>
+<span class="sd">        data jsou očekávána jako pole polí - pole řádků, obsahující pole</span>
+<span class="sd">        sloupců</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="c1"># jsme důvěřiví a nebudeme ověřovat, že vstupní</span>
+                         <span class="c1"># data jsou opravdu sloupce a řádky</span>
+
+    <span class="k">def</span> <span class="nf">averadge_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Funkce, která vrátí nový rastr (pouze data), obsahující původní</span>
+<span class="sd">        hodnoty, které prošly filtrem o velikosti 3x3, kdy prostřední</span>
+<span class="sd">        hodnota odpovídá průměru všech buněk okolo sum(matice)/(size * size)</span>
+
+<span class="sd">        size = 3</span>
+<span class="sd">        +---+---+---+      +---+---+---+</span>
+<span class="sd">        | 1 | 2 | 4 |      |   |   |   |</span>
+<span class="sd">        +---+---+---+      +---+---+---+</span>
+<span class="sd">        | 1 | 3 | 2 | --&gt;  |   |2.3|   |</span>
+<span class="sd">        +---+---+---+      +---+---+---+</span>
+<span class="sd">        | 2 | 3 | 3 |      |   |   |   |</span>
+<span class="sd">        +---+---+---+      +---+---+---+</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># size musí být liché číslo</span>
+        <span class="k">if</span> <span class="n">size</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># tohle bude komplikovanější a už na to napsali funkce jiní, zkusíme</span>
+        <span class="c1"># si to ale naiplementovat sami. Až budete něco dělat s maticemi,</span>
+        <span class="c1"># použijte dostupné funkce z balíčku numpy</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="k">elif</span> <span class="n">row</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">row</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="n">col</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+                    <span class="k">continue</span>
+
+                <span class="k">for</span>  <span class="c1"># TODO - pro kazdou bunku</span>
+</pre></div>
+</div>
+</section>
+<section id="slovo-o-podtrzitkach">
+<h2>Slovo o podtržítkách<a class="headerlink" href="#slovo-o-podtrzitkach" title="Permalink to this heading">¶</a></h2>
+<p>Některé vlastnosti objektů mají název uvozený dvěma podtržíky, např.
+<cite>__sizeof__</cite> a některé ne, jaký je v tom rozdíl? Pokud nějaká vlastnost objektu
+začíná jedním podtržítkem, znamená to, že se jedná o <em>privátní</em> vlastnost.</p>
+<p>Pokud je podtržítko na začátku jenom jedno, <em>neměli</em> byste tuto funkci používat
+(ale technicky vzato je to povoleno a občas člověk musí v kódu trochu
+„zaprasit“).</p>
+<p>Pokud vlastnost začíná dvěma podtržítky, je zcela privátní a <em>použít nejde</em>.
+Zkusíme to oddemonstrovat na následujícím příkladu a pozor, vytvoříme naši první
+<em>třídu</em> (objekt našeho vlastního typu):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># nova trida</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Konstruktor třídy - funkce, která se zavolá pouze při</span>
+<span class="gp">... </span><span class="sd">        inicializaci třídy&quot;&quot;&quot;</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">atribut</span> <span class="o">=</span> <span class="s2">&quot;veřejná vlastnost&quot;</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">_private_atribute</span> <span class="o">=</span> <span class="s2">&quot;privátní vlastnost&quot;</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">__super_private_attribute</span> <span class="o">=</span> <span class="s2">&quot;na tohle už si nešáhneme</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_castecne_privatni</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Částečně privátní metoda - není &quot;vidět&quot;, ale můžeme ji použít</span>
+<span class="gp">... </span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="gp">...</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;Castecne privatni funkce&quot;</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__uplne_privatni</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Zcela privátní metoda - z &quot;venku&quot; objektu není spustitelná</span>
+<span class="gp">... </span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="gp">...</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;Uplne privatni funkce&quot;</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">uplne_verejna</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Úplně veřejná metoda - můžeme ji spouštět</span>
+<span class="gp">... </span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="gp">...</span>
+<span class="gp">... </span>        <span class="c1"># &quot;uvnitř&quot; objektu na privátní funkce dosáhneme</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;Uplne verejna funkce a vola privatni: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__uplne_privatni</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># a ted ji pouzijeme</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">moje_trida</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">_castecne_privatni</span><span class="p">()</span>
+<span class="go">Castecne privatni funkce</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">__uplne_privatni</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">AttributeError</span>: <span class="n">&#39;MyClass&#39; object has no attribute &#39;__uplne_privatni&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">uplne_verejna</span><span class="p">()</span>
+<span class="go">Uplne verejna funkce a vola privatni: Uplne privatni funkce</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="files.html" title="Práce se soubory"
+              >předchozí</a> |
+            <a href="../vektorova_data/index.html" title="Práce s vektorovými daty"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

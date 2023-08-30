@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>OGC CSW &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="OGC WMS" href="wms.html" />
+    <link rel="prev" title="Načítání dat pomocí webových služeb OGC" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Načítání dat pomocí webových služeb OGC"
+             accesskey="P">předchozí</a> |
+          <a href="wms.html" title="OGC WMS"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="ogc-csw">
+<span id="owslibcsw"></span><h1>OGC CSW<a class="headerlink" href="#ogc-csw" title="Permalink to this heading">¶</a></h1>
+<p id="index-0">Chceme-li nějakou OGC webovou službu začít využívat, musíme především
+znát její adresu.  Také pro tento účel vznikají <em>katalogové služby</em>,
+kdy specializované servery udržující metadatové záznamy webových
+služeb a datových souborů. Pro Českou republiku je organizací <a class="reference external" href="http://cenia.cz">Cenia</a> udržován <a class="reference external" href="http://geoportal.gov.cz">Národní geoportál INSPIRE</a>, který obsahuje informace o všech
+dostupných webových službách a datových souborech poskytovaných
+veřejnou správnou. Umožňuje v nich vyhledávat pomocí standardu
+<a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/csw.html">OGC CSW</a>.</p>
+<p>Webové rozhraní k tomuto serveru najdete na adrese
+<a class="reference external" href="http://geoportal.gov.cz/web/guest/catalogue-client">http://geoportal.gov.cz/web/guest/catalogue-client</a>. Rozhraní pro webovou službu
+je dostupné na adrese <a class="reference external" href="http://geoportal.gov.cz/php/micka/csw/index.php">http://geoportal.gov.cz/php/micka/csw/index.php</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.csw</span> <span class="kn">import</span> <span class="n">CatalogueServiceWeb</span>
+<span class="n">cenia</span> <span class="o">=</span> <span class="n">CatalogueServiceWeb</span><span class="p">(</span><span class="s1">&#39;http://geoportal.gov.cz/php/micka/csw/index.php&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cenia</span><span class="o">.</span><span class="n">service</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;CSW&#39;</span>
+</pre></div>
+</div>
+<p>Vyhledávání záznamů:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cenia</span><span class="o">.</span><span class="n">getrecords2</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cenia</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;matches&#39;</span><span class="p">:</span> <span class="mi">2621</span><span class="p">,</span> <span class="s1">&#39;nextrecord&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;returned&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Zjištění hodnot nalezených záznamů:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">cenia</span><span class="o">.</span><span class="n">records</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cenia</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">rec</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
+Olomouc
+Olomouc
+Dálniční<span class="w"> </span>exity<span class="w"> </span>GN
+Global<span class="w"> </span>Network<span class="w"> </span>-<span class="w"> </span>Jednotná<span class="w"> </span>georeferenční<span class="w"> </span>síť<span class="w"> </span>pozemních<span class="w"> </span>komunikací
+Železniční<span class="w"> </span>přejezd<span class="w"> </span>GN
+Kilometráž<span class="w"> </span>GN
+Osa<span class="w"> </span>železničních<span class="w"> </span>tratí
+Železniční<span class="w"> </span>tunely
+Železniční<span class="w"> </span>mosty<span class="w"> </span>a<span class="w"> </span>propustky
+Železniční<span class="w"> </span>přejezdy
+...
+</pre></div>
+</div>
+<p>K získání dalších 10 záznamů rozšíříme volání funkce getrecords2 o parametr startposition</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cenia</span><span class="o">.</span><span class="n">getrecords2</span><span class="p">([</span><span class="n">praha_and_wms</span><span class="p">],</span> <span class="n">esn</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="n">startposition</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Vyhledávání s omezením na záznamy obsahující slovo <em>WMS</em> a minimální
+ohraničující obdélník Prahy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.fes</span> <span class="kn">import</span> <span class="n">PropertyIsLike</span><span class="p">,</span> <span class="n">BBox</span><span class="p">,</span> <span class="n">And</span><span class="p">,</span> <span class="n">PropertyIsEqualTo</span>
+<span class="n">wms_query</span> <span class="o">=</span> <span class="n">PropertyIsEqualTo</span><span class="p">(</span><span class="s1">&#39;csw:AnyText&#39;</span><span class="p">,</span> <span class="s1">&#39;WMS&#39;</span><span class="p">)</span>
+<span class="n">praha_query</span> <span class="o">=</span> <span class="n">BBox</span><span class="p">([</span><span class="mf">14.22</span><span class="p">,</span> <span class="mf">49.94</span><span class="p">,</span> <span class="mf">14.71</span><span class="p">,</span> <span class="mf">50.18</span><span class="p">])</span>
+<span class="n">praha_and_wms</span> <span class="o">=</span> <span class="n">And</span><span class="p">([</span><span class="n">wms_query</span><span class="p">,</span> <span class="n">praha_query</span><span class="p">])</span>
+<span class="n">cenia</span><span class="o">.</span><span class="n">getrecords2</span><span class="p">([</span><span class="n">praha_and_wms</span><span class="p">],</span> <span class="n">esn</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cenia</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;matches&#39;</span><span class="p">:</span> <span class="mi">113</span><span class="p">,</span> <span class="s1">&#39;nextrecord&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;returned&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">recid</span> <span class="ow">in</span> <span class="n">cenia</span><span class="o">.</span><span class="n">records</span><span class="p">:</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="n">cenia</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">recid</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+                                   <span class="n">record</span><span class="o">.</span><span class="n">bbox</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">bbox</span><span class="o">.</span><span class="n">miny</span><span class="p">,</span>
+                                   <span class="n">record</span><span class="o">.</span><span class="n">bbox</span><span class="o">.</span><span class="n">maxx</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">bbox</span><span class="o">.</span><span class="n">maxy</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
+ÚP<span class="w"> </span>VÚC<span class="w"> </span>Adršpach:<span class="w"> </span><span class="m">48</span>.20735042<span class="w"> </span><span class="m">11</span>.86320935<span class="w"> </span><span class="m">51</span>.37551609<span class="w"> </span><span class="m">19</span>.0302868
+VÚC<span class="w"> </span>Hradecko-Pardubické<span class="w"> </span>aglomerace:<span class="w"> </span><span class="m">48</span>.20735042<span class="w"> </span><span class="m">11</span>.86320935<span class="w"> </span><span class="m">51</span>.37551609<span class="w"> </span><span class="m">19</span>.0302868
+ÚP<span class="w"> </span>VÚC<span class="w"> </span>okresu<span class="w"> </span>Jičín:<span class="w"> </span><span class="m">48</span>.23303412<span class="w"> </span><span class="m">11</span>.93768841<span class="w"> </span><span class="m">51</span>.35407571<span class="w"> </span><span class="m">18</span>.95542894
+ÚP<span class="w"> </span>VÚC<span class="w"> </span>Krkonoše:<span class="w"> </span><span class="m">48</span>.20735042<span class="w"> </span><span class="m">11</span>.86320935<span class="w"> </span><span class="m">51</span>.37551609<span class="w"> </span><span class="m">19</span>.0302868
+ÚP<span class="w"> </span>VÚC<span class="w"> </span>Orlické<span class="w"> </span>hory<span class="w"> </span>a<span class="w"> </span>podhůří:<span class="w"> </span><span class="m">48</span>.20735042<span class="w"> </span><span class="m">11</span>.86320935<span class="w"> </span><span class="m">51</span>.37551609<span class="w"> </span><span class="m">19</span>.0302868
+ÚP<span class="w"> </span>VÚC<span class="w"> </span>Trutnovsko<span class="w"> </span>-<span class="w"> </span>Náchodsko:<span class="w"> </span><span class="m">48</span>.20735042<span class="w"> </span><span class="m">11</span>.86320935<span class="w"> </span><span class="m">51</span>.37551609<span class="w"> </span><span class="m">19</span>.0302868
+Prognóza<span class="w"> </span>rozvoje<span class="w"> </span>území<span class="w"> </span>kraje:<span class="w"> </span><span class="m">48</span>.20735042<span class="w"> </span><span class="m">11</span>.86320935<span class="w"> </span><span class="m">51</span>.37551609<span class="w"> </span><span class="m">19</span>.0302868
+WMS<span class="w"> </span>služba<span class="w"> </span>Pardubického<span class="w"> </span>kraje<span class="w"> </span>-<span class="w"> </span>polohopis,<span class="w"> </span>ortofoto:<span class="w"> </span><span class="m">48</span>.11130361<span class="w"> </span><span class="m">11</span>.83822588<span class="w"> </span><span class="m">51</span>.45351762<span class="w"> </span><span class="m">19</span>.12784541
+Služba<span class="w"> </span>WMS<span class="w"> </span>Pardubického<span class="w"> </span>kraje<span class="w"> </span>-<span class="w"> </span>tematické<span class="w"> </span>vrstvy:<span class="w"> </span><span class="m">48</span>.22866996<span class="w"> </span><span class="m">12</span>.03230308<span class="w"> </span><span class="m">51</span>.34271802<span class="w"> </span><span class="m">19</span>.63025648
+Prohlížecí<span class="w"> </span>služba<span class="w"> </span>WMS<span class="w"> </span>-<span class="w"> </span>Data200:<span class="w"> </span><span class="m">48</span>.55<span class="w"> </span><span class="m">12</span>.09<span class="w"> </span><span class="m">51</span>.06<span class="w"> </span><span class="m">18</span>.86
+...
+</pre></div>
+</div>
+<p>Vyhledání služby obsahující v názvu „ZM10“:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">zm_query</span> <span class="o">=</span> <span class="n">PropertyIsLike</span><span class="p">(</span><span class="s1">&#39;csw:AnyText&#39;</span><span class="p">,</span> <span class="s1">&#39;%WMS - ZM 10%&#39;</span><span class="p">)</span>
+<span class="n">cenia</span><span class="o">.</span><span class="n">getrecords2</span><span class="p">([</span><span class="n">zm_query</span><span class="p">],</span> <span class="n">esn</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="n">zm10</span> <span class="o">=</span> <span class="n">cenia</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="s1">&#39;CZ-CUZK-WMS-ZM10-P&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zm10</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;service&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">zm10</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">zm10</span><span class="o">.</span><span class="n">abstract</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Prohlížecí</span> <span class="n">služba</span> <span class="n">WMS</span> <span class="o">-</span> <span class="n">ZM</span> <span class="mi">10</span>
+<span class="n">Prohlížecí</span> <span class="n">služba</span> <span class="n">WMS</span><span class="o">-</span><span class="n">ZM10</span><span class="o">-</span><span class="n">P</span> <span class="n">je</span> <span class="n">poskytována</span> <span class="n">jako</span> <span class="n">veřejná</span> <span class="n">prohlížecí</span>
+<span class="n">služba</span> <span class="n">nad</span> <span class="n">daty</span> <span class="n">Základní</span> <span class="n">mapy</span> <span class="n">ČR</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span> <span class="mf">000.</span>  <span class="n">Služba</span> <span class="n">splňuje</span> <span class="n">Technické</span>
+<span class="n">pokyny</span> <span class="n">pro</span> <span class="n">INSPIRE</span> <span class="n">prohlížecí</span> <span class="n">služby</span> <span class="n">v</span><span class="o">.</span> <span class="mf">3.11</span> <span class="n">a</span> <span class="n">zároveň</span> <span class="n">splňuje</span>
+<span class="n">standard</span> <span class="n">OGC</span> <span class="n">WMS</span> <span class="mf">1.1.1</span><span class="o">.</span> <span class="n">a</span> <span class="mf">1.3.0</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="n">zm10</span><span class="o">.</span><span class="n">references</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;http://geoportal.cuzk.cz/WMS_ZM10_PUB/WMService.aspx?service=WMS&amp;request=getCapabilities&#39;</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Načítání dat pomocí webových služeb OGC</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OGC CSW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wms.html">OGC WMS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wfs.html">OGC WFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wps.html">OGC WPS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Načítání dat pomocí webových služeb OGC"
+              >předchozí</a> |
+            <a href="wms.html" title="OGC WMS"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

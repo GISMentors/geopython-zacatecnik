@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Základní metadata rastrových dat &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="zakladni-metadata-rastrovych-dat">
+<span id="rasterio-basic"></span><h1>Základní metadata rastrových dat<a class="headerlink" href="#zakladni-metadata-rastrovych-dat" title="Permalink to this heading">¶</a></h1>
+<p>V následujícím příkladu otevřeneme rastrový soubor ve formátu
+<a class="reference external" href="http://en.wikipedia.org/wiki/GeoTIFF">GeoTIFF</a> a podíváme se na některá metadata:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/B04-2018-05-06.tiff&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">vis</span><span class="p">:</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BoundingBox</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">596670.0</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">185000.0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">678330.0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">258500.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="sa">u</span><span class="s1">&#39;lon_0&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">79</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;datum&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;NAD83&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;y_0&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;no_defs&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="sa">u</span><span class="s1">&#39;proj&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;lcc&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;x_0&#39;</span><span class="p">:</span> <span class="mf">609601.22</span><span class="p">,</span>
+<span class="sa">u</span><span class="s1">&#39;units&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;lat_2&#39;</span><span class="p">:</span> <span class="mf">34.33333333333334</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;lat_1&#39;</span><span class="p">:</span> <span class="mf">36.16666666666666</span><span class="p">,</span>
+<span class="sa">u</span><span class="s1">&#39;lat_0&#39;</span><span class="p">:</span> <span class="mf">33.75</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">nir_data</span> <span class="o">=</span> <span class="n">nir</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="sa">u</span><span class="s1">&#39;AREA_OR_POINT&#39;</span><span class="p">:</span> <span class="sa">u</span><span class="s1">&#39;Area&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1287</span><span class="p">,</span> <span class="mi">831</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id1">
+<img alt="../../_images/rgb1.png" src="../../_images/rgb1.png" />
+<figcaption>
+<p><span class="caption-text">RGB kompozice.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Načtení dat barevných kanálů:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">meta</span><span class="p">[</span><span class="s2">&quot;dtype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;float32&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

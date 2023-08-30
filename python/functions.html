@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Funkce &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Výjimky" href="exceptions.html" />
+    <link rel="prev" title="Smyčky, cykly" href="loops.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="loops.html" title="Smyčky, cykly"
+             accesskey="P">předchozí</a> |
+          <a href="exceptions.html" title="Výjimky"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="funkce">
+<h1>Funkce<a class="headerlink" href="#funkce" title="Permalink to this heading">¶</a></h1>
+<p>Až do této chvíle jsme používali funkce (<code class="xref py py-func docutils literal notranslate"><span class="pre">print,</span> <span class="pre">range,</span> <span class="pre">input,</span> <span class="pre">...()</span></code>), které
+napsal někdo jiný. Nyní si ukážeme, jak napsat funkce vlastní a jak funkce
+fungují.</p>
+<p>Funkce jsou bloky kódu v logickém celku. Funkce se používají buď pro kód, který
+plánujeme vykonávat opakovaně, především ale pro přehlednější členění kódu v
+souboru.</p>
+<p>Příklad nové funkce</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">obvod_obdelnika</span><span class="p">(</span><span class="n">sirka</span><span class="p">,</span> <span class="n">vyska</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vrátí obvod obdélníka daných rozměrů&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">sirka</span> <span class="o">+</span> <span class="n">vyska</span><span class="p">)</span>
+
+<span class="c1"># použití funkce obvod_obdelnika</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obvod_obdelnika</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Funkce má následující rozepsanou strukturu</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>        jméno funkce
+           │
+    +──────+──────+
+    |             |
+def obvod_obdelnika(sirka, vyska):
+                    |          |
+                    +────+─────+
+                         |
+                    seznam argumentů
+
+    &quot;&quot;&quot;Vrátí obvod obdélníka daných rozměrů&quot;&quot;&quot;
+    |                                        |
+    +──────   Dokumentační řetězec.   ───────+
+
+    return 2 * (sirka + vyska)
+           |                 |
+           +────────+────────+
+                    |
+                návratová hodnota
+</pre></div>
+</div>
+<p>Každá funkce je uvozena klíčovým slovem <cite>def</cite>, následuje její jméno a v závorce
+seznam argumentů. Za dvojtečkou následuje <em>odsazený</em> blok kódu.</p>
+<p>Je dobrým zvykem ihned po definici funkce přidat <em>dokumentační řetězec</em> a funkci
+ukončit nějakou <em>návratovou hodnotou</em></p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Dokumentační řetězec ani <code class="docutils literal notranslate"><span class="pre">return</span></code> výraz na konci funkce nejsou nijak
+povinné, nicméně patří k dobré praxi je dodržovat. Dokumentování funkci
+(tříd, metod) nemá v Pythonu závazná pravidla, je však dobré dodržovat
+některý ze <a class="reference external" href="https://docs.python.org/devguide/documenting.html">stylů</a>. Tím
+zároveň zajistíte možnost někdy v budoucnu automaticky generovat dokumentaci
+přímo z kódu.</p>
+</div>
+<p>Tělo funkce může obsahovat libovolný kód (dokonce i jinou vnořenou funkci),
+podmínky, smyčky a podobně.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">napis_hlasku</span><span class="p">(</span><span class="n">nazev</span><span class="p">,</span> <span class="n">skore</span><span class="p">):</span>
+    <span class="s2">&quot;Popíše skóre. Název má být přivlastňovací přídavné jméno.&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">nazev</span><span class="p">,</span> <span class="s1">&#39;skóre je&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">skore</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">skore</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Světový rekord!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">skore</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Skvělé!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">skore</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ucházející.&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">skore</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aspoň něco&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Snad příště.&#39;</span><span class="p">)</span>
+
+<span class="n">napis_hlasku</span><span class="p">(</span><span class="s1">&#39;Tvoje&#39;</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+<span class="n">napis_hlasku</span><span class="p">(</span><span class="s1">&#39;Protivníkovo&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Když funkce voláme, předáváme jim argumenty. Ty musí být ve stejném pořadí, v
+jakém jsou definovány v hlavičce funkce - tedy v tomto příkladě nejprve <em>název</em>
+a potom <em>skóre</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Není to tak úplně pravda, argumenty můžeme zapsat i ve zpřeházeném
+pořadí, musíme je však explicitně pojmenovat, např. <cite>napis_hlasku(skore=15,
+nazev=‘Naše‘)</cite>.</p>
+</div>
+<section id="navratova-hodnota-return">
+<h2>Návratová hodnota <code class="docutils literal notranslate"><span class="pre">return</span></code><a class="headerlink" href="#navratova-hodnota-return" title="Permalink to this heading">¶</a></h2>
+<p>Obsahuje-li funkce příkaz <code class="docutils literal notranslate"><span class="pre">return</span></code>, přestane se okamžitě vykonávat a <em>vrátí</em>
+tuto hodnotu tomu, kdo funkci zavolal. Použijeme-li <code class="docutils literal notranslate"><span class="pre">return</span></code> uprostřed smyčky,
+chová se podobně jako <code class="docutils literal notranslate"><span class="pre">break</span></code> příkaz.</p>
+<p>Funkce, která nemá žádný příkaz <code class="docutils literal notranslate"><span class="pre">return</span></code> automaticky vrací hodnotu <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>A máme tady další datový typ, vedle čísel, textových řetězců a
+booleanovských hodnot máme datový typ <em>žádná hodnota</em> – <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</div>
+</section>
+<section id="platnost-promennych-ve-funkcich">
+<h2>Platnost proměnných ve funkcích<a class="headerlink" href="#platnost-promennych-ve-funkcich" title="Permalink to this heading">¶</a></h2>
+<p>Proměnné v Pythonu mají platnost v blocích kódu a ve všech vnořených blocích.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">orig_value</span> <span class="o">=</span> <span class="n">coordinates</span>
+    <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span>
+    <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">y</span> <span class="c1"># zkrácená forma &quot;přičti proměnnou y k původní hodnotě</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+<span class="n">move</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Po vykonání bychom měli dostat následující výstup:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[100, 200]
+[105, 104]
+</pre></div>
+</div>
+<p>pokud bychom ale zkusili vytisknout hodnoty proměné <cite>orig_value</cite>, která je
+definována uvnitř těla funkce, se zlou se potážeme:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">orig_value</span><span class="p">)</span>
+
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;orig_value&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">orig_value</span></code> je <em>lokální proměnná</em></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="loops.html" title="Smyčky, cykly"
+              >předchozí</a> |
+            <a href="exceptions.html" title="Výjimky"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

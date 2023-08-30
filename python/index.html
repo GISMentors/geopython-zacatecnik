@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Úvod do jazyka Python &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Program uložený v souboru" href="print.html" />
+    <link rel="prev" title="Úvod" href="../uvod.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../uvod.html" title="Úvod"
+             accesskey="P">předchozí</a> |
+          <a href="print.html" title="Program uložený v souboru"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="uvod-do-jazyka-python">
+<h1>Úvod do jazyka Python<a class="headerlink" href="#uvod-do-jazyka-python" title="Permalink to this heading">¶</a></h1>
+<p>Psát programy v jazyce Python lze buď <em>interaktivně</em> nebo do souboru. Při
+interaktivním způsobu práce spustíme interpret jazyka Python přímo v terminálu a
+postupně do něj píšeme příkazy a potvrzujeme klávesou <em>Enter</em>. Interpret jazyka
+Python spustíme příkazem <code class="docutils literal notranslate"><span class="pre">python</span></code>:</p>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>V současnosti procházíme složitou fází přechodu mezi
+dvěma ne-zcela kompatibilními verzemi jazyka Python - 2
+a 3. Životní cyklus Python verze 2 se pomalu ale jistě
+uzavírá. Proto se bude další text opírat čistě o Python 3. Na
+některých systémech jej musíte pustit příkazem <code class="docutils literal notranslate"><span class="pre">python3</span></code>.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.4.3</span><span class="o">+</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">Oct</span> <span class="mi">14</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">16</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">50</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">5.2.1</span> <span class="mi">20151010</span><span class="p">]</span> <span class="n">on</span> <span class="n">linux</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<section id="virtualenv">
+<h2>Virtualenv<a class="headerlink" href="#virtualenv" title="Permalink to this heading">¶</a></h2>
+<p>Python <a class="reference external" href="https://docs.python.org/3/library/venv.html">virtualenv</a> je způsob, jak vytvořit lehké
+virtuální prostředí pro běh aplikací napsaných v Pythonu.  Každý
+program má určité závislosti (potřebné knihovny, programy třetích
+stran), časem zjistíte, že potřebujete další verze těchto závislostí,
+které jsou pro různé projekty různé a navzájem nekompatibilní.</p>
+<p><em>Virtualenv</em> vám umožní do tohoto chaosu přinést trochu
+pořádku. Virtualenv je v podstatě adresář s kopiemi knihoven (v
+patřičných verzích). Tento adresář je většinou uložen přímo v adresáři
+daného programu.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Pro pokročilejší použití <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> je určitě vhodné použít
+<a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/">virtualenv wrapper</a>, který vám
+umožní ukládat virtuální prostředí do centrálního jednoho adresáře.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>program_venv
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Running</span> <span class="n">virtualenv</span> <span class="k">with</span> <span class="n">interpreter</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python3</span>
+<span class="n">Using</span> <span class="n">base</span> <span class="n">prefix</span> <span class="s1">&#39;/usr&#39;</span>
+<span class="n">New</span> <span class="n">python</span> <span class="n">executable</span> <span class="ow">in</span> <span class="n">program_venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python3</span>
+<span class="n">Also</span> <span class="n">creating</span> <span class="n">executable</span> <span class="ow">in</span> <span class="n">program_venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span>
+<span class="n">Installing</span> <span class="n">setuptools</span><span class="p">,</span> <span class="n">pip</span><span class="o">...</span><span class="n">done</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Příkaz uvedený výše vytvoří pro Python 3 virtuální prostředí v
+adresáři <code class="file docutils literal notranslate"><span class="pre">program_venv</span></code>. Následně musíme virtuální prostředí
+<em>aktivovat</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>program_venv/bin/activate
+</pre></div>
+</div>
+<p>Od této chvíle pracujeme ve virtuálním prostředí a cokoliv
+nainstalujeme (prostřednictvím <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>) bude uloženo do
+<code class="docutils literal notranslate"><span class="pre">./program_venv/lib/python3.x/</span></code>.  Většinou nám to indikuje i prompt
+v příkazové řádce upozorňujícím textem.</p>
+<p>Virtuální prostředí opustíme příkazem</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+</section>
+<section id="prvni-program">
+<h2>První program<a class="headerlink" href="#prvni-program" title="Permalink to this heading">¶</a></h2>
+<p>V interpretu jazyka Python můžeme napsat první krátký program. Tradice
+velí začít pozdravem „Ahoj světe!“ vypsaným do terminálu. Interpret
+jazyka Python <em>interpretuje</em> námi napsaný program:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ahoj, světe!&#39;</span><span class="p">)</span>
+<span class="go">Ahoj, světe!</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Stejný kód můžeme uložit do souboru s koncovou <code class="docutils literal notranslate"><span class="pre">.py</span></code> a vykonat jej
+jako celek (o ukládání programů do souborů ale bude další část).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ahoj, světe!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="zaklady-jazyka-python">
+<h2>Základy jazyka Python<a class="headerlink" href="#zaklady-jazyka-python" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="print.html">Program uložený v souboru</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error.html">Chyby, jak je číst a interpretovat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="error.html#jak-funguje-program">Jak funguje Program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Proměnné a tisk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Komentáře</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">Načítání vstupu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators.html">Operátory a datové typy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operators.html#datove-typy">Datové typy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html#poznamka-o-textovych-retezcich">Poznámka o textových řetězcích</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conditions.html">Podmínky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conditions.html#ucelene-bloky-v-pythonu">Ucelené bloky v Pythonu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conditions.html#jednoradkova-forma-zapisu-podminky-if">Jednořádková forma zápisu podmínky <code class="docutils literal notranslate"><span class="pre">if</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="arrays.html">Pole a slovníky</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#n-tice-tuple">N-tice (tuple)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#slovniky-asociativni-pole">Slovníky (asociativní pole)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#zanorovani-poli">Zanořování polí</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="loops.html">Smyčky, cykly</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="loops.html#smycka-for">Smyčka for</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loops.html#oblast-platnosti-promennych">Oblast platnosti proměnných</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loops.html#smycka-typu-while">Smyčka typu while</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loops.html#brzda-break">Brzda <code class="docutils literal notranslate"><span class="pre">break</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Funkce</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#navratova-hodnota-return">Návratová hodnota <code class="docutils literal notranslate"><span class="pre">return</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#platnost-promennych-ve-funkcich">Platnost proměnných ve funkcích</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Výjimky</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html#odchyceni-vyjimky">Odchycení výjimky</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Moduly</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#dokumentace-k-modulum">Dokumentace k modulům</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#vlastni-moduly">Vlastní moduly</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="files.html">Práce se soubory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html#rezimy-otevreni-souboru">Režimy otevření souborů</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html#zavirani-souboru">Zavírání souborů</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files.html#bezpecne-cteni-ze-souboru">Bezpečné čtení ze souboru</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Třídy a objekty</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#objekty">Objekty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#pole-prvku-jako-objekt">Pole prvků jako objekt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#objekt-point-z-modulu-shapely">Objekt <cite>Point</cite> z modulu <cite>shapely</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#vlastni-tridy-po-povrchu">Vlastní třídy (po povrchu)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html#slovo-o-podtrzitkach">Slovo o podtržítkách</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="licence">
+<h3>Licence<a class="headerlink" href="#licence" title="Permalink to this heading">¶</a></h3>
+<p>Tato část cituje z kurzů <a class="reference external" href="http://pyladies.cz/">PyLadies</a> a je šířena pod
+kompatibilní licencí (<a class="reference external" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>).</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Úvod do jazyka Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prvni-program">První program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../uvod.html" title="Úvod"
+              >předchozí</a> |
+            <a href="print.html" title="Program uložený v souboru"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

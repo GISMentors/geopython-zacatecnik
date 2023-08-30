@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Editor Atom &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="editor-atom">
+<h1>Editor Atom<a class="headerlink" href="#editor-atom" title="Permalink to this heading">¶</a></h1>
+<p>Editor Atom je k dispozici pro různé operační systémy.
+Jedná se o editor, který v základu podporuje zvýrazňování syntaxe
+různých jayzků, včetně jazyka Python.</p>
+<p>Ke stažení je k dispozici na <a class="reference external" href="https://atom.io/">https://atom.io/</a>.</p>
+<p>Instalace je jednoduchá.</p>
+<p>Po spuštění je možné vytvořit nový soubor s příponou <code class="docutils literal notranslate"><span class="pre">py</span></code>,
+který v okamžiku uložení bude zvýrazněn dle syntaxe jazyka Python.</p>
+<p>Spouštění skriptů přímo z editoru umožňuje řada balíčků, které je však nutno instalovat.
+Nejznámější je <em>atom-python-run</em>, ale ten se nám bohužel nepodařilo nakonfigurovat tak,
+aby načítal prostředí OSGeo4W.
+Konfigurace se zdařila s využitím balíčku <em>script</em>.</p>
+<p>Instalace balíčků se provádí z menu <span class="menuselection">File ‣ Settings</span>.
+Zde zvolíme možnost <code class="docutils literal notranslate"><span class="pre">Install</span></code> a napíšeme <strong>script</strong>.</p>
+<figure class="align-center">
+<img alt="../../_images/atom-install-packages.png" class="middle" src="../../_images/atom-install-packages.png" />
+</figure>
+<p>Pak stiskneme tlačítko <code class="docutils literal notranslate"><span class="pre">Install</span></code> pro nalezený balíček <em>script</em>.</p>
+<p>Po nainstalování můžeme nakonfigurovat interpret pro spouštění
+z menu <span class="menuselection">Packages ‣ Script ‣ Configure Script</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Pokud nevidíte  <span class="menuselection">Packages ‣ Script ‣ Configure Script</span>
+zkuste Atom restartovat.</p>
+</div>
+<p>Zde pak musíme zapsat cestu k interpretu jazyka Python. V případě
+využití OSGeo4W je vhodný BAT soubor
+<code class="file docutils literal notranslate"><span class="pre">C:\OSGeo4W\bin\python-qgis-ltr.bat</span></code> (anebo
+<code class="file docutils literal notranslate"><span class="pre">C:\OSGeo4W\bin\python-qgis.bat</span></code> na základě verze
+QGISu, kterou máte nainstalovánu). Tento postup v každém případě
+předpokládá, že máte v prostředí OSGeo4W nainstalován QGIS. Před
+samotným spuštěním <code class="file docutils literal notranslate"><span class="pre">python.exe</span></code> nastaví korektní cesty ke
+knihovnám.</p>
+<p>Po nakonfigurování cesty je možné skript spouštět pomocí klávesové zkratky:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Shift+Ctrl+b</span></code></p>
+<figure class="align-center" id="id1">
+<img alt="../../_images/atom-configure-script.png" class="middle" src="../../_images/atom-configure-script.png" />
+<figcaption>
+<p><span class="caption-text">Konfigurace editoru pro prostředí OSGeo4W.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Výsledek spuštění následujícího skriptu</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">shapely</span>
+<span class="kn">import</span> <span class="nn">fiona</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fiona</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id2">
+<img alt="../../_images/atom-run-output.png" class="middle" src="../../_images/atom-run-output.png" />
+<figcaption>
+<p><span class="caption-text">Výsledek spuštění skriptu se objeví ve spodní části okna.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Instalace na operačním systému Linux &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Instalace na operační systému MS Windows" href="windows.html" />
+    <link rel="prev" title="Instalace potřebných knihoven" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Instalace potřebných knihoven"
+             accesskey="P">předchozí</a> |
+          <a href="windows.html" title="Instalace na operační systému MS Windows"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="instalace-na-operacnim-systemu-linux">
+<h1>Instalace na operačním systému Linux<a class="headerlink" href="#instalace-na-operacnim-systemu-linux" title="Permalink to this heading">¶</a></h1>
+<p>Nejsnazším způsobem je použít balíčky jazyka Python přímo z
+distribuce. V případě Ubuntu nebo Debian stačí spustit terminál a
+pomocí nástroje <strong class="program">apt</strong> Python nainstalovat.</p>
+<figure class="align-center" id="id1">
+<img alt="../../_images/install-ubuntu.png" src="../../_images/install-ubuntu.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 12 </span><span class="caption-text">Instalace jazyka Python do prostředí Linux</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Vedle samotného interpretu jazyka je dobré pořídit i balíčkovací
+nástroj <strong class="program">pip</strong> pro instalaci dalších knihoven</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-pip
+</pre></div>
+</div>
+<p>Po instalaci můžeme ověřit přítomnost jazyka spuštěním jeho interpretu:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3
+Python 3.6.9 (default, Nov  7 2019, 10:44:02)
+[GCC 8.3.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>Protože se pohybujeme v „geo“ světě, je dobré doinstalovat i další potřebné
+knihovny, zejména podporu pro knihovnu <a class="reference external" href="http://gdal.org">GDAL</a>. Pokud je v
+balíčcích přítomná, tím lépe</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>fiona<span class="w"> </span>python3-fiona<span class="w"> </span>rasterio<span class="w"> </span>python3-rasterio<span class="w"> </span>python3-owslib<span class="w"> </span>python3-pyproj<span class="w"> </span>python3-gdal<span class="w"> </span>libgdal-dev
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pro uživatele Ubuntu. Pokud potřebuje novější verze knihoven
+než jsou v distribuci, tak před instalací zaregistrujte ještě
+<a class="reference external" href="https://launchpad.net/~ubuntugis/+archive/ubuntu/ubuntugis-unstable/+packages?field.name_filter=python&amp;field.status_filter=published&amp;field.series_filter=">repositář UbuntuGIS</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:ubuntugis/ubuntugis-unstable
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+</pre></div>
+</div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Instalace potřebných knihoven</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#verze-jazyka-python">Verze jazyka Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#navody-pro-vybrane-platformy">Návody pro vybrané platformy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Instalace potřebných knihoven"
+              >předchozí</a> |
+            <a href="windows.html" title="Instalace na operační systému MS Windows"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

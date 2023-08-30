@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Práce se soubory &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Třídy a objekty" href="classes.html" />
+    <link rel="prev" title="Moduly" href="modules.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="modules.html" title="Moduly"
+             accesskey="P">předchozí</a> |
+          <a href="classes.html" title="Třídy a objekty"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="prace-se-soubory">
+<h1>Práce se soubory<a class="headerlink" href="#prace-se-soubory" title="Permalink to this heading">¶</a></h1>
+<p>Soubory jsou velice důležité, protože obsahují data. Jako soubor se chovají i
+některá vstupní a výstupní zařízení, síťová připojení a podobně.</p>
+<p>Základní operace se soubory jsou <em>otevření, zápis</em> a <em>zavření</em>. Při otevírání
+vznikne nový objekt, se kterým dále pracujeme.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_soubor</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">data_soubor</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">data_soubor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Tento příklad - vytvořil novou proměnnou typu <code class="docutils literal notranslate"><span class="pre">file</span></code> v režimu <em>read</em>, na
+dalším řádku ze souboru přečetl <em>všechna data</em> a uložil do proměnné <code class="docutils literal notranslate"><span class="pre">data</span></code>
+a nakonec soubor uzavřel.</p>
+<p>Lepší je ale využít konstrukci s blokem <code class="docutils literal notranslate"><span class="pre">with</span></code>, která soubor automaticky
+uzavře (i pokud mezitím např. dojde k výjimce) - konečné <code class="xref py py-func docutils literal notranslate"><span class="pre">close()</span></code> pak již
+není potřeba.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data_soubor</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data_soubor</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Pojďme vytvořit soubor typu JSON, který bude obsahovat jeden bod ve formátu
+GeoJSON:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">mapping</span>
+
+<span class="c1"># vytvoříme bod a uložíme do struktury JSON</span>
+<span class="n">bod</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">(</span><span class="n">bod</span><span class="p">)</span>
+
+<span class="c1"># vytvoříme nový objekt typu soubor a uložíme do něj json jako textový</span>
+<span class="c1"># řetězec</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/tmp/output.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_out</span><span class="p">:</span> <span class="c1"># soubor otevřeme v režimu &quot;write&quot;</span>
+    <span class="n">file_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Výsledný soubor si můžeme prohlédnout v programu QGIS.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Vhodnější by jinak bylo použít funkci json.dump(), která jako parametr
+potřebuje práve file-like objekt, do kterého data zapíše přímo
+<cite>json.dump(file_out, data)</cite></p>
+</div>
+</section>
+<section id="rezimy-otevreni-souboru">
+<h1>Režimy otevření souborů<a class="headerlink" href="#rezimy-otevreni-souboru" title="Permalink to this heading">¶</a></h1>
+<p>Soubory můžeme otevřít ve 3 režimech: <em>read</em>, <em>write</em>, <em>append</em> - tedy v režimu
+pro čtení, zápis a <em>přidávání</em> obsahu na konec souboru. Odpovídající parametry
+pro funkci <cite>open()</cite> jsou <cite>r, w, a</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pridat_na_konec</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;soubor.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">pridat_na_konec</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;text, ktery bude az na konci souboru</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">pridat_na_konec</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>nebo lépe</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;soubor.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pridat_na_konec</span><span class="p">:</span>
+    <span class="n">pridat_na_konec</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;text, ktery bude az na konci souboru</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>funkce souboru <cite>write()</cite> na rozdíl od <cite>print()</cite> nevkládá znak pro nový
+řádek na konec řádku a musíte ho tam vložit sami (proto <cite>\n</cite> nakonci)</p>
+</div>
+</section>
+<section id="zavirani-souboru">
+<h1>Zavírání souborů<a class="headerlink" href="#zavirani-souboru" title="Permalink to this heading">¶</a></h1>
+<p>Je čisté (a z pohledu souborového systému i bezpečné) soubor na konci práce s
+ním uzavřít funkcí <cite>close()</cite>. Někdy je výhodnější kompatní zápis, kdy soubor
+bude otevřen jenom v rámci daného bloku kódu:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">file_out</span> <span class="k">as</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/tmp/output.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">):</span>
+    <span class="n">file_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>V tomto případě je soubor automaticky uzavřen na konci bloku uvozeného slovem
+<cite>with</cite>.</p>
+</section>
+<section id="bezpecne-cteni-ze-souboru">
+<h1>Bezpečné čtení ze souboru<a class="headerlink" href="#bezpecne-cteni-ze-souboru" title="Permalink to this heading">¶</a></h1>
+<p>Funkce <cite>read()</cite> načte <em>veškerý obsah souboru</em> - bez ohledu na jeho velikost, na
+velikost vaší paměti, na jeho obsah. Používejte proto tuto funkci s rozmyslem.</p>
+<p>Pokud načítáte textové soubory, zvažte použití funkce <cite>readlines()</cite>, která načte
+soubor po řádcích:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">soubor</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+    <span class="c1"># pracuj s řádkem</span>
+</pre></div>
+</div>
+<p>Funkce <cite>read()</cite> také umožňuje přidat jeden nepovinný parametr - velikost (v
+bytech) načtených dat. Můžete tedy zpracovávat soubor postupně:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">soubor</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">data</span><span class="p">:</span>
+    <span class="c1"># pracuj s proměnnou data</span>
+    <span class="o">...</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">soubor</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="c1"># načti další kusanec</span>
+</pre></div>
+</div>
+<p>A nebo si na začátku určit maximální velikost dat a vyhodit výjimku, pokud je
+soubor větší.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_size</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">soubor</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">max_size</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">soubor</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># zkus načíst ještě malý kousek</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Tenhle soubor je nějak velký, kašlu na to&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V tomto příkladě jsme si ukázali vyhození vlastní výjimky pomocí
+klíčového slova <cite>raise</cite></p>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="modules.html" title="Moduly"
+              >předchozí</a> |
+            <a href="classes.html" title="Třídy a objekty"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,11 @@
+.*.sw*
+_build
+.*.un~
+*~
+_static/skripty/data*
+_static/skripty/*.pyc
+__pycache__/
+tests/data/ndvi-classes.geojson
+tests/data/ndvi-classes.tif
+tests/data/ndvi.tif
+_static/skripty/outputs/

@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Podmínky &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Pole a slovníky" href="arrays.html" />
+    <link rel="prev" title="Operátory a datové typy" href="operators.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="operators.html" title="Operátory a datové typy"
+             accesskey="P">předchozí</a> |
+          <a href="arrays.html" title="Pole a slovníky"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="podminky">
+<h1>Podmínky<a class="headerlink" href="#podminky" title="Permalink to this heading">¶</a></h1>
+<p>Pokud potřebujeme vykonat určitou část kódu pouze pokud je splněna nějaká
+podmínka (tedy nějaký výraz je vyhodnocený jako pravivý - <code class="docutils literal notranslate"><span class="pre">True</span></code>), potřebujeme
+podmínky.</p>
+<p>Základní konstrukce podmínky je</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">výraz</span><span class="p">:</span>
+    <span class="n">co</span> <span class="n">se</span> <span class="n">má</span> <span class="n">stát</span>
+</pre></div>
+</div>
+<p>Pokud chceme přidat část, která se má splnit pokud podmínka neplatí, přidáme
+blok <code class="docutils literal notranslate"><span class="pre">else</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">výraz</span><span class="p">:</span>
+    <span class="n">co</span> <span class="n">se</span> <span class="n">má</span> <span class="n">stát</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">co</span> <span class="n">se</span> <span class="n">má</span> <span class="n">stát</span> <span class="n">v</span> <span class="n">opačním</span> <span class="n">případě</span>
+</pre></div>
+</div>
+<p>Často může nastat potřeba řetězení více podmínek - za klíčové slovo <code class="docutils literal notranslate"><span class="pre">else</span></code>
+můžeme přidat okamžitě další <code class="docutils literal notranslate"><span class="pre">if</span></code>, ale Python nám umožňuje tento zápis zkrátit:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">výraz</span><span class="p">:</span>
+    <span class="n">co</span> <span class="n">se</span> <span class="n">má</span> <span class="n">stát</span><span class="p">,</span> <span class="n">když</span> <span class="n">je</span> <span class="n">výraz</span> <span class="n">pravda</span>
+<span class="k">elif</span> <span class="n">jiný_výraz</span><span class="p">:</span>
+    <span class="n">co</span> <span class="n">se</span> <span class="n">má</span> <span class="n">stát</span><span class="p">,</span> <span class="n">když</span> <span class="n">platí</span> <span class="n">něco</span> <span class="n">jiného</span>
+<span class="k">elif</span> <span class="n">další_výraz</span><span class="p">:</span>
+    <span class="n">takto</span> <span class="n">můžeme</span> <span class="n">pokračovat</span> <span class="n">až</span> <span class="n">do</span> <span class="n">nekonečna</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">konečný</span> <span class="n">výchozí</span> <span class="n">kód</span><span class="p">,</span> <span class="n">který</span> <span class="n">je</span> <span class="n">vykonán</span><span class="p">,</span> <span class="n">pokud</span> <span class="n">vše</span> <span class="n">ostatní</span> <span class="n">selže</span>
+</pre></div>
+</div>
+<p>Podmíněné příkazy lze samozřejmě zanořovat</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">výraz</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">další_výraz</span><span class="p">:</span>
+        <span class="n">co</span> <span class="n">se</span> <span class="n">má</span> <span class="n">stát</span><span class="p">,</span> <span class="n">stane</span> <span class="n">se</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">něco</span> <span class="n">jiného</span> <span class="n">se</span> <span class="n">stane</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">původní</span> <span class="n">podmínka</span> <span class="n">nesplněna</span>
+</pre></div>
+</div>
+<p>Zkusíme napsat program, který se na začátku zeptá na věk za davatele a po té
+nabídne vhodné občerstvení:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vek</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Kolik ti je let? &#39;</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">vek</span> <span class="o">&gt;=</span> <span class="mi">150</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A ze kterépak jsi planety?&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">vek</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Můžeme nabídnout: víno, cider, nebo vodku.&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">vek</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Můžeme nabídnout: mléko, čaj, nebo vodu&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">vek</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sunar už bohužel došel.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Návštěvníky z budoucnosti tady nevidíme rádi.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ucelene-bloky-v-pythonu">
+<h1>Ucelené bloky v Pythonu<a class="headerlink" href="#ucelene-bloky-v-pythonu" title="Permalink to this heading">¶</a></h1>
+<p>Určitě jste si všimli, že na rozdíl od jiných populárních jazyků Python
+nepoužívá k vymezení ucelených bloků kódu složené závorky, ale bloky strukturuje
+pomocí <em>odsazení</em>. A na konci řádků není potřeba dávat znak <code class="docutils literal notranslate"><span class="pre">;</span></code> (středník).
+Je v celku jedno, jestli používáte mezery nebo tabulátory a
+jestli používáte 4 mezery nebo 2 tabulátory. Různé stupně odsazení dokonce
+můžete měnit uprostřed programu.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Že něco jde, neznamená, že byste to tak měli dělat. Praxe ukazuje, že
+používat tabulátory pro odsazení v kódu je zlo - každý textový editor má
+nastavenu jinou šířku tabulátoru.</p>
+<p>Jako nečastější se v Pythonních programech používají pro odazení bloku
+kódu <em>4 mezery</em>. Je dobrou praxí, nastavit v textovém editoru šířku
+tabulátoru na 4 znaky a automatické nahrazování tabulátorů za mezery.</p>
+</div>
+<p>Poprvé se nám bloky kódu objevují právě v podmínkách, budeme se s nimi ale
+setkávat i dále.</p>
+<p>Pro srovnání kód v jazyce JavaScript by s podmínkami a bloky kódu vypadal asi
+takto:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;&#39;a&#39; je jedna&quot;</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;&#39;a&#39; není jedna&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A to samé v Pythonu</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;a&#39; je jedna&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="s2">&quot;&#39;a&#39; není jedna&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Vidíte, že je to méně psaní a Python vás nutí k čitelné struktuře kódu.</p>
+</section>
+<section id="jednoradkova-forma-zapisu-podminky-if">
+<h1>Jednořádková forma zápisu podmínky <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#jednoradkova-forma-zapisu-podminky-if" title="Permalink to this heading">¶</a></h1>
+<p>Programátoři jsou velice lenivý národ a často vytvářejí zkratky, aby ušetřili
+řádek kódu nebo deset znaků na řádku. Často potřebujeme pouze krátkou formu
+zápisu podmínky <code class="docutils literal notranslate"><span class="pre">if</span></code> (z Jazyka C hojne využívaný zápis <code class="docutils literal notranslate"><span class="pre">vysledek</span> <span class="pre">=</span> <span class="pre">(podminka</span> <span class="pre">?</span> <span class="pre">splneno</span> <span class="pre">!</span>
+<span class="pre">nespleno);</span></code> v Pythonu bohužel neexistuje. Ale jde to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fruit</span> <span class="o">=</span> <span class="s1">&#39;Apple&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">fruit</span> <span class="o">==</span> <span class="s1">&#39;Apple&#39;</span> <span class="k">else</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">result</span>
+<span class="go">True</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fruit</span> <span class="o">=</span> <span class="s1">&#39;Pear&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">fruit</span> <span class="o">==</span> <span class="s1">&#39;Apple&#39;</span> <span class="k">else</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">result</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="operators.html" title="Operátory a datové typy"
+              >předchozí</a> |
+            <a href="arrays.html" title="Pole a slovníky"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Knihovna Rasterio &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Rastrová algebra - výpočet NDVI" href="ndvi.html" />
+    <link rel="prev" title="Práce s rastrovými daty" href="../index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../index.html" title="Práce s rastrovými daty"
+             accesskey="P">předchozí</a> |
+          <a href="ndvi.html" title="Rastrová algebra - výpočet NDVI"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="knihovna-rasterio">
+<span id="rasterio"></span><h1>Knihovna Rasterio<a class="headerlink" href="#knihovna-rasterio" title="Permalink to this heading">¶</a></h1>
+<p>Knihovna <a class="reference external" href="https://github.com/mapbox/rasterio">Rasterio</a> je opět dílo
+zejména <a class="reference external" href="http://sgillies.net/">Seana Gilliese</a> (podobně jako
+<a class="reference internal" href="../../vektorova_data/fiona/index.html"><span class="doc">Fiona</span></a> či Shapely), tentokrát
+v rámci jeho působení ve firmě <a class="reference external" href="http://mapbox.com">MapBox</a>. Rasterio
+je knihovna pro práci s rastrovými geografickými datovými sadami. Na
+pozadí Rasterio používá spolehlivou knihovnu <a class="reference external" href="http://gdal.org">GDAL</a>.</p>
+<p>Rasterio pracuje s objekty knihovny <a class="reference external" href="http://www.numpy.org/">NumPy</a>
+(podobně jako dříve zmíněná <a class="reference internal" href="../../vektorova_data/fiona/index.html"><span class="doc">Fiona</span></a> pracuje s objekty JSON). Autor
+tvrdí, že Rasterio se vyslovuje <em>[raw-STEER-ee-oh]</em> a měla by práci s
+rastrovými daty udělat více zábavnou a produktivnější.</p>
+<section id="vstupni-data">
+<h2>Vstupní data<a class="headerlink" href="#vstupni-data" title="Permalink to this heading">¶</a></h2>
+<p>Pro vstupní data použijeme dataset stažený ze stránky <a class="reference external" href="https://apps.sentinel-hub.com/eo-browser/">Earth Explorer</a>, která zpřístupňuje data
+ze satelitů programu <a class="reference external" href="http://copernicus.eu/main/sentinels">Sentinel</a>.</p>
+<ul class="simple">
+<li><p>data/B01-2018-05-06.tiff</p></li>
+<li><p>data/B02-2018-05-06.tiff</p></li>
+<li><p>data/B03-2018-05-06.tiff</p></li>
+<li><p>data/B04-2018-05-06.tiff</p></li>
+<li><p>data/B05-2018-05-06.tiff</p></li>
+<li><p>data/B06-2018-05-06.tiff</p></li>
+<li><p>data/B07-2018-05-06.tiff</p></li>
+<li><p>data/B08-2018-05-06.tiff</p></li>
+<li><p>data/B09-2018-05-06.tiff</p></li>
+<li><p>data/B10-2018-05-06.tiff</p></li>
+<li><p>data/B11-2018-05-06.tiff</p></li>
+<li><p>data/B12-2018-05-06.tiff</p></li>
+<li><p>data/B8A-2018-05-06.tiff</p></li>
+</ul>
+</section>
+<section id="otevreni-datasetu">
+<h2>Otevření datasetu<a class="headerlink" href="#otevreni-datasetu" title="Permalink to this heading">¶</a></h2>
+<p>Rastrový soubor (skupina souborů) - dataset - se otevírá pomocí funce
+<code class="docutils literal notranslate"><span class="pre">open()</span></code> z modulu <cite>rasterio</cite> obdobně jako v případě knihovny Fiona
+vektorové soubory.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">green</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/B03-2018-05-06.tiff&#39;</span><span class="p">)</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="c1"># print metadata</span>
+<span class="linenos">6</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bounds:&quot;</span><span class="p">,</span> <span class="n">green</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Zjistěte následující atributy rastrového datasetu:</p>
+<ul class="simple">
+<li><p>počet kanálů</p></li>
+<li><p>definici souřadnicového systému</p></li>
+<li><p>velikost rastrového souboru (počet pixelů)</p></li>
+<li><p>prostorové rozlišení</p></li>
+</ul>
+</div>
+<p>Můžeme si ihned nechat vypsat metadata o otevřeném datasetu.</p>
+</section>
+<section id="kanaly-druzice-sentinel-2">
+<h2>Kanály družice Sentinel 2<a class="headerlink" href="#kanaly-druzice-sentinel-2" title="Permalink to this heading">¶</a></h2>
+<p>Data z družice Sentinel 2 obsahují světelné spektrum v různých pásmech
+(<cite>B01-B8A</cite>), jak ale
+zjistit, která pásma jsou která? To je popsáno v dokumentaci na stránce
+projektu: <a class="reference external" href="https://earth.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial">https://earth.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial</a></p>
+<figure class="align-center">
+<img alt="../../_images/sentinel2-1.png" src="../../_images/sentinel2-1.png" />
+</figure>
+<figure class="align-center">
+<img alt="../../_images/sentinel2-2.png" src="../../_images/sentinel2-2.png" />
+</figure>
+<figure class="align-center" id="id2">
+<img alt="../../_images/sentinel2-3.png" src="../../_images/sentinel2-3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 4 </span><span class="caption-text">Rozlišení kanálů družice Sentinel-2, <a class="reference external" href="https://earth.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial">https://earth.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/spatial</a></span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="zobrazeni-dat">
+<h2>Zobrazení dat<a class="headerlink" href="#zobrazeni-dat" title="Permalink to this heading">¶</a></h2>
+<p>Nejsnadnější cesta, jak zobrazit data, vede přes desktopovou prohlížečku
+<a class="reference external" href="http://qgis.org">QGIS</a>. Viz <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/rastrova_data/rastr_import.html">školení pro QGIS začátečníky</a>.</p>
+<figure class="align-center">
+<img alt="../../_images/green.png" class="middle" src="../../_images/green.png" />
+</figure>
+<div class="task admonition">
+<p class="admonition-title">Úkol</p>
+<p>Dokážete najít rozdíl mezi Českou republikou a Rakouskem?</p>
+<p>Podívejte se na satelitní snímek a zjistěte, zda jste schopni
+pouhým okem rozlišit Českou republiku a Rakousko.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Zobrazení rastrových dat v okně Jupyter notebooku</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">PIL.Image</span>
+
+<span class="c1"># we have to convert the data from 16bit to 8bit, so that PIL can work with it</span>
+<span class="n">bit8_green</span> <span class="o">=</span> <span class="p">(</span><span class="n">green</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">256</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+<span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">bit8_green</span><span class="p">,</span> <span class="s2">&quot;L&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="priklady">
+<h2>Příklady<a class="headerlink" href="#priklady" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ndvi.html">Rastrová algebra - výpočet NDVI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ndvi.html#rasterova-algebra">Rasterová algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndvi.html#id1">NDVI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ndvi.html#vypocet-ndvi">Výpočet NDVI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ndvi.html#zapis-do-noveho-souboru">Zápis do nového souboru</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Použití oken pro čtení a zápis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#bloky">Bloky</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#ndvi-pomoci-bloku">NDVI pomocí bloků</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reclass.html">Interpretace NDVI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorisation.html">Vektorizace rastrových dat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Rasterio rozšíření</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s rastrovými daty</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Knihovna Rasterio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gdal/index.html">Knihovna GDAL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../index.html" title="Práce s rastrovými daty"
+              >předchozí</a> |
+            <a href="ndvi.html" title="Rastrová algebra - výpočet NDVI"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

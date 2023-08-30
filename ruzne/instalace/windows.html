@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Instalace na operační systému MS Windows &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Výběr textového editoru pro jazyk Python" href="../editor/index.html" />
+    <link rel="prev" title="Instalace na operačním systému Linux" href="linux.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="linux.html" title="Instalace na operačním systému Linux"
+             accesskey="P">předchozí</a> |
+          <a href="../editor/index.html" title="Výběr textového editoru pro jazyk Python"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="instalace-na-operacni-systemu-ms-windows">
+<h1>Instalace na operační systému MS Windows<a class="headerlink" href="#instalace-na-operacni-systemu-ms-windows" title="Permalink to this heading">¶</a></h1>
+<p>Tato kapitola by vám měla pomoci nastavit použitelné prostředí pro
+zpracování prostorových dat pomocí open source knihoven v jazyce
+Python na operačním systému MS Windows.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Kurzy GISMentors probíhají na operačním systému Linux a máme
+pro to řadu dobrých důvodů: lepší provázanost knihoven,
+stabilita, možnost snáze něco „opravit“. Platforma MS Windows
+pro nás není domácí. Navíc není pro vývoj programů pro práci s
+prostorovými daty s využitím open source knihoven úplně
+ideální, především pro svou roztříštěnost a nestabilitu.</p>
+</div>
+<p>Na operačním systému MS Windows máme (minimálně) <strong>dvě
+prostředí/možnosti</strong>, v jakých můžeme Python provozovat:</p>
+<ol class="arabic simple">
+<li><p><em>(preferovaná)</em> Z distribuce <a class="reference external" href="https://trac.osgeo.org/osgeo4w/">OSGeo4W</a> - což je
+sada programů s otevřeným zdrojovým kódem pro operační systém MS
+Windows. Všechny programy z této distribuce spolu navzájem „mluví“,
+bohužel ale OSGeo4W neobsahuje (nebo nejsou aktuální) všechny
+knihovny, které v tomto kurzu doporučujeme. Situace se v budoucnu
+ale může změnit. <a class="reference internal" href="#win-osgeo4w-bin"><span class="std std-ref">Návod</span></a>.</p></li>
+<li><p><em>(alternativní)</em> Nativní distribuce Pythonu ze stránek <a class="reference external" href="http://python.org">http://python.org</a>. Do tohoto prostředí lze doinstalovat všechny knihovny
+používané v tomto kurzu, ale jejich zapojení např. do QGIS nebo GRASS GIS bude
+velmi obtížné až nemožné. <a class="reference internal" href="#win-py-bin"><span class="std std-ref">Návod</span></a>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Je „zvykem“, že na MS Windows si všechny programy s sebou
+instalují všechny potřebné knihovny. Takže pokud máte v
+systému Esri ArcGIS, máte i další interní interpret Pythonu
+zabalený spolu s ArcGISem. Většinou ale nebudete vědět „kde v
+systému je“ a jaké verze. Navíc integrace s ostatními (open
+source) knihovnami bude ještě obtížnější.</p>
+</div>
+<section id="prvni-moznost-preferovana-instalace-osgeo4w">
+<span id="win-osgeo4w-bin"></span><h2>První možnost (preferovaná): Instalace OSGeo4W<a class="headerlink" href="#prvni-moznost-preferovana-instalace-osgeo4w" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://trac.osgeo.org/osgeo4w/">OSGeo4W</a> je síťový instalátor
+otevřeného GIS softwaru pro operační systém MS Windows. Instalace
+probíhá tak, že stáhneme neprve instalátor <a class="reference external" href="http://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe">osgeo4w-setup.exe</a>),
+který nás po spuštění provede výběrem požadovaných balíčků a po
+odsouhlasení je sám stáhne a nainstaluje.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>OSGeo4W nainstaluje na počítač svoji vlastní verzi
+Pythonu. Pokud máte Python již nainstalován, budete mít na
+stroji jeho více verzí vedle sebe. Což je ale ve světě
+Windows běžné. Softwary, které Python používají, si často
+instalují vlastní verze a nepoužívají systémově
+nainstalovaný Python (pokud existuje). Pokud si
+nainstalujete i další software jako je QGIS či GRASS GIS a
+další, tak minimálně tento software bude v rámci OSGeo4W
+instalace sdílet jednu společnou verzi Pythonu.</p>
+</div>
+<p>Při instalaci vyberte pokročilou volbu - <em>Advanced Install</em> - po
+zvolení zdrojových serverů a cílového adresáře, se dostanete až k
+výběru jednotlivých balíčků.</p>
+<figure class="align-center" id="id1">
+<img alt="../../_images/install-windows-1.png" src="../../_images/install-windows-1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 13 </span><span class="caption-text">Spuštění OSGeo4W instalátoru, volba Advanced Install</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Před volbou softwarových balíčků k instalaci ještě zvolte server, ze
+kterého se budou balíčky stahovány. Kromě oficiálního
+<a class="reference external" href="http://download.osgeo.org">http://download.osgeo.org</a> jsou dispozici i další servery, které mohou
+mít rychlejší odezvu.</p>
+<figure class="align-center" id="id2">
+<img alt="../../_images/install-windows-1a.png" src="../../_images/install-windows-1a.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 14 </span><span class="caption-text">Volba serveru pro stahování instalačních balíčků.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Další nastavení nechme ve výchozím stavu. V sekci <strong>Select Packages</strong>
+pomocí vyhledávání můžete jednotlivé balíčky najít a poklepáním myší
+na řádek se volba ze <cite>Skip</cite> změní na číslo verze, kterou lze
+nainstalovat (někdy je dostupných verzí víc).</p>
+<p>Po potvrzení se balíčky stáhnou a nainstalují.</p>
+<figure class="align-center" id="id3">
+<img alt="../../_images/install-windows-2.png" src="../../_images/install-windows-2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 15 </span><span class="caption-text">Výběr softwarových balíčků, v tomto případě <code class="docutils literal notranslate"><span class="pre">python3-gdal</span></code>.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V našem případě najděte a nainstalujte následující balíčky:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-pip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-gdal</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-owslib</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-fiona</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-shapely</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3-rasterio</span></code></p></li>
+</ul>
+<div class="admonition tip" id="instalace-osgeo4w-cmd">
+<p class="admonition-title">Tip</p>
+<p>Nainstalovat celé prostředí lze jednoduše <strong>v jednom kroku</strong>
+přímo z příkazové řádky MS Windows. Otevřte příkazový řádek Windows
+jako <em>admistrátor</em>, přepněte se do adresáře (příkaz <code class="docutils literal notranslate"><span class="pre">cd</span></code>), kam jste
+stáhli instálator OSGeo4W a spusťte následující příkaz.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>osgeo4w-setup.exe<span class="w"> </span>-g<span class="w"> </span>-k<span class="w"> </span>-a<span class="w"> </span>x86_64<span class="w"> </span>-R<span class="w"> </span>C:<span class="se">\O</span>SGeo4W<span class="w"> </span>-s<span class="w"> </span>http://osgeo4w-oslandia.com/osgeo4w<span class="w"> </span>-q<span class="w"> </span>^
+-P<span class="w"> </span>python3-pip,python3-gdal,python3-owslib,qgis-ltr-full,python3-fiona,python3-shapely,python3-rasterio
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>A samozřejmě můžete i nainstalovat desktopový program QGIS
+(není podmínkou pro toto školení).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qgis-full</span></code> (nebo <code class="docutils literal notranslate"><span class="pre">qgis-ltr-full</span></code> pro LTR verzi)</p></li>
+</ul>
+</div>
+<figure class="align-center" id="id4">
+<img alt="../../_images/install-windows-3.png" src="../../_images/install-windows-3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 16 </span><span class="caption-text">Sledování průběhu instalace</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Pro otestování prostředí otevřeme <em>OSGeo4W Shell</em>. Před vstupem do
+interpreta jazyka Python, musíme spustit skript <code class="file docutils literal notranslate"><span class="pre">p3_env</span></code>, který
+nastaví proměnné prostředí pro Python 3.</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>py3_env
+python3 -c &quot;from osgeo import gdal; print(gdal.__version__)&quot;
+</pre></div>
+</div>
+<figure class="align-center">
+<img alt="../../_images/osgeo4w-run.png" src="../../_images/osgeo4w-run.png" />
+</figure>
+<div class="admonition note" id="osgeo4w-fiona-etc">
+<p class="admonition-title">Poznámka</p>
+<p>Pokud narazíte na problém s instalací či nefunkčností
+knihoven Fiona, Shapely či Rasterio, tak pokračujte podle
+návodu níže.</p>
+<p>Potřebujeme stáhnout a nainstalovat knihovny, které v distribuci OSGeo4W nejsou
+a nebo nefungují, zejména balíčky</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#rasterio">Rasterio</a></p></li>
+<li><p><a class="reference external" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona">Fiona</a></p></li>
+<li><p><a class="reference external" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely">Shapely</a></p></li>
+</ul>
+<p>Ze stránek <a class="reference external" href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/">Unofficial Windows Binaries for Python Extension Packages</a> stáhneme pro
+knihovny Fiona, Shapely a Rasterio soubory ve formátu Wheel - je
+důležité, aby verze Pythonu, pro kterou byly balíky připraveny, byla
+stejná jako verze Pythonu v OSGeo4W. Proto spustíme <em>OSGeo4W Shell</em> a
+zjistíme verzi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="o">&gt;</span> <span class="n">python3</span> <span class="o">--</span><span class="n">version</span>
+
+<span class="n">Python</span> <span class="mf">3.7.0</span>
+</pre></div>
+</div>
+<p>V našem případě tedy stáhneme např. soubory</p>
+<ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">rasterio‑1.2.1‑cp37‑cp37m‑win_amd64.whl</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">Fiona‑1.8.18‑cp37‑cp37m‑win_amd64.whl</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">Shapely‑1.7.1‑cp37‑cp37m‑win_amd64.whl</span></code></p></li>
+</ul>
+<p>A doinstalujeme tyto balíky pomocí <strong class="program">pip</strong> v prostředí
+<em>OSGeo4W Shell</em> jako <em>správce</em>. Nezapomeňte nejprve nastavit
+prostředí pro Python 3 spuštěním skriptu <code class="file docutils literal notranslate"><span class="pre">py3_env</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py3_env
+
+<span class="nb">cd</span><span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads
+
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>Fiona-1.8.18-cp37-cp37m-win_amd64.whl
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>rasterio-1.2.1-cp37-cp37m-win_amd64.whl
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>Shapely-1.7.1-cp37-cp37m-win_amd64.whl
+</pre></div>
+</div>
+</div>
+<p>Následně můžeme instalaci vyzkoušet <a class="reference internal" href="#install-pytest"><span class="std std-ref">Otestování instalace</span></a>.</p>
+</section>
+<section id="druha-moznost-alternativni-instalace-nativniho-interpretu-cpython">
+<span id="win-py-bin"></span><h2>Druhá možnost (alternativní): Instalace nativního interpretu CPython<a class="headerlink" href="#druha-moznost-alternativni-instalace-nativniho-interpretu-cpython" title="Permalink to this heading">¶</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Pokud budete používat pouze nativní interpret CPython
+(mimo prostředí OSGeo4W), nebudete moci (nebo velmi obtížně)
+kombinovat knihovny s QGIS, GRASS GIS a dalšími.</p>
+</div>
+<p>Ze stránek <a class="reference external" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a> stáhněte aktuální
+verzi jazyka Python s označením 3.x - použijte 64bit verzi - tedy
+např. <a class="reference external" href="https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe">Windows x86-64 executable installer</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Odkazy výše ukazují přímo na verzi interpretu 3.8.1!
+Ujistěte se, že stahujete aktuální verzi intepretu.</p>
+</div>
+<p>Spusťte instalátor - v administrátorském režimu - a nastavte <em>Customize
+installation</em>. Zaškrtněte přidání Python do proměnné <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<figure class="align-center" id="id5">
+<img alt="../../_images/install-windows-cpython-1.png" src="../../_images/install-windows-cpython-1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 17 </span><span class="caption-text">Spuštění instalátoru, volba Customize installation</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Na další obrazovce zvolte určitě instalaci <strong class="program">pip</strong>.</p>
+<figure class="align-center" id="id6">
+<img alt="../../_images/install-windows-cpython-2.png" src="../../_images/install-windows-cpython-2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Další volby</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>V dalším kroku se ujistěte, že budete instalovat Python pro „všechny
+uživatele“ (<em>Install for all users</em>). Python se tak nainstaluje do
+kořenového adresáře na disk <code class="file docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Python38</span></code> a ne
+pouze kamsi do uživatelských složek.</p>
+<figure class="align-center" id="id7">
+<img alt="../../_images/install-windows-cpython-3.png" src="../../_images/install-windows-cpython-3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Sledování průběhu instalace</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Průběh instalace a hotovo.</p>
+<figure class="align-center" id="id8">
+<img alt="../../_images/install-windows-cpython-4.png" src="../../_images/install-windows-cpython-4.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 20 </span><span class="caption-text">Sledování průběhu instalace</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Po instalaci a spuštění příkazové řádky (<cite>cmd</cite>) můžete Python sputit přímo.</p>
+<p>V dalším kroce je potřeba do prostředí doinstalovat námi požadované
+knihovny.</p>
+<p>Ze stránek <a class="reference external" href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/">Unofficial Windows Binaries for Python Extension Packages</a> stáhneme knihovny
+GDAL, Fiona, Shapely, Rasterio a OWSLib soubory ve formátu Wheel. Vždy
+pro danou verzi Pythonu (v tomto dokumentu používáme 3.8) a 64bit
+platformu (amd64).</p>
+<p>Poté otevřeme příkazovou řádku Windows jako <em>správce</em> a
+doinstalujeme požadované knihovny, například:</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>pip install Downloads\Shapely-1.7.0-cp38-cp38-win32.whl
+pip install Downloads\Fiona-1.8.13-cp38-cp38-win32.whl
+...
+</pre></div>
+</div>
+<section id="instalace-rasterio">
+<h3>Instalace Rasterio<a class="headerlink" href="#instalace-rasterio" title="Permalink to this heading">¶</a></h3>
+<p>Před vlastní instalací knihovny Rasterio do prostředí CPython na
+Windows musíme instalovat ručně balík <a class="reference external" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy">Numpy</a> a Microsoft
+Visual Studio 2015 a mladší, nejlépe ke stažení z
+<a class="reference external" href="http://go.microsoft.com/fwlink/?LinkId=691126&amp;fixForIE=.exe.">http://go.microsoft.com/fwlink/?LinkId=691126&amp;fixForIE=.exe.</a></p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>pip install Downloads\numpy‑1.18.1+mkl‑cp38‑cp38‑win_amd64.whl
+</pre></div>
+</div>
+<p>Potom už můžeme instalovat rasterio</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>pip install Downloads\rasterio‑1.1.2‑cp38‑cp38‑win_amd64.whl
+</pre></div>
+</div>
+<p>Následně můžeme instalaci vyzkoušet <a class="reference internal" href="#install-pytest"><span class="std std-ref">Otestování instalace</span></a>.</p>
+</section>
+</section>
+<section id="otestovani-instalace">
+<span id="install-pytest"></span><h2>Otestování instalace<a class="headerlink" href="#otestovani-instalace" title="Permalink to this heading">¶</a></h2>
+<p>Otevřte <em>OSGeo4W Shell</em> (anebo příkazový řádek Windows v případě
+nativního interpretu CPython) jako <em>správce</em> a doinstalujte
+<strong class="program">pytest</strong> (v případě <em>OSGeo4W Shell</em> ještě nastavíme prostředí
+pro Python 3 pomocí <code class="docutils literal notranslate"><span class="pre">py3_env</span></code>).</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>py3_env
+python3 -m pip install pytest
+</pre></div>
+</div>
+<p>Stáhněte repositář <em>geopython-zacatecnik</em> pomocí <strong class="program">git</strong> anebo
+přímo jako <a class="reference external" href="https://github.com/GISMentors/geopython-zacatecnik/archive/master.zip">zip soubor</a>
+a rozbalte.</p>
+<p>Otevřte <em>OSGeo4W Shell</em> (anebo příkazový řádek Windows v případě
+nativního interpretu CPython) jako běžný uživatel a vstupte do
+rozbalené složky, např.:</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>cd C:\Users\user\Downloads\geopython-zacatecnik-master\geopython-zacatecnik-master
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Nejedná se překlep. Zip obsahuje složku
+<code class="file docutils literal notranslate"><span class="pre">geopython-zacatecnik-master</span></code>, což se pod Windows projeví
+vnořením do složky <code class="file docutils literal notranslate"><span class="pre">geopython-zacatecnik-master</span></code>
+(odpovídající názvu zip souboru). Následující příkaz je podstatné
+spustit ze složky, která obsahuje podsložku <code class="file docutils literal notranslate"><span class="pre">tests</span></code>. To
+můžete ověřit příkazem <code class="docutils literal notranslate"><span class="pre">dir</span></code>.</p>
+</div>
+<p>Testy spustíte následujícím příkazem (v případě <em>OSGeo4W Shell</em> ještě
+nastavíme prostředí pro Python 3 pomocí <code class="docutils literal notranslate"><span class="pre">py3_env</span></code>).</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>py3_env
+python3 -m pytest tests
+</pre></div>
+</div>
+<figure class="align-center" id="id9">
+<img alt="../../_images/pytest-windows.png" src="../../_images/pytest-windows.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 21 </span><span class="caption-text">Spuštění testů pod Windows.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Instalace potřebných knihoven</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#verze-jazyka-python">Verze jazyka Python</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#navody-pro-vybrane-platformy">Návody pro vybrané platformy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="linux.html" title="Instalace na operačním systému Linux"
+              >předchozí</a> |
+            <a href="../editor/index.html" title="Výběr textového editoru pro jazyk Python"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

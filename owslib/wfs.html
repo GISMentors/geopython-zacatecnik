@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>OGC WFS &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="OGC WPS" href="wps.html" />
+    <link rel="prev" title="OGC WMS" href="wms.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="wms.html" title="OGC WMS"
+             accesskey="P">předchozí</a> |
+          <a href="wps.html" title="OGC WPS"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="ogc-wfs">
+<span id="owslibwfs"></span><h1>OGC WFS<a class="headerlink" href="#ogc-wfs" title="Permalink to this heading">¶</a></h1>
+<p id="index-0">Služba <a class="reference external" href="http://opengeospatial.org/standards/wfs">OGC Web Feature Service</a> slouží ke stahování a
+sdílení vektorových dat. Nejčastějším výměnným formátem je <a class="reference external" href="http://opengeospatial.org/standards/gml">OGC GML</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Více informací na <a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/wfs.html">školení Úvod do GIS</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Předpokládáme, že máme naimportováno vše potřebné pro práci
+s katalogovou službou, pokud ne, vraťte se prosím výše, viz
+<a class="reference internal" href="csw.html#owslibcsw"><span class="std std-ref">OGC CSW</span></a>.</p>
+</div>
+<p>Nejprve najdeme nějaké WFS v katalogové službě:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">wfs_query</span> <span class="o">=</span> <span class="n">PropertyIsLike</span><span class="p">(</span><span class="s1">&#39;csw:AnyText&#39;</span><span class="p">,</span> <span class="s1">&#39;WFS%&#39;</span><span class="p">)</span>
+<span class="n">aopk_query</span> <span class="o">=</span> <span class="n">PropertyIsLike</span><span class="p">(</span><span class="s1">&#39;csw:AnyText&#39;</span><span class="p">,</span> <span class="s1">&#39;Agentura%&#39;</span><span class="p">)</span>
+<span class="n">service_query</span> <span class="o">=</span> <span class="n">PropertyIsLike</span><span class="p">(</span><span class="s1">&#39;apiso:type&#39;</span><span class="p">,</span> <span class="s1">&#39;service&#39;</span><span class="p">)</span>
+<span class="n">aopk_and_wfs</span> <span class="o">=</span> <span class="n">And</span><span class="p">([</span><span class="n">aopk_query</span><span class="p">,</span> <span class="n">wfs_query</span><span class="p">,</span> <span class="n">service_query</span><span class="p">])</span>
+<span class="n">cenia</span><span class="o">.</span><span class="n">getrecords2</span><span class="p">([</span><span class="n">aopk_and_wfs</span><span class="p">],</span> <span class="n">esn</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cenia</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;matches&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;nextrecord&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;returned&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">recid</span> <span class="ow">in</span> <span class="n">cenia</span><span class="o">.</span><span class="n">records</span><span class="p">:</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="n">cenia</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="n">recid</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">recid</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
+53e37222-89a0-472b-9781-5bfc0a02080a<span class="w"> </span>WFS<span class="w"> </span>Soustava<span class="w"> </span>území<span class="w"> </span>Natura<span class="w"> </span><span class="m">2000</span>
+53e37cd6-5cb8-4ee9-b862-62e10a02080a<span class="w"> </span>WFS<span class="w"> </span>Památné<span class="w"> </span>stromy
+5473579f-fb08-48ab-893d-3d3e0a02080a<span class="w"> </span>WFS<span class="w"> </span>Chráněná<span class="w"> </span>území
+<span class="m">54735935</span>-a88c-4c58-99bc-3dee0a02080a<span class="w"> </span>WFS<span class="w"> </span>Mezinárodní<span class="w"> </span>ochrana<span class="w"> </span>přírody
+53e47f1f-1bb8-405f-9254-514a0a02080a<span class="w"> </span>WFS<span class="w"> </span>Údaje<span class="w"> </span>o<span class="w"> </span>území
+53f3708e-9d1c-4da6-983c-086e0a02080a<span class="w"> </span>WFS<span class="w"> </span>Průchodnost<span class="w"> </span>krajiny<span class="w"> </span>pro<span class="w"> </span>velké<span class="w"> </span>savce
+...
+</pre></div>
+</div>
+<p>Podíváme se, jaká data mají v <a class="reference external" href="http://www.ochranaprirody.cz/">Agentuře ochrany přírody a krajiny</a> (AOPK):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">natura</span> <span class="o">=</span> <span class="n">cenia</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="s1">&#39;53e37222-89a0-472b-9781-5bfc0a02080a&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">natura</span><span class="o">.</span><span class="n">abstract</span><span class="p">,</span> <span class="n">natura</span><span class="o">.</span><span class="n">identifiers</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;identifier&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>Služba zpřístupňuje geografická data soustavy území Natura 2000 v České republice; © AOPK ČR
+https://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/
+WFSServer?service=WFS&amp;request=GetCapabilities&amp;version=1.1.0
+</pre></div>
+</div>
+<p>Načteme WFS AOPK:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.wfs</span> <span class="kn">import</span> <span class="n">WebFeatureService</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WFSServer&#39;</span>
+<span class="n">aopk</span> <span class="o">=</span> <span class="n">WebFeatureService</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Zjistíme vlastnosti služby (Capabilities):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">capabilities</span> <span class="o">=</span> <span class="n">aopk</span><span class="o">.</span><span class="n">getcapabilities</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">capabilities</span><span class="o">.</span><span class="n">geturl</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;https://gis.nature.cz/arcgis/services/UzemniOchrana/Natura2000/MapServer/WFSServer?service=WFS&amp;request=GetCapabilities&amp;version=1.1.0&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">aopk</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                  <span class="n">aopk</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+                                  <span class="n">aopk</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">keywords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                  <span class="n">aopk</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">fees</span><span class="p">,</span>
+                                  <span class="n">aopk</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">abstract</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Agentura</span> <span class="n">ochrany</span> <span class="n">přírody</span> <span class="n">a</span> <span class="n">krajiny</span> <span class="n">České</span> <span class="n">republiky</span>
+<span class="n">Soustava</span> <span class="n">chránených</span> <span class="n">území</span> <span class="n">evropského</span> <span class="n">významu</span> <span class="n">Natura</span> <span class="mi">2000</span>
+<span class="n">Natura</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">Chráněné</span> <span class="n">území</span>
+<span class="n">žádné</span>
+<span class="n">Služba</span> <span class="n">zpřístupňuje</span> <span class="n">geografická</span> <span class="n">data</span> <span class="n">soustavy</span> <span class="n">chránených</span> <span class="n">území</span> <span class="n">evropského</span> <span class="n">významu</span> <span class="n">Natura</span> <span class="mi">2000</span> <span class="n">v</span> <span class="n">České</span> <span class="n">republice</span>
+</pre></div>
+</div>
+<section id="metadata">
+<h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">aopk</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">UzemniOchrana_Natura2000</span><span class="p">:</span><span class="n">Ptačí_oblast</span>
+<span class="n">UzemniOchrana_Natura2000</span><span class="p">:</span><span class="n">Forma_ochrany_EVL_</span><span class="o">-</span><span class="n">_stav_k_24</span><span class="o">.</span><span class="n">_5</span><span class="o">.</span><span class="n">_2013</span>
+<span class="n">UzemniOchrana_Natura2000</span><span class="p">:</span><span class="n">Evropsky_významná_lokalita__EVL_</span>
+<span class="o">..</span>
+</pre></div>
+</div>
+<p>Načteme ještě službu chránených území:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://gis.nature.cz/arcgis/services/UzemniOchrana/ChranUzemi/MapServer/WFSServer&#39;</span>
+<span class="n">chranena_uzemi_wfs</span> <span class="o">=</span> <span class="n">WebFeatureService</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">chranena_uzemi_wfs</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">UzemniOchrana_ChranUzemi</span><span class="p">:</span><span class="n">Maloploplošná_zvláště_chránená_oblast</span>
+<span class="n">UzemniOchrana_ChranUzemi</span><span class="p">:</span><span class="n">Smluvní_chránené_území</span>
+<span class="n">UzemniOchrana_ChranUzemi</span><span class="p">:</span><span class="n">Zákonem_chránené_pásmo_MZCHU</span>
+<span class="n">UzemniOchrana_ChranUzemi</span><span class="p">:</span><span class="n">Velkoplošné_zvláště_chránené_území</span>
+<span class="n">UzemniOchrana_ChranUzemi</span><span class="p">:</span><span class="n">Zonace_velkoplošného_zvláště_chráneného_území</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">identifier</span> <span class="o">=</span> <span class="s1">&#39;UzemniOchrana_ChranUzemi:Zonace_velkoplošného_zvláště_chráněného_území&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chranena_uzemi_wfs</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">identifier</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;owslib.feature.wfs100.ContentMetadata<span class="w"> </span>instance<span class="w"> </span>at<span class="w"> </span>0x7f90a1ec3e60&gt;
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chranena_uzemi_wfs</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBox</span><span class="p">,</span>
+                      <span class="n">chranena_uzemi_wfs</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">identifier</span><span class="p">]</span><span class="o">.</span><span class="n">crsOptions</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span><span class="m">12</span>.13496541407338,<span class="w"> </span><span class="m">48</span>.40534103216736,<span class="w"> </span><span class="m">18</span>.82327290073213,<span class="w"> </span><span class="m">51</span>.27775263472881,<span class="w"> </span>urn:ogc:def:crs:EPSG::5514<span class="o">)</span>
+<span class="o">[</span>urn:ogc:def:crs:EPSG::5514<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="stazeni-dat">
+<h2>Stažení dat<a class="headerlink" href="#stazeni-dat" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">chranena_uzemi_wfs</span><span class="o">.</span><span class="n">getfeature</span><span class="p">([</span><span class="n">identifier</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">owslib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">ResponseWrapper</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f697152df90</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">features</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">wfs</span><span class="p">:</span><span class="n">FeatureCollection</span> <span class="n">xsi</span><span class="p">:</span><span class="n">schemaLocation</span><span class="o">=</span><span class="s1">&#39;https:gis.nature.cz:6443/arcgis/services/UzemniOchrana/Ch...</span>
+</pre></div>
+</div>
+</section>
+<section id="vuv">
+<h2>VUV<a class="headerlink" href="#vuv" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vuv</span> <span class="o">=</span> <span class="n">WebFeatureService</span><span class="p">(</span><span class="s1">&#39;http://ags.vuv.cz/arcgis/services/inspire/priority_datasets/MapServer/WFSServer&#39;</span><span class="p">,</span>
+                        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;2.0.0&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">vuv</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+<span class="n">floodedAreas</span> <span class="o">=</span> <span class="n">vuv</span><span class="o">.</span><span class="n">getfeature</span><span class="p">([</span><span class="s1">&#39;inspire_priority_datasets:FD_CZ_1000_floodedAreas&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">floodedAreas</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;wfs:FeatureCollection xsi:schemaLocation=&#39;...
+</pre></div>
+</div>
+</section>
+<section id="cuzk-wfs">
+<h2>CUZK WFS<a class="headerlink" href="#cuzk-wfs" title="Permalink to this heading">¶</a></h2>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Nutnost autentizace pro kraj.read()</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cuzk</span> <span class="o">=</span> <span class="n">WebFeatureService</span><span class="p">(</span><span class="s1">&#39;http://geoportal.cuzk.cz/wfs_au/wfservice.aspx&#39;</span><span class="p">,</span>
+                         <span class="n">version</span><span class="o">=</span><span class="s2">&quot;2.0.0&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cuzk</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
+gmgml:OKRES
+gmgml:KRAJ
+gmgml:OBLAST
+gmgml:MC
+gmgml:OPU
+gmgml:KU
+gmgml:ZSJ
+gmgml:SO
+gmgml:STAT
+gmgml:ORP
+gmgml:OBEC
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kraj</span> <span class="o">=</span> <span class="n">cuzk</span><span class="o">.</span><span class="n">getfeature</span><span class="p">([</span><span class="s1">&#39;gmgml:KRAJ&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kraj</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;gmgml:FeatureCollection<span class="w"> </span>xsi:schemaLocation<span class="o">=</span><span class="s2">&quot;http://www.intergraph.com/geomedia/gml http://geopor....</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Načítání dat pomocí webových služeb OGC</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csw.html">OGC CSW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wms.html">OGC WMS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OGC WFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wps.html">OGC WPS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="wms.html" title="OGC WMS"
+              >předchozí</a> |
+            <a href="wps.html" title="OGC WPS"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

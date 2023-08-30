@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Proměnné a tisk &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Komentáře" href="comments.html" />
+    <link rel="prev" title="Chyby, jak je číst a interpretovat" href="error.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="error.html" title="Chyby, jak je číst a interpretovat"
+             accesskey="P">předchozí</a> |
+          <a href="comments.html" title="Komentáře"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="promenne-a-tisk">
+<h1>Proměnné a tisk<a class="headerlink" href="#promenne-a-tisk" title="Permalink to this heading">¶</a></h1>
+<p>Výrazy můžeme spojovat a kombinovat například pomocí čárky.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obvod čtverce se stranou 356 cm je&#39;</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">356</span><span class="p">,</span> <span class="s1">&#39;cm&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obsah čtverce se stranou 356 cm je&#39;</span><span class="p">,</span> <span class="mi">356</span> <span class="o">*</span> <span class="mi">356</span><span class="p">,</span> <span class="s1">&#39;cm2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Obvod</span> <span class="n">čtverce</span> <span class="n">se</span> <span class="n">stranou</span> <span class="mi">356</span> <span class="n">cm</span> <span class="n">je</span> <span class="mi">1424</span> <span class="n">cm</span>
+<span class="n">Obsah</span> <span class="n">čtverce</span> <span class="n">se</span> <span class="n">stranou</span> <span class="mi">356</span> <span class="n">cm</span> <span class="n">je</span> <span class="mi">126736</span> <span class="n">cm2</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Místo čárky pro kombinaci výrazů je vhodnější použít
+formátování pomocí funkce <code class="docutils literal notranslate"><span class="pre">format()</span></code>. Výraz výše uvedený
+by mohl vypadat následovně:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obvod čtverce se stranou 356 cm je </span><span class="si">{}</span><span class="s1"> cm&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">356</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>V návodem také můžete narazit na formátovací znak <code class="docutils literal notranslate"><span class="pre">%</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obvod čtverce se stranou 356 cm je </span><span class="si">%d</span><span class="s1"> cm&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">356</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>Můžeme také spočítat obvod menšího čtverce</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obvod čtverce se stranou 112 cm je&#39;</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">112</span><span class="p">,</span> <span class="s1">&#39;cm&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obsah čtverce se stranou 112 cm je&#39;</span><span class="p">,</span> <span class="mi">112</span> <span class="o">*</span> <span class="mi">112</span><span class="p">,</span> <span class="s1">&#39;cm2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Obvod</span> <span class="n">čtverce</span> <span class="n">se</span> <span class="n">stranou</span> <span class="mi">112</span> <span class="n">cm</span> <span class="n">je</span> <span class="mi">448</span> <span class="n">cm</span>
+<span class="n">Obsah</span> <span class="n">čtverce</span> <span class="n">se</span> <span class="n">stranou</span> <span class="mi">112</span> <span class="n">cm</span> <span class="n">je</span> <span class="mi">12544</span> <span class="n">cm2</span>
+</pre></div>
+</div>
+<p>Nyní je vhodná chvíle na zavedení <em>proměnných</em>. Proměnné nám umožňují definovat
+na jednom místě určité hodnoty, se kterými se dále v programu
+pracuje. Můžeme si být jisti, že proměnná se „sama od sebe“ nezmění, neuděláte
+chybu při věčném opisování čísel a textů.</p>
+<p>V následujícím programu zavedeme proměnnou <em>strana</em> a nastavíme jí hodnotu 123.
+Následně provedeme výpočet charakteristik čtverce jak to již umíme:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">strana</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obvod čtverce se stranou&#39;</span><span class="p">,</span> <span class="n">strana</span><span class="p">,</span> <span class="s1">&#39;cm je&#39;</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">strana</span><span class="p">,</span> <span class="s1">&#39;cm&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Obsah čtverce se stranou&#39;</span><span class="p">,</span> <span class="n">strana</span><span class="p">,</span> <span class="s1">&#39;cm je&#39;</span><span class="p">,</span> <span class="n">strana</span> <span class="o">*</span> <span class="n">strana</span><span class="p">,</span> <span class="s1">&#39;cm2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Obvod</span> <span class="n">čtverce</span> <span class="n">se</span> <span class="n">stranou</span> <span class="mi">112</span> <span class="n">cm</span> <span class="n">je</span> <span class="mi">492</span> <span class="n">cm</span>
+<span class="n">Obsah</span> <span class="n">čtverce</span> <span class="n">se</span> <span class="n">stranou</span> <span class="mi">112</span> <span class="n">cm</span> <span class="n">je</span> <span class="mi">15129</span> <span class="n">cm2</span>
+</pre></div>
+</div>
+<p>Proměnná je reprezentována námi zvoleným slovem (tzv. názvem
+proměnné), pod kterým budeme přistupovat k její hodnotě.  Název
+proměnné může být v podstatě libovolný. Nesmí ale začínat na číslici
+či se shodovat s jedním z vyhrazených slov, které jsou používány přímo
+interpretem jazyka Python, např. <code class="docutils literal notranslate"><span class="pre">print,</span> <span class="pre">import,</span> <span class="pre">if</span></code> a podobně.</p>
+<p>Hodnotu proměnné <em>přiřadíme</em> znakem <code class="docutils literal notranslate"><span class="pre">=</span></code> (rovná se).</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Ve většině programovacích jazyků se znak <em>rovná se</em> <code class="docutils literal notranslate"><span class="pre">=</span></code>
+používá pro <em>přirazení</em> proměnné a nikoliv k <em>porovnávání</em>
+výrazů. Pro porovnávání se používají znaky <code class="docutils literal notranslate"><span class="pre">==</span></code> - více o
+porovnávání se dozvíme v další části.</p>
+</div>
+<p>To nás vede k jedné ze základních programátorských zásad: „neopakuj
+se“ (anglicky <em>Don’t repeat yourself, DRY</em>). Pokud se v programu
+opakuje stejná hodnota, stejný výraz, nebo stejný kus kódu použijeme
+správně proměnou či funkci. Často se totiž stává, že je program
+potřeba změnit - buď je v něm chyba, nebo se změní zadání. A potom je
+mnohem jednodušší změnu udělat jen na jednom místě.</p>
+<p>Proměnné si můžete vytvořit podle potřeby <em>kdekoliv v kódu, kde to zrovna
+potřebujete</em>. Bývá ale dobrým zvykem, proměnné <em>deklarovat</em> na začátku funkce
+nebo na začátku programu.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">jednotky</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Objem válce s poloměrem&#39;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">jednotky</span><span class="p">,</span> <span class="s1">&#39;a výškou&#39;</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">jednotky</span><span class="p">,</span>
+      <span class="s1">&#39;je&#39;</span><span class="p">,</span> <span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="n">jednotky</span><span class="o">+</span><span class="s1">&#39;3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="error.html" title="Chyby, jak je číst a interpretovat"
+              >předchozí</a> |
+            <a href="comments.html" title="Komentáře"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

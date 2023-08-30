@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Rasterová algebra &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="rasterova-algebra">
+<span id="ndvi-algebra"></span><h1>Rasterová algebra<a class="headerlink" href="#rasterova-algebra" title="Permalink to this heading">¶</a></h1>
+<p>Nástroj srovnatelný s topologickými překryvnými operacemi vektorových dat.
+Umožňuje kombinovat rastrové vrstvy pomocí různých matematických operací.
+Tyto matematické operace se vykonávají buď na jedné nebo více
+vrstvách a jejich výstupem je vrstva nová. Rastrová algebra se často používá pro
+prostorové modelování a analýzu.</p>
+<p><em>Operátory</em> dělíme na matematické, statistické, relační a logické
+operátory (+, -, *, /, &gt;, &lt;, &gt;=, &lt;=, &lt;&gt;, mod, div, and, or, not,
+…).</p>
+<p><em>Funkce</em> se dělíme na:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Lokální</dt><dd><p>na individuální buňce, nová hodnota vzniká z jedné rastrové buňky jedné nebo více vrstev.</p>
+</dd>
+<dt>Fokální</dt><dd><p>v definovaném okolí, nová hodnota vzniká v rámci definovaného okolí buňky
+(např. jako výsledek operace nad „oknem“ 3x3 pixely)</p>
+</dd>
+<dt>Zonální</dt><dd><p>na specifické oblasti, nová hodnota vzniká ze zóny definované v jiné vrstvě.</p>
+</dd>
+<dt>Globální</dt><dd><p>používají se všechny buňky informační vrstvy (např. analýzy povrchů).</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>RasterIO využívá pro uložení datový typ <a class="reference external" href="http://www.numpy.org/">NumPy</a>, což nám umožňuje s těmito datovými
+strukturami pracovat standardním způsobem a využívat i pokročilé
+nástroje pro analýzu obrazu, jako je <a class="reference external" href="http://scikit-image.org/">Sciktit Image</a>, <a class="reference external" href="https://matplotlib.org/users/image_tutorial.html">Matplot lib</a>, <a class="reference external" href="https://docs.opencv.org/3.0-last-rst/doc/py_tutorials/py_tutorials.html">OpenCV</a>
+a další.</p>
+<p>V našem příkladu si ukážeme jednoduchou analýzu - <strong>výpočet indexu
+NDVI ze satelitních dat</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Normalizovaný vegetační index</a> je poměr mezi viditelným
+červeným kanálem a blízkým infračerveným kanálem satelitních dat.</p>
+<div class="math notranslate nohighlight">
+\[NDVI = (NIR - VIS) / (NIR  + VIS)\]</div>
+</div>
+<p>Rastr z předchozího příkladu obsahuje barevné kanály (první je černený
+kanál, druhý infračervený). Na základě těchto dat vytvoříme nový
+soubor s vypočteným NDVI.</p>
+<p>Neprve vytvoříme novou matici pro výsledné hodnoty, následně do tohoto
+pole uložíme výsledek výpočtu pro každý pixel. Pracujeme v prostředí
+NumPy, které práci s poli významně usnadňuje.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;outputs/ndvi.tif&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+   <span class="n">dst</span><span class="o">.</span><span class="n">write_band</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ndvi</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">rasterio</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">0.94444442</span><span class="p">,</span> <span class="mf">0.97435898</span>
+</pre></div>
+</div>
+<p>Výsledek uložíme do nově vytvořeného souboru. Data budou zkomprimována
+pomocí LWZ komprese a uložena v číselném formátu <cite>float64</cite> (rastrový
+soubor obsahuje čísla s plovoucí desetinnou čárkou a záporné
+hodnoty). Výsledný soubor ve formátu GeoTIFF bude mít pouze jeden
+kanál.</p>
+<figure class="align-center" id="id1">
+<img alt="../../_images/ndvi.png" src="../../_images/ndvi.png" />
+<figcaption>
+<p><span class="caption-text">Výsledný soubor s NDVI indexem.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

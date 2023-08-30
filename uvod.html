@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Úvod &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gismentors.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="search.html" />
+    <link rel="next" title="Úvod do jazyka Python" href="python/index.html" />
+    <link rel="prev" title="Obsah" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Obsah"
+             accesskey="P">předchozí</a> |
+          <a href="python/index.html" title="Úvod do jazyka Python"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="uvod">
+<h1>Úvod<a class="headerlink" href="#uvod" title="Permalink to this heading">¶</a></h1>
+<p><strong>Python</strong> je populární programovací jazyk, který má své četné příznivce stejně
+jako zarputilé odpůrce. Oproti jiným běžně rozšířeným jazykům je jeho syntaxe
+zvláštní mimo jiné v tom, že nepoužívá závorky - bloky kódu jsou odděleny
+pouhým <em>odsazením</em> zdrojového textu.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p><strong>Příklad funkce main() v jazyku Python</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>def<span class="w"> </span>main<span class="o">()</span>:
+<span class="w">    </span>print<span class="o">(</span><span class="s2">&quot;ahoj&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<p>Ve světe geoinformačních technologií je Python velice oblíbený (a
+můžeme říci, že čím dál oblíbenější). Stojí rozkročen mezi jednoduchým
+skriptováním v <a class="reference external" href="http://cs.wikipedia.org/wiki/Shellový skript">shellu</a> a pokročilým
+programováním na takřka systémové úrovni v <a class="reference external" href="http://cs.wikipedia.org/wiki/C (programovací jazyk)">jazyce C</a>. Má v sobě něco i z přístupů jazyka
+<a class="reference external" href="http://cs.wikipedia.org/wiki/Java (programovací jazyk)">Java</a>. Většina existujících
+knihoven a programů má pro tento jazyk svoje rozhraní, jako příklad
+můžeme uvést <a class="reference external" href="http://gdal.org/python/">GDAL Python API</a>.</p>
+<p>S Pythonem lze ve světě GIS dojít daleko, níže uvádíme malý přehled
+vybraných nástrojů a jejich napojení na jazyk Python:</p>
+<dl class="simple">
+<dt><strong>Desktop</strong></dt><dd><ul class="simple">
+<li><p><em>GRASS GIS</em>: <a class="reference external" href="http://grass.osgeo.org">http://grass.osgeo.org</a> (více na školení <a class="reference external" href="http://training.gismentors.eu/grass-gis-pokrocily/skripty/index.html">GRASS GIS pro pokročilé</a>)</p></li>
+<li><p><em>QGIS</em>: <a class="reference external" href="http://qgis.org">http://qgis.org</a> (<a class="reference external" href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/">pyqgis</a>)</p></li>
+<li><p><em>ArcGIS</em>: <a class="reference external" href="http://www.arcgis.com">http://www.arcgis.com</a> (<a class="reference external" href="http://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm">arcpy</a>)</p></li>
+</ul>
+</dd>
+<dt><strong>Web</strong></dt><dd><ul class="simple">
+<li><p><em>MapServer</em>: <a class="reference external" href="http://mapserver.org">http://mapserver.org</a></p></li>
+<li><p><em>GeoServer</em>: <a class="reference external" href="http://geoserver.org">http://geoserver.org</a></p></li>
+<li><p><em>TileCache</em>: <a class="reference external" href="http://tilecache.org">http://tilecache.org</a></p></li>
+<li><p><em>PyWPS</em>: <a class="reference external" href="http://pywps.org">http://pywps.org</a></p></li>
+<li><p><em>GeoDjango</em>: <a class="reference external" href="http://geodjango.org">http://geodjango.org</a></p></li>
+</ul>
+</dd>
+<dt><strong>Knihovny a nástroje</strong></dt><dd><ul class="simple">
+<li><p><em>GDAL</em>: <a class="reference external" href="http://gdal.org">http://gdal.org</a> (<a class="reference external" href="http://gdal.org/python/">Python API</a>)</p></li>
+<li><p><em>Fiona</em>: <a class="reference external" href="https://github.com/Toblerity/Fiona">https://github.com/Toblerity/Fiona</a></p></li>
+<li><p><em>Shapely</em>: <a class="reference external" href="https://github.com/Toblerity/Shapely">https://github.com/Toblerity/Shapely</a></p></li>
+<li><p><em>Rasterio</em>: <a class="reference external" href="https://github.com/mapbox/rasterio">https://github.com/mapbox/rasterio</a></p></li>
+<li><p><em>PyProj</em>: <a class="reference external" href="https://github.com/jswhit/pyproj">https://github.com/jswhit/pyproj</a></p></li>
+<li><p><em>R (rpy2)</em>: <a class="reference external" href="https://rpy2.bitbucket.io">https://rpy2.bitbucket.io</a></p></li>
+<li><p><em>GeoPandas</em>: <a class="reference external" href="http://geopandas.org">http://geopandas.org</a></p></li>
+</ul>
+</dd>
+<dt><strong>Databáze</strong></dt><dd><ul class="simple">
+<li><p><em>PostGIS</em>: <a class="reference external" href="http://postgis.net">http://postgis.net</a> (<a class="reference external" href="https://pypi.org/project/postgis/">https://pypi.org/project/postgis/</a>)</p></li>
+<li><p><em>SpatiaLite</em>: <a class="reference external" href="https://www.gaia-gis.it/fossil/libspatialite/index">https://www.gaia-gis.it/fossil/libspatialite/index</a> (<a class="reference external" href="https://pypi.org/project/spatialite/">https://pypi.org/project/spatialite/</a>)</p></li>
+<li><p><em>GeoAlchemy</em>: <a class="reference external" href="http://geoalchemy.org">http://geoalchemy.org</a></p></li>
+</ul>
+</dd>
+<dt><strong>Specializované nástroje</strong></dt><dd><ul class="simple">
+<li><p><em>TopoJSON</em>: <a class="reference external" href="https://github.com/calvinmetcalf/topojson.py">https://github.com/calvinmetcalf/topojson.py</a></p></li>
+<li><p><em>RTree index</em>: <a class="reference external" href="https://github.com/Toblerity/rtree">https://github.com/Toblerity/rtree</a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Seznam samozřejmě není úplný či konečný.</p>
+<p>V tomto kurzu se zaměříme na úvod do práce s vektorovými a rastrovými
+GIS daty pomocí knihoven <a class="reference internal" href="vektorova_data/fiona/index.html"><span class="doc">Fiona/Shapely</span></a> a <a class="reference internal" href="rastrova_data/rasterio/index.html"><span class="doc">Rasterio</span></a>. Nevyhneme se ani knihovně <a class="reference internal" href="rastrova_data/gdal/index.html"><span class="doc">GDAL</span></a> / <a class="reference internal" href="vektorova_data/ogr/index.html"><span class="doc">OGR</span></a>. Vyzkoušíme si také práci s knihovnou pro
+webové služby OGC <a class="reference internal" href="owslib/index.html"><span class="doc">OWSLib</span></a>. Okrajově se dotkneme
+práce se souřadnicovými systémy pomocí knihovny <a class="reference internal" href="pyproj/index.html"><span class="doc">pyproj</span></a>.</p>
+<p>Cílem kurzu není přirozeně kompletní pokrytí problematiky GIS a jazyka
+Python, nýbrž poskytnutí přehledu o nejčastěji používaných základních
+nástrojích, nad kterými lze stavět další aplikace. Tyto nástroje jsou
+ve své většině používány i dalšími programy a knihovnami a proto je
+dobré o nich vědět a chápat jejich principy.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Obsah"
+              >předchozí</a> |
+            <a href="python/index.html" title="Úvod do jazyka Python"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

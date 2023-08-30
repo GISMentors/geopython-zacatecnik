@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Operátory a datové typy &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Podmínky" href="conditions.html" />
+    <link rel="prev" title="Načítání vstupu" href="input.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="input.html" title="Načítání vstupu"
+             accesskey="P">předchozí</a> |
+          <a href="conditions.html" title="Podmínky"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="operatory-a-datove-typy">
+<h1>Operátory a datové typy<a class="headerlink" href="#operatory-a-datove-typy" title="Permalink to this heading">¶</a></h1>
+<p>(Nejen aritmetické) operátory slouží k operacím nad hodnotami. Funkce
+jednotlivých operatorů je samovysvětlující, některé jsou trochu více nezvyklé,
+ale jasné:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Symbol</strong></p></th>
+<th class="head"><p><strong>Příklad</strong></p></th>
+<th class="head"><p><strong>Popis</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>+, -, *, /</p></td>
+<td><p>1 + 1</p></td>
+<td><p>Základní aritmetika</p></td>
+</tr>
+<tr class="row-odd"><td><p>-</p></td>
+<td><p>-5</p></td>
+<td><p>Negace</p></td>
+</tr>
+<tr class="row-even"><td><p>/; %</p></td>
+<td><p>7 / 2; 7 % 2</p></td>
+<td><p>Dělení se zbytkem (celočíselné dělení); zbytek</p></td>
+</tr>
+<tr class="row-odd"><td><p>**</p></td>
+<td><p>3**2</p></td>
+<td><p>Umocnění (3 na druhou)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Příklady toho jak fungují operátory nad různými datovými typy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="go">2</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;Ahoj &#39;</span> <span class="o">+</span> <span class="s1">&#39;světe!&#39;</span>
+<span class="go">&#39;Ahoj světe!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="go">0</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;Ahoj &#39;</span> <span class="o">-</span> <span class="s1">&#39;světe!&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">unsupported operand type(s) for -: &#39;str&#39; and &#39;str&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Už nikdy nebudu psát kód 2x</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">Už nikdy nebudu psát kód 2x</span>
+<span class="go">Už nikdy nebudu psát kód 2x</span>
+<span class="go">Už nikdy nebudu psát kód 2x</span>
+<span class="go">Už nikdy nebudu psát kód 2x</span>
+<span class="go">...</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">7</span><span class="o">%</span><span class="mi">2</span>
+<span class="go">1</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">9</span><span class="o">**</span><span class="mi">9</span>
+<span class="go">387420489</span>
+</pre></div>
+</div>
+<p>Další důležité operátory jsou operátory porovnávací</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Příklad</p></th>
+<th class="head"><p>Popis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>==, !=</p></td>
+<td><p>1 == 1, 1 != 1</p></td>
+<td><p>Je rovno, není rovno</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;, &gt;</p></td>
+<td><p>3 &lt; 5, 3 &gt; 5</p></td>
+<td><p>Větší než, menší než</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;=, &gt;=</p></td>
+<td><p>3 &lt;= 5, 3 &gt;= 5</p></td>
+<td><p>Větší nebo rovno, menší nebo rovno</p></td>
+</tr>
+</tbody>
+</table>
+<p>Výsledkem porovnávání je booleanovská hodnota <code class="docutils literal notranslate"><span class="pre">True</span></code> nebo <code class="docutils literal notranslate"><span class="pre">False</span></code>
+(pravda/nepravda).</p>
+<p>Příklady logických operátorů:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">1</span>
+<span class="go">False</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span>   <span class="c1"># POZOR - přirazení - a teď obsahuje hodnotu 5</span>
+<span class="go">print(a, b)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">!=</span> <span class="n">b</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<section id="datove-typy">
+<h2>Datové typy<a class="headerlink" href="#datove-typy" title="Permalink to this heading">¶</a></h2>
+<p>Počítače potřebují k uložní čísel a řetězců určité množstí paměti. Proto,
+abychom mohli V programovacích jazycích a databázích proměnné a data efektivně
+ukládat, jsou zavedeny různé <em>datové typy</em>, které zabírají optimální množství
+paměti v počítači.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Nejméně paměti zabere booleanovská hodnota Pravda/Nepravda nebo-li <code class="docutils literal notranslate"><span class="pre">True</span></code> a
+<code class="docutils literal notranslate"><span class="pre">False</span></code></p></li>
+<li><p>Dalším datovým typem je <em>celé číslo</em> <cite>integer</cite></p></li>
+<li><p>Dále <em>číslo s plovoucí desetinnou čárkou</em> <cite>float</cite></p></li>
+<li><p><em>Textový řetězec</em> nebo-li <cite>string</cite> zabírá ještě více místa</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Datových typů je více a v různých programovacích jazycích a databázích
+jsou různé. Formát DBF je omezen na číslo, číslo desetinné a text,
+databáze PostgreSQL <a class="reference external" href="http://www.postgresql.org/docs/9.4/static/datatype.html">rozlišuje celou řadu datových typů</a>.</p>
+</div>
+<p>Python nám dává nástroje (funkce) pro převod mezi datovými typy, některé už jsme
+viděli <code class="docutils literal notranslate"><span class="pre">float(),</span> <span class="pre">int()</span></code> a <code class="docutils literal notranslate"><span class="pre">int()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="mf">3.3</span><span class="p">)</span> <span class="c1"># nezaokrouhluje - vždy odstraní hodnotu za desetinnou tečkou</span>
+<span class="go">3</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;pí je 3.14&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ValueError</span>: <span class="n">could not convert string to float: pi je 3.14</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;3.14&#39;</span><span class="p">)</span>
+<span class="go">3.14</span>
+</pre></div>
+</div>
+<p>S dalšími více komplexními datovými typy se budeme seznamovat postupně dále.</p>
+<p>Jaký má proměnná datový typ zjistíte rychle pomocí funkce <code class="docutils literal notranslate"><span class="pre">type()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&lt;class &#39;int&#39;&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;elce pelce&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">&lt;class &#39;str&#39;&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="poznamka-o-textovych-retezcich">
+<h2>Poznámka o textových řetězcích<a class="headerlink" href="#poznamka-o-textovych-retezcich" title="Permalink to this heading">¶</a></h2>
+<p>Textové řetězce musí být uzavřeny do uvozovek - ať už jednoduchých <code class="docutils literal notranslate"><span class="pre">'</span></code> nebo
+dvojitých <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> (některé jazyky odlišují význam obou uvozovek, ale v Pythonu mezi
+nimi není rozdíl).</p>
+<p>Pokud chcete do textového řetězce vložit nějaký speciální znak, např. <em>nový
+řádek</em>, musíte použít tzv. <em>escape sekvenci</em> - předřadit znak zpětného lomnítka
+před vlastní znak. Nejčastěji se používá znak pro nový řádek <code class="docutils literal notranslate"><span class="pre">\n</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jeden řádek</span><span class="se">\n</span><span class="s2">druhý řádek&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pokud chcete napsat tabulátor, použijete <code class="docutils literal notranslate"><span class="pre">\t</span></code> a pokud chcete napsat zpětné
+lomnítko, použijete podle stejné analogie <code class="docutils literal notranslate"><span class="pre">\\</span></code>.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Úvod do jazyka Python</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#virtualenv">Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prvni-program">První program</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#zaklady-jazyka-python">Základy jazyka Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="input.html" title="Načítání vstupu"
+              >předchozí</a> |
+            <a href="conditions.html" title="Podmínky"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

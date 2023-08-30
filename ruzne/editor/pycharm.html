@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Editor PyCharm &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="editor-pycharm">
+<h1>Editor PyCharm<a class="headerlink" href="#editor-pycharm" title="Permalink to this heading">¶</a></h1>
+<p>Pro uživatele MS Windows (nejen) se jako vhodný jeví nástroj <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a>.  V komunitní verzi je k
+dispozici zdarma. Jeho instalace je jednoduchá. Komunitní verze ke
+stažení <a class="reference external" href="https://www.jetbrains.com/pycharm/download/download-thanks.html?code=PCC">zde</a>.</p>
+<p>Po spuštění editoru je možné vytvořit nový projekt.</p>
+<figure class="align-center">
+<img alt="../../_images/pycharm-project.png" class="middle" src="../../_images/pycharm-project.png" />
+</figure>
+<p>Při jeho konfiguraci je možné nastavit interpret jazyka.</p>
+<figure class="align-center">
+<img alt="../../_images/pycharm-interpret.png" class="middle" src="../../_images/pycharm-interpret.png" />
+</figure>
+<p>V případě využití OSGeo4W je vhodný BAT soubor
+<code class="file docutils literal notranslate"><span class="pre">C:\OSGeo4W\bin\python-qgis-ltr.bat</span></code> (anebo
+<code class="file docutils literal notranslate"><span class="pre">C:\OSGeo4W\bin\python-qgis.bat</span></code> na základě verze
+QGISu, kterou máte nainstalovánu). Před samotným spuštěním
+<code class="file docutils literal notranslate"><span class="pre">python.exe</span></code> nastaví korektní cesty ke knihovnám.</p>
+<p>V nově vytvořeném projektu můžeme kliknout pravým tlačítkem na název projektu a
+přidat nový Python soubor.</p>
+<figure class="align-center">
+<img alt="../../_images/pycharm-file.png" class="middle" src="../../_images/pycharm-file.png" />
+</figure>
+<p>Soubor můžeme naplnit importem knihoven, které budeme používat,
+tak abychom ověřili, že máme konfiguraci v pořádku.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">import</span> <span class="nn">shapely</span>
+<span class="kn">import</span> <span class="nn">fiona</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+<span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
+</pre></div>
+</div>
+<p>Spuštění kódu realizujeme přes menu <span class="menuselection">Run ‣ Run</span>.</p>
+<figure class="align-center">
+<img alt="../../_images/pycharm-run-1.png" class="middle" src="../../_images/pycharm-run-1.png" />
+</figure>
+<p>Vytvoříme novou konfiguraci.</p>
+<figure class="align-center">
+<img alt="../../_images/pycharm-run-2.png" class="middle" src="../../_images/pycharm-run-2.png" />
+</figure>
+<p>Zejména vybereme skript, který chceme v této konfiguraci spouštět.</p>
+<figure class="align-center">
+<img alt="../../_images/pycharm-run-3.png" class="middle" src="../../_images/pycharm-run-3.png" />
+</figure>
+<p>A pak již můžeme pomocí tlačítka Run skript spustit.
+Další spuštění je pak již jednodušší, protože konfigurace je již k dispozici.</p>
+<p>Pokud vše proběhne bez problémů uvidíme výstup s exit code 0.</p>
+<figure class="align-center">
+<img alt="../../_images/pycharm-run-4.png" class="middle" src="../../_images/pycharm-run-4.png" />
+</figure>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>OGC WPS &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Transformace souřadnic" href="../pyproj/index.html" />
+    <link rel="prev" title="OGC WFS" href="wfs.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="wfs.html" title="OGC WFS"
+             accesskey="P">předchozí</a> |
+          <a href="../pyproj/index.html" title="Transformace souřadnic"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="ogc-wps">
+<span id="owslibwps"></span><h1>OGC WPS<a class="headerlink" href="#ogc-wps" title="Permalink to this heading">¶</a></h1>
+<p id="index-0">Služba <a class="reference external" href="http://opengeospatial.org/standards/wps">OGC Web Processing Service</a> umožňuje spuštění
+výpočetního nástoje na vzdáleném serveru.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Více informací na <a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/wps.html">školení Úvod do GIS</a>.</p>
+</div>
+<p>Přípojíme se k výpočetní službě a vypíšeme její typ:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="kn">import</span> <span class="n">WebProcessingService</span><span class="p">,</span> <span class="n">monitorExecution</span>
+
+<span class="n">wps</span> <span class="o">=</span> <span class="n">WebProcessingService</span><span class="p">(</span><span class="s1">&#39;https://rain1.fsv.cvut.cz/services/wps&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Vypíšeme seznam výpočetních nástrojů, které služba poskytuje:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">wps</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Vybeme nástroj s identifikátorem:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>Vyplníme seznam vstupních parametrů nástroje:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="kn">import</span> <span class="n">ComplexDataInput</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">ComplexDataInput</span><span class="p">(</span><span class="s1">&#39;http://rain.fsv.cvut.cz/geodata/test.gml&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;keycolumn&quot;</span><span class="p">,</span> <span class="s2">&quot;HLGP_ID&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;return_period&quot;</span><span class="p">,</span> <span class="s2">&quot;N2&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;return_period&quot;</span><span class="p">,</span> <span class="s2">&quot;N5&quot;</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>Výpočet spustíme:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>Výsledek (v našem případě CSV soubor) uložíme na disk:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">)</span>  
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Načítání dat pomocí webových služeb OGC</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="csw.html">OGC CSW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wms.html">OGC WMS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wfs.html">OGC WFS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OGC WPS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="wfs.html" title="OGC WFS"
+              >předchozí</a> |
+            <a href="../pyproj/index.html" title="Transformace souřadnic"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

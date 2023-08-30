@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Příklad vytvoření obalové zóny &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Příklad vytvoření nové vrstvy" href="zapis.html" />
+    <link rel="prev" title="Knihovna OGR (GDAL)" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="Knihovna OGR (GDAL)"
+             accesskey="P">předchozí</a> |
+          <a href="zapis.html" title="Příklad vytvoření nové vrstvy"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="priklad-vytvoreni-obalove-zony">
+<h1>Příklad vytvoření obalové zóny<a class="headerlink" href="#priklad-vytvoreni-obalove-zony" title="Permalink to this heading">¶</a></h1>
+<p>Na tomto příkladu si ukážeme, jak otevřít vektorová data ve formátu
+Esri Shapefile, načíst datovou vrstvu, zobrazit atributy geoprvků a
+vytvořit obalovou zónu nad načtenými geoprvky.</p>
+<p>Nejprve otevření souboru s daty:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;data/chko.shp&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span>
+<span class="go">&lt;osgeo.ogr.DataSource; proxy of &lt;Swig Object of type &#39;OGRDataSourceShadow *&#39; at 0x7f98d8152a50&gt; &gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">GetLayerCount</span><span class="p">()</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p>Práce s vrstvou, její otevření:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
+<span class="go">&lt;osgeo.ogr.Layer; proxy of &lt;Swig Object of type &#39;OGRLayerShadow *&#39; at 0x7f98d80fa870&gt; &gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">()</span>
+<span class="go">5626</span>
+</pre></div>
+</div>
+<p>Schéma vrstvy - definice typu geometrie a jednotlivých atributových polí:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">GetGeomType</span><span class="p">()</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">GetGeomType</span><span class="p">()</span> <span class="o">==</span> <span class="n">ogr</span><span class="o">.</span><span class="n">wkbPolygon</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">schema</span>
+<span class="go">[&lt;osgeo.ogr.FieldDefn; proxy of &lt;Swig Object of type &#39;OGRFieldDefnShadow *&#39; at 0x7f98d80fa9f0&gt; &gt;,</span>
+<span class="go">&lt;osgeo.ogr.FieldDefn; proxy of &lt;Swig Object of type &#39;OGRFieldDefnShadow *&#39; at 0x7f98d80fa8...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">schema</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;NAZEV&#39;</span>
+</pre></div>
+</div>
+<p>Vypsání názvu geoprvku (atribut <code class="docutils literal notranslate"><span class="pre">NAZEV</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">features_nr</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">features_nr</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">f</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetNextFeature</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">))</span>
+<span class="go">Český ráj</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>Vypsání vlastnosti geometrické složky popisu geoprvků (minimálního
+ohraničujícího obdélíku a centroidu polygonu, vytvoření obálky):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetFeature</span><span class="p">(</span><span class="mi">54</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">))</span>
+<span class="go">Český ráj</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">GetGeometryRef</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">geom</span><span class="o">.</span><span class="n">GetEnvelope</span><span class="p">()</span>
+<span class="go">(-683329.1875, -681265.625, -993228.75, -991528.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">Centroid</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">GetPoint</span><span class="p">()</span>
+<span class="go">(-682407.4126500859, -992433.3498782327, 0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">buff</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">geom</span><span class="o">.</span><span class="n">Intersects</span><span class="p">(</span><span class="n">buff</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s vektorovými daty</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fiona/index.html">Knihovna Fiona/Shapely</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Knihovna OGR (GDAL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geopandas/index.html">GeoPandas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="Knihovna OGR (GDAL)"
+              >předchozí</a> |
+            <a href="zapis.html" title="Příklad vytvoření nové vrstvy"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
