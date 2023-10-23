@@ -45,7 +45,7 @@
 <h1>Komplexní příklad přístupu k datům RÚIAN<a class="headerlink" href="#komplexni-priklad-pristupu-k-datum-ruian" title="Permalink to this heading">¶</a></h1>
 <p>Tato kapitola prezentuje příklad použití knihovny GDAL pro čtení
 online dat z <em>Registru územní identifikace, adres a nemovitostí</em>
-(<a class="reference external" href="http://ruian.cz">RÚIAN</a>) dostupných v rámci <a class="reference external" href="http://vdp.cuzk.cz">Veřejného dálkové
+(<a class="reference external" href="http://ruian.cz">RÚIAN</a>) dostupných v rámci <a class="reference external" href="https://vdp.cuzk.cz">Veřejného dálkové
 přístupu</a>.</p>
 <p>Pro zadanou obec (řádek <span class="lcode">8</span>) skript vypíše informace o
 parcelách (parcelní číslo, výměru uloženou v atributech a vypočtenou z
@@ -64,7 +64,7 @@ aktuálního adresáře (řádek <span class="lcode">27</span>).</p>
 <span class="linenos">10</span><span class="c1"># posledni datum v mesici (k tomuto dni jsou publikovana stavova data)</span>
 <span class="linenos">11</span><span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
 <span class="linenos">12</span><span class="k">if</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
-<span class="linenos">13</span>	<span class="n">day</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">31</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="n">day</span> <span class="o">=</span> <span class="n">today</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">31</span><span class="p">)</span>
 <span class="linenos">14</span><span class="n">day</span> <span class="o">=</span> <span class="p">(</span><span class="n">today</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="linenos">15</span><span class="n">datum</span> <span class="o">=</span> <span class="n">day</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="linenos">16</span>
@@ -99,49 +99,49 @@ aktuálního adresáře (řádek <span class="lcode">27</span>).</p>
 <span class="linenos">45</span><span class="c1"># sekvencne cist parcely</span>
 <span class="linenos">46</span><span class="n">layer</span><span class="o">.</span><span class="n">ResetReading</span><span class="p">()</span>
 <span class="linenos">47</span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="linenos">48</span>	<span class="n">feat</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">GetNextFeature</span><span class="p">()</span>
-<span class="linenos">49</span>	<span class="k">if</span> <span class="n">feat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos">50</span>		<span class="k">break</span>
+<span class="linenos">48</span>    <span class="n">feat</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">GetNextFeature</span><span class="p">()</span>
+<span class="linenos">49</span>    <span class="k">if</span> <span class="n">feat</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">50</span>        <span class="k">break</span>
 <span class="linenos">51</span>		
-<span class="linenos">52</span>	<span class="c1"># nacist zajmove atributy</span>
-<span class="linenos">53</span>	<span class="n">kc</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;KmenoveCislo&#39;</span><span class="p">)</span>
-<span class="linenos">54</span>	<span class="n">pod</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;PododdeleniCisla&#39;</span><span class="p">)</span>
-<span class="linenos">55</span>	<span class="n">vym</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;VymeraParcely&#39;</span><span class="p">)</span>
+<span class="linenos">52</span>    <span class="c1"># nacist zajmove atributy</span>
+<span class="linenos">53</span>    <span class="n">kc</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;KmenoveCislo&#39;</span><span class="p">)</span>
+<span class="linenos">54</span>    <span class="n">pod</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;PododdeleniCisla&#39;</span><span class="p">)</span>
+<span class="linenos">55</span>    <span class="n">vym</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;VymeraParcely&#39;</span><span class="p">)</span>
 <span class="linenos">56</span>	
-<span class="linenos">57</span>	<span class="c1"># prvek ma vice geometrickych reprezentaci, zajima nas hranice parcel</span>
-<span class="linenos">58</span>	<span class="n">geom</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">GetGeomFieldRef</span><span class="p">(</span><span class="s1">&#39;OriginalniHranice&#39;</span><span class="p">)</span>
+<span class="linenos">57</span>    <span class="c1"># prvek ma vice geometrickych reprezentaci, zajima nas hranice parcel</span>
+<span class="linenos">58</span>    <span class="n">geom</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">GetGeomFieldRef</span><span class="p">(</span><span class="s1">&#39;OriginalniHranice&#39;</span><span class="p">)</span>
 <span class="linenos">59</span>	
-<span class="linenos">60</span>	<span class="c1"># na zakladne geometrie spocitat vymeru</span>
-<span class="linenos">61</span>	<span class="n">vym2</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">GetArea</span><span class="p">()</span>
+<span class="linenos">60</span>    <span class="c1"># na zakladne geometrie spocitat vymeru</span>
+<span class="linenos">61</span>    <span class="n">vym2</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">GetArea</span><span class="p">()</span>
 <span class="linenos">62</span>	
-<span class="linenos">63</span>	<span class="c1"># vypocitat rozdil mezi vymerou z atributove tabulky a geometrie</span>
-<span class="linenos">64</span>	<span class="n">dif</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vym</span> <span class="o">-</span> <span class="n">vym2</span><span class="p">)</span>
-<span class="linenos">65</span>	
-<span class="linenos">66</span>	<span class="c1"># oznaceni parcely</span>
-<span class="linenos">67</span>	<span class="n">pc</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">kc</span><span class="p">)</span>
-<span class="linenos">68</span>	<span class="k">if</span> <span class="n">pod</span><span class="p">:</span>
-<span class="linenos">69</span>		<span class="n">pc</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pod</span><span class="p">)</span>
+<span class="linenos">63</span>    <span class="c1"># vypocitat rozdil mezi vymerou z atributove tabulky a geometrie</span>
+<span class="linenos">64</span>    <span class="n">dif</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vym</span> <span class="o">-</span> <span class="n">vym2</span><span class="p">)</span>
+<span class="linenos">65</span>
+<span class="linenos">66</span>    <span class="c1"># oznaceni parcely</span>
+<span class="linenos">67</span>    <span class="n">pc</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">kc</span><span class="p">)</span>
+<span class="linenos">68</span>    <span class="k">if</span> <span class="n">pod</span><span class="p">:</span>
+<span class="linenos">69</span>        <span class="n">pc</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pod</span><span class="p">)</span>
 <span class="linenos">70</span>	
-<span class="linenos">71</span>	<span class="c1"># vytisknout report pro kazdou parcelu</span>
-<span class="linenos">72</span>	<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">: </span><span class="si">{1}</span><span class="s1"> </span><span class="si">{2:.1f}</span><span class="s1"> </span><span class="si">{3:.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="n">vym</span><span class="p">,</span> <span class="n">vym2</span><span class="p">,</span> <span class="n">dif</span><span class="p">))</span>
+<span class="linenos">71</span>    <span class="c1"># vytisknout report pro kazdou parcelu</span>
+<span class="linenos">72</span>    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">: </span><span class="si">{1}</span><span class="s1"> </span><span class="si">{2:.1f}</span><span class="s1"> </span><span class="si">{3:.1f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="n">vym</span><span class="p">,</span> <span class="n">vym2</span><span class="p">,</span> <span class="n">dif</span><span class="p">))</span>
 <span class="linenos">73</span>	
-<span class="linenos">74</span>	<span class="k">if</span> <span class="n">dif</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
-<span class="linenos">75</span>		<span class="k">continue</span>
+<span class="linenos">74</span>    <span class="k">if</span> <span class="n">dif</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+<span class="linenos">75</span>        <span class="k">continue</span>
 <span class="linenos">76</span>	
-<span class="linenos">77</span>	<span class="c1"># parcely, u kterych je rozdil vymer vetsi nez 100m2, ulozime</span>
-<span class="linenos">78</span>	<span class="c1"># do vystupniho shapefile</span>
-<span class="linenos">79</span>	<span class="n">ofeature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">olayer</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">())</span>
-<span class="linenos">80</span>	<span class="n">ofeature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;cislo&quot;</span><span class="p">,</span> <span class="n">pc</span><span class="p">)</span>
-<span class="linenos">81</span>	<span class="n">ofeature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;vymera&quot;</span><span class="p">,</span> <span class="n">vym</span><span class="p">)</span>
-<span class="linenos">82</span>	<span class="n">ofeature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;rozdil&quot;</span><span class="p">,</span> <span class="n">dif</span><span class="p">)</span>
-<span class="linenos">83</span>	<span class="n">ofeature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
-<span class="linenos">84</span>	<span class="n">olayer</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">ofeature</span><span class="p">)</span>
-<span class="linenos">85</span>	
-<span class="linenos">86</span>	<span class="n">count_dif</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="linenos">87</span>	
-<span class="linenos">88</span>	<span class="c1"># dealokovat pamet</span>
-<span class="linenos">89</span>	<span class="n">ofeature</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos">90</span>	
+<span class="linenos">77</span>    <span class="c1"># parcely, u kterych je rozdil vymer vetsi nez 100m2, ulozime</span>
+<span class="linenos">78</span>    <span class="c1"># do vystupniho shapefile</span>
+<span class="linenos">79</span>    <span class="n">ofeature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">olayer</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">())</span>
+<span class="linenos">80</span>    <span class="n">ofeature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;cislo&quot;</span><span class="p">,</span> <span class="n">pc</span><span class="p">)</span>
+<span class="linenos">81</span>    <span class="n">ofeature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;vymera&quot;</span><span class="p">,</span> <span class="n">vym</span><span class="p">)</span>
+<span class="linenos">82</span>    <span class="n">ofeature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;rozdil&quot;</span><span class="p">,</span> <span class="n">dif</span><span class="p">)</span>
+<span class="linenos">83</span>    <span class="n">ofeature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="linenos">84</span>    <span class="n">olayer</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">ofeature</span><span class="p">)</span>
+<span class="linenos">85</span>    
+<span class="linenos">86</span>    <span class="n">count_dif</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">87</span>    
+<span class="linenos">88</span>    <span class="c1"># dealokovat pamet</span>
+<span class="linenos">89</span>    <span class="n">ofeature</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="linenos">90</span>    
 <span class="linenos">91</span><span class="c1"># vytisknout zaverecnou statistiku</span>
 <span class="linenos">92</span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
 <span class="linenos">93</span><span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Pocet parcel: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
@@ -154,13 +154,13 @@ aktuálního adresáře (řádek <span class="lcode">27</span>).</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Poznámka</p>
-<p>Skript ke stažení <a class="reference external" href="../../_static/skripty/gdal-ruian.py">zde</a>.</p>
+<p>Skript ke stažení <a class="reference external" href="../../_static/skripty/ogr-ruian.py">zde</a>.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Pro efektivní práci s daty RÚIAN existuje speciální knihovna
 <a class="reference external" href="https://github.com/ctu-geoforall-lab/gdal-vfr">GDAL-VFR</a>
-a její konzolové nastroje, viz <a class="reference external" href="http://freegis.fsv.cvut.cz/gwiki/RUIAN_/_GDAL#VFR_konverzn.C3.AD_skripty">dokumentace</a>.</p>
+a její konzolové nastroje.</p>
 </div>
 <p>Pro srovnání ještě stejný skript za použití knihoven Fiona a Shapely</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">datetime</span>
@@ -183,45 +183,47 @@ a její konzolové nastroje, viz <a class="reference external" href="http://free
 <span class="linenos">18</span><span class="c1"># URL souboru VDP</span>
 <span class="linenos">19</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://vdp.cuzk.cz/vymenny_format/soucasna/</span><span class="si">{}</span><span class="s1">_OB_</span><span class="si">{}</span><span class="s1">_UKSH.xml.zip&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">obec</span><span class="p">)</span>
 <span class="linenos">20</span>
-<span class="linenos">21</span><span class="n">count_dif</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">22</span>
-<span class="linenos">23</span><span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;/vsizip/vsicurl/&#39;</span> <span class="o">+</span> <span class="n">url</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;Parcely&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
-<span class="linenos">24</span>    <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">25</span>            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
-<span class="linenos">26</span>            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-<span class="linenos">27</span>                <span class="s2">&quot;cislo&quot;</span><span class="p">:</span>  <span class="s2">&quot;str:25&quot;</span><span class="p">,</span>
-<span class="linenos">28</span>                <span class="s2">&quot;vymera&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
-<span class="linenos">29</span>                <span class="s2">&quot;rozdil&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
-<span class="linenos">30</span>                <span class="p">}</span>
-<span class="linenos">31</span>            <span class="p">}</span>
-<span class="linenos">32</span>    <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;parcely.shp&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;epsg:5514&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span> <span class="k">as</span> <span class="n">dso</span><span class="p">:</span>
-<span class="linenos">33</span>        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>
-<span class="linenos">34</span>            <span class="n">cislo</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;KmenoveCislo&quot;</span><span class="p">]</span>
-<span class="linenos">35</span>            <span class="k">if</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;PododdeleniCisla&quot;</span><span class="p">]:</span>
-<span class="linenos">36</span>                <span class="n">cislo</span>  <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cislo</span><span class="p">,</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;PododdeleniCisla&quot;</span><span class="p">])</span>
-<span class="linenos">37</span>
-<span class="linenos">38</span>            <span class="n">vym</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;VymeraParcely&quot;</span><span class="p">])</span>
-<span class="linenos">39</span>            <span class="n">vym2</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">area</span>
-<span class="linenos">40</span>            <span class="n">dif</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vym</span> <span class="o">-</span> <span class="n">vym2</span><span class="p">)</span>
-<span class="linenos">41</span>
-<span class="linenos">42</span>            <span class="k">if</span> <span class="n">dif</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
-<span class="linenos">43</span>                <span class="k">continue</span>
-<span class="linenos">44</span>
-<span class="linenos">45</span>            <span class="n">dso</span><span class="o">.</span><span class="n">write</span><span class="p">({</span>
-<span class="linenos">46</span>                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
-<span class="linenos">47</span>                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-<span class="linenos">48</span>                    <span class="s2">&quot;cislo&quot;</span><span class="p">:</span> <span class="n">cislo</span><span class="p">,</span>
-<span class="linenos">49</span>                    <span class="s2">&quot;vymera&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;VymeraParcely&quot;</span><span class="p">],</span>
-<span class="linenos">50</span>                    <span class="s2">&quot;rozdil&quot;</span><span class="p">:</span> <span class="n">vym</span> <span class="o">-</span> <span class="n">vym2</span>
-<span class="linenos">51</span>                <span class="p">}</span>
-<span class="linenos">52</span>            <span class="p">})</span>
-<span class="linenos">53</span>
-<span class="linenos">54</span>            <span class="n">count_dif</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">21</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">22</span><span class="n">count_dif</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;/vsizip/vsicurl/&#39;</span> <span class="o">+</span> <span class="n">url</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;Parcely&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
+<span class="linenos">25</span>    <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">26</span>            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
+<span class="linenos">27</span>            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">28</span>                <span class="s2">&quot;cislo&quot;</span><span class="p">:</span>  <span class="s2">&quot;str:25&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>                <span class="s2">&quot;vymera&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="linenos">30</span>                <span class="s2">&quot;rozdil&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
+<span class="linenos">31</span>                <span class="p">}</span>
+<span class="linenos">32</span>            <span class="p">}</span>
+<span class="linenos">33</span>    <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;parcely.shp&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;epsg:5514&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span> <span class="k">as</span> <span class="n">dso</span><span class="p">:</span>
+<span class="linenos">34</span>        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>
+<span class="linenos">35</span>            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">36</span>            
+<span class="linenos">37</span>            <span class="n">cislo</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;KmenoveCislo&quot;</span><span class="p">]</span>
+<span class="linenos">38</span>            <span class="k">if</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;PododdeleniCisla&quot;</span><span class="p">]:</span>
+<span class="linenos">39</span>                <span class="n">cislo</span>  <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cislo</span><span class="p">,</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;PododdeleniCisla&quot;</span><span class="p">])</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span>            <span class="n">vym</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;VymeraParcely&quot;</span><span class="p">])</span>
+<span class="linenos">42</span>            <span class="n">vym2</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">area</span>
+<span class="linenos">43</span>            <span class="n">dif</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">vym</span> <span class="o">-</span> <span class="n">vym2</span><span class="p">)</span>
+<span class="linenos">44</span>            <span class="k">if</span> <span class="n">dif</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+<span class="linenos">45</span>                <span class="k">continue</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span>            <span class="n">dso</span><span class="o">.</span><span class="n">write</span><span class="p">({</span>
+<span class="linenos">48</span>                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+<span class="linenos">49</span>                <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">50</span>                    <span class="s2">&quot;cislo&quot;</span><span class="p">:</span> <span class="n">cislo</span><span class="p">,</span>
+<span class="linenos">51</span>                    <span class="s2">&quot;vymera&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;VymeraParcely&quot;</span><span class="p">],</span>
+<span class="linenos">52</span>                    <span class="s2">&quot;rozdil&quot;</span><span class="p">:</span> <span class="n">vym</span> <span class="o">-</span> <span class="n">vym2</span>
+<span class="linenos">53</span>                <span class="p">}</span>
+<span class="linenos">54</span>            <span class="p">})</span>
 <span class="linenos">55</span>
-<span class="linenos">56</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
-<span class="linenos">57</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet parcel: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dso</span><span class="p">)))</span>
-<span class="linenos">58</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet parcel nad tolerancí: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count_dif</span><span class="p">))</span>
-<span class="linenos">59</span>
+<span class="linenos">56</span>            <span class="n">count_dif</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">57</span>
+<span class="linenos">58</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="linenos">59</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet parcel: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+<span class="linenos">60</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet parcel nad tolerancí: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count_dif</span><span class="p">))</span>
+<span class="linenos">61</span>
 </pre></div>
 </div>
 </section>

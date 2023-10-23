@@ -49,43 +49,47 @@ zápis nového geoprvku, uložení změn do souboru. To celé by šlo vykonat
 pomocí výše zmíněné knihovny <a class="reference internal" href="../fiona/index.html#fiona"><span class="std std-ref">Fiona</span></a> několikanásobně
 jednodušeji. OGR přistupuje k datům na nižší úrovni, což může být
 někdy výhodnější.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">osr</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vytvoření driveru pro formát GML a vytvoření prázdného souboru</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">drv</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;GML&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">CreateDataSource</span><span class="p">(</span><span class="s1">&#39;output/out.gml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">srs</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">srs</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="mi">5514</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">layer</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">CreateLayer</span><span class="p">(</span><span class="s1">&#39;out.gml&#39;</span><span class="p">,</span> <span class="n">srs</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">wkbLineString</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span><span class="p">,</span> <span class="n">osr</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vytvoření nového atributu &#39;Nazev&#39; a &#39;Kod&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">field_name</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s1">&#39;Nazev&#39;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTString</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">field_name</span><span class="o">.</span><span class="n">SetWidth</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">field_number</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s1">&#39;Kod&#39;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTInteger</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">layer</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">layer</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">field_number</span><span class="p">)</span>
+<span class="c1"># Vytvoření driveru pro formát GML a vytvoření prázdného souboru</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="s1">&#39;/tmp/out.gml&#39;</span>
+<span class="n">drv</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s1">&#39;GML&#39;</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">CreateDataSource</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+<span class="n">srs</span> <span class="o">=</span> <span class="n">osr</span><span class="o">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+<span class="n">srs</span><span class="o">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="mi">5514</span><span class="p">)</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">CreateLayer</span><span class="p">(</span><span class="s1">&#39;out&#39;</span><span class="p">,</span> <span class="n">srs</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">wkbLineString</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vytvoření nové geometrie typu linie - načtením z formátu WKT</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">line</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">CreateGeometryFromWkt</span><span class="p">(</span><span class="s1">&#39;LINESTRING(</span><span class="si">%f</span><span class="s1"> </span><span class="si">%f</span><span class="s1">, </span><span class="si">%f</span><span class="s1"> </span><span class="si">%f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="c1"># Vytvoření nového atributu &#39;Nazev&#39; a &#39;Kod&#39;</span>
+<span class="n">field_name</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s1">&#39;Nazev&#39;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTString</span><span class="p">)</span>
+<span class="n">field_name</span><span class="o">.</span><span class="n">SetWidth</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">field_number</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s1">&#39;Kod&#39;</span><span class="p">,</span> <span class="n">ogr</span><span class="o">.</span><span class="n">OFTInteger</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">field_number</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Vytvoření nového prvku, nastavení geometrie a atributu Nazev</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">())</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;Nazev&quot;</span><span class="p">,</span> <span class="s1">&#39;Základní linie&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;Kod&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">layer</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Úklid</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">feature</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+<span class="c1"># Vytvoření nové geometrie typu linie - načtením z formátu WKT</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">CreateGeometryFromWkt</span><span class="p">(</span><span class="s1">&#39;LINESTRING(</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Vytvoření nového prvku, nastavení geometrie a atributu Nazev</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">GetLayerDefn</span><span class="p">())</span>
+<span class="n">feature</span><span class="o">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="n">feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;Nazev&quot;</span><span class="p">,</span> <span class="s1">&#39;Základní linie&#39;</span><span class="p">)</span>
+<span class="n">feature</span><span class="o">.</span><span class="n">SetField</span><span class="p">(</span><span class="s2">&quot;Kod&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span>
+<span class="c1"># ...</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+<span class="c1"># ...</span>
+<span class="c1"># Úklid</span>
+<span class="n">feature</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Výsledek zkontrolujeme:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s1">&#39;outputs/out.gml&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">layer</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">layer</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">()</span>
-<span class="go">1</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">())</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
 </pre></div>
 </div>
 </section>

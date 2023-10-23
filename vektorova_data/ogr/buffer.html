@@ -47,59 +47,92 @@
 Esri Shapefile, načíst datovou vrstvu, zobrazit atributy geoprvků a
 vytvořit obalovou zónu nad načtenými geoprvky.</p>
 <p>Nejprve otevření souboru s daty:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;data/chko.shp&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span>
-<span class="go">&lt;osgeo.ogr.DataSource; proxy of &lt;Swig Object of type &#39;OGRDataSourceShadow *&#39; at 0x7f98d8152a50&gt; &gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">GetLayerCount</span><span class="p">()</span>
-<span class="go">1</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">ogr</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;data/chko.shp&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">osgeo</span><span class="o">.</span><span class="n">ogr</span><span class="o">.</span><span class="n">DataSource</span><span class="p">;</span> <span class="n">proxy</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">Swig</span> <span class="n">Object</span> <span class="n">of</span> <span class="nb">type</span> <span class="s1">&#39;OGRDataSourceShadow *&#39;</span> <span class="n">at</span> <span class="mh">0x7f98d8152a50</span><span class="o">&gt;</span> <span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">GetLayerCount</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
 </pre></div>
 </div>
 <p>Práce s vrstvou, její otevření:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
-<span class="go">&lt;osgeo.ogr.Layer; proxy of &lt;Swig Object of type &#39;OGRLayerShadow *&#39; at 0x7f98d80fa870&gt; &gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">()</span>
-<span class="go">5626</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">GetLayer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">osgeo</span><span class="o">.</span><span class="n">ogr</span><span class="o">.</span><span class="n">Layer</span><span class="p">;</span> <span class="n">proxy</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">Swig</span> <span class="n">Object</span> <span class="n">of</span> <span class="nb">type</span> <span class="s1">&#39;OGRLayerShadow *&#39;</span> <span class="n">at</span> <span class="mh">0x7f98d80fa870</span><span class="o">&gt;</span> <span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5626</span>
 </pre></div>
 </div>
 <p>Schéma vrstvy - definice typu geometrie a jednotlivých atributových polí:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">GetGeomType</span><span class="p">()</span>
-<span class="go">3</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">GetGeomType</span><span class="p">()</span> <span class="o">==</span> <span class="n">ogr</span><span class="o">.</span><span class="n">wkbPolygon</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">schema</span>
-<span class="go">[&lt;osgeo.ogr.FieldDefn; proxy of &lt;Swig Object of type &#39;OGRFieldDefnShadow *&#39; at 0x7f98d80fa9f0&gt; &gt;,</span>
-<span class="go">&lt;osgeo.ogr.FieldDefn; proxy of &lt;Swig Object of type &#39;OGRFieldDefnShadow *&#39; at 0x7f98d80fa8...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">schema</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
-<span class="go">&#39;NAZEV&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">GetGeomType</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">GetGeomType</span><span class="p">()</span> <span class="o">==</span> <span class="n">ogr</span><span class="o">.</span><span class="n">wkbPolygon</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+<span class="kc">True</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">schema</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">osgeo</span><span class="o">.</span><span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">;</span> <span class="n">proxy</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">Swig</span> <span class="n">Object</span> <span class="n">of</span> <span class="nb">type</span> <span class="s1">&#39;OGRFieldDefnShadow *&#39;</span> <span class="n">at</span> <span class="mh">0x7f98d80fa9f0</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">osgeo</span><span class="o">.</span><span class="n">ogr</span><span class="o">.</span><span class="n">FieldDefn</span><span class="p">;</span> <span class="n">proxy</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">Swig</span> <span class="n">Object</span> <span class="n">of</span> <span class="nb">type</span> <span class="s1">&#39;OGRFieldDefnShadow *&#39;</span> <span class="n">at</span> <span class="mh">0x7f98d80fa8</span><span class="o">...</span>
+<span class="s1">&#39;NAZEV&#39;</span>
 </pre></div>
 </div>
 <p>Vypsání názvu geoprvku (atribut <code class="docutils literal notranslate"><span class="pre">NAZEV</span></code>):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">features_nr</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">features_nr</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="n">f</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetNextFeature</span><span class="p">()</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">))</span>
-<span class="go">Český ráj</span>
-<span class="go">...</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">features_nr</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetFeatureCount</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">features_nr</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetNextFeature</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Český</span> <span class="n">ráj</span>
+<span class="o">...</span>
 </pre></div>
 </div>
 <p>Vypsání vlastnosti geometrické složky popisu geoprvků (minimálního
 ohraničujícího obdélíku a centroidu polygonu, vytvoření obálky):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetFeature</span><span class="p">(</span><span class="mi">54</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">))</span>
-<span class="go">Český ráj</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">GetGeometryRef</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">geom</span><span class="o">.</span><span class="n">GetEnvelope</span><span class="p">()</span>
-<span class="go">(-683329.1875, -681265.625, -993228.75, -991528.0)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">Centroid</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">GetPoint</span><span class="p">()</span>
-<span class="go">(-682407.4126500859, -992433.3498782327, 0.0)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">buff</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">geom</span><span class="o">.</span><span class="n">Intersects</span><span class="p">(</span><span class="n">buff</span><span class="p">)</span>
-<span class="go">True</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">GetFeature</span><span class="p">(</span><span class="mi">54</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">GetField</span><span class="p">(</span><span class="s1">&#39;NAZEV&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Český</span> <span class="n">ráj</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">GetGeometryRef</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">GetEnvelope</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">-</span><span class="mf">683329.1875</span><span class="p">,</span> <span class="o">-</span><span class="mf">681265.625</span><span class="p">,</span> <span class="o">-</span><span class="mf">993228.75</span><span class="p">,</span> <span class="o">-</span><span class="mf">991528.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">Centroid</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">GetPoint</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">-</span><span class="mf">682407.4126500859</span><span class="p">,</span> <span class="o">-</span><span class="mf">992433.3498782327</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">buff</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">Buffer</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">Intersects</span><span class="p">(</span><span class="n">buff</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
 </pre></div>
 </div>
 </section>
