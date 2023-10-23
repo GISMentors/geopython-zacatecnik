@@ -34,10 +34,10 @@
     <https://pypi.org/project/pywps>`_, `pycsw
     <https://pypi.org/project/pycsw>`_, ...)
     
-    a širokou podpora v deskopech (GRASS GIS - `pygrass
-    <http://grass.osgeo.org/grass76/manuals/libpython/pygrass_index.html>`_,
+    a širokou podporou v deskopových prostředích (GRASS GIS - `pygrass
+    <http://grass.osgeo.org/grass83/manuals/libpython/pygrass_index.html>`_,
     QGIS - `pyqgis
-    <http://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins.html>`_,
+    <https://docs.qgis.org/3.28/en/docs/pyqgis_developer_cookbook/index.html>`_,
     Esri ArcGIS - `arcpy
     <http://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm>`_,
     ...)
@@ -50,14 +50,8 @@
    *Data ke školení* je stažitelná jako `zip archiv
    <http://training.gismentors.eu/geodata/geopython/data.zip>`_ (166
    MB). Dále můžete využít data ze školení :skoleni:`QGIS pro
-   začátečníky <qgis-zacatecnik>`  a to `vektorovová data
-   <http://training.gismentors.eu/geodata/qgis/data.zip>`_ (614 MB) a
-   rastrová data `DMT
-   <http://training.gismentors.eu/geodata/qgis/dmt.zip>`_ (97 MB).
+   začátečníky <qgis-zacatecnik>` - `zip archiv <http://training.gismentors.eu/geodata/qgis/data.zip>`_ (614 MB).
 
-.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně
-             ve vývoji!`
-                       
 .. only:: html
              
    #####   
@@ -91,7 +85,7 @@ Python
 * Kurz PyLadies (česky): http://pyladies.cz
 * Učebnice jazyka Python (česky): http://www.root.cz/knihy/ucebnice-jazyka-python
 * Python guide: http://docs.python-guide.org
-* Dive into Python: http://diveintopython3.py.cz
+* Dive into Python: https://www.root.cz/knihy/dive-into-python/
 * ...
 
 GeoPython
@@ -105,7 +99,6 @@ GeoPython
 * Rasterio  manual: https://rasterio.readthedocs.io  
 * "Python Geospatial Development" book, Erik Westra:
   https://www.packtpub.com/application-development/python-geospatial-development-third-edition
-* `Portál FreeGIS <http://freegis.fsv.cvut.cz/gwiki/GDAL#Uk.C3.A1zky_Python_skript.C5.AF>`_
 * ...
 
 Fóra, dokumentace
