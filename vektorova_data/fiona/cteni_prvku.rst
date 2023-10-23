@@ -1,21 +1,19 @@
 Procházení geoprvků
 -------------------
 
-V této části si ukážeme, jak načíst vektorové prvky uložené v  datovém zdroji.
+V této části si ukážeme, jak načíst vektorové prvky uložené v datovém zdroji.
 
 Nejprve dataset otevřeme
 
-.. code-block:: python
-
-    import fiona
-    chko = fiona.open("data/chko.shp")
-
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 1-3
 
 Nyní můžeme zjistit, kolik prvků je v datasetu obsaženo
 
-.. code-block:: python
-
-    print("Počet prvků: ", len(chko))
+.. literalinclude:: ../../_static/skripty/fiona-example.py
+   :language: python
+   :lines: 37
 
 Sekvenční čtení prvků
 ^^^^^^^^^^^^^^^^^^^^^
@@ -24,7 +22,7 @@ Prvky v datovém souboru můžeme procházet postupně (sekvenčně):
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
-   :lines: 19-20
+   :lines: 39-40
 
 Náhodné čtení prvků
 ^^^^^^^^^^^^^^^^^^^
@@ -34,7 +32,7 @@ ním pracovat:
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
-   :lines: 22
+   :lines: 43
 
 ----
 
@@ -42,4 +40,3 @@ ním pracovat:
 
    Vyberte všechna chráněná území, která se nacházejí v Českém
    středohoří. O kolik prvků se jedná?
-

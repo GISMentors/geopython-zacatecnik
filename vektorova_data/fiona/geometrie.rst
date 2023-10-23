@@ -9,23 +9,17 @@ autora jako Fiony) nám umožňuje pracovat s geometrickou složkou popisu
 geoprvků opět ve stylu jazyka Python. Stejně jako Fiona, převádí
 Shapely geometrické vlastnosti na objekty typu JSON.
 
-Jak jsme si řekli, Fiona převádí vstupní data z různých formátů na strukturu
-GeoJSON:
-
-.. literalinclude:: ../../_static/skripty/fiona-example.py
-   :language: python
-   :lines: 24-25
-
 Shapely
 ^^^^^^^
 
 Shapely obsahuje i některé funkce pro modifikaci geometrií, například
 generalizaci, obalovou zónu (buffer) nebo porovnání dvou
-geometrií. Shapely využívá pro manipulaci s geometriemi knihovu GEOS,
-která je zase re-implementací nástroje JTS (Java Topoology Suite) do
-jazyka C, a používá se například v databázové nadstavbě PostGIS. GEOS
-a JTS odpovídají specifikaci OGC Simple Feature. Knihovna Shapely nám
-umožní řešit například úlohy typu:
+geometrií. Shapely využívá pro manipulaci s geometriemi knihovnu `GEOS
+<https://libgeos.org/>`__, která je zase re-implementací nástroje JTS
+(Java Topoology Suite) do jazyka C, a používá se například v
+databázové nadstavbě PostGIS. GEOS a JTS odpovídají specifikaci OGC
+Simple Feature. Knihovna Shapely nám umožní řešit například úlohy
+typu:
 
 * Jakou výměru má plošný prvek?
 * Překrývají se dva prvky?
@@ -37,13 +31,13 @@ Shapely:
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
-   :lines: 26-30
+   :lines: 47-51
 
 .. code-block:: python
 
     (-683329.1875, -993228.75, -681265.625, -991528.0)
 
-.. note:: V prostředí Jupyter notebook můžeme geometrii vizualizovat
+.. tip:: V prostředí Jupyter notebook můžeme geometrii vizualizovat
     prostě tak, že obsah proměnné s geometrií necháme vypsat, např.::
 
         geom = shape(chko[54]["geometry"])
@@ -70,8 +64,8 @@ Nyní se můžeme vypsat celou řadu metadat o daném geometrickém objektu
 Převod geometrie zpět na formát JSON
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Na převod zpět  do formátu JSON použijeme funkci `mapping` z modulu
-`shapely.geometry`
+Na převod zpět  do formátu JSON použijeme funkci ``mapping`` z modulu
+``shapely.geometry``.
 
 Jako příklad si vytvoříme "ručně" celý nový vektorový objekt
 

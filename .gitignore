@@ -9,3 +9,4 @@ tests/data/ndvi-classes.geojson
 tests/data/ndvi-classes.tif
 tests/data/ndvi.tif
 _static/skripty/outputs/
+data/

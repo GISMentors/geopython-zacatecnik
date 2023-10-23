@@ -20,20 +20,19 @@ Následně můžeme zjišťovat vlastnosti této kolekce geoprvků, viz
 
     >>> # driver
     >>> chko.driver
-    u'ESRI Shapefile'
+    'ESRI Shapefile'
 
     >>> # souřadnicový systém
     >>> chko.crs
-        {u'lon_0': 24.83333333333333, u'k': 0.9999, u'ellps': u'bessel', u'y_0': 0, u'no_defs': True,
-         u'proj': u'krovak', u'x_0': 0, u'units': u'm', u'alpha': 30.28813972222222, u'lat_0': 49.5}
+    'PROJCS["S_JTSK_Krovak_East_North",GEOGCS["GCS_S-JTSK",DATUM["System_of_the_Unified_Trigono...'
 
     >>> # jméno souboru
     >>> chko.path
-    u'data/chko.shp'
+    'data/chko.shp'
 
     >>> # jméno vrstvy
     >>> chko.name
-    u'chko'
+    'chko'
 
     >>> # hraniční souřadnice
     >>> chko.bounds
@@ -41,44 +40,7 @@ Následně můžeme zjišťovat vlastnosti této kolekce geoprvků, viz
 
     >>> # všechna metadata pohromadě
     >>> chko.meta
-    >>> ...
-    >>> ...
-    >>> import json # naformátovat výstup
-    >>> print(json.dumps(chko.meta, sort_keys=True, indent=4, separators=(',', ': ')))
-    {
-        "crs": {
-            "alpha": 30.28813972222222,
-            "ellps": "bessel",
-            "k": 0.9999,
-            "lat_0": 49.5,
-            "lon_0": 24.83333333333333,
-            "no_defs": true,
-            "proj": "krovak",
-            "units": "m",
-            "x_0": 0,
-            "y_0": 0
-        },
-        "driver": "ESRI Shapefile",
-        "schema": {
-            "geometry": "Polygon",
-            "properties": {
-                "IUCN": "str:2",
-                "KAT": "str:4",
-                "KOD": "int:10",
-                "NAZEV": "str:27",
-                "OBJECTID": "int:10",
-                "OP_TYP": "str:3",
-                "PREKRYV": "int:10",
-                "ROZL": "float:24.15",
-                "SHAPE.AREA": "float:24.15",
-                "SHAPE.LEN": "float:24.15",
-                "ZMENA_G": "int:10",
-                "ZMENA_T": "int:10",
-                "ZONA": "str:3",
-                "gml_id": "str:80"
-            }
-        }
-    }
+    {'driver': 'ESRI Shapefile', 'schema': {'properties': {'gml_id': 'str:80', 'OBJECTID': ... }
 
 Prvky uložené v kolekci můžeme standardním postupem iterovat a
 zpracovávat je prvek po prvku. Nejprve ale zjistíme jejich počet:
@@ -99,22 +61,22 @@ kód dále využit, v našem případě se jedná o :epsg:`4326`.
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
-   :lines: 13-14
+   :lines: 31-32
 
 .. code-block:: python
 
-    +init=epsg:4326
+   EPSG:4326
 
 Při vytvoření nového geoprvku s definicí souřadnicového systému je postupováno
 analogicky (zde S-JTSK, :epsg:`5514`):
 
 .. literalinclude:: ../../_static/skripty/fiona-example.py
    :language: python
-   :lines: 16-17
+   :lines: 34-35
 
 .. code-block:: python
 
-    {'init': 'epsg:5514', 'no_defs': True}
+   EPSG:5514
 
 Fiona těmito funkcemi pouze mapuje jednotlivé parametry souřadnicového
 systému a stará se o jejich převod do textového řetězce a z textových

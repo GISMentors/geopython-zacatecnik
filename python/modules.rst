@@ -105,7 +105,7 @@ dostane modul a provede vás jeho dokumentací
 
 Google vám vždycky dobře poradí, pokud správně hledáte a seznam modulů
 distribuovaných spolu s jazykem Python najdete na `dokumentační stránce jazyka
-Python <https://docs.python.org/3.12/library/index.html>`__.
+Python <https://docs.python.org/3/library/index.html>`__.
 
 Vlastní moduly
 --------------
