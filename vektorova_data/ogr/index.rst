@@ -7,7 +7,7 @@ knihovna `GDAL <http://gdal.org>`_ (resp. její čast označovaná jako
 
 Knihovna OGR slouží především k převodům mezi vektorovými formáty (ale
 i další práci s vektorovými daty, geoprvky včetně geometrie a
-atributů). V současné době knihovna podporuje `více než 80 formátů
+atributů). V současné době knihovna podporuje `několik desítek formátů
 <http://gdal.org/ogr_formats.html>`_.
 
 .. _ogr-model:
@@ -15,16 +15,16 @@ atributů). V současné době knihovna podporuje `více než 80 formátů
 Datový model
 ------------
 
-Knihovna OGR pracuje s konceptem vrstev (*layers*) uložených v datových
-zdrojích (*data source*). OGR používá pro čtení a zápis dat do
-podporovaných datových formátů svůj vlastní *abstraktní model*, který
-se může jevit jako těžkopádný, nicméně spolehlivě funguje pro všechny
-případy:
+Knihovna OGR pracuje s konceptem vrstev (*layers*) uložených v
+datových zdrojích (*data source*). OGR používá pro čtení a zápis dat
+do podporovaných datových formátů svůj vlastní *abstraktní model*,
+který se může jevit jako komplexní, nicméně spolehlivě funguje pro
+všechny případy:
 
 * **Driver** - ovladač pro čtení a zápis dat
 * **Datasource** - datový zdroj (soubor, databáze, protokol, ...)
 * **Layer** - datová vrstva (obsah souboru, databázová tabulka, ...)
-* **Feature** - geoprvek (vzhledy jevu)
+* **Feature** - geoprvek
 * **Field, Geometry** - atributy, geometrie
     
 .. figure:: images/ogr-schema.png
@@ -36,7 +36,7 @@ http://gdal.org/ogr_arch.html
 *Rozhraní pro Python* představuje pouze abstraktní :abbr:`API (rozhraní pro
 programování aplikací)` nad původními funkcemi a třídami z jazyka C++,
 ve kterém je GDAL naprogramovaný. Také z tohoto důvodu se mohou
-některé postupy jevit jako těžkopádné.
+některé postupy v jazyku Python jevit jako těžkopádné.
 
 Užitečné odkazy:
 

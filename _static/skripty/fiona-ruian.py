@@ -18,6 +18,7 @@ datum = day.strftime("%Y%m%d")
 # URL souboru VDP
 url='https://vdp.cuzk.cz/vymenny_format/soucasna/{}_OB_{}_UKSH.xml.zip'.format(datum, obec)
 
+count = 0
 count_dif = 0
 
 with fiona.open('/vsizip/vsicurl/' + url, layer='Parcely') as ds:
@@ -31,6 +32,8 @@ with fiona.open('/vsizip/vsicurl/' + url, layer='Parcely') as ds:
             }
     with fiona.open("parcely.shp", 'w', driver="ESRI Shapefile", crs="epsg:5514", schema=schema) as dso:
         for f in ds:
+            count += 1
+            
             cislo = f["properties"]["KmenoveCislo"]
             if f["properties"]["PododdeleniCisla"]:
                 cislo  = "{}/{}".format(cislo, f["properties"]["PododdeleniCisla"])
@@ -38,7 +41,6 @@ with fiona.open('/vsizip/vsicurl/' + url, layer='Parcely') as ds:
             vym = float(f["properties"]["VymeraParcely"])
             vym2 = shape(f["geometry"]).area
             dif = abs(vym - vym2)
-
             if dif < tol:
                 continue
 
@@ -54,6 +56,6 @@ with fiona.open('/vsizip/vsicurl/' + url, layer='Parcely') as ds:
             count_dif += 1
 
         print("-"*80)
-        print("Počet parcel: {}".format(len(dso)))
+        print("Počet parcel: {}".format(count))
         print("Počet parcel nad tolerancí: {}".format(count_dif))
 

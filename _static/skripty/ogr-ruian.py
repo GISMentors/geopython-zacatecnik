@@ -10,7 +10,7 @@ obec = 505528
 # posledni datum v mesici (k tomuto dni jsou publikovana stavova data)
 today = datetime.date.today()
 if today.month == 12:
-	day = today.replace(day=31)
+    day = today.replace(day=31)
 day = (today.replace(month=today.month, day=1) - datetime.timedelta(days=1))
 datum = day.strftime("%Y%m%d")
 
@@ -45,49 +45,49 @@ count_dif = 0
 # sekvencne cist parcely
 layer.ResetReading()
 while True:
-	feat = layer.GetNextFeature()
-	if feat is None:
-		break
+    feat = layer.GetNextFeature()
+    if feat is None:
+        break
 		
-	# nacist zajmove atributy
-	kc = feat.GetField('KmenoveCislo')
-	pod = feat.GetField('PododdeleniCisla')
-	vym = feat.GetField('VymeraParcely')
+    # nacist zajmove atributy
+    kc = feat.GetField('KmenoveCislo')
+    pod = feat.GetField('PododdeleniCisla')
+    vym = feat.GetField('VymeraParcely')
 	
-	# prvek ma vice geometrickych reprezentaci, zajima nas hranice parcel
-	geom = feat.GetGeomFieldRef('OriginalniHranice')
+    # prvek ma vice geometrickych reprezentaci, zajima nas hranice parcel
+    geom = feat.GetGeomFieldRef('OriginalniHranice')
 	
-	# na zakladne geometrie spocitat vymeru
-	vym2 = geom.GetArea()
+    # na zakladne geometrie spocitat vymeru
+    vym2 = geom.GetArea()
 	
-	# vypocitat rozdil mezi vymerou z atributove tabulky a geometrie
-	dif = abs(vym - vym2)
+    # vypocitat rozdil mezi vymerou z atributove tabulky a geometrie
+    dif = abs(vym - vym2)
+
+    # oznaceni parcely
+    pc = str(kc)
+    if pod:
+        pc += '/' + str(pod)
 	
-	# oznaceni parcely
-	pc = str(kc)
-	if pod:
-		pc += '/' + str(pod)
+    # vytisknout report pro kazdou parcelu
+    print ('{0}: {1} {2:.1f} {3:.1f}'.format(pc, vym, vym2, dif))
 	
-	# vytisknout report pro kazdou parcelu
-	print ('{0}: {1} {2:.1f} {3:.1f}'.format(pc, vym, vym2, dif))
+    if dif < tol:
+        continue
 	
-	if dif < tol:
-		continue
-	
-	# parcely, u kterych je rozdil vymer vetsi nez 100m2, ulozime
-	# do vystupniho shapefile
-	ofeature = ogr.Feature(olayer.GetLayerDefn())
-	ofeature.SetField("cislo", pc)
-	ofeature.SetField("vymera", vym)
-	ofeature.SetField("rozdil", dif)
-	ofeature.SetGeometry(geom)
-	olayer.CreateFeature(ofeature)
-	
-	count_dif += 1
-	
-	# dealokovat pamet
-	ofeature = None
-	
+    # parcely, u kterych je rozdil vymer vetsi nez 100m2, ulozime
+    # do vystupniho shapefile
+    ofeature = ogr.Feature(olayer.GetLayerDefn())
+    ofeature.SetField("cislo", pc)
+    ofeature.SetField("vymera", vym)
+    ofeature.SetField("rozdil", dif)
+    ofeature.SetGeometry(geom)
+    olayer.CreateFeature(ofeature)
+    
+    count_dif += 1
+    
+    # dealokovat pamet
+    ofeature = None
+    
 # vytisknout zaverecnou statistiku
 print ('-' * 80)
 print ('Pocet parcel: {}'.format(count))

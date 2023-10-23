@@ -7,66 +7,103 @@ vytvořit obalovou zónu nad načtenými geoprvky.
 
 Nejprve otevření souboru s daty:
 
-.. code-block:: python
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 1-3
 
-    >>> from osgeo import ogr
-    >>> ds = ogr.Open("data/chko.shp")
-    >>> ds
-    <osgeo.ogr.DataSource; proxy of <Swig Object of type 'OGRDataSourceShadow *' at 0x7f98d8152a50> >
-    >>> ds.GetLayerCount()
-    1
+::
+   
+   <osgeo.ogr.DataSource; proxy of <Swig Object of type 'OGRDataSourceShadow *' at 0x7f98d8152a50> >
+
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 4
+    
+::
+   
+   1
 
 Práce s vrstvou, její otevření:
 
-.. code-block:: python
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 5-6
+           
+::
+   
+   <osgeo.ogr.Layer; proxy of <Swig Object of type 'OGRLayerShadow *' at 0x7f98d80fa870> >
 
-    >>> l = ds.GetLayer(0)
-    >>> l
-    <osgeo.ogr.Layer; proxy of <Swig Object of type 'OGRLayerShadow *' at 0x7f98d80fa870> >
-    >>> l.GetFeatureCount()
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 7
+
+::
+   
     5626
 
 Schéma vrstvy - definice typu geometrie a jednotlivých atributových polí:
 
-.. code-block:: python
-    
-   >>> l.GetGeomType()
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 9-10
+
+::
+   
    3
-   >>> l.GetGeomType() == ogr.wkbPolygon
    True
-   >>> l.schema
+
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 11-12
+
+::
+   
    [<osgeo.ogr.FieldDefn; proxy of <Swig Object of type 'OGRFieldDefnShadow *' at 0x7f98d80fa9f0> >,
    <osgeo.ogr.FieldDefn; proxy of <Swig Object of type 'OGRFieldDefnShadow *' at 0x7f98d80fa8...
-   >>> ...
-   >>> l.schema[4].name
    'NAZEV'
 
 Vypsání názvu geoprvku (atribut ``NAZEV``):
 
-.. code-block:: python
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 14-17
 
-    >>> features_nr = l.GetFeatureCount()
-    >>> for i in range(features_nr):
-    ...     f = l.GetNextFeature()
-    ...     print(f.GetField('NAZEV'))
+::
+   
     Český ráj
     ...
 
 Vypsání vlastnosti geometrické složky popisu geoprvků (minimálního
 ohraničujícího obdélíku a centroidu polygonu, vytvoření obálky):
 
-.. code-block:: python
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 20-22
 
-    >>> f = l.GetFeature(54)
-    >>> f.GetField('NAZEV')
-    >>> print (f.GetField('NAZEV'))
+::
+
     Český ráj
-    >>> geom = f.GetGeometryRef()
-    >>> geom.GetEnvelope()
+
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 24-25
+
+::
+   
     (-683329.1875, -681265.625, -993228.75, -991528.0)
-    >>> c = geom.Centroid()
-    >>> c.GetPoint()
+
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 27-28
+
+::
+   
     (-682407.4126500859, -992433.3498782327, 0.0)
-    >>> buff = c.Buffer(100)
-    >>> geom.Intersects(buff)
+
+.. literalinclude:: ../../_static/skripty/ogr-buffer.py
+   :language: python
+   :lines: 30-31
+
+::
+   
     True
