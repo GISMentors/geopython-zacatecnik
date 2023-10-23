@@ -51,7 +51,7 @@ vybraných nástrojů a jejich napojení na jazyk Python:
 **Databáze**
     * *PostGIS*: https://postgis.net (https://pypi.org/project/postgis/)
     * *SpatiaLite*: https://www.gaia-gis.it/fossil/libspatialite/index (https://pypi.org/project/spatialite/)
-    * *GeoAlchemy*: https://geoalchemy.org
+    * *GeoAlchemy*: https://geoalchemy-2.readthedocs.io
     * ...
       
 **Specializované nástroje**

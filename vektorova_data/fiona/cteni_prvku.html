@@ -43,10 +43,11 @@
             
   <section id="prochazeni-geoprvku">
 <h1>Procházení geoprvků<a class="headerlink" href="#prochazeni-geoprvku" title="Permalink to this heading">¶</a></h1>
-<p>V této části si ukážeme, jak načíst vektorové prvky uložené v  datovém zdroji.</p>
+<p>V této části si ukážeme, jak načíst vektorové prvky uložené v datovém zdroji.</p>
 <p>Nejprve dataset otevřeme</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fiona</span>
-<span class="n">chko</span> <span class="o">=</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;data/chko.shp&quot;</span><span class="p">)</span>
+
+<span class="n">chko</span> <span class="o">=</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/chko.shp&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Nyní můžeme zjistit, kolik prvků je v datasetu obsaženo</p>

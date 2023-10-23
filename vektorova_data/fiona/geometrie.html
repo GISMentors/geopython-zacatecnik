@@ -49,21 +49,15 @@ prvků.</p>
 autora jako Fiony) nám umožňuje pracovat s geometrickou složkou popisu
 geoprvků opět ve stylu jazyka Python. Stejně jako Fiona, převádí
 Shapely geometrické vlastnosti na objekty typu JSON.</p>
-<p>Jak jsme si řekli, Fiona převádí vstupní data z různých formátů na strukturu
-GeoJSON:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">shape</span>
-<span class="n">cr</span> <span class="o">=</span> <span class="n">chko</span><span class="p">[</span><span class="mi">54</span><span class="p">]</span>
-</pre></div>
-</div>
 <section id="shapely">
 <h2>Shapely<a class="headerlink" href="#shapely" title="Permalink to this heading">¶</a></h2>
 <p>Shapely obsahuje i některé funkce pro modifikaci geometrií, například
 generalizaci, obalovou zónu (buffer) nebo porovnání dvou
-geometrií. Shapely využívá pro manipulaci s geometriemi knihovu GEOS,
-která je zase re-implementací nástroje JTS (Java Topoology Suite) do
-jazyka C, a používá se například v databázové nadstavbě PostGIS. GEOS
-a JTS odpovídají specifikaci OGC Simple Feature. Knihovna Shapely nám
-umožní řešit například úlohy typu:</p>
+geometrií. Shapely využívá pro manipulaci s geometriemi knihovnu <a class="reference external" href="https://libgeos.org/">GEOS</a>, která je zase re-implementací nástroje JTS
+(Java Topoology Suite) do jazyka C, a používá se například v
+databázové nadstavbě PostGIS. GEOS a JTS odpovídají specifikaci OGC
+Simple Feature. Knihovna Shapely nám umožní řešit například úlohy
+typu:</p>
 <ul class="simple">
 <li><p>Jakou výměru má plošný prvek?</p></li>
 <li><p>Překrývají se dva prvky?</p></li>
@@ -73,17 +67,17 @@ umožní řešit například úlohy typu:</p>
 <p>Pro práci s geometriemi proto potřebujeme převést data na struktury
 Shapely:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">cr</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">])</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">poly</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">poly</span><span class="o">.</span><span class="n">bounds</span><span class="p">)</span>
 
 <span class="n">simple</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">simple</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">poly</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">simple</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">poly</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">-</span><span class="mf">683329.1875</span><span class="p">,</span> <span class="o">-</span><span class="mf">993228.75</span><span class="p">,</span> <span class="o">-</span><span class="mf">681265.625</span><span class="p">,</span> <span class="o">-</span><span class="mf">991528.0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Poznámka</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>V prostředí Jupyter notebook můžeme geometrii vizualizovat
 prostě tak, že obsah proměnné s geometrií necháme vypsat, např.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geom</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">chko</span><span class="p">[</span><span class="mi">54</span><span class="p">][</span><span class="s2">&quot;geometry&quot;</span><span class="p">])</span>
@@ -116,8 +110,8 @@ Shapely <a class="reference external" href="../../_static/skripty/fiona-example.
 </section>
 <section id="prevod-geometrie-zpet-na-format-json">
 <h2>Převod geometrie zpět na formát JSON<a class="headerlink" href="#prevod-geometrie-zpet-na-format-json" title="Permalink to this heading">¶</a></h2>
-<p>Na převod zpět  do formátu JSON použijeme funkci <cite>mapping</cite> z modulu
-<cite>shapely.geometry</cite></p>
+<p>Na převod zpět  do formátu JSON použijeme funkci <code class="docutils literal notranslate"><span class="pre">mapping</span></code> z modulu
+<code class="docutils literal notranslate"><span class="pre">shapely.geometry</span></code>.</p>
 <p>Jako příklad si vytvoříme „ručně“ celý nový vektorový objekt</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_feature</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>

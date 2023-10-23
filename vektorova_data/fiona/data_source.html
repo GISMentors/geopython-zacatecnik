@@ -65,20 +65,19 @@ tvz. <em>kolekce</em> geoprvků:</p>
 <a class="reference external" href="https://fiona.readthedocs.io/en/latest/">dokumentace knihovny</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># driver</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chko</span><span class="o">.</span><span class="n">driver</span>
-<span class="go">u&#39;ESRI Shapefile&#39;</span>
+<span class="go">&#39;ESRI Shapefile&#39;</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># souřadnicový systém</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chko</span><span class="o">.</span><span class="n">crs</span>
-<span class="go">    {u&#39;lon_0&#39;: 24.83333333333333, u&#39;k&#39;: 0.9999, u&#39;ellps&#39;: u&#39;bessel&#39;, u&#39;y_0&#39;: 0, u&#39;no_defs&#39;: True,</span>
-<span class="go">     u&#39;proj&#39;: u&#39;krovak&#39;, u&#39;x_0&#39;: 0, u&#39;units&#39;: u&#39;m&#39;, u&#39;alpha&#39;: 30.28813972222222, u&#39;lat_0&#39;: 49.5}</span>
+<span class="go">&#39;PROJCS[&quot;S_JTSK_Krovak_East_North&quot;,GEOGCS[&quot;GCS_S-JTSK&quot;,DATUM[&quot;System_of_the_Unified_Trigono...&#39;</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># jméno souboru</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chko</span><span class="o">.</span><span class="n">path</span>
-<span class="go">u&#39;data/chko.shp&#39;</span>
+<span class="go">&#39;data/chko.shp&#39;</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># jméno vrstvy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chko</span><span class="o">.</span><span class="n">name</span>
-<span class="go">u&#39;chko&#39;</span>
+<span class="go">&#39;chko&#39;</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># hraniční souřadnice</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chko</span><span class="o">.</span><span class="n">bounds</span>
@@ -86,44 +85,7 @@ tvz. <em>kolekce</em> geoprvků:</p>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># všechna metadata pohromadě</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chko</span><span class="o">.</span><span class="n">meta</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span> <span class="c1"># naformátovat výstup</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">chko</span><span class="o">.</span><span class="n">meta</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">)))</span>
-<span class="go">{</span>
-<span class="go">    &quot;crs&quot;: {</span>
-<span class="go">        &quot;alpha&quot;: 30.28813972222222,</span>
-<span class="go">        &quot;ellps&quot;: &quot;bessel&quot;,</span>
-<span class="go">        &quot;k&quot;: 0.9999,</span>
-<span class="go">        &quot;lat_0&quot;: 49.5,</span>
-<span class="go">        &quot;lon_0&quot;: 24.83333333333333,</span>
-<span class="go">        &quot;no_defs&quot;: true,</span>
-<span class="go">        &quot;proj&quot;: &quot;krovak&quot;,</span>
-<span class="go">        &quot;units&quot;: &quot;m&quot;,</span>
-<span class="go">        &quot;x_0&quot;: 0,</span>
-<span class="go">        &quot;y_0&quot;: 0</span>
-<span class="go">    },</span>
-<span class="go">    &quot;driver&quot;: &quot;ESRI Shapefile&quot;,</span>
-<span class="go">    &quot;schema&quot;: {</span>
-<span class="go">        &quot;geometry&quot;: &quot;Polygon&quot;,</span>
-<span class="go">        &quot;properties&quot;: {</span>
-<span class="go">            &quot;IUCN&quot;: &quot;str:2&quot;,</span>
-<span class="go">            &quot;KAT&quot;: &quot;str:4&quot;,</span>
-<span class="go">            &quot;KOD&quot;: &quot;int:10&quot;,</span>
-<span class="go">            &quot;NAZEV&quot;: &quot;str:27&quot;,</span>
-<span class="go">            &quot;OBJECTID&quot;: &quot;int:10&quot;,</span>
-<span class="go">            &quot;OP_TYP&quot;: &quot;str:3&quot;,</span>
-<span class="go">            &quot;PREKRYV&quot;: &quot;int:10&quot;,</span>
-<span class="go">            &quot;ROZL&quot;: &quot;float:24.15&quot;,</span>
-<span class="go">            &quot;SHAPE.AREA&quot;: &quot;float:24.15&quot;,</span>
-<span class="go">            &quot;SHAPE.LEN&quot;: &quot;float:24.15&quot;,</span>
-<span class="go">            &quot;ZMENA_G&quot;: &quot;int:10&quot;,</span>
-<span class="go">            &quot;ZMENA_T&quot;: &quot;int:10&quot;,</span>
-<span class="go">            &quot;ZONA&quot;: &quot;str:3&quot;,</span>
-<span class="go">            &quot;gml_id&quot;: &quot;str:80&quot;</span>
-<span class="go">        }</span>
-<span class="go">    }</span>
-<span class="go">}</span>
+<span class="go">{&#39;driver&#39;: &#39;ESRI Shapefile&#39;, &#39;schema&#39;: {&#39;properties&#39;: {&#39;gml_id&#39;: &#39;str:80&#39;, &#39;OBJECTID&#39;: ... }</span>
 </pre></div>
 </div>
 <p>Prvky uložené v kolekci můžeme standardním postupem iterovat a
@@ -139,20 +101,20 @@ zpracovávat je prvek po prvku. Nejprve ale zjistíme jejich počet:</p>
 není o tolik zjednodušena, jak by možná bylo potřeba. Pokud je
 souřadnicový systém datové vrstvy definován pomocí kódu EPSG, je tento
 kód dále využit, v našem případě se jedná o <a class="reference external" href="http://epsg.io/4326">EPSG:4326</a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fiona.crs</span> <span class="kn">import</span> <span class="n">to_string</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">chko</span><span class="o">.</span><span class="n">crs</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;data/natural.shp&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="n">init</span><span class="o">=</span><span class="n">epsg</span><span class="p">:</span><span class="mi">4326</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EPSG</span><span class="p">:</span><span class="mi">4326</span>
 </pre></div>
 </div>
 <p>Při vytvoření nového geoprvku s definicí souřadnicového systému je postupováno
 analogicky (zde S-JTSK, <a class="reference external" href="http://epsg.io/5514">EPSG:5514</a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fiona.crs</span> <span class="kn">import</span> <span class="n">from_epsg</span>
-<span class="n">from_epsg</span><span class="p">(</span><span class="mi">5514</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">5514</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;init&#39;</span><span class="p">:</span> <span class="s1">&#39;epsg:5514&#39;</span><span class="p">,</span> <span class="s1">&#39;no_defs&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EPSG</span><span class="p">:</span><span class="mi">5514</span>
 </pre></div>
 </div>
 <p>Fiona těmito funkcemi pouze mapuje jednotlivé parametry souřadnicového

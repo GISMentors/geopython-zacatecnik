@@ -10,38 +10,59 @@ print(chko.driver)
 # with fiona.open("data/chko.shp", "r", encoding='utf-8') as chko:
 #   print(chko)
 
-from fiona.crs import to_string
-print(to_string(chko.crs))
+# souřadnicový systém
+print(chko.crs)
+
+# jméno souboru
+print(chko.path)
+
+# jméno vrstvy
+print(chko.name)
+
+# hraniční souřadnice
+print(chko.bounds)
+
+# všechna metadata pohromadě
+print(chko.meta)
+import json # naformátovat výstup
+# TypeError: Object of type CRS is not JSON serializable
+#print(json.dumps(chko.meta, sort_keys=True, indent=4, separators=(',', ': ')))
+
+with fiona.open('data/natural.shp') as data:
+    print(data.crs)
 
 from fiona.crs import from_epsg
-from_epsg(5514)
+print(from_epsg(5514))
+
+print("Počet prvků: ", len(chko))
 
 for feature in chko:
     print(feature['geometry']['type'])
+    break
 
 print(chko[54]['properties']['NAZEV'])
 
 from shapely.geometry import shape
 cr = chko[54]
 poly = shape(cr['geometry'])
-print (poly.bounds)
+print(poly.bounds)
 
 simple = poly.simplify(10)
-print (simple.intersects(poly))
+print(simple.intersects(poly))
 
 buff = poly.buffer(10)
-print (buff.contains(poly))
+print(buff.contains(poly))
 
 from shapely.geometry import mapping
-import copy
-feature = copy.deepcopy(cr)
-feature['id'] = -1
-feature['geometry'] = mapping(buff)
-feature['properties']['NAZEV'] = u'Mordor'
+from fiona import Feature, Geometry
+props = dict(cr.properties)
+props['NAZEV'] = 'Mordor'
+feature = Feature(geometry=Geometry.from_dict(mapping(buff)), properties=props)
+chko.close()
 chko = fiona.open('data/chko.shp', 'a')
-print (len(chko))
+print(len(chko))
 
 chko.write(feature)
-print (len(chko))
+print(len(chko))
 
 chko.close()

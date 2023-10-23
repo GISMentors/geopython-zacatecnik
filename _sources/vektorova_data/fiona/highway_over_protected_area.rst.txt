@@ -22,13 +22,13 @@ Potřebné kroky pro vyřešení úlohy
 Načtení datových zdrojů
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Nejprve oba soubory otevřeme pomocí klasického `fiona.open()`. Použijeme buď
-klauzuli `with` nebo nesmíme nakonec zapomenout soubory uzavřít.
+Nejprve oba soubory otevřeme pomocí klasického ``fiona.open()``. Použijeme buď
+klauzuli ``with`` nebo nesmíme nakonec zapomenout soubory uzavřít.
 
 .. literalinclude:: ../../_static/skripty/highway-example.py
    :language: python
-   :lines: 1-11
-   :emphasize-lines: 1-2,9-11
+   :lines: 1-8
+   :emphasize-lines: 1-2,7-8
 
 Společný souřadnicový systém
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,14 +42,14 @@ Pro další práci musíme data převést do společného souřadnicového
 systému.
 
 Pro transformaci vektorových prvků (resp. jejich geometrií) můžeme
-použít funkci `trasnform_geom()`.
+použít funkci ``trasnform_geom()``.
 
 .. code-block:: python
 
         from fiona.transform import transform_geom
 
-        wgs84 = "epsg:4326"
-        jtsk = {"init": "epsg:5514", "towgs84": "570.8,85.7,462.8,4.998,1.587,5.261,3.56"}
+        wgs84 = "EPSG:4326"
+        jtsk = {"init": "EPSG:5514", "towgs84": "570.8,85.7,462.8,4.998,1.587,5.261,3.56"}
 
         geom_transformed = transform_geom(wgs84, jtsk, feature["geometry"])
 
@@ -61,8 +61,8 @@ dálnice D8, transformujeme geometrii na S-JTSK a vytvoříme obalovou zónu:
 
 .. literalinclude:: ../../_static/skripty/highway-example.py
    :language: python
-   :lines: 1-24
-   :emphasize-lines: 12-24
+   :lines: 1-20
+   :emphasize-lines: 10-20
 
 .. figure:: ../../images/highway-buffer.png
 
@@ -88,12 +88,12 @@ Průnik geometrií
 
 Pro každou chráněnou krajinnou oblast musíme nejprve zjistit, jestli se
 geometrie CHKO a obalové zóny okolo dálnice protínají - teprve potom má smysl
-pokračovat s interkací.
+pokračovat s výpočtem průniku.
 
 .. literalinclude:: ../../_static/skripty/highway-example.py
    :language: python
-   :lines: 1-35
-   :emphasize-lines: 24-35
+   :lines: 1-28
+   :emphasize-lines: 22-28
 
 Spojení do jedné geometrie
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -113,29 +113,16 @@ Pokud potřebujeme uložit některý z binárních typů vektorových souborů (
 Shapefile, OGC GeoPackage, ...) musíme nejprve nadefinovat datové schéma -
 atributy a typ geometrií.
 
-.. code-block:: python
-        
-        schema = {
-                'properties': {
-                        'highway': 'str'
-                },
-                'geometry': 'MultiPolygon'
-        }
+.. literalinclude:: ../../_static/skripty/highway-example.py
+   :language: python
+   :lines: 55-60
 
 Následně můžeme otevřít nový soubor pro zápis a uložit do něj námi vytvořenou
 geometrii.
 
-.. code-block:: python
-
-        with fiona.open("chko_x_highway.gpkg", "w", driver="GPKG", crs="EPSG:5514", schema=schema) as out:
-                feature = {
-                        'type': 'Feature',
-                        'properties': {
-                                'highway': 'D8'
-                        },
-                        'geometry': mapping(one_geometry)
-                }
-                out.write(feature)
+.. literalinclude:: ../../_static/skripty/highway-example.py
+   :language: python
+   :lines: 61-69
 
 Zápis do souboru - GeoJSON
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -162,7 +149,7 @@ souřadnicovým systémem je :epsg:`WGS84 <4326>`.
         Vytvořte část skriptu, která převede geometrie na WGS84 a zapíše
         výsledek do souboru GeoJSON.
 
-.. tip:: Pro převod použijte funkci `transform_geom()`, povinný "obal"
+.. tip:: Pro převod použijte funkci ``transform_geom()``, povinný "obal"
         seznamu vektorových prvků (`features`) vypadá pro formát
         GeoJSON následovně.
 
@@ -206,11 +193,11 @@ linie.
 Optimalizace (diskuse)
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Skript je ve své podstatě celkem neefektivní a stálo by za to popřemýšlet o jeho
-optimalizaci, aby proběhl rychleji:
+Skript je ve své podstatě celkem **neefektivní** a stálo by za to popřemýšlet o jeho
+**optimalizaci**, aby proběhl rychleji:
 
 #. Dálniční těleso je reprezentováno dvěmi liniemi, stálo by za zvážení použít
    pouze jednu z nich
-#. Buffer by se mohl spojit pomocí `cascaded_union()` do jedné
+#. Buffer by se mohl spojit pomocí ``unary_union()`` do jedné
    geometrie, tím by se měl následný průnik zrychlit
 #. ...
