@@ -69,7 +69,7 @@ def write_features(shp, data):
         print "Preskoceno %d prvku (z %d)" % (skipped, len(data))
     
 def generate_point(min=0, max=1000, addr=None):
-    url = 'http://nominatim.openstreetmap.org/search?q=' + urllib.quote(addr) + '&format=json&limit=1'
+    url = 'https://nominatim.openstreetmap.org/search?q=' + urllib.quote(addr) + '&format=json&limit=1'
     response = urllib2.urlopen(url)
     jsondata = response.read()
     data = json.loads(jsondata)

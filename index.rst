@@ -6,11 +6,11 @@
 
 .. only:: html
 
-   `GISMentors <http://gismentors.cz>`_ | Školení `GRASS GIS
-   <http://gismentors.cz/skoleni/grass-gis>`_ | `QGIS
-   <http://gismentors.cz/skoleni/qgis>`_ | `PostGIS
-   <http://gismentors.cz/skoleni/postgis>`_ | `GeoPython
-   <http://gismentors.cz/skoleni/geopython>`_
+   `GISMentors <https://gismentors.cz>`_ | Školení `GRASS GIS
+   <https://gismentors.cz/skoleni/grass-gis>`_ | `QGIS
+   <https://gismentors.cz/skoleni/qgis>`_ | `PostGIS
+   <https://gismentors.cz/skoleni/postgis>`_ | `GeoPython
+   <https://gismentors.cz/skoleni/geopython>`_
 
    ********
    Motivace
@@ -35,11 +35,11 @@
     <https://pypi.org/project/pycsw>`_, ...)
     
     a širokou podporou v deskopových prostředích (GRASS GIS - `pygrass
-    <http://grass.osgeo.org/grass83/manuals/libpython/pygrass_index.html>`_,
+    <https://grass.osgeo.org/grass83/manuals/libpython/pygrass_index.html>`_,
     QGIS - `pyqgis
     <https://docs.qgis.org/3.28/en/docs/pyqgis_developer_cookbook/index.html>`_,
     Esri ArcGIS - `arcpy
-    <http://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm>`_,
+    <https://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm>`_,
     ...)
 
 .. index::
@@ -48,9 +48,9 @@
 .. notedata::
 
    *Data ke školení* je stažitelná jako `zip archiv
-   <http://training.gismentors.eu/geodata/geopython/data.zip>`_ (166
+   <https://training.gismentors.eu/geodata/geopython/data.zip>`_ (166
    MB). Dále můžete využít data ze školení :skoleni:`QGIS pro
-   začátečníky <qgis-zacatecnik>` - `zip archiv <http://training.gismentors.eu/geodata/qgis/data.zip>`_ (614 MB).
+   začátečníky <qgis-zacatecnik>` - `zip archiv <https://training.gismentors.eu/geodata/qgis/data.zip>`_ (614 MB).
 
 .. only:: html
              
@@ -82,9 +82,9 @@ Související materiály
 Python
 ------
 
-* Kurz PyLadies (česky): http://pyladies.cz
-* Učebnice jazyka Python (česky): http://www.root.cz/knihy/ucebnice-jazyka-python
-* Python guide: http://docs.python-guide.org
+* Kurz PyLadies (česky): https://pyladies.cz
+  * Učebnice jazyka Python (česky): https://www.root.cz/knihy/ucebnice-jazyka-python
+* Python guide: https://docs.python-guide.org
 * Dive into Python: https://www.root.cz/knihy/dive-into-python/
 * ...
 
@@ -92,8 +92,8 @@ GeoPython
 ---------
 
 * `Python Scripting for Spatial Data Processing
-  <http://www.e-booksdirectory.com/details.php?ebook=10854>`_
-* Python GDAL/OGR Cookbook: http://pcjericks.github.io/py-gdalogr-cookbook/
+  <https://www.e-booksdirectory.com/details.php?ebook=10854>`_
+* Python GDAL/OGR Cookbook: https://pcjericks.github.io/py-gdalogr-cookbook/
 * Shapely manual: https://shapely.readthedocs.io
 * Fiona manual: https://fiona.readthedocs.io
 * Rasterio  manual: https://rasterio.readthedocs.io  
@@ -104,15 +104,15 @@ GeoPython
 Fóra, dokumentace
 -----------------
 
-* The GIS Stack Exchange: http://gis.stackexchange.com/
+* The GIS Stack Exchange: https://gis.stackexchange.com/
 
-  (http://gis.stackexchange.com/?tags=python)
+  (https://gis.stackexchange.com/?tags=python)
 * Last but not least, https://www.google.com
 
 O dokumentu
 ===========
 
-Text školení je licencován pod `Creative Commons Attribution-ShareAlike 4.0 International License <http://creativecommons.org/licenses/by-sa/4.0/>`_.
+Text školení je licencován pod `Creative Commons Attribution-ShareAlike 4.0 International License <https://creativecommons.org/licenses/by-sa/4.0/>`_.
 
 .. figure:: images/cc-by-sa.png 
    :width: 130px
@@ -123,10 +123,10 @@ Text školení je licencován pod `Creative Commons Attribution-ShareAlike 4.0 I
 Autoři
 ------
 
-Za `GISMentors <http://www.gismentors.cz/>`_:
+Za `GISMentors <https://www.gismentors.cz/>`_:
 
-* `Jáchym Čepický <http://www.gismentors.cz/mentors/cepicky>`_ ``<jachym.cepicky opengeolabs.cz>``
-* `Martin Landa <http://www.gismentors.cz/mentors/landa>`_ ``<martin.landa opengeolabs.cz>``
+* `Jáchym Čepický <https://www.gismentors.cz/mentors/cepicky>`_ ``<jachym.cepicky opengeolabs.cz>``
+* `Martin Landa <https://www.gismentors.cz/mentors/landa>`_ ``<martin.landa opengeolabs.cz>``
 
 Text dokumentu
 --------------
@@ -135,7 +135,7 @@ Text dokumentu
 
    Online HTML verze textu školení je dostupná na adrese:
 
-   * http://training.gismentors.eu/geopython-zacatecnik/
+   * https://training.gismentors.eu/geopython-zacatecnik/
 
 Zdrojové texty školení jsou dostupné na adrese:
 

@@ -1,5 +1,5 @@
 from owslib.wms import WebMapService
-url='http://geoportal.cuzk.cz/WMS_ZM10_PUB/WMService.aspx'
+url='https://geoportal.cuzk.cz/WMS_ZM10_PUB/WMService.aspx'
 wms = WebMapService(url)
 print('{}\n{}{}\n{}'.format(wms.identification.title,
                             wms.identification.abstract,

@@ -19,7 +19,7 @@ def test_wms():
     assert int(response.info()["Content-Length"])
 
 # def test_csw():
-#     url = "http://micka.cenia.cz/metadata/csw/index.php"
+#     url = "https://micka.cenia.cz/metadata/csw/index.php"
 #     csw = CSW(url)
 
 #     assert csw

@@ -1,5 +1,5 @@
 from owslib.csw import CatalogueServiceWeb
-cenia = CatalogueServiceWeb('http://geoportal.gov.cz/php/micka/csw/index.php')
+cenia = CatalogueServiceWeb('https://geoportal.gov.cz/php/micka/csw/index.php')
 print(cenia.service)
 
 cenia.getrecords2()

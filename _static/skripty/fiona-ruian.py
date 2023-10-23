@@ -16,7 +16,7 @@ day = (today.replace(month=today.month, day=1) - datetime.timedelta(days=1))
 datum = day.strftime("%Y%m%d")
 
 # URL souboru VDP
-url='http://vdp.cuzk.cz/vymenny_format/soucasna/{}_OB_{}_UKSH.xml.zip'.format(datum, obec)
+url='https://vdp.cuzk.cz/vymenny_format/soucasna/{}_OB_{}_UKSH.xml.zip'.format(datum, obec)
 
 count_dif = 0
 
