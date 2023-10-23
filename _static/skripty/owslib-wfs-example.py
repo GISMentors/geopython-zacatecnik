@@ -14,7 +14,7 @@ print('{}\n{}\n{}\n{}\n{}'.format(aopk.provider.name,
 for rec in aopk.contents:
     print(rec)
 
-url='http://gis.nature.cz/arcgis/services/UzemniOchrana/ChranUzemi/MapServer/WFSServer'
+url='https://gis.nature.cz/arcgis/services/UzemniOchrana/ChranUzemi/MapServer/WFSServer'
 chranena_uzemi_wfs = WebFeatureService(url)
 for rec in chranena_uzemi_wfs.contents:
     print(rec)
@@ -30,7 +30,7 @@ print(features)
 
 print(features.read())
 
-cuzk = WebFeatureService('http://geoportal.cuzk.cz/wfs_au/wfservice.aspx',
+cuzk = WebFeatureService('https://geoportal.cuzk.cz/wfs_au/wfservice.aspx',
                          version="2.0.0")
 for c in cuzk.contents:
     print(c)
@@ -38,7 +38,7 @@ for c in cuzk.contents:
 kraj = cuzk.getfeature(['gmgml:KRAJ'])
 print(kraj.read())
 
-vuv = WebFeatureService('http://ags.vuv.cz/arcgis/services/inspire/priority_datasets/MapServer/WFSServer',
+vuv = WebFeatureService('https://ags.vuv.cz/arcgis/services/inspire/priority_datasets/MapServer/WFSServer',
                         version="2.0.0")
 for c in vuv.contents:
     print(c)

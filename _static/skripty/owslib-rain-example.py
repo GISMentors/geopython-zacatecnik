@@ -23,7 +23,7 @@ processId = 'd-rain-csv'
 # 3. test Execute query
 print ("Test 3: Execute")
 inputs = [
-    ("input", ComplexDataInput('http://rain.fsv.cvut.cz/geodata/test.gml')),
+    ("input", ComplexDataInput('https://rain.fsv.cvut.cz/geodata/test.gml')),
     ("keycolumn", "HLGP_ID"),
     ("return_period", "N2,N5,N10"),
     ("rainlength", "120")

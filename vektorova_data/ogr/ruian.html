@@ -69,7 +69,7 @@ aktuálního adresáře (řádek <span class="lcode">27</span>).</p>
 <span class="linenos">15</span><span class="n">datum</span> <span class="o">=</span> <span class="n">day</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="linenos">16</span>
 <span class="linenos">17</span><span class="c1"># URL souboru VDP</span>
-<span class="linenos">18</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://vdp.cuzk.cz/vymenny_format/soucasna/</span><span class="si">{}</span><span class="s1">_OB_</span><span class="si">{}</span><span class="s1">_UKSH.xml.zip&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">obec</span><span class="p">)</span>
+<span class="linenos">18</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://vdp.cuzk.cz/vymenny_format/soucasna/</span><span class="si">{}</span><span class="s1">_OB_</span><span class="si">{}</span><span class="s1">_UKSH.xml.zip&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">obec</span><span class="p">)</span>
 <span class="linenos">19</span>
 <span class="linenos">20</span><span class="c1"># otevrit vstupni datasource (RUIAN)</span>
 <span class="linenos">21</span><span class="n">ds</span> <span class="o">=</span> <span class="n">ogr</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s1">&#39;/vsizip/vsicurl/&#39;</span> <span class="o">+</span> <span class="n">url</span><span class="p">)</span>
@@ -181,7 +181,7 @@ a její konzolové nastroje, viz <a class="reference external" href="http://free
 <span class="linenos">16</span><span class="n">datum</span> <span class="o">=</span> <span class="n">day</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="linenos">17</span>
 <span class="linenos">18</span><span class="c1"># URL souboru VDP</span>
-<span class="linenos">19</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://vdp.cuzk.cz/vymenny_format/soucasna/</span><span class="si">{}</span><span class="s1">_OB_</span><span class="si">{}</span><span class="s1">_UKSH.xml.zip&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">obec</span><span class="p">)</span>
+<span class="linenos">19</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://vdp.cuzk.cz/vymenny_format/soucasna/</span><span class="si">{}</span><span class="s1">_OB_</span><span class="si">{}</span><span class="s1">_UKSH.xml.zip&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">obec</span><span class="p">)</span>
 <span class="linenos">20</span>
 <span class="linenos">21</span><span class="n">count_dif</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="linenos">22</span>

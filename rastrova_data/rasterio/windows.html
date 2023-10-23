@@ -95,7 +95,7 @@ Band<span class="w"> </span><span class="m">1</span><span class="w"> </span><spa
 <p>Vidíme, že náš rastr používá bloky o velikosti 3117×8 pixel - tedy 8
 řádků.  Někdy může být efektivnější celý rastr převzorkovat, než se
 pustíte do jeho blok-po-bloku processingu. To můžeme udělat např.
-nástrojem knihovny GDAL <cite>gdalwarp</cite> (viz školení <a class="reference external" href="http://training.gismentors.eu/open-source-gis/knihovny/gdal.html#prikazy-pro-praci-s-rastrovymi-daty">Úvod Open
+nástrojem knihovny GDAL <cite>gdalwarp</cite> (viz školení <a class="reference external" href="https://gismentors.github.io/open-source-gis/knihovny/gdal.html#prikazy-pro-praci-s-rastrovymi-daty">Úvod Open
 Source GIS</a>).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdalwarp<span class="w"> </span>-r<span class="w"> </span>mode<span class="w"> </span>-co<span class="w"> </span><span class="nv">TILED</span><span class="o">=</span>YES<span class="w"> </span>-co<span class="w"> </span><span class="nv">BLOCKXSIZE</span><span class="o">=</span><span class="m">256</span><span class="w"> </span>-co<span class="w"> </span><span class="nv">BLOCKYSIZE</span><span class="o">=</span><span class="m">256</span><span class="w"> </span>data/B04-2018-05-06.tiff<span class="w"> </span>outputs/B04-2018-05-06-256block.tiff
 ...

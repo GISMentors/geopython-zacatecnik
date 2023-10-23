@@ -47,7 +47,7 @@
 výpočetního nástoje na vzdáleném serveru.</p>
 <div class="admonition note">
 <p class="admonition-title">Poznámka</p>
-<p>Více informací na <a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/wps.html">školení Úvod do GIS</a>.</p>
+<p>Více informací na <a class="reference external" href="https://gismentors.github.io/open-source-gis/standardy/ogc/wps.html">školení Úvod do GIS</a>.</p>
 </div>
 <p>Přípojíme se k výpočetní službě a vypíšeme její typ:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
@@ -69,7 +69,7 @@ výpočetního nástoje na vzdáleném serveru.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="kn">import</span> <span class="n">ComplexDataInput</span>
 <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">ComplexDataInput</span><span class="p">(</span><span class="s1">&#39;http://rain.fsv.cvut.cz/geodata/test.gml&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">ComplexDataInput</span><span class="p">(</span><span class="s1">&#39;https://rain.fsv.cvut.cz/geodata/test.gml&#39;</span><span class="p">)),</span>
     <span class="p">(</span><span class="s2">&quot;keycolumn&quot;</span><span class="p">,</span> <span class="s2">&quot;HLGP_ID&quot;</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">&quot;return_period&quot;</span><span class="p">,</span> <span class="s2">&quot;N2&quot;</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">&quot;return_period&quot;</span><span class="p">,</span> <span class="s2">&quot;N5&quot;</span><span class="p">),</span>

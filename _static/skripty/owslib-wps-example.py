@@ -12,7 +12,7 @@ processId = 'd-rain6h-timedist'
 
 from owslib.wps import ComplexDataInput
 inputs = [
-    ("input", ComplexDataInput('http://rain.fsv.cvut.cz/geodata/test.gml')),
+    ("input", ComplexDataInput('https://rain.fsv.cvut.cz/geodata/test.gml')),
     ("keycolumn", "HLGP_ID"),
     ("return_period", "N2"),
     ("return_period", "N5"),

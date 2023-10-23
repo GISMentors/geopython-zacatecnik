@@ -26,30 +26,30 @@ S Pythonem lze ve světě GIS dojít daleko, níže uvádíme malý přehled
 vybraných nástrojů a jejich napojení na jazyk Python:
 
 **Desktop**
-    * *GRASS GIS*: http://grass.osgeo.org (více na školení :skoleni:`GRASS GIS pro pokročilé <grass-gis-pokrocily/skripty/index.html>`)
-    * *QGIS*: http://qgis.org (`pyqgis <https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/>`__)
-    * *ArcGIS*: http://www.arcgis.com (`arcpy <http://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm>`__)
+    * *GRASS GIS*: https://grass.osgeo.org (více na školení :skoleni:`GRASS GIS pro pokročilé <grass-gis-pokrocily/skripty/index.html>`)
+    * *QGIS*: https://qgis.org (více na školeni :skoleni:`Tvorba zásuvných modulů QGIS <qgis-plugins>`)
+    * *ArcGIS*: https://www.arcgis.com (`arcpy <https://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm>`__)
 
 **Web**
-    * *MapServer*: http://mapserver.org
-    * *GeoServer*: http://geoserver.org
-    * *TileCache*: http://tilecache.org
-    * *PyWPS*: http://pywps.org
-    * *GeoDjango*: http://geodjango.org
+    * *MapServer*: https://mapserver.org
+    * *GeoServer*: https://geoserver.org
+    * *TileCache*: https://tilecache.org
+    * *PyWPS*: https://pywps.org
+    * *GeoDjango*: https://geodjango.org
 
 **Knihovny a nástroje**
-    * *GDAL*: http://gdal.org (`Python API <http://gdal.org/python/>`__)
+    * *GDAL*: https://gdal.org (`Python API <https://gdal.org/python/>`__)
     * *Fiona*: https://github.com/Toblerity/Fiona
     * *Shapely*: https://github.com/Toblerity/Shapely
     * *Rasterio*: https://github.com/mapbox/rasterio
     * *PyProj*: https://github.com/jswhit/pyproj
     * *R (rpy2)*: https://rpy2.bitbucket.io
-    * *GeoPandas*: http://geopandas.org
+    * *GeoPandas*: https://geopandas.org
 
 **Databáze**
-    * *PostGIS*: http://postgis.net (https://pypi.org/project/postgis/)
+    * *PostGIS*: https://postgis.net (https://pypi.org/project/postgis/)
     * *SpatiaLite*: https://www.gaia-gis.it/fossil/libspatialite/index (https://pypi.org/project/spatialite/)
-    * *GeoAlchemy*: http://geoalchemy.org
+    * *GeoAlchemy*: https://geoalchemy.org
 
 **Specializované nástroje**
     * *TopoJSON*: https://github.com/calvinmetcalf/topojson.py
