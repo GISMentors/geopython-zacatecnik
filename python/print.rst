@@ -9,9 +9,11 @@ naše programy složitější, budeme je potřebovat nějak uložit.
 Otevřete textový editor a napište do něj následující řádky.
 
 .. note:: Používejte textový editor dle volby svého sdrce. Na Linuxu
-        např.  editor `geany`, `gedit` nebo `kate`. Na Windows
-        populární `pspad` nebo na všech platformách dostupný
-        `sublime <https://www.sublimetext.com/>_` či `pycharm <https://www.jetbrains.com/pycharm/>_`.
+        např.  editor `Geany`, `Gedit` nebo `Kate`. Na Windows
+        populární `Pspad` nebo na všech platformách dostupný `Sublime
+        <https://www.sublimetext.com/>`__, `Pycharm
+        <https://www.jetbrains.com/pycharm/>`__ či `VS Code
+        <https://code.visualstudio.com/>`__.
 
 .. code-block:: python
 
@@ -28,7 +30,7 @@ Otevřete textový editor a napište do něj následující řádky.
         Při instalaci Pythonu do operačního systému Windows je dobré zaškrtnout
         volbu `dostupný pro všechny uživatele` a `přidat cestu do systémové
         proměnné $PATH` - tím zajistíte, že jednoduše přiřadíte soubory s
-        koncovkou ".py" k interpretu Python
+        koncovkou ``.py`` k interpretu Python.
 
 Soubor uložte pod nějakým názvem a koncovkou ``.py``, např. ``pocitani.py``.
 
