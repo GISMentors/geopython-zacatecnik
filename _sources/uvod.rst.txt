@@ -33,28 +33,32 @@ vybraných nástrojů a jejich napojení na jazyk Python:
 **Web**
     * *MapServer*: https://mapserver.org
     * *GeoServer*: https://geoserver.org
-    * *TileCache*: https://tilecache.org
+    * *TileCache*: http://tilecache.org
     * *PyWPS*: https://pywps.org
     * *GeoDjango*: https://geodjango.org
-
+    * ...
+      
 **Knihovny a nástroje**
     * *GDAL*: https://gdal.org (`Python API <https://gdal.org/python/>`__)
     * *Fiona*: https://github.com/Toblerity/Fiona
     * *Shapely*: https://github.com/Toblerity/Shapely
     * *Rasterio*: https://github.com/mapbox/rasterio
     * *PyProj*: https://github.com/jswhit/pyproj
-    * *R (rpy2)*: https://rpy2.bitbucket.io
+    * *R (rpy2)*: https://rpy2.github.io
     * *GeoPandas*: https://geopandas.org
-
+    * ...
+      
 **Databáze**
     * *PostGIS*: https://postgis.net (https://pypi.org/project/postgis/)
     * *SpatiaLite*: https://www.gaia-gis.it/fossil/libspatialite/index (https://pypi.org/project/spatialite/)
     * *GeoAlchemy*: https://geoalchemy.org
-
+    * ...
+      
 **Specializované nástroje**
     * *TopoJSON*: https://github.com/calvinmetcalf/topojson.py
     * *RTree index*: https://github.com/Toblerity/rtree
-
+    * ...
+      
 Seznam samozřejmě není úplný či konečný.
 
 V tomto kurzu se zaměříme na úvod do práce s vektorovými a rastrovými

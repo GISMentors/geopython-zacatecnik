@@ -4,25 +4,19 @@
 Psát programy v jazyce Python lze buď *interaktivně* nebo do souboru. Při
 interaktivním způsobu práce spustíme interpret jazyka Python přímo v terminálu a
 postupně do něj píšeme příkazy a potvrzujeme klávesou *Enter*. Interpret jazyka
-Python spustíme příkazem ``python``:
+Python spustíme příkazem ``python``  či ``python3``:
 
-.. important:: V současnosti procházíme složitou fází přechodu mezi
-               dvěma ne-zcela kompatibilními verzemi jazyka Python - 2
-               a 3. Životní cyklus Python verze 2 se pomalu ale jistě
-               uzavírá. Proto se bude další text opírat čistě o Python 3. Na
-               některých systémech jej musíte pustit příkazem ``python3``.
+.. important:: V tomto školení předpokládáme verzi Pythonu 3.x.
 
 .. code-block:: bash
 
-        $ python3
-
+   $ python3
 
 .. code-block:: python
 
-    Python 3.4.3+ (default, Oct 14 2015, 16:03:50)
-    [GCC 5.2.1 20151010] on linux
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>>
+   Python 3.11.6 (main, Oct  8 2023, 05:06:43) [GCC 13.2.0] on linux
+   Type "help", "copyright", "credits" or "license" for more information.
+   >>> 
 
 Virtualenv
 ==========
