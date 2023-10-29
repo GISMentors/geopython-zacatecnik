@@ -27,7 +27,7 @@ jobs:
         git clone https://github.com/GISMentors/sphinx-template.git $RUNNER_WORKSPACE/sphinx-template
 
     - name: Build and Commit
-      uses: sphinx-notes/pages@3
+      uses: sphinx-notes/pages@v3
       with:
         documentation_path: ./
         sphinx_version: 5.3.0
