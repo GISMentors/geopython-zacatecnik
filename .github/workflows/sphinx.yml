@@ -21,6 +21,10 @@ jobs:
     - name: Install locales
       run: |
         sudo apt-get install --yes locales-all --reinstall
+        
+    - name: Install pandoc
+      run: |
+        sudo apt-get install --yes pandoc
 
     - name: Download template
       run: |
