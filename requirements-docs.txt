@@ -1,2 +1,2 @@
 nbsphinx
-pandoc
+pypandoc_binary
