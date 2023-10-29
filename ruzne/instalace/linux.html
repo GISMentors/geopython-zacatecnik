@@ -16,6 +16,7 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="search" title="Vyhledávání" href="../../search.html" />
     <link rel="next" title="Instalace na operační systému MS Windows" href="windows.html" />
     <link rel="prev" title="Instalace potřebných knihoven" href="index.html" /> 
@@ -59,16 +60,16 @@ nástroj <strong class="program">pip</strong> pro instalaci dalších knihoven</
 </div>
 <p>Po instalaci můžeme ověřit přítomnost jazyka spuštěním jeho interpretu:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3
-Python 3.6.9 (default, Nov  7 2019, 10:44:02)
-[GCC 8.3.0] on linux
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information
+Python 3.11.6 (main, Oct  8 2023, 05:06:43) [GCC 13.2.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 &gt;&gt;&gt;
 </pre></div>
 </div>
 <p>Protože se pohybujeme v „geo“ světě, je dobré doinstalovat i další potřebné
 knihovny, zejména podporu pro knihovnu <a class="reference external" href="http://gdal.org">GDAL</a>. Pokud je v
 balíčcích přítomná, tím lépe</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>fiona<span class="w"> </span>python3-fiona<span class="w"> </span>rasterio<span class="w"> </span>python3-rasterio<span class="w"> </span>python3-owslib<span class="w"> </span>python3-pyproj<span class="w"> </span>python3-gdal<span class="w"> </span>libgdal-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>fiona<span class="w"> </span>python3-fiona<span class="w"> </span>rasterio<span class="w"> </span>python3-rasterio<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span>python3-owslib<span class="w"> </span>python3-pyproj<span class="w"> </span>python3-gdal<span class="w"> </span>libgdal-dev
 </pre></div>
 </div>
 <div class="admonition tip">

@@ -1,0 +1,1512 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Úvod do Pandas &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="Úvod do GeoPandas" href="geopandas-nuts.html" />
+    <link rel="prev" title="GeoPandas" href="index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="index.html" title="GeoPandas"
+             accesskey="P">předchozí</a> |
+          <a href="geopandas-nuts.html" title="Úvod do GeoPandas"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="Úvod-do-Pandas">
+<h1>Úvod do Pandas<a class="headerlink" href="#Úvod-do-Pandas" title="Permalink to this heading">¶</a></h1>
+<section id="Data">
+<h2>Data<a class="headerlink" href="#Data" title="Permalink to this heading">¶</a></h2>
+<p>Data naleznete v <a class="reference external" href="https://ec.europa.eu/eurostat/web/main/data/database">databázi Eurostat</a>.</p>
+<p>Vyberte <em>Detailed datasets</em> -&gt; <em>Population and social conditions</em> -&gt; <em>Demography, population stock and balance (demo)</em> -&gt; <em>Population (regional level) (demo_pop)</em> -&gt; <em>Population on 1 January by age group, sex and NUTS 3 region (demo_r_pjangrp3)</em>.</p>
+<p><img alt="Eurostat database" src="../../_images/eurostat_db.png" /></p>
+<p>V prohlížeči dat stáhněte plný dataset ve formátu CSV (<em>Full dataset [MIGR_POP1CTZ]</em> -&gt; <em>SDMX-CSV 1.0</em>).</p>
+<p><img alt="Eurostat dataviewer" src="../../_images/eurostat_db_viewer.png" /></p>
+</section>
+<section id="Načtěte-data-do-pandas">
+<h2>Načtěte data do <em>pandas</em><a class="headerlink" href="#Načtěte-data-do-pandas" title="Permalink to this heading">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>filename = &#39;demo_r_pjangrp3_linear.csv.gz&#39;
+# pozn. k &#39;filename&#39;:
+# a) data musi byt ve stejnem adresari, ve kterem se nachazi vas notebook
+# b) nebo specifikujte absolutni cestu
+
+import pandas as pd
+df = pd.read_csv(filename, compression=&#39;gzip&#39;)
+</pre></div>
+</div>
+</div>
+<p>Nahraná data zobrazíme.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATAFLOW</th>
+      <th>LAST UPDATE</th>
+      <th>freq</th>
+      <th>sex</th>
+      <th>unit</th>
+      <th>age</th>
+      <th>geo</th>
+      <th>TIME_PERIOD</th>
+      <th>OBS_VALUE</th>
+      <th>OBS_FLAG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL</td>
+      <td>2014</td>
+      <td>1430827</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL</td>
+      <td>2015</td>
+      <td>1424597</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL</td>
+      <td>2016</td>
+      <td>1417141</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL</td>
+      <td>2017</td>
+      <td>1423050</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL</td>
+      <td>2018</td>
+      <td>1431715</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1125890</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>UKN16</td>
+      <td>2015</td>
+      <td>7764</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1125891</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>UKN16</td>
+      <td>2016</td>
+      <td>7720</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1125892</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>UKN16</td>
+      <td>2017</td>
+      <td>7712</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1125893</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>UKN16</td>
+      <td>2018</td>
+      <td>7659</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1125894</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>UKN16</td>
+      <td>2019</td>
+      <td>7654</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1125895 rows × 10 columns</p>
+</div></div>
+</div>
+</section>
+<section id="Jednotlivé-hodnoty">
+<h2>Jednotlivé hodnoty<a class="headerlink" href="#Jednotlivé-hodnoty" title="Permalink to this heading">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># pohlavi
+df[&quot;sex&quot;].unique()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([&#39;F&#39;, &#39;M&#39;, &#39;T&#39;], dtype=object)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># datace informace
+df[&quot;TIME_PERIOD&quot;].unique()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022])
+</pre></div></div>
+</div>
+<p>Seřaďme hodnoty.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+np.sort(df[&quot;TIME_PERIOD&quot;].unique())
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022])
+</pre></div></div>
+</div>
+</section>
+<section id="Filtrování-dat">
+<h2>Filtrování dat<a class="headerlink" href="#Filtrování-dat" title="Permalink to this heading">¶</a></h2>
+<p>Filtrování podle jednoho sloupce.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df[df[&quot;geo&quot;] == &quot;CZ&quot;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATAFLOW</th>
+      <th>LAST UPDATE</th>
+      <th>freq</th>
+      <th>sex</th>
+      <th>unit</th>
+      <th>age</th>
+      <th>geo</th>
+      <th>TIME_PERIOD</th>
+      <th>OBS_VALUE</th>
+      <th>OBS_FLAG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1865</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CZ</td>
+      <td>2014</td>
+      <td>5350039</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1866</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CZ</td>
+      <td>2015</td>
+      <td>5361348</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1867</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CZ</td>
+      <td>2016</td>
+      <td>5367513</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1868</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CZ</td>
+      <td>2017</td>
+      <td>5378133</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1869</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>F</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CZ</td>
+      <td>2018</td>
+      <td>5390264</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1110293</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>CZ</td>
+      <td>2018</td>
+      <td>560763</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1110294</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>CZ</td>
+      <td>2019</td>
+      <td>567172</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1110295</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>CZ</td>
+      <td>2020</td>
+      <td>568823</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1110296</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>CZ</td>
+      <td>2021</td>
+      <td>558225</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <th>1110297</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>Y_LT5</td>
+      <td>CZ</td>
+      <td>2022</td>
+      <td>558098</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>579 rows × 10 columns</p>
+</div></div>
+</div>
+<p>Filtrování podle více sloupců.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df[(df[&quot;geo&quot;] == &quot;CZ&quot;) &amp; (df[&quot;TIME_PERIOD&quot;] == 2022) &amp; (df[&quot;sex&quot;] == &#39;T&#39;) &amp; (df[&quot;age&quot;] == &#39;TOTAL&#39;)]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATAFLOW</th>
+      <th>LAST UPDATE</th>
+      <th>freq</th>
+      <th>sex</th>
+      <th>unit</th>
+      <th>age</th>
+      <th>geo</th>
+      <th>TIME_PERIOD</th>
+      <th>OBS_VALUE</th>
+      <th>OBS_FLAG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>753989</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CZ</td>
+      <td>2022</td>
+      <td>10516707</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Definujme funkci, která bude vracet počet obyvatel pro zvolený NUTS kód a rok.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def population_by_country(code, year):
+    return int(df[(df[&quot;geo&quot;] == code) &amp; (df[&quot;TIME_PERIOD&quot;] == year) &amp; (df[&quot;sex&quot;] == &#39;T&#39;) &amp; (df[&quot;age&quot;] == &#39;TOTAL&#39;)][&quot;OBS_VALUE&quot;].values[0])
+
+population_by_country(&#39;CZ&#39;, 2022)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+10516707
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>population_by_country(&#39;PL&#39;, 2022)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+37654247
+</pre></div></div>
+</div>
+<p>Definujme funkci, která bude vracet počet obyvatel podle pohlaví pro zvolený NUTS kód a rok.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def population_by_country_sex(code, year):
+    return df[(df[&quot;geo&quot;] == code) &amp; (df[&quot;TIME_PERIOD&quot;] == year) &amp; (df[&quot;age&quot;] == &#39;TOTAL&#39;)][[&quot;sex&quot;, &quot;OBS_VALUE&quot;]].to_dict(&#39;list&#39;)
+
+population_by_country_sex(&#39;CZ&#39;, 2022)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;sex&#39;: [&#39;F&#39;, &#39;M&#39;, &#39;T&#39;], &#39;OBS_VALUE&#39;: [5332932, 5183775, 10516707]}
+</pre></div></div>
+</div>
+<p>Definujme funkci, která bude vracet počet obyvatel podle pohlaví a procentuální podíl žen pro zvolený NUTS kód a rok. Hodnota bude vrácena jako slovník.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def population_by_country_sex_p(code, year):
+    res = df[(df[&quot;geo&quot;] == code) &amp; (df[&quot;TIME_PERIOD&quot;] == year) &amp; (df[&quot;age&quot;] == &#39;TOTAL&#39;)][[&quot;sex&quot;, &quot;OBS_VALUE&quot;]].to_dict(&#39;list&#39;)
+    f_idx = res[&quot;sex&quot;].index(&quot;F&quot;)
+    f = res[&quot;OBS_VALUE&quot;][f_idx]
+    t_idx = res[&quot;sex&quot;].index(&quot;T&quot;)
+    t = res[&quot;OBS_VALUE&quot;][t_idx]
+
+    res_dict = {}
+    i = 0
+    for k in res[&quot;sex&quot;]:
+        res_dict[k] = int(res[&quot;OBS_VALUE&quot;][i])
+        i += 1
+
+    res_dict[&quot;F_p&quot;] = round(f/t, 2)
+    return res_dict
+
+population_by_country_sex_p(&#39;CZ&#39;, 2022)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;F&#39;: 5332932, &#39;M&#39;: 5183775, &#39;T&#39;: 10516707, &#39;F_p&#39;: 0.51}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>population_by_country_sex_p(&#39;PL&#39;, 2022)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;F&#39;: 19443954, &#39;M&#39;: 18210293, &#39;T&#39;: 37654247, &#39;F_p&#39;: 0.52}
+</pre></div></div>
+</div>
+</section>
+<section id="Filtrování-dat-na-úrovních-NUTS">
+<h2>Filtrování dat na úrovních NUTS<a class="headerlink" href="#Filtrování-dat-na-úrovních-NUTS" title="Permalink to this heading">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df[(df[&quot;TIME_PERIOD&quot;] == 2022) &amp; (df[&quot;sex&quot;] == &#39;T&#39;) &amp; (df[&quot;age&quot;] == &#39;TOTAL&#39;)]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATAFLOW</th>
+      <th>LAST UPDATE</th>
+      <th>freq</th>
+      <th>sex</th>
+      <th>unit</th>
+      <th>age</th>
+      <th>geo</th>
+      <th>TIME_PERIOD</th>
+      <th>OBS_VALUE</th>
+      <th>OBS_FLAG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>752124</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL</td>
+      <td>2022</td>
+      <td>2793592</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>752133</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL0</td>
+      <td>2022</td>
+      <td>2793592</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>752142</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL01</td>
+      <td>2022</td>
+      <td>783970</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>752151</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL011</td>
+      <td>2022</td>
+      <td>109585</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>752160</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL012</td>
+      <td>2022</td>
+      <td>291325</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>768174</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>TRC3</td>
+      <td>2022</td>
+      <td>2367645</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>768183</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>TRC31</td>
+      <td>2022</td>
+      <td>862757</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>768192</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>TRC32</td>
+      <td>2022</td>
+      <td>626319</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>768201</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>TRC33</td>
+      <td>2022</td>
+      <td>546589</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>768210</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>TRC34</td>
+      <td>2022</td>
+      <td>331980</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1778 rows × 10 columns</p>
+</div></div>
+</div>
+<p>Filtrujme NUTS úrovně 0 (NUTS identifikátor má přesně dva znaky).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df[(df[&quot;TIME_PERIOD&quot;] == 2022) &amp; (df[&quot;sex&quot;] == &#39;T&#39;) &amp; (df[&quot;age&quot;] == &#39;TOTAL&#39;) &amp; (df[&quot;geo&quot;].apply(lambda x: len(x) == 2))].head(10)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATAFLOW</th>
+      <th>LAST UPDATE</th>
+      <th>freq</th>
+      <th>sex</th>
+      <th>unit</th>
+      <th>age</th>
+      <th>geo</th>
+      <th>TIME_PERIOD</th>
+      <th>OBS_VALUE</th>
+      <th>OBS_FLAG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>752124</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AL</td>
+      <td>2022</td>
+      <td>2793592</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>752286</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>AT</td>
+      <td>2022</td>
+      <td>8978929</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>752718</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>BE</td>
+      <td>2022</td>
+      <td>11617623</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>753305</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>BG</td>
+      <td>2022</td>
+      <td>6838937</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>753638</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CH</td>
+      <td>2022</td>
+      <td>8738791</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>753953</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CY</td>
+      <td>2022</td>
+      <td>904705</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>753989</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>CZ</td>
+      <td>2022</td>
+      <td>10516707</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>754205</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>DE</td>
+      <td>2022</td>
+      <td>83237124</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>758309</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>DK</td>
+      <td>2022</td>
+      <td>5873420</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>758471</th>
+      <td>ESTAT:DEMO_R_PJANGRP3(1.0)</td>
+      <td>28/09/23 23:00:00</td>
+      <td>A</td>
+      <td>T</td>
+      <td>NR</td>
+      <td>TOTAL</td>
+      <td>EE</td>
+      <td>2022</td>
+      <td>1331796</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Definujme funkci, která bude vracet zemi a počet obyvatel pro zvolený rok. Volitelné argumenty budou NUTS úroveň, pohlaví a NUTS vzor.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def population_by_nuts(year, level=0, sex=&#39;T&#39;, nuts=None):
+    data = df[(df[&quot;TIME_PERIOD&quot;] == year) &amp; (df[&quot;sex&quot;] == sex) &amp; (df[&quot;age&quot;] == &#39;TOTAL&#39;) &amp; (df[&quot;geo&quot;].apply(lambda x: len(x) == level+2))]
+    if nuts is not None:
+        data = data[data[&quot;geo&quot;].str.match(nuts)]
+
+
+    return data[[&quot;geo&quot;, &quot;OBS_VALUE&quot;]]
+
+population_by_nuts(2022)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geo</th>
+      <th>OBS_VALUE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>752124</th>
+      <td>AL</td>
+      <td>2793592</td>
+    </tr>
+    <tr>
+      <th>752286</th>
+      <td>AT</td>
+      <td>8978929</td>
+    </tr>
+    <tr>
+      <th>752718</th>
+      <td>BE</td>
+      <td>11617623</td>
+    </tr>
+    <tr>
+      <th>753305</th>
+      <td>BG</td>
+      <td>6838937</td>
+    </tr>
+    <tr>
+      <th>753638</th>
+      <td>CH</td>
+      <td>8738791</td>
+    </tr>
+    <tr>
+      <th>753953</th>
+      <td>CY</td>
+      <td>904705</td>
+    </tr>
+    <tr>
+      <th>753989</th>
+      <td>CZ</td>
+      <td>10516707</td>
+    </tr>
+    <tr>
+      <th>754205</th>
+      <td>DE</td>
+      <td>83237124</td>
+    </tr>
+    <tr>
+      <th>758309</th>
+      <td>DK</td>
+      <td>5873420</td>
+    </tr>
+    <tr>
+      <th>758471</th>
+      <td>EE</td>
+      <td>1331796</td>
+    </tr>
+    <tr>
+      <th>758551</th>
+      <td>EL</td>
+      <td>10459782</td>
+    </tr>
+    <tr>
+      <th>759181</th>
+      <td>ES</td>
+      <td>47432893</td>
+    </tr>
+    <tr>
+      <th>759976</th>
+      <td>FI</td>
+      <td>5548241</td>
+    </tr>
+    <tr>
+      <th>760219</th>
+      <td>FR</td>
+      <td>67871925</td>
+    </tr>
+    <tr>
+      <th>761521</th>
+      <td>HR</td>
+      <td>3862305</td>
+    </tr>
+    <tr>
+      <th>761750</th>
+      <td>HU</td>
+      <td>9689010</td>
+    </tr>
+    <tr>
+      <th>762059</th>
+      <td>IE</td>
+      <td>5060004</td>
+    </tr>
+    <tr>
+      <th>762176</th>
+      <td>IS</td>
+      <td>376248</td>
+    </tr>
+    <tr>
+      <th>762221</th>
+      <td>IT</td>
+      <td>59030133</td>
+    </tr>
+    <tr>
+      <th>763448</th>
+      <td>LI</td>
+      <td>39308</td>
+    </tr>
+    <tr>
+      <th>763484</th>
+      <td>LT</td>
+      <td>2805998</td>
+    </tr>
+    <tr>
+      <th>763610</th>
+      <td>LU</td>
+      <td>645397</td>
+    </tr>
+    <tr>
+      <th>763646</th>
+      <td>LV</td>
+      <td>1875757</td>
+    </tr>
+    <tr>
+      <th>763727</th>
+      <td>ME</td>
+      <td>617683</td>
+    </tr>
+    <tr>
+      <th>763763</th>
+      <td>MK</td>
+      <td>1837114</td>
+    </tr>
+    <tr>
+      <th>763883</th>
+      <td>MT</td>
+      <td>520971</td>
+    </tr>
+    <tr>
+      <th>763928</th>
+      <td>NL</td>
+      <td>17590672</td>
+    </tr>
+    <tr>
+      <th>764441</th>
+      <td>NO</td>
+      <td>5425270</td>
+    </tr>
+    <tr>
+      <th>764676</th>
+      <td>PL</td>
+      <td>37654247</td>
+    </tr>
+    <tr>
+      <th>765558</th>
+      <td>PT</td>
+      <td>10352042</td>
+    </tr>
+    <tr>
+      <th>765882</th>
+      <td>RO</td>
+      <td>19042455</td>
+    </tr>
+    <tr>
+      <th>766377</th>
+      <td>RS</td>
+      <td>6797105</td>
+    </tr>
+    <tr>
+      <th>766572</th>
+      <td>SE</td>
+      <td>10452326</td>
+    </tr>
+    <tr>
+      <th>766869</th>
+      <td>SI</td>
+      <td>2107180</td>
+    </tr>
+    <tr>
+      <th>767013</th>
+      <td>SK</td>
+      <td>5434712</td>
+    </tr>
+    <tr>
+      <th>767139</th>
+      <td>TR</td>
+      <td>84680273</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Podívejme se, jak vypadá rozdělení žen v ČR podle krajů.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>population_by_nuts(2022, level=2, sex=&quot;F&quot;, nuts=&quot;CZ&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geo</th>
+      <th>OBS_VALUE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1891</th>
+      <td>CZ01</td>
+      <td>652285</td>
+    </tr>
+    <tr>
+      <th>1909</th>
+      <td>CZ02</td>
+      <td>701332</td>
+    </tr>
+    <tr>
+      <th>1927</th>
+      <td>CZ03</td>
+      <td>613767</td>
+    </tr>
+    <tr>
+      <th>1954</th>
+      <td>CZ04</td>
+      <td>547501</td>
+    </tr>
+    <tr>
+      <th>1981</th>
+      <td>CZ05</td>
+      <td>755586</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>CZ06</td>
+      <td>854930</td>
+    </tr>
+    <tr>
+      <th>2044</th>
+      <td>CZ07</td>
+      <td>608263</td>
+    </tr>
+    <tr>
+      <th>2071</th>
+      <td>CZ08</td>
+      <td>599268</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Grafy">
+<h2>Grafy<a class="headerlink" href="#Grafy" title="Permalink to this heading">¶</a></h2>
+<p>Podívejme se na graf znázorňující počet obyvatel pro jednotlivé země.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data = population_by_nuts(2022)
+data.plot(kind=&quot;barh&quot;, x=&quot;geo&quot;, y=&quot;OBS_VALUE&quot;, xlabel=&quot;NUTS0&quot;, ylabel=&quot;Počet obyvatel&quot;,
+          title=f&quot;Počet obyvatel (2021, total)&quot;, figsize=(20, 15))
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;AxesSubplot: title={&#39;center&#39;: &#39;Počet obyvatel (2021, total)&#39;}, xlabel=&#39;NUTS0&#39;, ylabel=&#39;Počet obyvatel&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/vektorova_data_geopandas_pandas-nuts_34_1.png" src="../../_images/vektorova_data_geopandas_pandas-nuts_34_1.png" />
+</div>
+</div>
+<p>Definujme funkci, která bude generovat graf s počtem obyvatel pro zvolený rok. Volitelné argumenty budou NUTS úroveň, pohlaví a NUTS vzor.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def print_graph(year, level=0, sex=&quot;T&quot;, nuts=None):
+    data = population_by_nuts(year, level, sex, nuts)
+    data.plot(kind=&quot;barh&quot;, x=&quot;geo&quot;, y=&quot;OBS_VALUE&quot;, xlabel=f&quot;NUTS{level}&quot;, ylabel=&quot;Počet obyvatel&quot;,
+              title=f&quot;Počet obyvatel ({year} {sex})&quot;, figsize=(20, 15))
+
+print_graph(2022, level=2, nuts=&quot;CZ&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/vektorova_data_geopandas_pandas-nuts_36_0.png" src="../../_images/vektorova_data_geopandas_pandas-nuts_36_0.png" />
+</div>
+</div>
+<p>Podívejme se, jak vypadá rozdělení žen v ČR podle krajů.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print_graph(2022, level=2, nuts=&quot;CZ&quot;, sex=&quot;F&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/vektorova_data_geopandas_pandas-nuts_38_0.png" src="../../_images/vektorova_data_geopandas_pandas-nuts_38_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s vektorovými daty</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fiona/index.html">Knihovna Fiona/Shapely</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ogr/index.html">Knihovna OGR (GDAL)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">GeoPandas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="index.html" title="GeoPandas"
+              >předchozí</a> |
+            <a href="geopandas-nuts.html" title="Úvod do GeoPandas"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

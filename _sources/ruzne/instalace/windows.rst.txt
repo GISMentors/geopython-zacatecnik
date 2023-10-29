@@ -4,15 +4,16 @@ Instalace na operační systému MS Windows
 Tato kapitola by vám měla pomoci nastavit použitelné prostředí pro
 zpracování prostorových dat pomocí open source knihoven v jazyce
 Python na operačním systému MS Windows.
-        
-.. note:: Kurzy GISMentors probíhají na operačním systému Linux a máme
-        pro to řadu dobrých důvodů: lepší provázanost knihoven,
-        stabilita, možnost snáze něco "opravit". Platforma MS Windows
-        pro nás není domácí. Navíc není pro vývoj programů pro práci s
-        prostorovými daty s využitím open source knihoven úplně
-        ideální, především pro svou roztříštěnost a nestabilitu.
 
-Na operačním systému MS Windows máme (minimálně) **dvě
+..
+   .. note:: Kurzy GISMentors probíhají na operačním systému Linux a máme
+   pro to řadu dobrých důvodů: lepší provázanost knihoven,
+   stabilita, možnost snáze něco "opravit". Platforma MS Windows
+   pro nás není domácí. Navíc není pro vývoj programů pro práci s
+   prostorovými daty s využitím open source knihoven úplně
+   ideální, především pro svou roztříštěnost a nestabilitu.
+
+Na operačním systému MS Windows máme (minimálně) **tří
 prostředí/možnosti**, v jakých můžeme Python provozovat:
 
 1. *(preferovaná)* Z distribuce `OSGeo4W <https://trac.osgeo.org/osgeo4w/>`_ - což je
@@ -25,7 +26,10 @@ prostředí/možnosti**, v jakých můžeme Python provozovat:
    <http://python.org>`__. Do tohoto prostředí lze doinstalovat všechny knihovny
    používané v tomto kurzu, ale jejich zapojení např. do QGIS nebo GRASS GIS bude
    velmi obtížné až nemožné. :ref:`Návod <win-py-bin>`.
-
+3. `Anaconda
+   <https://docs.anaconda.com/free/anaconda/install/windows/>` (není v
+   těchto materiálech díle rozepsáno)
+   
 .. note:: Je "zvykem", že na MS Windows si všechny programy s sebou
         instalují všechny potřebné knihovny. Takže pokud máte v
         systému Esri ArcGIS, máte i další interní interpret Pythonu
@@ -113,13 +117,10 @@ V našem případě najděte a nainstalujte následující balíčky:
 
         Sledování průběhu instalace
 
-Pro otestování prostředí otevřeme *OSGeo4W Shell*. Před vstupem do
-interpreta jazyka Python, musíme spustit skript :file:`p3_env`, který
-nastaví proměnné prostředí pro Python 3.
+Pro otestování prostředí otevřeme *OSGeo4W Shell*.
 
 .. code-block:: cmd
 
-   py3_env
    python3 -c "from osgeo import gdal; print(gdal.__version__)"
         
 .. figure:: ../images/osgeo4w-run.png
@@ -146,13 +147,13 @@ nastaví proměnné prostředí pro Python 3.
 
            C:\> python3 --version
 
-           Python 3.7.0
+           Python 3.9.5
 
    V našem případě tedy stáhneme např. soubory
 
-   * :file:`rasterio‑1.2.1‑cp37‑cp37m‑win_amd64.whl`
-   * :file:`Fiona‑1.8.18‑cp37‑cp37m‑win_amd64.whl`
-   * :file:`Shapely‑1.7.1‑cp37‑cp37m‑win_amd64.whl`
+   * :file:`rasterio‑1.2.10‑cp39‑cp39m‑win_amd64.whl`
+   * :file:`Fiona‑1.8.21‑cp39‑cp39m‑win_amd64.whl`
+   * :file:`Shapely‑1.8.2‑cp39‑cp39m‑win_amd64.whl`
 
    A doinstalujeme tyto balíky pomocí :program:`pip` v prostředí
    *OSGeo4W Shell* jako *správce*. Nezapomeňte nejprve nastavit
@@ -164,9 +165,9 @@ nastaví proměnné prostředí pro Python 3.
 
       cd C:\Users\Administrator\Downloads
 
-      python3 -m pip install Fiona-1.8.18-cp37-cp37m-win_amd64.whl
-      python3 -m pip install rasterio-1.2.1-cp37-cp37m-win_amd64.whl
-      python3 -m pip install Shapely-1.7.1-cp37-cp37m-win_amd64.whl
+      python3 -m pip install Fiona-1.8.21-cp39-cp39m-win_amd64.whl
+      python3 -m pip install rasterio-1.2.10-cp39-cp39m-win_amd64.whl
+      python3 -m pip install Shapely-1.8.2-cp39-cp39m-win_amd64.whl
 
 Následně můžeme instalaci vyzkoušet :ref:`install-pytest`.
 
@@ -180,16 +181,13 @@ Druhá možnost (alternativní): Instalace nativního interpretu CPython
    kombinovat knihovny s QGIS, GRASS GIS a dalšími.
 
 Ze stránek https://www.python.org/downloads/windows/ stáhněte aktuální
-verzi jazyka Python s označením 3.x - použijte 64bit verzi - tedy
-např. `Windows x86-64 executable installer
-<https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe>`__.
+verzi jazyka Python s označením 3.x - použijte 64bit verzi.
 
-.. note:: Odkazy výše ukazují přímo na verzi interpretu 3.8.1!
-   Ujistěte se, že stahujete aktuální verzi intepretu.
-
+.. note:: Následující návod počítá s verzí Python 3.8, je ale
+          jednoduše přenositelný i na novější verze Pythonu.
+          
 Spusťte instalátor - v administrátorském režimu - a nastavte *Customize
 installation*. Zaškrtněte přidání Python do proměnné :envvar:`PATH`.
-
 
 .. figure:: ../images/install-windows-cpython-1.png
 
@@ -232,8 +230,8 @@ doinstalujeme požadované knihovny, například:
 
 .. code-block:: cmd
 
-   pip install Downloads\Shapely-1.7.0-cp38-cp38-win32.whl
-   pip install Downloads\Fiona-1.8.13-cp38-cp38-win32.whl
+   pip install Downloads\Shapely-1.8.2-cp38-cp38-win32.whl
+   pip install Downloads\Fiona-1.8.21-cp38-cp38-win32.whl
    ...
 
 Instalace Rasterio
@@ -264,8 +262,7 @@ Otestování instalace
 
 Otevřte *OSGeo4W Shell* (anebo příkazový řádek Windows v případě
 nativního interpretu CPython) jako *správce* a doinstalujte
-:program:`pytest` (v případě *OSGeo4W Shell* ještě nastavíme prostředí
-pro Python 3 pomocí ``py3_env``).
+:program:`pytest`.
 
 .. code-block:: cmd
 
@@ -292,8 +289,7 @@ rozbalené složky, např.:
    spustit ze složky, která obsahuje podsložku :file:`tests`. To
    můžete ověřit příkazem ``dir``.
 
-Testy spustíte následujícím příkazem (v případě *OSGeo4W Shell* ještě
-nastavíme prostředí pro Python 3 pomocí ``py3_env``).
+Testy spustíte následujícím příkazem.
 
 .. code-block:: cmd
 

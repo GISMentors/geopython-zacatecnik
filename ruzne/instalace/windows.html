@@ -16,6 +16,7 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="search" title="Vyhledávání" href="../../search.html" />
     <link rel="next" title="Výběr textového editoru pro jazyk Python" href="../editor/index.html" />
     <link rel="prev" title="Instalace na operačním systému Linux" href="linux.html" /> 
@@ -46,16 +47,7 @@
 <p>Tato kapitola by vám měla pomoci nastavit použitelné prostředí pro
 zpracování prostorových dat pomocí open source knihoven v jazyce
 Python na operačním systému MS Windows.</p>
-<div class="admonition note">
-<p class="admonition-title">Poznámka</p>
-<p>Kurzy GISMentors probíhají na operačním systému Linux a máme
-pro to řadu dobrých důvodů: lepší provázanost knihoven,
-stabilita, možnost snáze něco „opravit“. Platforma MS Windows
-pro nás není domácí. Navíc není pro vývoj programů pro práci s
-prostorovými daty s využitím open source knihoven úplně
-ideální, především pro svou roztříštěnost a nestabilitu.</p>
-</div>
-<p>Na operačním systému MS Windows máme (minimálně) <strong>dvě
+<p>Na operačním systému MS Windows máme (minimálně) <strong>tří
 prostředí/možnosti</strong>, v jakých můžeme Python provozovat:</p>
 <ol class="arabic simple">
 <li><p><em>(preferovaná)</em> Z distribuce <a class="reference external" href="https://trac.osgeo.org/osgeo4w/">OSGeo4W</a> - což je
@@ -67,6 +59,9 @@ ale může změnit. <a class="reference internal" href="#win-osgeo4w-bin"><span 
 <li><p><em>(alternativní)</em> Nativní distribuce Pythonu ze stránek <a class="reference external" href="http://python.org">http://python.org</a>. Do tohoto prostředí lze doinstalovat všechny knihovny
 používané v tomto kurzu, ale jejich zapojení např. do QGIS nebo GRASS GIS bude
 velmi obtížné až nemožné. <a class="reference internal" href="#win-py-bin"><span class="std std-ref">Návod</span></a>.</p></li>
+<li><p><cite>Anaconda
+&lt;https://docs.anaconda.com/free/anaconda/install/windows/&gt;</cite> (není v
+těchto materiálech díle rozepsáno)</p></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Poznámka</p>
@@ -160,11 +155,8 @@ stáhli instálator OSGeo4W a spusťte následující příkaz.</p>
 <p><span class="caption-number">Obr. 16 </span><span class="caption-text">Sledování průběhu instalace</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
 </figcaption>
 </figure>
-<p>Pro otestování prostředí otevřeme <em>OSGeo4W Shell</em>. Před vstupem do
-interpreta jazyka Python, musíme spustit skript <code class="file docutils literal notranslate"><span class="pre">p3_env</span></code>, který
-nastaví proměnné prostředí pro Python 3.</p>
-<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>py3_env
-python3 -c &quot;from osgeo import gdal; print(gdal.__version__)&quot;
+<p>Pro otestování prostředí otevřeme <em>OSGeo4W Shell</em>.</p>
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>python3 -c &quot;from osgeo import gdal; print(gdal.__version__)&quot;
 </pre></div>
 </div>
 <figure class="align-center">
@@ -189,14 +181,14 @@ stejná jako verze Pythonu v OSGeo4W. Proto spustíme <em>OSGeo4W Shell</em> a
 zjistíme verzi:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="o">&gt;</span> <span class="n">python3</span> <span class="o">--</span><span class="n">version</span>
 
-<span class="n">Python</span> <span class="mf">3.7.0</span>
+<span class="n">Python</span> <span class="mf">3.9.5</span>
 </pre></div>
 </div>
 <p>V našem případě tedy stáhneme např. soubory</p>
 <ul class="simple">
-<li><p><code class="file docutils literal notranslate"><span class="pre">rasterio‑1.2.1‑cp37‑cp37m‑win_amd64.whl</span></code></p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">Fiona‑1.8.18‑cp37‑cp37m‑win_amd64.whl</span></code></p></li>
-<li><p><code class="file docutils literal notranslate"><span class="pre">Shapely‑1.7.1‑cp37‑cp37m‑win_amd64.whl</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">rasterio‑1.2.10‑cp39‑cp39m‑win_amd64.whl</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">Fiona‑1.8.21‑cp39‑cp39m‑win_amd64.whl</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">Shapely‑1.8.2‑cp39‑cp39m‑win_amd64.whl</span></code></p></li>
 </ul>
 <p>A doinstalujeme tyto balíky pomocí <strong class="program">pip</strong> v prostředí
 <em>OSGeo4W Shell</em> jako <em>správce</em>. Nezapomeňte nejprve nastavit
@@ -205,9 +197,9 @@ prostředí pro Python 3 spuštěním skriptu <code class="file docutils literal
 
 <span class="nb">cd</span><span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads
 
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>Fiona-1.8.18-cp37-cp37m-win_amd64.whl
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>rasterio-1.2.1-cp37-cp37m-win_amd64.whl
-python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>Shapely-1.7.1-cp37-cp37m-win_amd64.whl
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>Fiona-1.8.21-cp39-cp39m-win_amd64.whl
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>rasterio-1.2.10-cp39-cp39m-win_amd64.whl
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>Shapely-1.8.2-cp39-cp39m-win_amd64.whl
 </pre></div>
 </div>
 </div>
@@ -222,12 +214,11 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
 kombinovat knihovny s QGIS, GRASS GIS a dalšími.</p>
 </div>
 <p>Ze stránek <a class="reference external" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a> stáhněte aktuální
-verzi jazyka Python s označením 3.x - použijte 64bit verzi - tedy
-např. <a class="reference external" href="https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe">Windows x86-64 executable installer</a>.</p>
+verzi jazyka Python s označením 3.x - použijte 64bit verzi.</p>
 <div class="admonition note">
 <p class="admonition-title">Poznámka</p>
-<p>Odkazy výše ukazují přímo na verzi interpretu 3.8.1!
-Ujistěte se, že stahujete aktuální verzi intepretu.</p>
+<p>Následující návod počítá s verzí Python 3.8, je ale
+jednoduše přenositelný i na novější verze Pythonu.</p>
 </div>
 <p>Spusťte instalátor - v administrátorském režimu - a nastavte <em>Customize
 installation</em>. Zaškrtněte přidání Python do proměnné <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
@@ -270,8 +261,8 @@ pro danou verzi Pythonu (v tomto dokumentu používáme 3.8) a 64bit
 platformu (amd64).</p>
 <p>Poté otevřeme příkazovou řádku Windows jako <em>správce</em> a
 doinstalujeme požadované knihovny, například:</p>
-<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>pip install Downloads\Shapely-1.7.0-cp38-cp38-win32.whl
-pip install Downloads\Fiona-1.8.13-cp38-cp38-win32.whl
+<div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>pip install Downloads\Shapely-1.8.2-cp38-cp38-win32.whl
+pip install Downloads\Fiona-1.8.21-cp38-cp38-win32.whl
 ...
 </pre></div>
 </div>
@@ -295,8 +286,7 @@ Visual Studio 2015 a mladší, nejlépe ke stažení z
 <span id="install-pytest"></span><h2>Otestování instalace<a class="headerlink" href="#otestovani-instalace" title="Permalink to this heading">¶</a></h2>
 <p>Otevřte <em>OSGeo4W Shell</em> (anebo příkazový řádek Windows v případě
 nativního interpretu CPython) jako <em>správce</em> a doinstalujte
-<strong class="program">pytest</strong> (v případě <em>OSGeo4W Shell</em> ještě nastavíme prostředí
-pro Python 3 pomocí <code class="docutils literal notranslate"><span class="pre">py3_env</span></code>).</p>
+<strong class="program">pytest</strong>.</p>
 <div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>py3_env
 python3 -m pip install pytest
 </pre></div>
@@ -319,8 +309,7 @@ vnořením do složky <code class="file docutils literal notranslate"><span clas
 spustit ze složky, která obsahuje podsložku <code class="file docutils literal notranslate"><span class="pre">tests</span></code>. To
 můžete ověřit příkazem <code class="docutils literal notranslate"><span class="pre">dir</span></code>.</p>
 </div>
-<p>Testy spustíte následujícím příkazem (v případě <em>OSGeo4W Shell</em> ještě
-nastavíme prostředí pro Python 3 pomocí <code class="docutils literal notranslate"><span class="pre">py3_env</span></code>).</p>
+<p>Testy spustíte následujícím příkazem.</p>
 <div class="highlight-cmd notranslate"><div class="highlight"><pre><span></span>py3_env
 python3 -m pytest tests
 </pre></div>

@@ -28,7 +28,7 @@ potřebné knihovny do prostředí Java. PyPy se zase zdá být rychlejší, ne�
 CPython. 
 
 Bohužel ne všechny implementace dokáží držet krok s vývojem a tak jazyk Python a
-jeho interpret CPython jsou momentálně ve verzi 3.7 (jaro 2020), Jython ustrnul
+jeho interpret CPython jsou momentálně ve verzi 3.12 (podzim 2023), Jython ustrnul
 ve verzi 2.7 a nezdá se, že by se posouval.
 
 Nedílnou součástí programování je využívání dostupných knihoven - a ty
@@ -44,17 +44,8 @@ Proto se budeme držet referenční implementace CPython.
 Verze jazyka Python
 -------------------
 
-V současné době se ještě stále nacházíme v přechodné fázi mezi verzí
-jazyka 2 a 3. Naše kurzy již využívají Python verze 3, stejně tak
-všechny námi doporučené knihovny a programy. Pokud vám ale někdo dá
-"na výběr" nebo si nejste jisti, jakou verzi zvolit, je Python 3
-jasnou volbou. Pokud přijdete k projektu, který využívá Pyhon 2
-(poslední verze je 2.7), syntaxe je na 99% stejná, takže vše, co se
-naučíte pro Python 3 bude použitelné i pro Python 2.
-
-Je potřeba zdůraznit, že se Python 2 již dále `nevyvijí
-<https://www.python.org/doc/sunset-python-2/>`__. Což znamená, že v
-poslední době většina projektů přestává Python 2 podporovat.
+Naše kurzy využívají Python verze 3, stejně tak všechny námi
+doporučené knihovny a programy.
 
 Návody pro vybrané platformy
 ----------------------------
