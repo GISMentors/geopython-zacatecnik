@@ -13,5 +13,8 @@ na knihovně :ref:`Fiona <fiona>` pro načítání dat a používá
 Pandas ještě více zjednodušuje práci s vektorovými daty a přidává možnost
 grafického tiskového výstupu.
 
+.. toctree::
+   :maxdepth: 1
 
-.. todo:: Tato část je zatím ve fázi *pahýl*.
+   pandas-nuts
+   geopandas-nuts
