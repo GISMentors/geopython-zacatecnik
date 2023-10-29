@@ -19,9 +19,8 @@ nástroj :program:`pip` pro instalaci dalších knihoven
 Po instalaci můžeme ověřit přítomnost jazyka spuštěním jeho interpretu::
 
         $ python3
-        Python 3.6.9 (default, Nov  7 2019, 10:44:02) 
-        [GCC 8.3.0] on linux
-        Type "help", "copyright", "credits" or "license" for more information
+        Python 3.11.6 (main, Oct  8 2023, 05:06:43) [GCC 13.2.0] on linux
+        Type "help", "copyright", "credits" or "license" for more information.
         >>>
 
 Protože se pohybujeme v "geo" světě, je dobré doinstalovat i další potřebné
@@ -31,7 +30,8 @@ balíčcích přítomná, tím lépe
 
 .. code-block:: bash
 
-   sudo apt-get install fiona python3-fiona rasterio python3-rasterio python3-owslib python3-pyproj python3-gdal libgdal-dev
+   sudo apt-get install fiona python3-fiona rasterio python3-rasterio \
+    python3-owslib python3-pyproj python3-gdal libgdal-dev
 
 .. tip:: Pro uživatele Ubuntu. Pokud potřebuje novější verze knihoven
    než jsou v distribuci, tak před instalací zaregistrujte ještě
