@@ -1,9 +1,9 @@
 Jupyter notebook
 ================
 
-`Jupyter <http://jupyter.org/>`_ je webová aplikace, která vám umožní vytvářet
-dokumenty, které obsahují kód programu, vizualizace, formátovaný text - vše v
-jednom.
+`Jupyter <http://jupyter.org/>`_ je webová aplikace, která vám umožní
+vytvářet dokumenty, které obsahují kód programu, vizualizace,
+formátovaný text - vše v jednom.
 
 Pokud si chcete hrát s nějakou Python knihovnou, je Jupyter skvělá
 volba - můžete si kód hned popisovat, vracet se k jeho jednotlivým
@@ -11,7 +11,10 @@ volba - můžete si kód hned popisovat, vracet se k jeho jednotlivým
 
 .. figure:: images/jupyter.png
    :class: middle
-           
+
+.. note:: Návod, jak doinstalovat Jupyter do prostředí OSGeo4W, najdete
+   :ref:`zde <jupyter_osgeo4w>`.
+          
 Jak zobrazit rastrová data numpy
 --------------------------------
 
