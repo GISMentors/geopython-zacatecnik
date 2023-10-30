@@ -161,8 +161,6 @@ Pro otestování prostředí otevřeme *OSGeo4W Shell*.
 
    .. code-block:: bash
 
-      py3_env
-
       cd C:\Users\Administrator\Downloads
 
       python3 -m pip install Fiona-1.8.21-cp39-cp39m-win_amd64.whl
@@ -170,6 +168,23 @@ Pro otestování prostředí otevřeme *OSGeo4W Shell*.
       python3 -m pip install Shapely-1.8.2-cp39-cp39m-win_amd64.whl
 
 Následně můžeme instalaci vyzkoušet :ref:`install-pytest`.
+
+.. _jupyter_osgeo4w:
+
+.. tip:: Do prostředí OSGeo4W můžete jednoduše integrovat Jupyter
+   Notebook. V příkazové řádce *OSGeo4W Shell*:
+
+   .. code-block:: bash
+
+      # instalace (pokud jste otevreli OSGeo4W Shell jako administrator)
+      python3 -m pip install jupyter
+      # jinak
+      python3 -m pip install jupyter --user
+
+      # spuštění (pokud jste instalovali Jupyter Notebook jako administrator)
+      jupyter-notebook %HOMEPATH%\Documents
+      # jinak
+      %APPDATA%\Python\Python39\Scripts\jupyter-notebook %HOMEPATH%\Documents
 
 .. _win-py-bin:
 

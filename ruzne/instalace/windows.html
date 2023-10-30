@@ -193,9 +193,7 @@ zjistíme verzi:</p>
 <p>A doinstalujeme tyto balíky pomocí <strong class="program">pip</strong> v prostředí
 <em>OSGeo4W Shell</em> jako <em>správce</em>. Nezapomeňte nejprve nastavit
 prostředí pro Python 3 spuštěním skriptu <code class="file docutils literal notranslate"><span class="pre">py3_env</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>py3_env
-
-<span class="nb">cd</span><span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\A</span>dministrator<span class="se">\D</span>ownloads
 
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>Fiona-1.8.21-cp39-cp39m-win_amd64.whl
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>rasterio-1.2.10-cp39-cp39m-win_amd64.whl
@@ -204,6 +202,22 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
 </div>
 </div>
 <p>Následně můžeme instalaci vyzkoušet <a class="reference internal" href="#install-pytest"><span class="std std-ref">Otestování instalace</span></a>.</p>
+<div class="admonition tip" id="jupyter-osgeo4w">
+<p class="admonition-title">Tip</p>
+<p>Do prostředí OSGeo4W můžete jednoduše integrovat Jupyter
+Notebook. V příkazové řádce <em>OSGeo4W Shell</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># instalace (pokud jste otevreli OSGeo4W Shell jako administrator)</span>
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jupyter
+<span class="c1"># jinak</span>
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>--user
+
+<span class="c1"># spuštění (pokud jste instalovali Jupyter Notebook jako administrator)</span>
+jupyter-notebook<span class="w"> </span>%HOMEPATH%<span class="se">\D</span>ocuments
+<span class="c1"># jinak</span>
+%APPDATA%<span class="se">\P</span>ython<span class="se">\P</span>ython39<span class="se">\S</span>cripts<span class="se">\j</span>upyter-notebook<span class="w"> </span>%HOMEPATH%<span class="se">\D</span>ocuments
+</pre></div>
+</div>
+</div>
 </section>
 <section id="druha-moznost-alternativni-instalace-nativniho-interpretu-cpython">
 <span id="win-py-bin"></span><h2>Druhá možnost (alternativní): Instalace nativního interpretu CPython<a class="headerlink" href="#druha-moznost-alternativni-instalace-nativniho-interpretu-cpython" title="Permalink to this heading">¶</a></h2>
