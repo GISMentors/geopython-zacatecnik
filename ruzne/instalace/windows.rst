@@ -95,6 +95,7 @@ V našem případě najděte a nainstalujte následující balíčky:
 * ``python3-fiona``
 * ``python3-shapely``  
 * ``python3-rasterio``
+* ``python3-pdal``
 
 .. _instalace-osgeo4w-cmd:
 
@@ -106,7 +107,7 @@ V našem případě najděte a nainstalujte následující balíčky:
    .. code-block:: bash
                    
       osgeo4w-setup.exe -g -k -a x86_64 -R C:\OSGeo4W -s http://osgeo4w-oslandia.com/osgeo4w -q ^
-      -P python3-pip,python3-gdal,python3-owslib,qgis-ltr-full,python3-fiona,python3-shapely,python3-rasterio
+      -P python3-pip,python3-gdal,python3-owslib,qgis-ltr-full,python3-fiona,python3-shapely,python3-rasterio,python3-pdal
    
 .. note:: A samozřejmě můžete i nainstalovat desktopový program QGIS
    (není podmínkou pro toto školení).
