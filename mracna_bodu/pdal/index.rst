@@ -47,6 +47,12 @@ použijte *OSGeo4W Shell*):
 .. code-block:: bash
 
    pdal pipeline ./pdal-pipeline.json
+
+.. note:: Je nutné doinstalovat balíček ``pdal-plugins``
+
+   .. code-block:: bash
+
+      python3 -m pip install pip pdal-plugins
    
 Rozšíření
 ---------
