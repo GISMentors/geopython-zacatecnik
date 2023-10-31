@@ -1,5 +1,5 @@
 [
-    "file-input.las",
+    "/cesta/vstup.las",
     {
         "type":"filters.smrf"
     },
@@ -11,6 +11,6 @@
     },
     {
         "type":"writers.las",
-        "filename":"file-filtered.las"
+        "filename":"/cesta/vystup.las"
     }
 ]                
