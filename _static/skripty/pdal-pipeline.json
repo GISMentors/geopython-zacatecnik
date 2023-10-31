@@ -1,0 +1,16 @@
+[
+    "file-input.las",
+    {
+        "type":"filters.smrf"
+    },
+    {
+        "type":"filters.python",
+        "script":"multiply_z.py",
+        "function":"multiply_z",
+        "module":"anything"
+    },
+    {
+        "type":"writers.las",
+        "filename":"file-filtered.las"
+    }
+]                
