@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Knihovna PDAL a Python &#8212; Školení GeoPython pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+    <link rel="next" title="GeoDjango" href="../../geodjango/index.html" />
+    <link rel="prev" title="Práce s mračnem bodů" href="../index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../index.html">Školení GeoPython pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../index.html" title="Práce s mračnem bodů"
+             accesskey="P">předchozí</a> |
+          <a href="../../geodjango/index.html" title="GeoDjango"
+             accesskey="N">další</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="knihovna-pdal-a-python">
+<h1>Knihovna PDAL a Python<a class="headerlink" href="#knihovna-pdal-a-python" title="Permalink to this heading">¶</a></h1>
+<p>Knihovna PDAL podporuje jazyk Python ve dvou způsobech použití:</p>
+<ol class="arabic simple">
+<li><p>umožňuje vytvořit skript v jazyku Python, který pracuje s daty
+pomocí <code class="docutils literal notranslate"><span class="pre">filters.python</span></code></p></li>
+<li><p>nabízí rozšíření, které je možné integrovat v aplikacích
+napsaných v jazyku Python</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Data knihovna PDAL poskytuje jako NumPy pole.</p>
+</div>
+<p>Dokumentace: <a class="reference external" href="https://pdal.io/en/2.6.0/python.html">https://pdal.io/en/2.6.0/python.html</a></p>
+<section id="filters-python">
+<h2>1. filters.python<a class="headerlink" href="#filters-python" title="Permalink to this heading">¶</a></h2>
+<p>Tímto způsobem lze vestavět Python funkce do zpracování dat sekvencí operací
+(tzv. <a class="reference external" href="https://pdal.io/en/2.6.0/pipeline.html#pipeline">Pipelines</a>)
+bez znalosti jazyka C++ (ve kterém je PDAL implementován), které
+umožňují modifikovat mračna bodů ve formě NumPy polí.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Pipeline je reprezentována v knihovně PDAL <a class="reference external" href="http://cs.wikipedia.org/wiki/JSON">JSON</a>
+datovou strukturou.</p>
+</div>
+<p>Funkce musí mít dva argumenty datového typu NumPy polí: (1) mračno
+bodů před aplikací <code class="docutils literal notranslate"><span class="pre">filters.python</span></code> a (2) mračno bodů po aplikaci
+filru. Příklad funkce:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">multiply_z</span><span class="p">(</span><span class="n">ins</span><span class="p">,</span> <span class="n">outs</span><span class="p">):</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">ins</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span>
+    <span class="n">Z</span> <span class="o">*=</span> <span class="mf">10.0</span>
+    <span class="n">outs</span><span class="p">[</span><span class="s1">&#39;Z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Z</span>
+    
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>V případě úspěšné operace musí funkce vratit hodnotu <code class="docutils literal notranslate"><span class="pre">True</span></code>. Pokud
+by funkce vratila hodnotu <code class="docutils literal notranslate"><span class="pre">False</span></code> tak by pipeline
+skončil chybou.</p>
+<p>Příklad pipeline:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;/cesta/vstup.las&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;filters.smrf&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;filters.python&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;script&quot;</span><span class="p">:</span><span class="s2">&quot;multiply_z.py&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;function&quot;</span><span class="p">:</span><span class="s2">&quot;multiply_z&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="s2">&quot;anything&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;writers.las&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="s2">&quot;/cesta/vystup.las&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span><span class="w">                </span>
+</pre></div>
+</div>
+<p>Více ukázek najdete v dokumentaci <a class="reference external" href="https://pdal.io/en/2.6.0/stages/filters.python.html#filters-python">filters.python</a>.</p>
+<p>Příklad spuštění pipeline z příkazové řádky (pod Windows použijte
+<em>OSGeo4W Shell</em>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pdal<span class="w"> </span>pipeline<span class="w"> </span>./pdal-pipeline.json
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Je nutné doinstalovat balíček <code class="docutils literal notranslate"><span class="pre">pdal-plugins</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pip<span class="w"> </span>pdal-plugins
+</pre></div>
+</div>
+</div>
+</section>
+<section id="rozsireni">
+<h2>2. Rozšíření<a class="headerlink" href="#rozsireni" title="Permalink to this heading">¶</a></h2>
+<p>Pomocí rozšíření lze spouštět pipeline přímo v Python skriptu a
+zpracovat výsledky zpracování dat dále v podobě NumPy polí. Příklad:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">json</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">[</span>
+<span class="s2">    &quot;/cesta/soubor.las&quot;,</span>
+<span class="s2">    {</span>
+<span class="s2">        &quot;type&quot;: &quot;filters.sort&quot;,</span>
+<span class="s2">        &quot;dimension&quot;: &quot;Z&quot;</span>
+<span class="s2">    }</span>
+<span class="s2">]</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pdal</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">pdal</span><span class="o">.</span><span class="n">Pipeline</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">arrays</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">arrays</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arrays</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../vektorova_data/index.html">Práce s vektorovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rastrova_data/index.html">Práce s rastrovými daty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pyproj/index.html">Transformace souřadnic</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s mračnem bodů</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Knihovna PDAL a Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodjango/index.html">GeoDjango</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/jupyter.html">Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ruzne/editor/index.html">Výběr textového editoru pro jazyk Python</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../index.html" title="Práce s mračnem bodů"
+              >předchozí</a> |
+            <a href="../../geodjango/index.html" title="GeoDjango"
+              >další</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

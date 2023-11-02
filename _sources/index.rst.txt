@@ -67,6 +67,7 @@
    rastrova_data/index
    owslib/index
    pyproj/index
+   mracna_bodu/index
    geodjango/index
    ruzne/jupyter
    ruzne/instalace/index

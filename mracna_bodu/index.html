@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Práce s vektorovými daty &#8212; Školení GeoPython pro začátečníky</title>
+    <title>Práce s mračnem bodů &#8212; Školení GeoPython pro začátečníky</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -18,17 +18,17 @@
     <script src="../_static/translations.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="search" title="Vyhledávání" href="../search.html" />
-    <link rel="next" title="Knihovna Fiona/Shapely" href="fiona/index.html" />
-    <link rel="prev" title="Třídy a objekty" href="../python/classes.html" /> 
+    <link rel="next" title="Knihovna PDAL a Python" href="pdal/index.html" />
+    <link rel="prev" title="Transformace souřadnic" href="../pyproj/index.html" /> 
   </head><body>
     <div class="header-wrapper" role="banner">
       <div class="header">
         <div class="headertitle"><a
           href="../index.html">Školení GeoPython pro začátečníky</a></div>
         <div class="rel" role="navigation" aria-label="related navigation">
-          <a href="../python/classes.html" title="Třídy a objekty"
+          <a href="../pyproj/index.html" title="Transformace souřadnic"
              accesskey="P">předchozí</a> |
-          <a href="fiona/index.html" title="Knihovna Fiona/Shapely"
+          <a href="pdal/index.html" title="Knihovna PDAL a Python"
              accesskey="N">další</a>
         </div>
        </div>
@@ -42,38 +42,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="prace-s-vektorovymi-daty">
-<h1>Práce s vektorovými daty<a class="headerlink" href="#prace-s-vektorovymi-daty" title="Permalink to this heading">¶</a></h1>
-<p>Pro práci s vektorovými daty se v jazyce Python tradičně používá
-knihovna <a class="reference external" href="http://gdal.org">GDAL</a> (resp. její čast označovaná jako
-<em>OGR</em>). V poslední době však začíná být populární knihovna <a class="reference external" href="https://github.com/Toblerity/Fiona">Fiona</a> v kombinaci s <a class="reference external" href="https://github.com/Toblerity/Shapely">Shapely</a>.</p>
-<p><em>Fiona/Shapely</em> je projekt programátora <a class="reference external" href="http://sgillies.net/">Seana Gilliese</a>, který vytvořil vlastní aplikační rozhraní
-ke knihovně OGR, které více odpovídá standardům a postupům objektového
-jazyka Python. OGR je z tohoto pohledu knihovna, pomocí které lze
-provádět v porovnání s Fionou „nízkoúrovňovné“ operace.</p>
-<div class="admonition note">
-<p class="admonition-title">Poznámka</p>
-<p>Pro více informací o vektorových datech ve školení
-<a class="reference external" href="https://gismentors.github.io/open-source-gis/formaty/vektor.html">Úvod do GIS</a>.</p>
-</div>
+  <section id="prace-s-mracnem-bodu">
+<h1>Práce s mračnem bodů<a class="headerlink" href="#prace-s-mracnem-bodu" title="Permalink to this heading">¶</a></h1>
+<p>Pro práci s mračnem bodů lze v jazyce Python použít knihovnu <a class="reference external" href="https://pdal.io/">PDAL</a>.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fiona/index.html">Knihovna Fiona/Shapely</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fiona/data_source.html">Práce s datových zdrojem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fiona/data_source.html#souradnicove-systemy">Souřadnicové systémy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fiona/cteni_prvku.html">Procházení geoprvků</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fiona/geometrie.html">Geometrie geoprvků a knihovna Shapely</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fiona/highway_over_protected_area.html">Dálnice přes České středohoří</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ogr/index.html">Knihovna OGR (GDAL)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ogr/index.html#datovy-model">Datový model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ogr/index.html#priklady">Příklady</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="geopandas/index.html">GeoPandas</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="geopandas/pandas-nuts.html">Úvod do Pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geopandas/geopandas-nuts.html">Úvod do GeoPandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdal/index.html">Knihovna PDAL a Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdal/index.html#filters-python">1. filters.python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdal/index.html#rozsireni">2. Rozšíření</a></li>
 </ul>
 </li>
 </ul>
@@ -92,16 +68,14 @@ provádět v porovnání s Fionou „nízkoúrovňovné“ operace.</p>
           <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvod</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Úvod do jazyka Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Práce s vektorovými daty</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fiona/index.html">Knihovna Fiona/Shapely</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ogr/index.html">Knihovna OGR (GDAL)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geopandas/index.html">GeoPandas</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../vektorova_data/index.html">Práce s vektorovými daty</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rastrova_data/index.html">Práce s rastrovými daty</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../owslib/index.html">Načítání dat pomocí webových služeb OGC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pyproj/index.html">Transformace souřadnic</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../mracna_bodu/index.html">Práce s mračnem bodů</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Práce s mračnem bodů</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdal/index.html">Knihovna PDAL a Python</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../geodjango/index.html">GeoDjango</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ruzne/jupyter.html">Jupyter notebook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ruzne/instalace/index.html">Instalace potřebných knihoven</a></li>
@@ -125,9 +99,9 @@ provádět v porovnání s Fionou „nízkoúrovňovné“ operace.</p>
       <div class="footer">
         <div class="left">
           <div role="navigation" aria-label="related navigaton">
-            <a href="../python/classes.html" title="Třídy a objekty"
+            <a href="../pyproj/index.html" title="Transformace souřadnic"
               >předchozí</a> |
-            <a href="fiona/index.html" title="Knihovna Fiona/Shapely"
+            <a href="pdal/index.html" title="Knihovna PDAL a Python"
               >další</a>
           </div>
           <div role="note" aria-label="source link">
