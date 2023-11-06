@@ -21,7 +21,14 @@ url='https://vdp.cuzk.cz/vymenny_format/soucasna/{}_OB_{}_UKSH.xml.zip'.format(d
 count = 0
 count_dif = 0
 
-with fiona.open('/vsizip/vsicurl/' + url, layer='Parcely') as ds:
+# Fiona nepodporuje zdroje s vice geometriemi, proto data nejprve predzpracujeme
+# pomoci knihovny GDAL
+from osgeo import gdal
+parcely_poly = "/tmp/parcely.gml"
+gdal.VectorTranslate(parcely_poly, '/vsizip/vsicurl/' + url, format="GML",
+                     SQLStatement="select OriginalniHranice,* from parcely")
+# with fiona.open('/vsizip/vsicurl/' + url, layer='Parcely') as ds:
+with fiona.open(parcely_poly, layer='Parcely') as ds:
     schema = {
             "geometry": "Polygon",
             "properties": {
