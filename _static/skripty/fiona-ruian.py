@@ -16,10 +16,7 @@ day = (today.replace(month=today.month, day=1) - datetime.timedelta(days=1))
 datum = day.strftime("%Y%m%d")
 
 # URL souboru VDP
-url='https://vdp.cuzk.cz/vymenny_format/soucasna/{}_OB_{}_UKSH.xml.zip'.format(datum, obec)
-
-count = 0
-count_dif = 0
+url = 'https://vdp.cuzk.cz/vymenny_format/soucasna/{}_OB_{}_UKSH.xml.zip'.format(datum, obec)
 
 # Fiona nepodporuje zdroje s vice geometriemi, proto data nejprve predzpracujeme
 # pomoci knihovny GDAL
@@ -38,6 +35,9 @@ with fiona.open(parcely_poly, layer='Parcely') as ds:
                 }
             }
     with fiona.open("parcely.shp", 'w', driver="ESRI Shapefile", crs="epsg:5514", schema=schema) as dso:
+        count = 0
+        count_dif = 0
+
         for f in ds:
             count += 1
             
@@ -57,7 +57,8 @@ with fiona.open(parcely_poly, layer='Parcely') as ds:
                     "cislo": cislo,
                     "vymera": f["properties"]["VymeraParcely"],
                     "rozdil": vym - vym2
-                }
+                },
+                "geometry": f["geometry"]
             })
 
             count_dif += 1
@@ -65,4 +66,3 @@ with fiona.open(parcely_poly, layer='Parcely') as ds:
         print("-"*80)
         print("Počet parcel: {}".format(count))
         print("Počet parcel nad tolerancí: {}".format(count_dif))
-

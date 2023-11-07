@@ -182,28 +182,28 @@ a její konzolové nastroje.</p>
 <span class="linenos">16</span><span class="n">datum</span> <span class="o">=</span> <span class="n">day</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="linenos">17</span>
 <span class="linenos">18</span><span class="c1"># URL souboru VDP</span>
-<span class="linenos">19</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://vdp.cuzk.cz/vymenny_format/soucasna/</span><span class="si">{}</span><span class="s1">_OB_</span><span class="si">{}</span><span class="s1">_UKSH.xml.zip&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">obec</span><span class="p">)</span>
+<span class="linenos">19</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://vdp.cuzk.cz/vymenny_format/soucasna/</span><span class="si">{}</span><span class="s1">_OB_</span><span class="si">{}</span><span class="s1">_UKSH.xml.zip&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">obec</span><span class="p">)</span>
 <span class="linenos">20</span>
-<span class="linenos">21</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">22</span><span class="n">count_dif</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="linenos">23</span>
-<span class="linenos">24</span><span class="c1"># Fiona nepodporuje zdroje s vice geometriemi, proto data nejprve predzpracujeme</span>
-<span class="linenos">25</span><span class="c1"># pomoci knihovny GDAL</span>
-<span class="linenos">26</span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
-<span class="linenos">27</span><span class="n">parcely_poly</span> <span class="o">=</span> <span class="s2">&quot;/tmp/parcely.gml&quot;</span>
-<span class="linenos">28</span><span class="n">gdal</span><span class="o">.</span><span class="n">VectorTranslate</span><span class="p">(</span><span class="n">parcely_poly</span><span class="p">,</span> <span class="s1">&#39;/vsizip/vsicurl/&#39;</span> <span class="o">+</span> <span class="n">url</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;GML&quot;</span><span class="p">,</span>
-<span class="linenos">29</span>                     <span class="n">SQLStatement</span><span class="o">=</span><span class="s2">&quot;select OriginalniHranice,* from parcely&quot;</span><span class="p">)</span>
-<span class="linenos">30</span><span class="c1"># with fiona.open(&#39;/vsizip/vsicurl/&#39; + url, layer=&#39;Parcely&#39;) as ds:</span>
-<span class="linenos">31</span><span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">parcely_poly</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;Parcely&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
-<span class="linenos">32</span>    <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">33</span>            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
-<span class="linenos">34</span>            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-<span class="linenos">35</span>                <span class="s2">&quot;cislo&quot;</span><span class="p">:</span>  <span class="s2">&quot;str:25&quot;</span><span class="p">,</span>
-<span class="linenos">36</span>                <span class="s2">&quot;vymera&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
-<span class="linenos">37</span>                <span class="s2">&quot;rozdil&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
-<span class="linenos">38</span>                <span class="p">}</span>
-<span class="linenos">39</span>            <span class="p">}</span>
-<span class="linenos">40</span>    <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;parcely.shp&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;epsg:5514&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span> <span class="k">as</span> <span class="n">dso</span><span class="p">:</span>
+<span class="linenos">21</span><span class="c1"># Fiona nepodporuje zdroje s vice geometriemi, proto data nejprve predzpracujeme</span>
+<span class="linenos">22</span><span class="c1"># pomoci knihovny GDAL</span>
+<span class="linenos">23</span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+<span class="linenos">24</span><span class="n">parcely_poly</span> <span class="o">=</span> <span class="s2">&quot;/tmp/parcely.gml&quot;</span>
+<span class="linenos">25</span><span class="n">gdal</span><span class="o">.</span><span class="n">VectorTranslate</span><span class="p">(</span><span class="n">parcely_poly</span><span class="p">,</span> <span class="s1">&#39;/vsizip/vsicurl/&#39;</span> <span class="o">+</span> <span class="n">url</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;GML&quot;</span><span class="p">,</span>
+<span class="linenos">26</span>                     <span class="n">SQLStatement</span><span class="o">=</span><span class="s2">&quot;select OriginalniHranice,* from parcely&quot;</span><span class="p">)</span>
+<span class="linenos">27</span><span class="c1"># with fiona.open(&#39;/vsizip/vsicurl/&#39; + url, layer=&#39;Parcely&#39;) as ds:</span>
+<span class="linenos">28</span><span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">parcely_poly</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;Parcely&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ds</span><span class="p">:</span>
+<span class="linenos">29</span>    <span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">30</span>            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
+<span class="linenos">31</span>            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">32</span>                <span class="s2">&quot;cislo&quot;</span><span class="p">:</span>  <span class="s2">&quot;str:25&quot;</span><span class="p">,</span>
+<span class="linenos">33</span>                <span class="s2">&quot;vymera&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="linenos">34</span>                <span class="s2">&quot;rozdil&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span>
+<span class="linenos">35</span>                <span class="p">}</span>
+<span class="linenos">36</span>            <span class="p">}</span>
+<span class="linenos">37</span>    <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;parcely.shp&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;ESRI Shapefile&quot;</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;epsg:5514&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">)</span> <span class="k">as</span> <span class="n">dso</span><span class="p">:</span>
+<span class="linenos">38</span>        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">39</span>        <span class="n">count_dif</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos">40</span>
 <span class="linenos">41</span>        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>
 <span class="linenos">42</span>            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="linenos">43</span>            
@@ -223,15 +223,15 @@ a její konzolové nastroje.</p>
 <span class="linenos">57</span>                    <span class="s2">&quot;cislo&quot;</span><span class="p">:</span> <span class="n">cislo</span><span class="p">,</span>
 <span class="linenos">58</span>                    <span class="s2">&quot;vymera&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;VymeraParcely&quot;</span><span class="p">],</span>
 <span class="linenos">59</span>                    <span class="s2">&quot;rozdil&quot;</span><span class="p">:</span> <span class="n">vym</span> <span class="o">-</span> <span class="n">vym2</span>
-<span class="linenos">60</span>                <span class="p">}</span>
-<span class="linenos">61</span>            <span class="p">})</span>
-<span class="linenos">62</span>
-<span class="linenos">63</span>            <span class="n">count_dif</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="linenos">64</span>
-<span class="linenos">65</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
-<span class="linenos">66</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet parcel: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
-<span class="linenos">67</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet parcel nad tolerancí: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count_dif</span><span class="p">))</span>
-<span class="linenos">68</span>
+<span class="linenos">60</span>                <span class="p">},</span>
+<span class="linenos">61</span>                <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+<span class="linenos">62</span>            <span class="p">})</span>
+<span class="linenos">63</span>
+<span class="linenos">64</span>            <span class="n">count_dif</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos">65</span>
+<span class="linenos">66</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="linenos">67</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet parcel: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+<span class="linenos">68</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Počet parcel nad tolerancí: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count_dif</span><span class="p">))</span>
 </pre></div>
 </div>
 </section>
