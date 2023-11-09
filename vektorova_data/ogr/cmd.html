@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Knihovna OGR (GDAL) &#8212; Školení GeoPython pro začátečníky</title>
+    <title>Příklad použití CMD Python API &#8212; Školení GeoPython pro začátečníky</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/gismentors.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -18,17 +18,17 @@
     <script src="../../_static/translations.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="search" title="Vyhledávání" href="../../search.html" />
-    <link rel="next" title="Příklad vytvoření obalové zóny" href="buffer.html" />
-    <link rel="prev" title="Dálnice přes České středohoří" href="../fiona/highway_over_protected_area.html" /> 
+    <link rel="next" title="GeoPandas" href="../geopandas/index.html" />
+    <link rel="prev" title="Komplexní příklad přístupu k datům RÚIAN" href="ruian.html" /> 
   </head><body>
     <div class="header-wrapper" role="banner">
       <div class="header">
         <div class="headertitle"><a
           href="../../index.html">Školení GeoPython pro začátečníky</a></div>
         <div class="rel" role="navigation" aria-label="related navigation">
-          <a href="../fiona/highway_over_protected_area.html" title="Dálnice přes České středohoří"
+          <a href="ruian.html" title="Komplexní příklad přístupu k datům RÚIAN"
              accesskey="P">předchozí</a> |
-          <a href="buffer.html" title="Příklad vytvoření obalové zóny"
+          <a href="../geopandas/index.html" title="GeoPandas"
              accesskey="N">další</a>
         </div>
        </div>
@@ -42,54 +42,23 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="knihovna-ogr-gdal">
-<h1>Knihovna OGR (GDAL)<a class="headerlink" href="#knihovna-ogr-gdal" title="Permalink to this heading">¶</a></h1>
-<p>Pro práci s vektorovými daty se v jazyce Python tradičně používá
-knihovna <a class="reference external" href="http://gdal.org">GDAL</a> (resp. její čast označovaná jako
-<em>OGR</em>).</p>
-<p>Knihovna OGR slouží především k převodům mezi vektorovými formáty (ale
-i další práci s vektorovými daty, geoprvky včetně geometrie a
-atributů). V současné době knihovna podporuje <a class="reference external" href="http://gdal.org/ogr_formats.html">několik desítek formátů</a>.</p>
-<section id="datovy-model">
-<span id="ogr-model"></span><h2>Datový model<a class="headerlink" href="#datovy-model" title="Permalink to this heading">¶</a></h2>
-<p>Knihovna OGR pracuje s konceptem vrstev (<em>layers</em>) uložených v
-datových zdrojích (<em>data source</em>). OGR používá pro čtení a zápis dat
-do podporovaných datových formátů svůj vlastní <em>abstraktní model</em>,
-který se může jevit jako komplexní, nicméně spolehlivě funguje pro
-všechny případy:</p>
-<ul class="simple">
-<li><p><strong>Driver</strong> - ovladač pro čtení a zápis dat</p></li>
-<li><p><strong>Datasource</strong> - datový zdroj (soubor, databáze, protokol, …)</p></li>
-<li><p><strong>Layer</strong> - datová vrstva (obsah souboru, databázová tabulka, …)</p></li>
-<li><p><strong>Feature</strong> - geoprvek</p></li>
-<li><p><strong>Field, Geometry</strong> - atributy, geometrie</p></li>
-</ul>
-<figure class="align-center">
-<img alt="../../_images/ogr-schema.png" class="large" src="../../_images/ogr-schema.png" />
-</figure>
-<p>Popis abstraktního modelu pro vektorová data:
-<a class="reference external" href="http://gdal.org/ogr_arch.html">http://gdal.org/ogr_arch.html</a></p>
-<p><em>Rozhraní pro Python</em> představuje pouze abstraktní <abbr title="rozhraní pro programování aplikací">API</abbr> nad původními funkcemi a třídami z jazyka C++,
-ve kterém je GDAL naprogramovaný. Také z tohoto důvodu se mohou
-některé postupy v jazyku Python jevit jako těžkopádné.</p>
-<p>Užitečné odkazy:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://www.gdal.org/ogr_apitut.html">Dokumentace</a></p></li>
-<li><p><a class="reference external" href="http://gdal.org/python/">Python API</a></p></li>
-<li><p><a class="reference external" href="https://pcjericks.github.io/py-gdalogr-cookbook/vector_layers.html">Cookbook</a></p></li>
-</ul>
-</section>
-<section id="priklady">
-<h2>Příklady<a class="headerlink" href="#priklady" title="Permalink to this heading">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="buffer.html">Příklad vytvoření obalové zóny</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zapis.html">Příklad vytvoření nové vrstvy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ruian.html">Komplexní příklad přístupu k datům RÚIAN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cmd.html">Příklad použití CMD Python API</a></li>
-</ul>
+  <section id="priklad-pouziti-cmd-python-api">
+<h1>Příklad použití CMD Python API<a class="headerlink" href="#priklad-pouziti-cmd-python-api" title="Permalink to this heading">¶</a></h1>
+<p>Knihovna nabízí kromě Python API také velkou sadu nejrůznějších
+nástrojů do příkazové řádky (<a class="reference external" href="https://gdal.org/programs/index.html">seznam</a>), více na školení
+<a class="reference external" href="https://gismentors.github.io/open-source-gis/knihovny/gdal.html">Open Source GIS</a>.</p>
+<p>Příklad převodu vektorových dat z formátu <em>Esri Shapefile</em> na <em>OGC
+GeoPackage</em> pomocí konzolového nástroje <cite>ogr2ogr</cite>. Součástí je převod do WGS-84 (<cite>epsg</cite>:4326) a vyběr prvků patřících do IV. zóny.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>-f<span class="w"> </span>GPKG<span class="w"> </span>-where<span class="w"> </span><span class="s2">&quot;ZONA = &#39;IV&#39;&quot;</span><span class="w"> </span>-t_srs<span class="w"> </span>EPSG:4326<span class="w"> </span>chko_IV_epsg4326.gpkg<span class="w"> </span>chko.shp
+</pre></div>
 </div>
-</section>
+<p>Stejného výsledku lze dosáhnout v Pythonu pomocí funkce
+<a class="reference external" href="https://gdal.org/api/python/osgeo.gdal.html#osgeo.gdal.VectorTranslate">gdal.VectorTranslate</a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+<span class="n">gdal</span><span class="o">.</span><span class="n">VectorTranslate</span><span class="p">(</span><span class="s1">&#39;chko_IV_epsg4326.gpkg&#39;</span><span class="p">,</span> <span class="s1">&#39;chko.shp&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;GPKG&#39;</span><span class="p">,</span>
+                     <span class="n">where</span><span class="o">=</span><span class="s2">&quot;ZONA = &#39;IV&#39;&quot;</span><span class="p">,</span> <span class="n">dstSRS</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 
 
@@ -106,7 +75,7 @@ některé postupy v jazyku Python jevit jako těžkopádné.</p>
 <li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Úvod do jazyka Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Práce s vektorovými daty</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../fiona/index.html">Knihovna Fiona/Shapely</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Knihovna OGR (GDAL)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Knihovna OGR (GDAL)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geopandas/index.html">GeoPandas</a></li>
 </ul>
 </li>
@@ -137,9 +106,9 @@ některé postupy v jazyku Python jevit jako těžkopádné.</p>
       <div class="footer">
         <div class="left">
           <div role="navigation" aria-label="related navigaton">
-            <a href="../fiona/highway_over_protected_area.html" title="Dálnice přes České středohoří"
+            <a href="ruian.html" title="Komplexní příklad přístupu k datům RÚIAN"
               >předchozí</a> |
-            <a href="buffer.html" title="Příklad vytvoření obalové zóny"
+            <a href="../geopandas/index.html" title="GeoPandas"
               >další</a>
           </div>
           <div role="note" aria-label="source link">

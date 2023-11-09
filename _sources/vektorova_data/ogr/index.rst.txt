@@ -53,3 +53,4 @@ Příklady
    buffer
    zapis
    ruian           
+   cmd
