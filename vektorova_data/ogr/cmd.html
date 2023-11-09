@@ -46,7 +46,8 @@
 <h1>Příklad použití CMD Python API<a class="headerlink" href="#priklad-pouziti-cmd-python-api" title="Permalink to this heading">¶</a></h1>
 <p>Knihovna nabízí kromě Python API také velkou sadu nejrůznějších
 nástrojů do příkazové řádky (<a class="reference external" href="https://gdal.org/programs/index.html">seznam</a>), více na školení
-<a class="reference external" href="https://gismentors.github.io/open-source-gis/knihovny/gdal.html">Open Source GIS</a>.</p>
+<a class="reference external" href="https://gismentors.github.io/open-source-gis/knihovny/gdal.html">Open Source GIS</a> a
+<a class="reference external" href="https://gismentors.github.io/skoleni-gdal">GDAL</a>.</p>
 <p>Příklad převodu vektorových dat z formátu <em>Esri Shapefile</em> na <em>OGC
 GeoPackage</em> pomocí konzolového nástroje <cite>ogr2ogr</cite>. Součástí je převod do WGS-84 (<cite>epsg</cite>:4326) a vyběr prvků patřících do IV. zóny.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>-f<span class="w"> </span>GPKG<span class="w"> </span>-where<span class="w"> </span><span class="s2">&quot;ZONA = &#39;IV&#39;&quot;</span><span class="w"> </span>-t_srs<span class="w"> </span>EPSG:4326<span class="w"> </span>chko_IV_epsg4326.gpkg<span class="w"> </span>chko.shp
