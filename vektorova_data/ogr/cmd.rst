@@ -4,7 +4,8 @@ Příklad použití CMD Python API
 Knihovna nabízí kromě Python API také velkou sadu nejrůznějších
 nástrojů do příkazové řádky (`seznam
 <https://gdal.org/programs/index.html>`__), více na školení
-:skoleni:`Open Source GIS <open-source-gis/knihovny/gdal.html>`.
+:skoleni:`Open Source GIS <open-source-gis/knihovny/gdal.html>` a
+:skoleni:`GDAL <skoleni-gdal>`.
 
 Příklad převodu vektorových dat z formátu *Esri Shapefile* na *OGC
 GeoPackage* pomocí konzolového nástroje `ogr2ogr`. Součástí je převod do WGS-84 (`epsg`:4326) a vyběr prvků patřících do IV. zóny.
